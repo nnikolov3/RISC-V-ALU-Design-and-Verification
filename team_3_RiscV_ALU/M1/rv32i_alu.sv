@@ -71,41 +71,41 @@ module rv32i_alu (
 
 );
 
-input logic i_clk, i_rst_n;
-input logic [`ALU_WIDTH-1:0] i_alu;  //alu operation type from previous stage
-input logic [4:0] i_rs1_addr;  //address for logicister source 1
-input logic [31:0] i_rs1;  //Source logicister 1 value
-input logic [31:0] i_rs2;  //Source logicister 2 value
-input logic [31:0] i_imm;  //Immediate value from previous stage
-input logic [2:0] i_funct3;  //function type from previous stage
-input logic [`OPCODE_WIDTH-1:0] i_opcode;  //opcode type from previous stage
-input logic [`EXCEPTION_WIDTH-1:0] i_exception;  //exception from decoder stage
-input logic [31:0] i_pc;  //Program Counter
-input logic [4:0] i_rd_addr;  //address for destination logicister (from previous stage)
-input logic i_ce;  // input clk enable for pipeline stalling of this stage
-input logic i_stall;  //informs this stage to stall
-input logic i_force_stall;  //force this stage to stall
-input logic i_flush;  //flush this stage
+  input logic i_clk, i_rst_n;
+  input logic [`ALU_WIDTH-1:0] i_alu;  //alu operation type from previous stage
+  input logic [4:0] i_rs1_addr;  //address for logicister source 1
+  input logic [31:0] i_rs1;  //Source logicister 1 value
+  input logic [31:0] i_rs2;  //Source logicister 2 value
+  input logic [31:0] i_imm;  //Immediate value from previous stage
+  input logic [2:0] i_funct3;  //function type from previous stage
+  input logic [`OPCODE_WIDTH-1:0] i_opcode;  //opcode type from previous stage
+  input logic [`EXCEPTION_WIDTH-1:0] i_exception;  //exception from decoder stage
+  input logic [31:0] i_pc;  //Program Counter
+  input logic [4:0] i_rd_addr;  //address for destination logicister (from previous stage)
+  input logic i_ce;  // input clk enable for pipeline stalling of this stage
+  input logic i_stall;  //informs this stage to stall
+  input logic i_force_stall;  //force this stage to stall
+  input logic i_flush;  //flush this stage
 
-output logic [4:0] o_rs1_addr;  //address for logicister source 1
-output logic [31:0] o_rs1;  //Source logicister 1 value
-output logic [31:0] o_rs2;  //Source logicister 2 value
-output logic [11:0] o_imm;  //Immediate value
-output logic [2:0] o_funct3;  // function type
-output logic [`OPCODE_WIDTH-1:0] o_opcode;  //opcode type
-output logic [`EXCEPTION_WIDTH-1:0] o_exception;  //exception: illegal inst,ecall,ebreak,mret
-output logic [31:0] o_y;  //result of arithmetic operation
-output logic [31:0] o_pc;  //pc logicister in pipeline
-output logic [31:0] o_next_pc;  //new pc value
-output logic o_change_pc;  //high if PC needs to jump
-output logic o_wr_rd;  //write rd to the base logic if enabled
-output logic [4:0] o_rd_addr;  //address for destination logicister
-output logic [31:0] o_rd;  //value to be written back to destination logicister
-output logic o_rd_valid;  //high if o_rd is valid (not load nor csr instruction)
-output logic o_stall_from_alu; //prepare to stall next stage(memory-access stage) for load/store instruction
-output logic o_ce;  // output clk enable for pipeline stalling of next stage
-output logic o_stall;  //informs pipeline to stall
-output logic o_flush;  //flush previous stages
+  output logic [4:0] o_rs1_addr;  //address for logicister source 1
+  output logic [31:0] o_rs1;  //Source logicister 1 value
+  output logic [31:0] o_rs2;  //Source logicister 2 value
+  output logic [11:0] o_imm;  //Immediate value
+  output logic [2:0] o_funct3;  // function type
+  output logic [`OPCODE_WIDTH-1:0] o_opcode;  //opcode type
+  output logic [`EXCEPTION_WIDTH-1:0] o_exception;  //exception: illegal inst,ecall,ebreak,mret
+  output logic [31:0] o_y;  //result of arithmetic operation
+  output logic [31:0] o_pc;  //pc logicister in pipeline
+  output logic [31:0] o_next_pc;  //new pc value
+  output logic o_change_pc;  //high if PC needs to jump
+  output logic o_wr_rd;  //write rd to the base logic if enabled
+  output logic [4:0] o_rd_addr;  //address for destination logicister
+  output logic [31:0] o_rd;  //value to be written back to destination logicister
+  output logic o_rd_valid;  //high if o_rd is valid (not load nor csr instruction)
+  output logic o_stall_from_alu; //prepare to stall next stage(memory-access stage) for load/store instruction
+  output logic o_ce;  // output clk enable for pipeline stalling of next stage
+  output logic o_stall;  //informs pipeline to stall
+  output logic o_flush;  //flush previous stages
 
 
   logic alu_add = i_alu[`ADD];

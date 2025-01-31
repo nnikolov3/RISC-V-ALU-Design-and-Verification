@@ -1,0 +1,19 @@
+# run.do
+# invalid command name "run.do"
+# M1  transcript              
+# invalid command name "run.do"
+# Questa Intel Starter FPGA Edition-64 vmap 2024.1 Lib Mapping Utility 2024.04 Apr 19 2024
+# vmap work work 
+# Copying C:/intelFPGA/24.3/questa_fse/win64/../modelsim.ini to modelsim.ini
+# Modifying modelsim.ini
+# Questa Intel Starter FPGA Edition-64 vlog 2024.1 Compiler 2024.04 Apr 19 2024
+# Start time: 13:24:30 on Jan 31,2025
+# vlog rv32i_alu.sv rv32i_alu_tb.sv rv32i_header.sv 
+# -- Compiling module rv32i_alu
+# -- Compiling module rv32i_alu_tb
+# 
+# Top level modules:
+# 	rv32i_alu
+# 	rv32i_alu_tb
+# End time: 13:24:30 on Jan 31,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
