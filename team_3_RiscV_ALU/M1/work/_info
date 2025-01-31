@@ -12,23 +12,23 @@ Z0 dC:/Users/nikol/MyDev/RISC-V-ALU-Design-and-Verification/team_3_RiscV_ALU/M1
 vrv32i_alu
 Z1 2example_tb.sv|rv32i_alu.sv|rv32i_alu_tb.sv|rv32i_header.sv
 Z2 DXx6 sv_std 3 std 0 22 9oUSJO;AeEaW`l:M@^WG92
-Z3 !s110 1738360100
+Z3 !s110 1738362201
 !i10b 1
-!s100 ?`XMW13IAVH9h6I9RiQ:]0
-IcaYkFb2oI1HVkIbAkGlGQ2
+!s100 C=4@Xo9IYF:BQ]b_T9Tz>0
+IBaPSlflSikAfV_85P=:>l3
 S1
 R0
-w1738360089
+w1738361923
 8rv32i_alu.sv
 Frv32i_alu.sv
 !i122 0
-L0 41 241
+L0 46 269
 Z4 VDg1SIo80bB@j0V0VzS_@n1
 Z5 OL;L;2024.1;79
 r1
 !s85 0
 31
-Z6 !s108 1738360100.000000
+Z6 !s108 1738362201.000000
 !s107 rv32i_header.sv|rv32i_alu_tb.sv|rv32i_alu.sv|example_tb.sv|
 Z7 !s90 example_tb.sv|rv32i_alu.sv|rv32i_alu_tb.sv|rv32i_header.sv|
 !i113 0
@@ -39,15 +39,15 @@ R1
 R2
 R3
 !i10b 1
-!s100 m3?a?ac<DbB:`AYEOl1=]2
-IeP3JLY5nU>:KbcPORa=?h3
+!s100 DS8UCQmQklAFIR7ROdE?01
+I<>TP5]RXaJX:dF>ib1I]W1
 S1
 R0
-w1738360079
+w1738362196
 8rv32i_alu_tb.sv
 Frv32i_alu_tb.sv
 !i122 0
-L0 40 117
+L0 40 141
 R4
 R5
 r1
@@ -64,15 +64,15 @@ R1
 R2
 R3
 !i10b 1
-!s100 15JYkli6E;R;NARPhmV<N1
-IC5JX;QQ^oPhWiWk^J>V`[3
+!s100 QS[cT_9b27gKX4cYa5W6X2
+IG3H=U]meR^YI<E?RR_5<32
 S1
 R0
-w1738359286
+w1738362087
 8example_tb.sv
 Fexample_tb.sv
 !i122 0
-L0 16 200
+L0 16 199
 R4
 R5
 r1

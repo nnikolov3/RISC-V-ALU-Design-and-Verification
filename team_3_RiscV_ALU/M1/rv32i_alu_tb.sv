@@ -117,6 +117,30 @@ module rv32i_alu_tb;
       .o_flush(o_flush)
   );
 
+  covergroup alu_operation_cov;
+
+    coverpoint i_alu {
+      bins add_op = {`ADD};
+      bins sub_op = {`SUB};
+      bins slt_op = {`SLT};
+      bins sltu_op = {`SLTU};
+      bins xor_op = {`XOR};
+      bins or_op = {`OR};
+      bins and_op = {`AND};
+      bins sll_op = {`SLL};
+      bins srl_op = {`SRL};
+      bins sra_op = {`SRA};
+      bins eq_op = {`EQ};
+      bins neq_op = {`NEQ};
+      bins ge_op = {`GE};
+      bins geu_op = {`GEU};
+    }
+
+  endgroup
+
+  // Instantiate the covergroup in the test bench
+  alu_operation_cov alu_cov = new();
+
   // Clock generation
   initial begin
     i_clk = 0;
