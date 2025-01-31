@@ -1,3 +1,38 @@
+/*
+ECE593: Milestone 1, Group 3
+Original: https://github.com/AngeloJacobo/RISC-V/blob/main/rtl/
+
+#Design:
+
+**Operand Selection**:
+    * Chooses between PC or rs1 for Operand A.
+    * Selects either rs2 or an immediate value for Operand B based on the opcode.
+
+**ALU Operations**:
+    * Executes operations like ADD, SUB, SLT, SLTU, XOR, OR, AND, SLL, SRL, SRA, EQ, NEQ, GE, and GEU.
+    * Stores the result in the y_d register.
+
+
+**Branch and Jump Handling**:
+    * Calculates next PC for branches and jumps.
+    * Uses o_change_pc to signal a need for PC change.
+
+**Register Writeback**:
+    * Computes value for destination register rd.
+    * Manages writeback with o_wr_rd and o_rd_valid signals, disabling write for branches or stores.
+
+**Pipeline Management**:
+    * Stalling: Uses o_stall_from_alu to pause the memory-access stage for operations like load/store.
+    * Flushing: Responds to i_stall, i_force_stall, and i_flush signals to manage pipeline flow.
+
+
+Summary:
+    The rv32i_alu module in the RISC-V core's execute stage selects operands, performs arithmetic,
+    logical, and comparison operations, manages branch/jump instructions,
+    handles register writeback, and controls pipeline flow through stalling,
+    and flushing based on the current instruction.
+
+*/
 
 `timescale 1ns / 1ps `default_nettype none
 `include "rv32i_header.sv"
@@ -85,7 +120,10 @@ module rv32i_alu_tb;
   // Clock generation
   initial begin
     i_clk = 0;
-    forever #5 i_clk = ~i_clk;
+    forever begin
+      #10;
+      i_clk = ~i_clk;
+    end
   end
 
   // Initial block

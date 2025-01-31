@@ -17,3 +17,39 @@
 # 	rv32i_alu_tb
 # End time: 13:24:30 on Jan 31,2025, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
+# Questa Intel Starter FPGA Edition-64 vmap 2024.1 Lib Mapping Utility 2024.04 Apr 19 2024
+# vmap work work 
+# Modifying modelsim.ini
+# Questa Intel Starter FPGA Edition-64 vlog 2024.1 Compiler 2024.04 Apr 19 2024
+# Start time: 13:37:53 on Jan 31,2025
+# vlog example_tb.sv rv32i_alu.sv rv32i_alu_tb.sv rv32i_header.sv 
+# -- Compiling module top
+# -- Compiling module rv32i_alu
+# -- Compiling module rv32i_alu_tb
+# 
+# Top level modules:
+# 	top
+# 	rv32i_alu
+# 	rv32i_alu_tb
+# End time: 13:37:53 on Jan 31,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Questa Intel Starter FPGA Edition-64 vmap 2024.1 Lib Mapping Utility 2024.04 Apr 19 2024
+# vmap work work 
+# Modifying modelsim.ini
+# Questa Intel Starter FPGA Edition-64 vlog 2024.1 Compiler 2024.04 Apr 19 2024
+# Start time: 13:48:20 on Jan 31,2025
+# vlog example_tb.sv rv32i_alu.sv rv32i_alu_tb.sv rv32i_header.sv 
+# -- Compiling module top
+# -- Compiling module rv32i_alu
+# -- Compiling module rv32i_alu_tb
+# 
+# Top level modules:
+# 	top
+# 	rv32i_alu
+# 	rv32i_alu_tb
+# End time: 13:48:20 on Jan 31,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Break key hit
+# invalid command name "exit()"
+# Break key hit
+# Break key hit
