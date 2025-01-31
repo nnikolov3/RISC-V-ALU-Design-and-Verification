@@ -1,6 +1,4 @@
-# Start fresh
-vdel -lib work -all
-
+if [file exists "work"] {vdel -all}
 # Create work directory
 vlib work
 
@@ -8,4 +6,4 @@ vlib work
 vmap work work
 
 # Compile all Verilog Files
-vlog -sv *.sv "+acc"
+vlog *.sv
