@@ -132,7 +132,7 @@ module rv32i_alu (
   logic alu_srl;
   logic alu_sra;
   logic alu_eq;
-  logic alu_neq; 
+  logic alu_neq;
   logic alu_ge;
   logic alu_geu;
   logic opcode_rtype;
