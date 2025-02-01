@@ -1,0 +1,38 @@
+# do run.do
+# Questa Intel Starter FPGA Edition-64 vmap 2024.1 Lib Mapping Utility 2024.04 Apr 19 2024
+# vmap work work 
+# Copying C:/intelFPGA/24.3/questa_fse/win64/../modelsim.ini to modelsim.ini
+# Modifying modelsim.ini
+# Questa Intel Starter FPGA Edition-64 vlog 2024.1 Compiler 2024.04 Apr 19 2024
+# Start time: 18:37:29 on Jan 31,2025
+# vlog ./CLASS/rv32i_alu.sv ./CLASS/rv32i_header.sv ./UVM/rv32i_alu_tb.sv 
+# -- Compiling module rv32i_alu
+# ** Error: ./UVM/rv32i_alu_tb.sv(38): Cannot find `include file "rv32i_header.sv" in directories:
+#     C:/intelFPGA/24.3/questa_fse/ovm-2.1.2/../verilog_src/ovm-2.1.2/src, C:/intelFPGA/24.3/questa_fse/uvm-1.1d/../verilog_src/uvm-1.1d/src
+# -- Compiling module rv32i_alu_tb
+# ** Error: ./UVM/rv32i_alu_tb.sv(45): (vlog-2163) Macro `ALU_WIDTH is undefined.
+# ** Error: ./UVM/rv32i_alu_tb.sv(51): (vlog-2163) Macro `OPCODE_WIDTH is undefined.
+# ** Error: ./UVM/rv32i_alu_tb.sv(52): (vlog-2163) Macro `EXCEPTION_WIDTH is undefined.
+# ** Error: ./UVM/rv32i_alu_tb.sv(66): (vlog-2163) Macro `OPCODE_WIDTH is undefined.
+# ** Error: ./UVM/rv32i_alu_tb.sv(67): (vlog-2163) Macro `EXCEPTION_WIDTH is undefined.
+# End time: 18:37:29 on Jan 31,2025, Elapsed time: 0:00:00
+# Errors: 6, Warnings: 0
+# ** Error: C:/intelFPGA/24.3/questa_fse/win64/vlog failed.
+# Error in macro ./run.do line 9
+# C:/intelFPGA/24.3/questa_fse/win64/vlog failed.
+#     while executing
+# "vlog ./CLASS/*.sv ./UVM/*.sv"
+# Questa Intel Starter FPGA Edition-64 vmap 2024.1 Lib Mapping Utility 2024.04 Apr 19 2024
+# vmap work work 
+# Modifying modelsim.ini
+# Questa Intel Starter FPGA Edition-64 vlog 2024.1 Compiler 2024.04 Apr 19 2024
+# Start time: 18:38:17 on Jan 31,2025
+# vlog ./CLASS/rv32i_alu.sv ./CLASS/rv32i_header.sv ./UVM/rv32i_alu_tb.sv 
+# -- Compiling module rv32i_alu
+# -- Compiling module rv32i_alu_tb
+# 
+# Top level modules:
+# 	rv32i_alu
+# 	rv32i_alu_tb
+# End time: 18:38:17 on Jan 31,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0

@@ -6,4 +6,4 @@ vlib work
 vmap work work
 
 # Compile all Verilog Files
-vlog *.sv
+vlog ./CLASS/*.sv ./UVM/*.sv

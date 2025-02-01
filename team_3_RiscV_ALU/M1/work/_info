@@ -1,0 +1,61 @@
+m255
+K4
+z2
+!s11f vlog 2024.1 2024.04, Apr 19 2024
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dC:/Users/nikol/MyDev/RISC-V-ALU-Design-and-Verification/team_3_RiscV_ALU/M1
+vrv32i_alu
+Z1 2./CLASS/rv32i_alu.sv|./CLASS/rv32i_header.sv|./UVM/rv32i_alu_tb.sv
+Z2 DXx6 sv_std 3 std 0 22 9oUSJO;AeEaW`l:M@^WG92
+Z3 !s110 1738377497
+!i10b 1
+!s100 C=4@Xo9IYF:BQ]b_T9Tz>0
+IHeFAkzD[E8QX_5gzCaYc[2
+S1
+R0
+w1738361923
+8./CLASS/rv32i_alu.sv
+F./CLASS/rv32i_alu.sv
+!i122 0
+L0 46 269
+Z4 VDg1SIo80bB@j0V0VzS_@n1
+Z5 OL;L;2024.1;79
+r1
+!s85 0
+31
+Z6 !s108 1738377497.000000
+!s107 ./UVM/../CLASS/rv32i_header.sv|./UVM/rv32i_alu_tb.sv|./CLASS/rv32i_header.sv|./CLASS/rv32i_alu.sv|
+Z7 !s90 ./CLASS/rv32i_alu.sv|./CLASS/rv32i_header.sv|./UVM/rv32i_alu_tb.sv|
+!i113 0
+Z8 o-L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
+Z9 tCvgOpt 0
+vrv32i_alu_tb
+R1
+R2
+R3
+!i10b 1
+!s100 mHSLf@YRlj3<gm:e0S8I43
+IegM5z?Sb1VJW4Rc?hgm1b1
+S1
+R0
+w1738377488
+8./UVM/rv32i_alu_tb.sv
+F./UVM/rv32i_alu_tb.sv
+!i122 0
+L0 40 118
+R4
+R5
+r1
+!s85 0
+31
+R6
+Z10 !s107 ./UVM/../CLASS/rv32i_header.sv|./UVM/rv32i_alu_tb.sv|./CLASS/rv32i_header.sv|./CLASS/rv32i_alu.sv|
+R7
+!i113 0
+R8
+R9

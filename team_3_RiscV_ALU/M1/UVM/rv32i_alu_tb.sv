@@ -35,7 +35,7 @@ Summary:
 */
 
 `timescale 1ns / 1ps `default_nettype none
-`include "rv32i_header.sv"
+`include "../CLASS/rv32i_header.sv"
 
 module rv32i_alu_tb;
 
