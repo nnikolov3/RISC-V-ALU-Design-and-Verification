@@ -12,3 +12,4 @@ vlog ./CLASS/*.sv ./UVM/*.sv
 vsim work.rv32i_alu_tb
 
 run -all
+
