@@ -6,10 +6,9 @@ vlib work
 vmap work work
 
 # Compile all Verilog Files
-vlog ./CLASS/*.sv ./UVM/*.sv
+vlog *.sv
 
 
 vsim work.rv32i_alu_tb
 
 run -all
-
