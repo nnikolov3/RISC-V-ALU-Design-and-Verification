@@ -121,31 +121,31 @@ module rv32i_alu (
 
 
   // Internal signals
-  logic alu_add = i_alu[`ADD];
-  logic alu_sub = i_alu[`SUB];
-  logic alu_slt = i_alu[`SLT];
-  logic alu_sltu = i_alu[`SLTU];
-  logic alu_xor = i_alu[`XOR];
-  logic alu_or = i_alu[`OR];
-  logic alu_and = i_alu[`AND];
-  logic alu_sll = i_alu[`SLL];
-  logic alu_srl = i_alu[`SRL];
-  logic alu_sra = i_alu[`SRA];
-  logic alu_eq = i_alu[`EQ];
-  logic alu_neq = i_alu[`NEQ];
-  logic alu_ge = i_alu[`GE];
-  logic alu_geu = i_alu[`GEU];
-  logic opcode_rtype = i_opcode[`RTYPE];
-  logic opcode_itype = i_opcode[`ITYPE];
-  logic opcode_load = i_opcode[`LOAD];
-  logic opcode_store = i_opcode[`STORE];
-  logic opcode_branch = i_opcode[`BRANCH];
-  logic opcode_jal = i_opcode[`JAL];
-  logic opcode_jalr = i_opcode[`JALR];
-  logic opcode_lui = i_opcode[`LUI];
-  logic opcode_auipc = i_opcode[`AUIPC];
-  logic opcode_system = i_opcode[`SYSTEM];
-  logic opcode_fence = i_opcode[`FENCE];
+  logic alu_add;
+  logic alu_sub;
+  logic alu_slt;
+  logic alu_sltu;
+  logic alu_xor;
+  logic alu_or;
+  logic alu_and;
+  logic alu_sll;
+  logic alu_srl;
+  logic alu_sra;
+  logic alu_eq;
+  logic alu_neq; 
+  logic alu_ge;
+  logic alu_geu;
+  logic opcode_rtype;
+  logic opcode_itype;
+  logic opcode_load;
+  logic opcode_store;
+  logic opcode_branch;
+  logic opcode_jal;
+  logic opcode_jalr;
+  logic opcode_lui;
+  logic opcode_auipc;
+  logic opcode_system;
+  logic opcode_fence;
 
   logic [31:0] a;  //operand A
   logic [31:0] b;  //operand B
@@ -155,7 +155,7 @@ module rv32i_alu (
   logic rd_valid_d;  //high if rd is valid (not load nor csr instruction)
   logic [31:0] a_pc;
   logic [31:0] sum;
-  logic stall_bit = o_stall || i_stall;
+  logic stall_bit;
 
   //logicister the output of i_alu
 
@@ -285,6 +285,33 @@ module rv32i_alu (
   end
 
   assign sum = a_pc + i_imm;  //share adder for all addition operation for less resource utilization
+  assign stall_bit = o_stall || i_stall;
+  assign alu_add = i_alu[`ADD];
+  assign alu_sub = i_alu[`SUB];
+  assign alu_slt = i_alu[`SLT];
+  assign alu_sltu = i_alu[`SLTU];
+  assign alu_xor = i_alu[`XOR];
+  assign alu_or = i_alu[`OR];
+  assign alu_and = i_alu[`AND];
+  assign alu_sll = i_alu[`SLL];
+  assign alu_srl = i_alu[`SRL];
+  assign alu_sra = i_alu[`SRA];
+  assign alu_eq = i_alu[`EQ];
+  assign alu_neq = i_alu[`NEQ];
+  assign alu_ge = i_alu[`GE];
+  assign alu_geu = i_alu[`GEU];
+  assign opcode_rtype = i_opcode[`RTYPE];
+  assign opcode_itype = i_opcode[`ITYPE];
+  assign opcode_load = i_opcode[`LOAD];
+  assign opcode_store = i_opcode[`STORE];
+  assign opcode_branch = i_opcode[`BRANCH];
+  assign opcode_jal = i_opcode[`JAL];
+  assign opcode_jalr = i_opcode[`JALR];
+  assign opcode_lui = i_opcode[`LUI];
+  assign opcode_auipc = i_opcode[`AUIPC];
+  assign opcode_system = i_opcode[`SYSTEM];
+  assign opcode_fence = i_opcode[`FENCE];
+
 
 
 `ifdef FORMAL
