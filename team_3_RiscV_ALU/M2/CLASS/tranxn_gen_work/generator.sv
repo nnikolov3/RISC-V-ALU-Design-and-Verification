@@ -1,14 +1,4 @@
-/*
-ECE593: Milestone 2, Group 3
-File name : generator.sv
-File version : 1.1
-Class name : generator
-Description : 
-This class generates randomized transactions for the RISC-V ALU design under verification.
-*/
-
 `include "transaction.sv"
-
 class generator;
   transaction trans;
   int num_transactions = 20; // Increased number of transactions
