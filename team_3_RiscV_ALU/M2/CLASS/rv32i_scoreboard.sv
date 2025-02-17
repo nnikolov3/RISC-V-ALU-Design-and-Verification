@@ -1,4 +1,5 @@
 `include "rv32i_header.sv"
+`include "transaction.sv"
 
 class scoreboard;
 	mailbox mon_in2scb;
