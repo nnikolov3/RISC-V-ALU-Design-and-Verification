@@ -1,5 +1,5 @@
 # vsim -c tb_generator_verif -do "run -all; quit" -solvefaildebug=2 
-# Start time: 12:57:44 on Feb 17,2025
+# Start time: 13:20:24 on Feb 17,2025
 # ** Note: (vsim-3813) Design is being optimized due to module recompilation...
 # //  Questa Sim-64
 # //  Version 2021.3_1 linux_x86_64 Aug 15 2021
@@ -908,5 +908,5 @@
 # Expected Result: 00000000 (Decimal: 0)
 # --------------------
 #  quit
-# End time: 12:57:46 on Feb 17,2025, Elapsed time: 0:00:02
+# End time: 13:20:26 on Feb 17,2025, Elapsed time: 0:00:02
 # Errors: 0, Warnings: 0

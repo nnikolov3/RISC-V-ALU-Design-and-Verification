@@ -1,7 +1,7 @@
 /*
 ECE593: Milestone 2, Group 3
 File name : transaction.sv
-File version : 1.1
+File version : 1.2
 Class name : transaction
 Description : Defines the transaction class for RISC-V ALU design under verification.
 This class represents the data packets or stimulus used during simulation and verification.
@@ -18,6 +18,39 @@ class transaction;
     rand bit [10:0] i_opcode; // Opcode (11 bits)
     rand bit        i_ce;     // Clock enable
     bit [31:0]     verify_y;  // Expected output
+
+    bit        i_clk;
+    bit        i_rst_n;
+    bit [4:0]  i_rs1_addr;
+    bit [2:0]  i_funct3;
+    bit [`EXCEPTION_WIDTH-1:0] i_exception;
+    bit [31:0] i_pc;
+    bit [4:0]  i_rd_addr;
+    bit        i_stall;
+    bit        i_force_stall;
+    bit        i_flush;
+
+    // Output signals (for monitoring)
+    bit [4:0]  o_rs1_addr;
+    bit [31:0] o_rs1;
+    bit [31:0] o_rs2;
+    bit [11:0] o_imm;
+    bit [2:0]  o_funct3;
+    bit [10:0] o_opcode;
+    bit [`EXCEPTION_WIDTH-1:0] o_exception;
+    bit [31:0] o_y;
+    bit [31:0] o_pc;
+    bit [31:0] o_next_pc;
+    bit        o_change_pc;
+    bit        o_wr_rd;
+    bit [4:0]  o_rd_addr;
+    bit [31:0] o_rd;
+    bit        o_rd_valid;
+    bit        o_stall_from_alu;
+    bit        o_ce;
+    bit        o_stall;
+    bit        o_flush;
+
 
     // Constraints
     constraint alu_ctrl_c {
@@ -82,6 +115,7 @@ constraint opcode_c {
     }
 
     function new();
+        // Initialize input signals
         i_alu = 0;
         i_rs1 = 0;
         i_rs2 = 0;
@@ -89,7 +123,40 @@ constraint opcode_c {
         i_opcode = 0;
         i_ce = 0;
         verify_y = 0;
+        //new signals
+        i_clk = 0;
+        i_rst_n = 1;
+        i_rs1_addr = 0;
+        i_funct3 = 0;
+        i_exception = 0;
+        i_pc = 0;
+        i_rd_addr = 0;
+        i_stall = 0;
+        i_force_stall = 0;
+        i_flush = 0;
+
+        // Initialize output signals
+        o_rs1_addr = 0;
+        o_rs1 = 0;
+        o_rs2 = 0;
+        o_imm = 0;
+        o_funct3 = 0;
+        o_opcode = 0;
+        o_exception = 0;
+        o_y = 0;
+        o_pc = 0;
+        o_next_pc = 0;
+        o_change_pc = 0;
+        o_wr_rd = 0;
+        o_rd_addr = 0;
+        o_rd = 0;
+        o_rd_valid = 0;
+        o_stall_from_alu = 0;
+        o_ce = 0;
+        o_stall = 0;
+        o_flush = 0;
     endfunction
+
 
     function void set_values(int alu_idx, bit [10:0] opcode, bit [31:0] rs1, bit [31:0] rs2, bit [31:0] imm, bit ce);
         i_alu = 0;
