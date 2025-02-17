@@ -1,0 +1,33 @@
+C:/Users/nikol/MyDev/school/RISC-V-ALU-Design-and-Verification/team_3_RiscV_ALU/M2/CLASS/rv32i_alu_coverage.sv {0 {vlog -work m2 -vopt -sv -stats=none {C:\Users\nikol\MyDev\school\RISC-V-ALU-Design-and-Verification\team_3_RiscV_ALU\M2\CLASS\rv32i_alu_coverage.sv}
+Questa Intel FPGA Edition-64 vlog 2024.1 Compiler 2024.04 Apr 19 2024
+** Note: (vlog-2286) C:\Users\nikol\MyDev\school\RISC-V-ALU-Design-and-Verification\team_3_RiscV_ALU\M2\CLASS\rv32i_alu_coverage.sv(2): Using implicit +incdir+C:/intelFPGA_pro/24.3.1/questa_fe/uvm-1.1d/../verilog_src/uvm-1.1d/src from import uvm_pkg
+** Error: (vlog-13069) C:\Users\nikol\MyDev\school\RISC-V-ALU-Design-and-Verification\team_3_RiscV_ALU\M2\CLASS\rv32i_alu_coverage.sv(49): near "uvm_object": syntax error, unexpected IDENTIFIER.
+** Error: C:\Users\nikol\MyDev\school\RISC-V-ALU-Design-and-Verification\team_3_RiscV_ALU\M2\CLASS\rv32i_alu_coverage.sv(49): Error in class extension specification.
+** Warning: (vlog-2292) An included file is associated with a closed UVM package, but no closed UVM package was imported
+
+} {4.0 6.0} {}} C:/Users/nikol/MyDev/school/RISC-V-ALU-Design-and-Verification/team_3_RiscV_ALU/M2/CLASS/rv32i_alu_driver.sv {0 {vlog -work m2 -vopt -sv -stats=none C:/Users/nikol/MyDev/school/RISC-V-ALU-Design-and-Verification/team_3_RiscV_ALU/M2/CLASS/rv32i_alu_driver.sv
+Questa Intel FPGA Edition-64 vlog 2024.1 Compiler 2024.04 Apr 19 2024
+** Note: (vlog-2286) C:/Users/nikol/MyDev/school/RISC-V-ALU-Design-and-Verification/team_3_RiscV_ALU/M2/CLASS/rv32i_alu_driver.sv(6): Using implicit +incdir+C:/intelFPGA_pro/24.3.1/questa_fe/uvm-1.1d/../verilog_src/uvm-1.1d/src from import uvm_pkg
+** Error: (vlog-13069) C:/Users/nikol/MyDev/school/RISC-V-ALU-Design-and-Verification/team_3_RiscV_ALU/M2/CLASS/rv32i_alu_driver.sv(9): near "class": syntax error, unexpected class, expecting ';' or ','.
+** Error: ** while parsing macro expansion: 'uvm_component_utils' starting at C:/Users/nikol/MyDev/school/RISC-V-ALU-Design-and-Verification/team_3_RiscV_ALU/M2/CLASS/rv32i_alu_driver.sv(10)
+** at C:/Users/nikol/MyDev/school/RISC-V-ALU-Design-and-Verification/team_3_RiscV_ALU/M2/CLASS/rv32i_alu_driver.sv(10): (vlog-2730) Undefined variable: 'alu_driver'.
+** Warning: ** while parsing macro expansion: 'uvm_component_utils' starting at C:/Users/nikol/MyDev/school/RISC-V-ALU-Design-and-Verification/team_3_RiscV_ALU/M2/CLASS/rv32i_alu_driver.sv(10)
+** at C:/Users/nikol/MyDev/school/RISC-V-ALU-Design-and-Verification/team_3_RiscV_ALU/M2/CLASS/rv32i_alu_driver.sv(10): (vlog-2953) Incorrect usage of keyword 'static'.
+** Error: (vlog-13069) ** while parsing macro expansion: 'uvm_component_utils' starting at C:/Users/nikol/MyDev/school/RISC-V-ALU-Design-and-Verification/team_3_RiscV_ALU/M2/CLASS/rv32i_alu_driver.sv(10)
+** at C:/Users/nikol/MyDev/school/RISC-V-ALU-Design-and-Verification/team_3_RiscV_ALU/M2/CLASS/rv32i_alu_driver.sv(10): near "function": syntax error, unexpected function, expecting IDENTIFIER or TYPE_IDENTIFIER or NETTYPE_IDENTIFIER.
+** Warning: (vlog-2292) An included file is associated with a closed UVM package, but no closed UVM package was imported
+
+} {4.0 6.0 9.0 10.0} {}} C:/Users/nikol/MyDev/school/RISC-V-ALU-Design-and-Verification/team_3_RiscV_ALU/M2/CLASS/rv32i_alu.sv {0 {vlog -work m2 -vopt -sv -stats=none C:/Users/nikol/MyDev/school/RISC-V-ALU-Design-and-Verification/team_3_RiscV_ALU/M2/CLASS/rv32i_alu.sv
+Questa Intel FPGA Edition-64 vlog 2024.1 Compiler 2024.04 Apr 19 2024
+** Note: (vlog-2286) C:/Users/nikol/MyDev/school/RISC-V-ALU-Design-and-Verification/team_3_RiscV_ALU/M2/CLASS/rv32i_alu.sv(46): Using implicit +incdir+C:/intelFPGA_pro/24.3.1/questa_fe/uvm-1.1d/../verilog_src/uvm-1.1d/src from import uvm_pkg
+** Error: (vlog-13069) C:/Users/nikol/MyDev/school/RISC-V-ALU-Design-and-Verification/team_3_RiscV_ALU/M2/CLASS/rv32i_alu.sv(48): near "module": syntax error, unexpected module, expecting ';' or ','.
+** Warning: (vlog-2292) An included file is associated with a closed UVM package, but no closed UVM package was imported
+
+} {4.0 5.0} {}} C:/Users/nikol/MyDev/school/RISC-V-ALU-Design-and-Verification/team_3_RiscV_ALU/M2/CLASS/rv32i_alu_tb.sv {1 {vlog -work m2 -vopt -sv -stats=none C:/Users/nikol/MyDev/school/RISC-V-ALU-Design-and-Verification/team_3_RiscV_ALU/M2/CLASS/rv32i_alu_tb.sv
+Questa Intel FPGA Edition-64 vlog 2024.1 Compiler 2024.04 Apr 19 2024
+-- Compiling module rv32i_alu_tb
+
+Top level modules:
+	rv32i_alu_tb
+
+} {} {}}
