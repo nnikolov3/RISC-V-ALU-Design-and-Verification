@@ -1,65 +1,58 @@
 `include "rv32i_header.sv"
 `include "uvm_macros.svh"
+`include "rv32i_alu_transaction.sv" // Added include for transaction definition
+import uvm_pkg::*;
 
-covergroup alu_coverage(
-    ref logic clk,
-    ref logic [`ALU_WIDTH-1:0] alu,
-    ref logic [`OPCODE_WIDTH-1:0] opcode,
-    ref logic [31:0] y,
-    ref logic [31:0] imm,
-    ref logic [`EXCEPTION_WIDTH-1:0] except,
-    ref logic stall,
-    ref logic force_stall,
-    ref logic flush
-);
-  // Coverpoint for each opcode
-  opcode_cover: coverpoint opcode {
-    bins opcode_types[] = {`RTYPE, `ITYPE, `LOAD, `STORE, `BRANCH, `JAL, `JALR, `LUI, `AUIPC, `SYSTEM, `FENCE};
-  }
+class rv32i_alu_coverage extends uvm_subscriber #(rv32i_alu_transaction);
 
-  // Coverpoint for each ALU operation
-  alu_operation_cover: coverpoint alu {
-    bins alu_ops[] = {`ADD, `SUB, `SLT, `SLTU, `XOR, `OR, `AND, `SLL, `SRL, `SRA, `EQ, `NEQ, `GE, `GEU};
-  }
+  `uvm_component_utils(rv32i_alu_coverage)
 
-  // Cross coverage for opcode and ALU operation combinations
-  alu_opcode_cross: cross opcode_cover, alu_operation_cover;
+  // Define signal variables
+  logic [`ALU_WIDTH-1:0] alu;
+  logic [`OPCODE_WIDTH-1:0] opcode;
+  logic [31:0] y;
+  logic [31:0] imm;
+  logic [`EXCEPTION_WIDTH-1:0] except;
+  logic stall;
+  logic force_stall;
+  logic flush;
 
-  // Specific scenario coverage
-  // Cover branch condition when a branch opcode is active
-  branch_condition: coverpoint y[0] iff (opcode == `BRANCH);
+  covergroup alu_cg;
+    coverpoint opcode {
+      bins opcode_types[] = {`RTYPE, `ITYPE, `LOAD, `STORE, `BRANCH, `JAL, `JALR, `LUI, `AUIPC, `SYSTEM, `FENCE};
+    }
+    coverpoint alu {
+      bins alu_ops[] = {`ADD, `SUB, `SLT, `SLTU, `XOR, `OR, `AND, `SLL, `SRL, `SRA, `EQ, `NEQ, `GE, `GEU};
+    }
+    alu_opcode_cross: cross opcode, alu;
+    branch_condition: coverpoint y[0] iff (opcode == `BRANCH);
+    stall_cover: coverpoint stall;
+    force_stall_cover: coverpoint force_stall;
+    flush_cover: coverpoint flush;
+    imm_usage: coverpoint imm {
+      bins imm_values[] = {[32'h0 : 32'hFFFF_FFFF]};
+      option.at_least = 100;
+    }
+    exception_cover: coverpoint except {
+      bins exceptions[] = {`ILLEGAL, `ECALL, `EBREAK, `MRET};
+    }
+  endgroup
 
-  // Coverage for control signals
-  stall_cover: coverpoint stall;
-  force_stall_cover: coverpoint force_stall;
-  flush_cover: coverpoint flush;
-
-  // Cover immediate value usage (simplified here due to complexity)
-  imm_usage: coverpoint imm {
-    bins imm_values[] = {[32'h0 : 32'hFFFF_FFFF]};
-    option.at_least = 100;  // Ensure at least 100 different immediate values are covered
-  }
-
-  // Coverage for exceptions
-  exception_cover: coverpoint except {
-    bins exceptions[] = {`ILLEGAL, `ECALL, `EBREAK, `MRET};
-  }
-endgroup
-
-class alu_coverage_class extends uvm_object;
-  `uvm_object_utils(alu_coverage_class)
-
-  alu_coverage cg;
-
-  function new(string name = "alu_coverage_class");
-    super.new(name);
+  function new(string name = "rv32i_alu_coverage", uvm_component parent);
+    super.new(name, parent);
+    alu_cg = new();
   endfunction
 
-  // Method to connect coverage group to signals
-  function void connect(input logic clk, input logic [`ALU_WIDTH-1:0] alu,
-                        input logic [`OPCODE_WIDTH-1:0] opcode, input logic [31:0] y,
-                        input logic [31:0] imm, input logic [`EXCEPTION_WIDTH-1:0] except,
-                        input logic stall, input logic force_stall, input logic flush);
-    cg = new(clk, alu, opcode, y, imm, except, stall, force_stall, flush);
+  virtual function void write(rv32i_alu_transaction t);
+    opcode = t.opcode;
+    alu = t.alu_control;
+    y = t.alu_result;
+    imm = t.imm;
+    except = t.exception;
+    stall = t.stall;
+    force_stall = t.force_stall;
+    flush = t.flush;
+    alu_cg.sample();
   endfunction
+
 endclass

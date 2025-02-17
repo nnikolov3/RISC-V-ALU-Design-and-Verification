@@ -43,6 +43,7 @@ Summary:
 `timescale 1ns / 1ps `default_nettype none
 `include "rv32i_header.sv"
 `include "uvm_macros.svh"
+import uvm_pkg::*;
 
 module rv32i_alu (
     i_clk,
