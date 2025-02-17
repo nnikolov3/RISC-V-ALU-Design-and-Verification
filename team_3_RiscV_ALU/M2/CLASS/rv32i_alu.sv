@@ -1,6 +1,8 @@
 /*
 
+
 ECE593: Milestone 2, Group 3
+
 
 Original: https://github.com/AngeloJacobo/RISC-V/blob/main/rtl/
 
@@ -42,8 +44,10 @@ Summary:
 
 `timescale 1ns / 1ps `default_nettype none
 `include "rv32i_header.sv"
+
 `include "uvm_macros.svh"
 import uvm_pkg::*;
+
 
 module rv32i_alu (
     i_clk,
@@ -87,7 +91,9 @@ module rv32i_alu (
   input logic i_clk, i_rst_n;
   input logic [`ALU_WIDTH-1:0] i_alu;  //alu operation type from previous stage
   input logic [4:0] i_rs1_addr;  //address for logicister source 1
+
   input logic [31:0] i_rs1;  // Source logicister 1 value
+
   input logic [31:0] i_rs2;  //Source logicister 2 value
   input logic [31:0] i_imm;  //Immediate value from previous stage
   input logic [2:0] i_funct3;  //function type from previous stage
@@ -122,42 +128,45 @@ module rv32i_alu (
   output logic o_flush;  //flush previous stages
 
 
-  // Internal signals
-  logic        alu_add;
-  logic        alu_sub;
-  logic        alu_slt;
-  logic        alu_sltu;
-  logic        alu_xor;
-  logic        alu_or;
-  logic        alu_and;
-  logic        alu_sll;
-  logic        alu_srl;
-  logic        alu_sra;
-  logic        alu_eq;
-  logic        alu_neq;
-  logic        alu_ge;
-  logic        alu_geu;
-  logic        opcode_rtype;
-  logic        opcode_itype;
-  logic        opcode_load;
-  logic        opcode_store;
-  logic        opcode_branch;
-  logic        opcode_jal;
-  logic        opcode_jalr;
-  logic        opcode_lui;
-  logic        opcode_auipc;
-  logic        opcode_system;
-  logic        opcode_fence;
+// Internal signals
+  logic alu_add;
+  logic alu_sub;
+  logic alu_slt;
+  logic alu_sltu;
+  logic alu_xor;
+  logic alu_or;
+  logic alu_and;
+  logic alu_sll;
+  logic alu_srl;
+  logic alu_sra;
+  logic alu_eq;
+  logic alu_neq;
+  logic alu_ge;
+  logic alu_geu;
+  logic opcode_rtype;
+  logic opcode_itype;
+  logic opcode_load;
+  logic opcode_store;
+  logic opcode_branch;
+  logic opcode_jal;
+  logic opcode_jalr;
+  logic opcode_lui;
+  logic opcode_auipc;
+  logic opcode_system;
+  logic opcode_fence;
+
 
   logic [31:0] a;  //operand A
   logic [31:0] b;  //operand B
   logic [31:0] y_d;  //ALU output
   logic [31:0] rd_d;  //next value to be written back to destination logicister
-  logic        wr_rd_d;  //write rd to baselogic if enabled
-  logic        rd_valid_d;  //high if rd is valid (not load nor csr instruction)
+
+  logic wr_rd_d;  //write rd to baselogic if enabled
+  logic rd_valid_d;  //high if rd is valid (not load nor csr instruction)
   logic [31:0] a_pc;
   logic [31:0] sum;
-  logic        stall_bit;
+  logic stall_bit;
+
 
   //logicister the output of i_alu
 
