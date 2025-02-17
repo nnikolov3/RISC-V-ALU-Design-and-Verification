@@ -1,0 +1,912 @@
+# vsim -c tb_generator_verif -do "run -all; quit" -solvefaildebug=2 
+# Start time: 12:57:44 on Feb 17,2025
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# //  Questa Sim-64
+# //  Version 2021.3_1 linux_x86_64 Aug 15 2021
+# //
+# //  Copyright 1991-2021 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  QuestaSim and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading sv_std.std
+# Loading work.tb_generator_verif_sv_unit(fast)
+# Loading work.tb_generator_verif(fast)
+# run -all
+# 
+# === ADD: Overflow Test ===
+# Operation Type: ADD
+# Instruction Type: R_TYPE
+# ALU Control: 00000000000001
+# Opcode: 00000000000
+# RS1: 7fffffff (Decimal: 2147483647)
+# RS2: 00000001 (Decimal: 1)
+# IMM: 00000000 (Decimal: 0)
+# Clock Enable: 1
+# Expected Result: 80000000 (Decimal: 2147483648)
+# --------------------
+# 
+# === ADD: Maximum Values ===
+# Operation Type: ADD
+# Instruction Type: R_TYPE
+# ALU Control: 00000000000001
+# Opcode: 00000000000
+# RS1: ffffffff (Decimal: 4294967295)
+# RS2: ffffffff (Decimal: 4294967295)
+# IMM: 00000000 (Decimal: 0)
+# Clock Enable: 1
+# Expected Result: fffffffe (Decimal: 4294967294)
+# --------------------
+# 
+# === SUB: Underflow Test ===
+# Operation Type: SUB
+# Instruction Type: R_TYPE
+# ALU Control: 00000000000010
+# Opcode: 00000000000
+# RS1: 80000000 (Decimal: 2147483648)
+# RS2: 00000001 (Decimal: 1)
+# IMM: 00000000 (Decimal: 0)
+# Clock Enable: 1
+# Expected Result: 7fffffff (Decimal: 2147483647)
+# --------------------
+# 
+# === SUB: Zero Result ===
+# Operation Type: SUB
+# Instruction Type: R_TYPE
+# ALU Control: 00000000000010
+# Opcode: 00000000000
+# RS1: 5a5a5a5a (Decimal: 1515870810)
+# RS2: 5a5a5a5a (Decimal: 1515870810)
+# IMM: 00000000 (Decimal: 0)
+# Clock Enable: 1
+# Expected Result: 00000000 (Decimal: 0)
+# --------------------
+# 
+# === AND: Alternating Bits ===
+# Operation Type: AND
+# Instruction Type: R_TYPE
+# ALU Control: 00000000000100
+# Opcode: 00000000000
+# RS1: aaaaaaaa (Decimal: 2863311530)
+# RS2: 55555555 (Decimal: 1431655765)
+# IMM: 00000000 (Decimal: 0)
+# Clock Enable: 1
+# Expected Result: 00000000 (Decimal: 0)
+# --------------------
+# 
+# === OR: Complementary Patterns ===
+# Operation Type: OR
+# Instruction Type: R_TYPE
+# ALU Control: 00000000001000
+# Opcode: 00000000000
+# RS1: f0f0f0f0 (Decimal: 4042322160)
+# RS2: 0f0f0f0f (Decimal: 252645135)
+# IMM: 00000000 (Decimal: 0)
+# Clock Enable: 1
+# Expected Result: ffffffff (Decimal: 4294967295)
+# --------------------
+# 
+# === XOR: Same Values ===
+# Operation Type: XOR
+# Instruction Type: R_TYPE
+# ALU Control: 00000000010000
+# Opcode: 00000000000
+# RS1: aaaaaaaa (Decimal: 2863311530)
+# RS2: aaaaaaaa (Decimal: 2863311530)
+# IMM: 00000000 (Decimal: 0)
+# Clock Enable: 1
+# Expected Result: 00000000 (Decimal: 0)
+# --------------------
+# 
+# === SLL: Maximum Shift ===
+# Operation Type: SLL
+# Instruction Type: R_TYPE
+# ALU Control: 00000000100000
+# Opcode: 00000000000
+# RS1: 00000001 (Decimal: 1)
+# RS2: 0000001f (Decimal: 31)
+# IMM: 00000000 (Decimal: 0)
+# Clock Enable: 1
+# Expected Result: 80000000 (Decimal: 2147483648)
+# --------------------
+# 
+# === SRL: Sign Bit Test ===
+# Operation Type: SRL
+# Instruction Type: R_TYPE
+# ALU Control: 00000001000000
+# Opcode: 00000000000
+# RS1: 80000000 (Decimal: 2147483648)
+# RS2: 00000001 (Decimal: 1)
+# IMM: 00000000 (Decimal: 0)
+# Clock Enable: 1
+# Expected Result: 40000000 (Decimal: 1073741824)
+# --------------------
+# 
+# === SRA: Sign Preservation ===
+# Operation Type: SRA
+# Instruction Type: R_TYPE
+# ALU Control: 00000010000000
+# Opcode: 00000000000
+# RS1: 80000000 (Decimal: 2147483648)
+# RS2: 0000001f (Decimal: 31)
+# IMM: 00000000 (Decimal: 0)
+# Clock Enable: 1
+# Expected Result: ffffffff (Decimal: 4294967295)
+# --------------------
+# 
+# === SLT: Sign Boundary ===
+# Operation Type: SLT
+# Instruction Type: R_TYPE
+# ALU Control: 00000100000000
+# Opcode: 00000000000
+# RS1: 80000000 (Decimal: 2147483648)
+# RS2: 7fffffff (Decimal: 2147483647)
+# IMM: 00000000 (Decimal: 0)
+# Clock Enable: 1
+# Expected Result: 00000001 (Decimal: 1)
+# --------------------
+# 
+# === SLTU: Maximum vs Zero ===
+# Operation Type: SLTU
+# Instruction Type: R_TYPE
+# ALU Control: 00001000000000
+# Opcode: 00000000000
+# RS1: ffffffff (Decimal: 4294967295)
+# RS2: 00000000 (Decimal: 0)
+# IMM: 00000000 (Decimal: 0)
+# Clock Enable: 1
+# Expected Result: 00000000 (Decimal: 0)
+# --------------------
+# 
+# === EQ: Equal Values ===
+# Operation Type: EQ
+# Instruction Type: R_TYPE
+# ALU Control: 00010000000000
+# Opcode: 00000000000
+# RS1: aaaaaaaa (Decimal: 2863311530)
+# RS2: aaaaaaaa (Decimal: 2863311530)
+# IMM: 00000000 (Decimal: 0)
+# Clock Enable: 1
+# Expected Result: 00000001 (Decimal: 1)
+# --------------------
+# 
+# === GE: Equal Values Edge Case ===
+# Operation Type: GE
+# Instruction Type: R_TYPE
+# ALU Control: 01000000000000
+# Opcode: 00000000000
+# RS1: 80000000 (Decimal: 2147483648)
+# RS2: 80000000 (Decimal: 2147483648)
+# IMM: 00000000 (Decimal: 0)
+# Clock Enable: 1
+# Expected Result: 00000001 (Decimal: 1)
+# --------------------
+# 
+# === LOAD: Address Alignment Test ===
+# Operation Type: ADD
+# Instruction Type: LOAD
+# ALU Control: 00000000000001
+# Opcode: 00000000010
+# RS1: 00000004 (Decimal: 4)
+# RS2: 00000000 (Decimal: 0)
+# IMM: 00000fff (Decimal: 4095)
+# Clock Enable: 1
+# Expected Result: 00000004 (Decimal: 4)
+# --------------------
+# 
+# === STORE: Maximum Address Test ===
+# Operation Type: ADD
+# Instruction Type: STORE
+# ALU Control: 00000000000001
+# Opcode: 00000000011
+# RS1: fffffffc (Decimal: 4294967292)
+# RS2: aaaaaaaa (Decimal: 2863311530)
+# IMM: 00000000 (Decimal: 0)
+# Clock Enable: 1
+# Expected Result: fffffffc (Decimal: 4294967292)
+# --------------------
+# 
+# === BRANCH: Taken Condition ===
+# Operation Type: EQ
+# Instruction Type: BRANCH
+# ALU Control: 00010000000000
+# Opcode: 00000000100
+# RS1: 00000005 (Decimal: 5)
+# RS2: 00000005 (Decimal: 5)
+# IMM: 00000100 (Decimal: 256)
+# Clock Enable: 1
+# Expected Result: 00000001 (Decimal: 1)
+# --------------------
+# 
+# === BRANCH: Not Taken Condition ===
+# Operation Type: EQ
+# Instruction Type: BRANCH
+# ALU Control: 00010000000000
+# Opcode: 00000000100
+# RS1: 00000005 (Decimal: 5)
+# RS2: 00000006 (Decimal: 6)
+# IMM: 00000100 (Decimal: 256)
+# Clock Enable: 1
+# Expected Result: 00000000 (Decimal: 0)
+# --------------------
+# 
+# === JAL: Forward Jump ===
+# Operation Type: ADD
+# Instruction Type: JAL
+# ALU Control: 00000000000001
+# Opcode: 00000000101
+# RS1: 00001000 (Decimal: 4096)
+# RS2: 00000000 (Decimal: 0)
+# IMM: 00000fff (Decimal: 4095)
+# Clock Enable: 1
+# Expected Result: 00001fff (Decimal: 8191)
+# --------------------
+# 
+# === JALR: Return Address ===
+# Operation Type: ADD
+# Instruction Type: JALR
+# ALU Control: 00000000000001
+# Opcode: 00000000110
+# RS1: 00000100 (Decimal: 256)
+# RS2: 00000000 (Decimal: 0)
+# IMM: 00000004 (Decimal: 4)
+# Clock Enable: 1
+# Expected Result: 00000100 (Decimal: 256)
+# --------------------
+# 
+# === LUI: Maximum Immediate ===
+# Operation Type: ADD
+# Instruction Type: LUI
+# ALU Control: 00000000000001
+# Opcode: 00000000111
+# RS1: 00000000 (Decimal: 0)
+# RS2: 00000000 (Decimal: 0)
+# IMM: fffff000 (Decimal: 4294963200)
+# Clock Enable: 1
+# Expected Result: fffff000 (Decimal: 4294963200)
+# --------------------
+# 
+# === AUIPC: PC-relative Addressing ===
+# Operation Type: ADD
+# Instruction Type: AUIPC
+# ALU Control: 00000000000001
+# Opcode: 00000001000
+# RS1: 00001000 (Decimal: 4096)
+# RS2: 00000000 (Decimal: 0)
+# IMM: 000ff000 (Decimal: 1044480)
+# Clock Enable: 1
+# Expected Result: 00001000 (Decimal: 4096)
+# --------------------
+# 
+# === SYSTEM: CSR Operation ===
+# Operation Type: ADD
+# Instruction Type: SYSTEM
+# ALU Control: 00000000000001
+# Opcode: 00000001001
+# RS1: 00000fff (Decimal: 4095)
+# RS2: 00000000 (Decimal: 0)
+# IMM: 00000001 (Decimal: 1)
+# Clock Enable: 1
+# Expected Result: 00001000 (Decimal: 4096)
+# --------------------
+# 
+# === FENCE: Memory Ordering ===
+# Operation Type: ADD
+# Instruction Type: FENCE
+# ALU Control: 00000000000001
+# Opcode: 00000001010
+# RS1: 00000000 (Decimal: 0)
+# RS2: 00000000 (Decimal: 0)
+# IMM: 00000000 (Decimal: 0)
+# Clock Enable: 1
+# Expected Result: 00000000 (Decimal: 0)
+# --------------------
+# 
+# === Random Scenario 0 ===
+# Operation Type: SLTU
+# Instruction Type: AUIPC
+# ALU Control: 00001000000000
+# Opcode: 00000001000
+# RS1: 3fca444d (Decimal: 1070220365)
+# RS2: 7fffffff (Decimal: 2147483647)
+# IMM: 00000000 (Decimal: 0)
+# Clock Enable: 1
+# Expected Result: 00000001 (Decimal: 1)
+# --------------------
+# 
+# === Random Scenario 1 ===
+# Operation Type: GE
+# Instruction Type: LOAD
+# ALU Control: 01000000000000
+# Opcode: 00000000010
+# RS1: 80000000 (Decimal: 2147483648)
+# RS2: dcfaa04c (Decimal: 3707412556)
+# IMM: ffffffff (Decimal: 4294967295)
+# Clock Enable: 1
+# Expected Result: 00000000 (Decimal: 0)
+# --------------------
+# 
+# === Random Scenario 2 ===
+# Operation Type: SLT
+# Instruction Type: LUI
+# ALU Control: 00000100000000
+# Opcode: 00000000111
+# RS1: 7fffffff (Decimal: 2147483647)
+# RS2: 67a54a0f (Decimal: 1738885647)
+# IMM: dcd8e7db (Decimal: 3705202651)
+# Clock Enable: 0
+# Expected Result: 00000000 (Decimal: 0)
+# --------------------
+# 
+# === Random Scenario 3 ===
+# Operation Type: XOR
+# Instruction Type: STORE
+# ALU Control: 00000000010000
+# Opcode: 00000000011
+# RS1: 7fffffff (Decimal: 2147483647)
+# RS2: 955c0e18 (Decimal: 2505838104)
+# IMM: 00000000 (Decimal: 0)
+# Clock Enable: 1
+# Expected Result: 7fffffff (Decimal: 2147483647)
+# --------------------
+# 
+# === Random Scenario 4 ===
+# Operation Type: SLL
+# Instruction Type: STORE
+# ALU Control: 00000000100000
+# Opcode: 00000000011
+# RS1: 7fffffff (Decimal: 2147483647)
+# RS2: ffffffff (Decimal: 4294967295)
+# IMM: 136d4c17 (Decimal: 325930007)
+# Clock Enable: 1
+# Expected Result: ff800000 (Decimal: 4286578688)
+# --------------------
+# 
+# === Random Scenario 5 ===
+# Operation Type: ADD
+# Instruction Type: JALR
+# ALU Control: 00000000000001
+# Opcode: 00000000110
+# RS1: 80000000 (Decimal: 2147483648)
+# RS2: 58e18134 (Decimal: 1491173684)
+# IMM: a6819727 (Decimal: 2793510695)
+# Clock Enable: 0
+# Expected Result: d8e18134 (Decimal: 3638657332)
+# --------------------
+# 
+# === Random Scenario 6 ===
+# Operation Type: SRL
+# Instruction Type: JAL
+# ALU Control: 00000001000000
+# Opcode: 00000000101
+# RS1: 00000000 (Decimal: 0)
+# RS2: 80000000 (Decimal: 2147483648)
+# IMM: 9cc1e107 (Decimal: 2629951751)
+# Clock Enable: 1
+# Expected Result: 00000000 (Decimal: 0)
+# --------------------
+# 
+# === Random Scenario 7 ===
+# Operation Type: SUB
+# Instruction Type: R_TYPE
+# ALU Control: 00000000000010
+# Opcode: 00000000000
+# RS1: 7fffffff (Decimal: 2147483647)
+# RS2: 03a378b4 (Decimal: 61044916)
+# IMM: ffffffff (Decimal: 4294967295)
+# Clock Enable: 1
+# Expected Result: 7c5c874b (Decimal: 2086438731)
+# --------------------
+# 
+# === Random Scenario 8 ===
+# Operation Type: GEU
+# Instruction Type: I_TYPE
+# ALU Control: 10000000000000
+# Opcode: 00000000001
+# RS1: 8fd02b56 (Decimal: 2412784470)
+# RS2: 80000000 (Decimal: 2147483648)
+# IMM: b2956de9 (Decimal: 2996137449)
+# Clock Enable: 1
+# Expected Result: 00000001 (Decimal: 1)
+# --------------------
+# 
+# === Random Scenario 9 ===
+# Operation Type: GE
+# Instruction Type: SYSTEM
+# ALU Control: 01000000000000
+# Opcode: 00000001001
+# RS1: 7fffffff (Decimal: 2147483647)
+# RS2: 00000000 (Decimal: 0)
+# IMM: a947d914 (Decimal: 2840058132)
+# Clock Enable: 1
+# Expected Result: 00000001 (Decimal: 1)
+# --------------------
+# 
+# === Random Scenario 10 ===
+# Operation Type: SLT
+# Instruction Type: JAL
+# ALU Control: 00000100000000
+# Opcode: 00000000101
+# RS1: ffffffff (Decimal: 4294967295)
+# RS2: 80000000 (Decimal: 2147483648)
+# IMM: 91fd5663 (Decimal: 2449299043)
+# Clock Enable: 1
+# Expected Result: 00000000 (Decimal: 0)
+# --------------------
+# 
+# === Random Scenario 11 ===
+# Operation Type: GE
+# Instruction Type: AUIPC
+# ALU Control: 01000000000000
+# Opcode: 00000001000
+# RS1: 80000000 (Decimal: 2147483648)
+# RS2: bcda6a0b (Decimal: 3168430603)
+# IMM: 6723da99 (Decimal: 1730402969)
+# Clock Enable: 1
+# Expected Result: 00000000 (Decimal: 0)
+# --------------------
+# 
+# === Random Scenario 12 ===
+# Operation Type: SRL
+# Instruction Type: FENCE
+# ALU Control: 00000001000000
+# Opcode: 00000001010
+# RS1: 80000000 (Decimal: 2147483648)
+# RS2: 7948e207 (Decimal: 2034819591)
+# IMM: 00000000 (Decimal: 0)
+# Clock Enable: 1
+# Expected Result: 01000000 (Decimal: 16777216)
+# --------------------
+# 
+# === Random Scenario 13 ===
+# Operation Type: EQ
+# Instruction Type: LOAD
+# ALU Control: 00010000000000
+# Opcode: 00000000010
+# RS1: ffffffff (Decimal: 4294967295)
+# RS2: 7fffffff (Decimal: 2147483647)
+# IMM: 93cb793a (Decimal: 2479585594)
+# Clock Enable: 0
+# Expected Result: 00000000 (Decimal: 0)
+# --------------------
+# 
+# === Random Scenario 14 ===
+# Operation Type: SRL
+# Instruction Type: BRANCH
+# ALU Control: 00000001000000
+# Opcode: 00000000100
+# RS1: 93c5b3d4 (Decimal: 2479207380)
+# RS2: 80000000 (Decimal: 2147483648)
+# IMM: 5bc9c4bd (Decimal: 1539949757)
+# Clock Enable: 1
+# Expected Result: 93c5b3d4 (Decimal: 2479207380)
+# --------------------
+# 
+# === Random Scenario 15 ===
+# Operation Type: SUB
+# Instruction Type: LUI
+# ALU Control: 00000000000010
+# Opcode: 00000000111
+# RS1: 00000000 (Decimal: 0)
+# RS2: 7fffffff (Decimal: 2147483647)
+# IMM: 74d6663d (Decimal: 1960207933)
+# Clock Enable: 1
+# Expected Result: 8b2999c3 (Decimal: 2334759363)
+# --------------------
+# 
+# === Random Scenario 16 ===
+# Operation Type: SRA
+# Instruction Type: JAL
+# ALU Control: 00000010000000
+# Opcode: 00000000101
+# RS1: 7fffffff (Decimal: 2147483647)
+# RS2: ffffffff (Decimal: 4294967295)
+# IMM: 1ba56859 (Decimal: 463824985)
+# Clock Enable: 1
+# Expected Result: 0000003f (Decimal: 63)
+# --------------------
+# 
+# === Random Scenario 17 ===
+# Operation Type: ADD
+# Instruction Type: I_TYPE
+# ALU Control: 00000000000001
+# Opcode: 00000000001
+# RS1: 6b483039 (Decimal: 1799893049)
+# RS2: 80000000 (Decimal: 2147483648)
+# IMM: cefcc490 (Decimal: 3472671888)
+# Clock Enable: 1
+# Expected Result: 3a44f4c9 (Decimal: 977597641)
+# --------------------
+# 
+# === Random Scenario 18 ===
+# Operation Type: AND
+# Instruction Type: BRANCH
+# ALU Control: 00000000000100
+# Opcode: 00000000100
+# RS1: cab4bbf2 (Decimal: 3400842226)
+# RS2: 7fffffff (Decimal: 2147483647)
+# IMM: 00000000 (Decimal: 0)
+# Clock Enable: 1
+# Expected Result: 4ab4bbf2 (Decimal: 1253358578)
+# --------------------
+# 
+# === Random Scenario 19 ===
+# Operation Type: GE
+# Instruction Type: LOAD
+# ALU Control: 01000000000000
+# Opcode: 00000000010
+# RS1: 4ee05469 (Decimal: 1323324521)
+# RS2: 80000000 (Decimal: 2147483648)
+# IMM: ffffffff (Decimal: 4294967295)
+# Clock Enable: 1
+# Expected Result: 00000001 (Decimal: 1)
+# --------------------
+# 
+# === Random Scenario 20 ===
+# Operation Type: SLL
+# Instruction Type: JAL
+# ALU Control: 00000000100000
+# Opcode: 00000000101
+# RS1: 80000000 (Decimal: 2147483648)
+# RS2: 90f98575 (Decimal: 2432271733)
+# IMM: 1b3eaa77 (Decimal: 457091703)
+# Clock Enable: 1
+# Expected Result: 00000000 (Decimal: 0)
+# --------------------
+# 
+# === Random Scenario 21 ===
+# Operation Type: AND
+# Instruction Type: SYSTEM
+# ALU Control: 00000000000100
+# Opcode: 00000001001
+# RS1: 80000000 (Decimal: 2147483648)
+# RS2: 00000000 (Decimal: 0)
+# IMM: a4017c93 (Decimal: 2751560851)
+# Clock Enable: 1
+# Expected Result: 80000000 (Decimal: 2147483648)
+# --------------------
+# 
+# === Random Scenario 22 ===
+# Operation Type: SLT
+# Instruction Type: LOAD
+# ALU Control: 00000100000000
+# Opcode: 00000000010
+# RS1: bafbc6f8 (Decimal: 3137062648)
+# RS2: 80000000 (Decimal: 2147483648)
+# IMM: ffffffff (Decimal: 4294967295)
+# Clock Enable: 1
+# Expected Result: 00000000 (Decimal: 0)
+# --------------------
+# 
+# === Random Scenario 23 ===
+# Operation Type: OR
+# Instruction Type: AUIPC
+# ALU Control: 00000000001000
+# Opcode: 00000001000
+# RS1: 89cbe845 (Decimal: 2311841861)
+# RS2: 7fffffff (Decimal: 2147483647)
+# IMM: 7dd4d6ad (Decimal: 2111100589)
+# Clock Enable: 1
+# Expected Result: ffffffff (Decimal: 4294967295)
+# --------------------
+# 
+# === Random Scenario 24 ===
+# Operation Type: SLTU
+# Instruction Type: STORE
+# ALU Control: 00001000000000
+# Opcode: 00000000011
+# RS1: 00000000 (Decimal: 0)
+# RS2: 80000000 (Decimal: 2147483648)
+# IMM: 64c0568d (Decimal: 1690326669)
+# Clock Enable: 1
+# Expected Result: 00000001 (Decimal: 1)
+# --------------------
+# 
+# === Random Scenario 25 ===
+# Operation Type: AND
+# Instruction Type: LUI
+# ALU Control: 00000000000100
+# Opcode: 00000000111
+# RS1: 80000000 (Decimal: 2147483648)
+# RS2: 1ac6ff65 (Decimal: 449249125)
+# IMM: ffffffff (Decimal: 4294967295)
+# Clock Enable: 1
+# Expected Result: 80000000 (Decimal: 2147483648)
+# --------------------
+# 
+# === Random Scenario 26 ===
+# Operation Type: XOR
+# Instruction Type: LOAD
+# ALU Control: 00000000010000
+# Opcode: 00000000010
+# RS1: 7fffffff (Decimal: 2147483647)
+# RS2: e252a7dd (Decimal: 3797067741)
+# IMM: 00cc14e8 (Decimal: 13374696)
+# Clock Enable: 1
+# Expected Result: 9dad5822 (Decimal: 2645383202)
+# --------------------
+# 
+# === Random Scenario 27 ===
+# Operation Type: SUB
+# Instruction Type: JAL
+# ALU Control: 00000000000010
+# Opcode: 00000000101
+# RS1: dd058d68 (Decimal: 3708128616)
+# RS2: 7fffffff (Decimal: 2147483647)
+# IMM: 00000000 (Decimal: 0)
+# Clock Enable: 0
+# Expected Result: dd058d68 (Decimal: 3708128616)
+# --------------------
+# 
+# === Random Scenario 28 ===
+# Operation Type: SRA
+# Instruction Type: JAL
+# ALU Control: 00000010000000
+# Opcode: 00000000101
+# RS1: d7931203 (Decimal: 3616739843)
+# RS2: 7fffffff (Decimal: 2147483647)
+# IMM: ffffffff (Decimal: 4294967295)
+# Clock Enable: 1
+# Expected Result: ffffffff (Decimal: 4294967295)
+# --------------------
+# 
+# === Random Scenario 29 ===
+# Operation Type: EQ
+# Instruction Type: BRANCH
+# ALU Control: 00010000000000
+# Opcode: 00000000100
+# RS1: 0a9fd3f0 (Decimal: 178246640)
+# RS2: 7fffffff (Decimal: 2147483647)
+# IMM: 28302fdb (Decimal: 674246619)
+# Clock Enable: 1
+# Expected Result: 00000000 (Decimal: 0)
+# --------------------
+# 
+# === Random Scenario 30 ===
+# Operation Type: SRL
+# Instruction Type: AUIPC
+# ALU Control: 00000001000000
+# Opcode: 00000001000
+# RS1: 7fffffff (Decimal: 2147483647)
+# RS2: 00000000 (Decimal: 0)
+# IMM: 4feed549 (Decimal: 1341052233)
+# Clock Enable: 1
+# Expected Result: 7fffffff (Decimal: 2147483647)
+# --------------------
+# 
+# === Random Scenario 31 ===
+# Operation Type: SRA
+# Instruction Type: AUIPC
+# ALU Control: 00000010000000
+# Opcode: 00000001000
+# RS1: 7fffffff (Decimal: 2147483647)
+# RS2: 27811393 (Decimal: 662770579)
+# IMM: ffffffff (Decimal: 4294967295)
+# Clock Enable: 1
+# Expected Result: 00000fff (Decimal: 4095)
+# --------------------
+# 
+# === Random Scenario 32 ===
+# Operation Type: AND
+# Instruction Type: LUI
+# ALU Control: 00000000000100
+# Opcode: 00000000111
+# RS1: 9397b26e (Decimal: 2476192366)
+# RS2: 7fffffff (Decimal: 2147483647)
+# IMM: 0006109e (Decimal: 397470)
+# Clock Enable: 1
+# Expected Result: 0006100e (Decimal: 397326)
+# --------------------
+# 
+# === Random Scenario 33 ===
+# Operation Type: ADD
+# Instruction Type: SYSTEM
+# ALU Control: 00000000000001
+# Opcode: 00000001001
+# RS1: 7fffffff (Decimal: 2147483647)
+# RS2: 14d04568 (Decimal: 349193576)
+# IMM: 00000000 (Decimal: 0)
+# Clock Enable: 1
+# Expected Result: 7fffffff (Decimal: 2147483647)
+# --------------------
+# 
+# === Random Scenario 34 ===
+# Operation Type: ADD
+# Instruction Type: JALR
+# ALU Control: 00000000000001
+# Opcode: 00000000110
+# RS1: ffffffff (Decimal: 4294967295)
+# RS2: 80000000 (Decimal: 2147483648)
+# IMM: 63bb09e9 (Decimal: 1673202153)
+# Clock Enable: 1
+# Expected Result: 7fffffff (Decimal: 2147483647)
+# --------------------
+# 
+# === Random Scenario 35 ===
+# Operation Type: SUB
+# Instruction Type: JALR
+# ALU Control: 00000000000010
+# Opcode: 00000000110
+# RS1: 7fffffff (Decimal: 2147483647)
+# RS2: 4d6df969 (Decimal: 1299052905)
+# IMM: 59145c4b (Decimal: 1494506571)
+# Clock Enable: 1
+# Expected Result: 32920696 (Decimal: 848430742)
+# --------------------
+# 
+# === Random Scenario 36 ===
+# Operation Type: XOR
+# Instruction Type: FENCE
+# ALU Control: 00000000010000
+# Opcode: 00000001010
+# RS1: 7fffffff (Decimal: 2147483647)
+# RS2: 00000000 (Decimal: 0)
+# IMM: 73c45250 (Decimal: 1942245968)
+# Clock Enable: 1
+# Expected Result: 7fffffff (Decimal: 2147483647)
+# --------------------
+# 
+# === Random Scenario 37 ===
+# Operation Type: GE
+# Instruction Type: LOAD
+# ALU Control: 01000000000000
+# Opcode: 00000000010
+# RS1: 7fffffff (Decimal: 2147483647)
+# RS2: 1f9fc340 (Decimal: 530563904)
+# IMM: ffffffff (Decimal: 4294967295)
+# Clock Enable: 1
+# Expected Result: 00000001 (Decimal: 1)
+# --------------------
+# 
+# === Random Scenario 38 ===
+# Operation Type: NEQ
+# Instruction Type: AUIPC
+# ALU Control: 00100000000000
+# Opcode: 00000001000
+# RS1: edae7bb8 (Decimal: 3987635128)
+# RS2: 7fffffff (Decimal: 2147483647)
+# IMM: fa59fa39 (Decimal: 4200200761)
+# Clock Enable: 1
+# Expected Result: 00000001 (Decimal: 1)
+# --------------------
+# 
+# === Random Scenario 39 ===
+# Operation Type: SLTU
+# Instruction Type: LUI
+# ALU Control: 00001000000000
+# Opcode: 00000000111
+# RS1: 00000000 (Decimal: 0)
+# RS2: 80000000 (Decimal: 2147483648)
+# IMM: 867d220e (Decimal: 2256347662)
+# Clock Enable: 1
+# Expected Result: 00000001 (Decimal: 1)
+# --------------------
+# 
+# === Random Scenario 40 ===
+# Operation Type: OR
+# Instruction Type: LOAD
+# ALU Control: 00000000001000
+# Opcode: 00000000010
+# RS1: f2476d41 (Decimal: 4064767297)
+# RS2: 80000000 (Decimal: 2147483648)
+# IMM: ffffffff (Decimal: 4294967295)
+# Clock Enable: 0
+# Expected Result: f2476d41 (Decimal: 4064767297)
+# --------------------
+# 
+# === Random Scenario 41 ===
+# Operation Type: AND
+# Instruction Type: I_TYPE
+# ALU Control: 00000000000100
+# Opcode: 00000000001
+# RS1: 80000000 (Decimal: 2147483648)
+# RS2: cfc23ce5 (Decimal: 3485613285)
+# IMM: 282e4a69 (Decimal: 674122345)
+# Clock Enable: 1
+# Expected Result: 00000000 (Decimal: 0)
+# --------------------
+# 
+# === Random Scenario 42 ===
+# Operation Type: SRL
+# Instruction Type: LOAD
+# ALU Control: 00000001000000
+# Opcode: 00000000010
+# RS1: 7fffffff (Decimal: 2147483647)
+# RS2: 00000000 (Decimal: 0)
+# IMM: 541b6604 (Decimal: 1411081732)
+# Clock Enable: 1
+# Expected Result: 7fffffff (Decimal: 2147483647)
+# --------------------
+# 
+# === Random Scenario 43 ===
+# Operation Type: SUB
+# Instruction Type: AUIPC
+# ALU Control: 00000000000010
+# Opcode: 00000001000
+# RS1: 7fffffff (Decimal: 2147483647)
+# RS2: f945614c (Decimal: 4182073676)
+# IMM: ffffffff (Decimal: 4294967295)
+# Clock Enable: 1
+# Expected Result: 86ba9eb3 (Decimal: 2260377267)
+# --------------------
+# 
+# === Random Scenario 44 ===
+# Operation Type: GE
+# Instruction Type: JALR
+# ALU Control: 01000000000000
+# Opcode: 00000000110
+# RS1: 7fffffff (Decimal: 2147483647)
+# RS2: b3090d68 (Decimal: 3003714920)
+# IMM: 7b4716c7 (Decimal: 2068256455)
+# Clock Enable: 1
+# Expected Result: 00000001 (Decimal: 1)
+# --------------------
+# 
+# === Random Scenario 45 ===
+# Operation Type: SUB
+# Instruction Type: JALR
+# ALU Control: 00000000000010
+# Opcode: 00000000110
+# RS1: ee180423 (Decimal: 3994551331)
+# RS2: 80000000 (Decimal: 2147483648)
+# IMM: 00000000 (Decimal: 0)
+# Clock Enable: 1
+# Expected Result: 6e180423 (Decimal: 1847067683)
+# --------------------
+# 
+# === Random Scenario 46 ===
+# Operation Type: SUB
+# Instruction Type: STORE
+# ALU Control: 00000000000010
+# Opcode: 00000000011
+# RS1: 7fffffff (Decimal: 2147483647)
+# RS2: ffffffff (Decimal: 4294967295)
+# IMM: 835bd277 (Decimal: 2203832951)
+# Clock Enable: 1
+# Expected Result: fca42d88 (Decimal: 4238617992)
+# --------------------
+# 
+# === Random Scenario 47 ===
+# Operation Type: SLL
+# Instruction Type: R_TYPE
+# ALU Control: 00000000100000
+# Opcode: 00000000000
+# RS1: 80000000 (Decimal: 2147483648)
+# RS2: 513dcd52 (Decimal: 1363004754)
+# IMM: f7980458 (Decimal: 4153934936)
+# Clock Enable: 1
+# Expected Result: 00000000 (Decimal: 0)
+# --------------------
+# 
+# === Random Scenario 48 ===
+# Operation Type: ADD
+# Instruction Type: STORE
+# ALU Control: 00000000000001
+# Opcode: 00000000011
+# RS1: 4e57cc14 (Decimal: 1314376724)
+# RS2: 80000000 (Decimal: 2147483648)
+# IMM: 00000000 (Decimal: 0)
+# Clock Enable: 1
+# Expected Result: 4e57cc14 (Decimal: 1314376724)
+# --------------------
+# 
+# === Random Scenario 49 ===
+# Operation Type: SLTU
+# Instruction Type: LUI
+# ALU Control: 00001000000000
+# Opcode: 00000000111
+# RS1: 80000000 (Decimal: 2147483648)
+# RS2: 4009d687 (Decimal: 1074386567)
+# IMM: ffffffff (Decimal: 4294967295)
+# Clock Enable: 1
+# Expected Result: 00000000 (Decimal: 0)
+# --------------------
+#  quit
+# End time: 12:57:46 on Feb 17,2025, Elapsed time: 0:00:02
+# Errors: 0, Warnings: 0
