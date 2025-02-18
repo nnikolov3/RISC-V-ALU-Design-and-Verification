@@ -58,7 +58,7 @@ class generator;
     transaction trans;  // Transaction object used for scenario generation.
     mail_box gen2drv_mb;  // Mailbox to send transactions to the driver.
     int num_transactions = 50;  // Number of random transactions to generate.
-    event generation_complete;  // Event to signal completion of scenario generation.
+    event       generation_complete;    // Event to signal completion of scenario generation.
 
     //-------------------------------------------------------------------------
     // Constructor: Initialize the generator with a mailbox reference.
@@ -146,7 +146,7 @@ class generator;
             endcase
 
             // Randomize transaction parameters.
-            void'(trans.randomize());
+            trans.randomize();
             trans_clone = trans.clone();
 
             // Send the generated transaction to the driver.
@@ -392,6 +392,7 @@ class generator;
         endcase
 
         // Display scenario details.
+
         $display("\n=== %s ===", scenario_name);
         $display("Operation Type: %s", alu_op.name());
         $display("Instruction Type: %s", opcode_str);

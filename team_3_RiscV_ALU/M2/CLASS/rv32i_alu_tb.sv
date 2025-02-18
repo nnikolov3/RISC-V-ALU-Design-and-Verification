@@ -1,6 +1,6 @@
 /*
-ECE593: Milestone 1, Group 3
-Original: https://github.com/AngeloJacobo/RISC-V/blob/main/rtl/
+ECE593  : Milestone 2, Group 3
+Original: https      :          //github.com/AngeloJacobo/RISC-V/blob/main/rtl/
 
 #Design:
 
@@ -22,8 +22,8 @@ Original: https://github.com/AngeloJacobo/RISC-V/blob/main/rtl/
     * Manages writeback with o_wr_rd and o_rd_valid signals, disabling write for branches or stores.
 
 **Pipeline Management**:
-    * Stalling: Uses o_stall_from_alu to pause the memory-access stage for operations like load/store.
-    * Flushing: Responds to i_stall, i_force_stall, and i_flush signals to manage pipeline flow.
+*          Stalling    : Uses o_stall_from_alu to pause the memory-access stage for operations like load/store.
+*          Flushing    : Responds to i_stall, i_force_stall, and i_flush signals to manage pipeline flow.
 
 
 Summary:
@@ -34,91 +34,114 @@ Summary:
 
 */
 
-`timescale 1ns / 1ps `default_nettype none
 `include "rv32i_alu_header.sv"
+`include "transaction.sv"
+`include "driver.sv"
+`include "monitor.sv"
+`include "interface.sv"
+//`include "scoreboard.sv"
 
 module rv32i_alu_tb;
 
     // Input
-    logic                        i_clk;
-    logic                        i_rst_n;
-    logic [      `ALU_WIDTH-1:0] i_alu;
-    logic [                 4:0] i_rs1_addr;
-    logic [                31:0] i_rs1;
-    logic [                31:0] i_rs2;
-    logic [                31:0] i_imm;
-    logic [                 2:0] i_funct3;
-    logic [   `OPCODE_WIDTH-1:0] i_opcode;
+    logic i_clk;
+    logic i_rst_n;
+    logic [`ALU_WIDTH-1:0] i_alu;
+    logic [4:0] i_rs1_addr;
+    logic [31:0] i_rs1;
+    logic [31:0] i_rs2;
+    logic [31:0] i_imm;
+    logic [2:0] i_funct3;
+    logic [`OPCODE_WIDTH-1:0] i_opcode;
     logic [`EXCEPTION_WIDTH-1:0] i_exception;
-    logic [                31:0] i_pc;
-    logic [                 4:0] i_rd_addr;
-    logic                        i_ce;
-    logic                        i_stall;
-    logic                        i_force_stall;
-    logic                        i_flush;
+    logic [31:0] i_pc;
+    logic [4:0] i_rd_addr;
+    logic i_ce;
+    logic i_stall;
+    logic i_force_stall;
+    logic i_flush;
 
     // Output signals
-    logic [                 4:0] o_rs1_addr;
-    logic [                31:0] o_rs1;
-    logic [                31:0] o_rs2;
-    logic [                11:0] o_imm;
-    logic [                 2:0] o_funct3;
-    logic [   `OPCODE_WIDTH-1:0] o_opcode;
+    logic [4:0] o_rs1_addr;
+    logic [31:0] o_rs1;
+    logic [31:0] o_rs2;
+    logic [11:0] o_imm;
+    logic [2:0] o_funct3;
+    logic [`OPCODE_WIDTH-1:0] o_opcode;
     logic [`EXCEPTION_WIDTH-1:0] o_exception;
-    logic [                31:0] o_y;
-    logic [                31:0] o_pc;
-    logic [                31:0] o_next_pc;
-    logic                        o_change_pc;
-    logic                        o_wr_rd;
-    logic [                 4:0] o_rd_addr;
-    logic [                31:0] o_rd;
-    logic                        o_rd_valid;
-    logic                        o_stall_from_alu;
-    logic                        o_ce;
-    logic                        o_stall;
-    logic                        o_flush;
+    logic [31:0] o_y;
+    logic [31:0] o_pc;
+    logic [31:0] o_next_pc;
+    logic o_change_pc;
+    logic o_wr_rd;
+    logic [4:0] o_rd_addr;
+    logic [31:0] o_rd;
+    logic o_rd_valid;
+    logic o_stall_from_alu;
+    logic o_ce;
+    logic o_stall;
+    logic o_flush;
 
 
     //testing signals
-    logic [                31:0] verify_y;
+    logic [31:0] verify_y;
+    // Alu interface
+    alu_if dut_if (
+        .i_clk  (i_clk),
+        .i_rst_n(i_rst_n)
+    );
+
+    // Create mailboxes
+    mailbox #(transaction) driver_mb = new();
+    mailbox #(transaction) mon_in2scb = new();
+    mailbox #(transaction) mon_out2scb = new();
+
+
+    // Driver, Monitors, and Scoreboard
+    driver driver_inst;
+    monitor_in mon_in_inst;
+    monitor_out mon_out_inst;
+
+    //scoreboard scoreboard_inst;
+
 
 
     rv32i_alu DUT (
-        .i_clk           (i_clk),
-        .i_rst_n         (i_rst_n),
-        .i_alu           (i_alu),
-        .i_rs1_addr      (i_rs1_addr),
-        .i_rs1           (i_rs1),
-        .i_rs2           (i_rs2),
-        .i_imm           (i_imm),
-        .i_funct3        (i_funct3),
-        .i_opcode        (i_opcode),
-        .i_exception     (i_exception),
-        .i_pc            (i_pc),
-        .i_rd_addr       (i_rd_addr),
-        .i_ce            (i_ce),
-        .i_stall         (i_stall),
-        .i_force_stall   (i_force_stall),
-        .i_flush         (i_flush),
-        .o_rs1_addr      (o_rs1_addr),
-        .o_rs1           (o_rs1),
-        .o_rs2           (o_rs2),
-        .o_imm           (o_imm),
-        .o_funct3        (o_funct3),
-        .o_opcode        (o_opcode),
-        .o_exception     (o_exception),
-        .o_y             (o_y),
-        .o_pc            (o_pc),
-        .o_next_pc       (o_next_pc),
-        .o_change_pc     (o_change_pc),
-        .o_wr_rd         (o_wr_rd),
-        .o_rd_addr       (o_rd_addr),
-        .o_rd            (o_rd),
-        .o_rd_valid      (o_rd_valid),
-        .o_stall_from_alu(o_stall_from_alu),
-        .o_ce            (o_ce),
-        .o_stall         (o_stall),
-        .o_flush         (o_flush)
+        .i_clk           (dut_if.i_clk),
+        .i_rst_n         (dut_if.i_rst_n),
+        .i_alu           (dut_if.i_alu),
+        .i_rs1_addr      (dut_if.i_rs1_addr),
+        .i_rs1           (dut_if.i_rs1),
+        .i_rs2           (dut_if.i_rs2),
+        .i_imm           (dut_if.i_imm),
+        .i_funct3        (dut_if.i_funct3),
+        .i_opcode        (dut_if.i_opcode),
+        .i_exception     (dut_if.i_exception),
+        .i_pc            (dut_if.i_pc),
+        .i_rd_addr       (dut_if.i_rd_addr),
+        .i_ce            (dut_if.i_ce),
+        .i_stall         (dut_if.i_stall),
+        .i_force_stall   (dut_if.i_force_stall),
+        .i_flush         (dut_if.i_flush),
+        .o_rs1_addr      (dut_if.o_rs1_addr),
+        .o_rs1           (dut_if.o_rs1),
+        .o_rs2           (dut_if.o_rs2),
+        .o_imm           (dut_if.o_imm),
+        .o_funct3        (dut_if.o_funct3),
+        .o_opcode        (dut_if.o_opcode),
+        .o_exception     (dut_if.o_exception),
+        .o_y             (dut_if.o_y),
+        .o_pc            (dut_if.o_pc),
+        .o_next_pc       (dut_if.o_next_pc),
+        .o_change_pc     (dut_if.o_change_pc),
+        .o_wr_rd         (dut_if.o_wr_rd),
+        .o_rd_addr       (dut_if.o_rd_addr),
+        .o_rd            (dut_if.o_rd),
+        .o_rd_valid      (dut_if.o_rd_valid),
+        .o_stall_from_alu(dut_if.o_stall_from_alu),
+        .o_ce            (dut_if.o_ce),
+        .o_stall         (dut_if.o_stall),
+        .o_flush         (dut_if.o_flush)
     );
 
 
@@ -133,7 +156,6 @@ module rv32i_alu_tb;
 
     // Initial block
     initial begin
-
         i_clk         = 0;
         i_rst_n       = 0;
         i_alu         = 0;
@@ -150,6 +172,24 @@ module rv32i_alu_tb;
         i_stall       = 1'b0;
         i_force_stall = 1'b0;
         i_flush       = 1'b0;
+
+
+
+        // Create driver and monitors
+        driver_inst   = new(dut_if, driver_mb);
+        mon_in_inst   = new(dut_if, mon_in2scb);
+        mon_out_inst  = new(dut_if, mon_out2scb);
+        //scoreboard_inst = new(mon_in2scb, mon_out2scb);
+
+
+
+        // Fork off driver, monitors, and scoreboard
+        fork
+            driver_inst.run();
+            mon_in_inst.main();
+            mon_out_inst.main();
+            // scoreboard_inst.run();
+        join_none
 
 
         #20 i_rst_n = 1;
@@ -198,7 +238,7 @@ module rv32i_alu_tb;
     //skeleton given by chatgpt, and then modified
     function automatic logic [31:0] alu_operation(input logic [31:0] a,
                                                   input logic [31:0] b,
-                                                  input logic [`ALU_WIDTH-1:0] op // 6-bit operation code to cover given values
+                                                  input logic [`ALU_WIDTH-1:0] op  // 6-bit operation code to cover given values
 );
         //because this is one hot encoded, this will return the location of the highest bit
         case ($clog2(
