@@ -1,10 +1,9 @@
 # do run.do
 # Questa Intel FPGA Edition-64 vmap 2024.1 Lib Mapping Utility 2024.04 Apr 19 2024
 # vmap work work 
-# Copying /home/niko/intelFPGA_pro/24.3.1/questa_fe/linux_x86_64/../modelsim.ini to modelsim.ini
 # Modifying modelsim.ini
 # Questa Intel FPGA Edition-64 vlog 2024.1 Compiler 2024.04 Apr 19 2024
-# Start time: 18:15:31 on Feb 17,2025
+# Start time: 18:30:21 on Feb 17,2025
 # vlog coverage.sv driver.sv generator.sv interface.sv monitor.sv rv32i_alu.sv rv32i_alu_header.sv rv32i_alu_tb.sv scoreboard.sv transaction.sv 
 # ** Note: (vlog-2286) coverage.sv(10): Using implicit +incdir+/home/niko/intelFPGA_pro/24.3.1/questa_fe/uvm-1.1d/../verilog_src/uvm-1.1d/src from import uvm_pkg
 # -- Compiling package coverage_sv_unit
@@ -21,10 +20,10 @@
 # 
 # Top level modules:
 # 	rv32i_alu_tb
-# End time: 18:15:31 on Feb 17,2025, Elapsed time: 0:00:00
+# End time: 18:30:22 on Feb 17,2025, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 0
 # vsim work.rv32i_alu_tb 
-# Start time: 18:15:32 on Feb 17,2025
+# Start time: 18:30:22 on Feb 17,2025
 # ** Note: (vsim-3812) Design is being optimized...
 # //  Questa Intel FPGA Edition-64
 # //  Version 2024.1 linux_x86_64 Apr 19 2024
@@ -140,5 +139,5 @@
 # correct output =	00000000000000000000000000000001
 # ** Note: $finish    : rv32i_alu_tb.sv(195)
 #    Time: 400 ns  Iteration: 0  Instance: /rv32i_alu_tb
-# End time: 18:15:35 on Feb 17,2025, Elapsed time: 0:00:03
+# End time: 18:30:25 on Feb 17,2025, Elapsed time: 0:00:03
 # Errors: 0, Warnings: 0
