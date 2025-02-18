@@ -1,0 +1,144 @@
+# do run.do
+# Questa Intel FPGA Edition-64 vmap 2024.1 Lib Mapping Utility 2024.04 Apr 19 2024
+# vmap work work 
+# Copying /home/niko/intelFPGA_pro/24.3.1/questa_fe/linux_x86_64/../modelsim.ini to modelsim.ini
+# Modifying modelsim.ini
+# Questa Intel FPGA Edition-64 vlog 2024.1 Compiler 2024.04 Apr 19 2024
+# Start time: 18:15:31 on Feb 17,2025
+# vlog coverage.sv driver.sv generator.sv interface.sv monitor.sv rv32i_alu.sv rv32i_alu_header.sv rv32i_alu_tb.sv scoreboard.sv transaction.sv 
+# ** Note: (vlog-2286) coverage.sv(10): Using implicit +incdir+/home/niko/intelFPGA_pro/24.3.1/questa_fe/uvm-1.1d/../verilog_src/uvm-1.1d/src from import uvm_pkg
+# -- Compiling package coverage_sv_unit
+# -- Importing package mtiUvm.uvm_pkg (uvm-1.1d Built-in)
+# -- Compiling package driver_sv_unit
+# -- Compiling package generator_sv_unit
+# -- Compiling interface alu_if
+# -- Compiling package monitor_sv_unit
+# -- Compiling package rv32i_alu_sv_unit
+# -- Compiling module rv32i_alu
+# -- Compiling module rv32i_alu_tb
+# -- Compiling package scoreboard_sv_unit
+# -- Compiling package transaction_sv_unit
+# 
+# Top level modules:
+# 	rv32i_alu_tb
+# End time: 18:15:31 on Feb 17,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vsim work.rv32i_alu_tb 
+# Start time: 18:15:32 on Feb 17,2025
+# ** Note: (vsim-3812) Design is being optimized...
+# //  Questa Intel FPGA Edition-64
+# //  Version 2024.1 linux_x86_64 Apr 19 2024
+# //
+# // Unpublished work. Copyright 2024 Siemens
+# //
+# // This material contains trade secrets or otherwise confidential information
+# // owned by Siemens Industry Software Inc. or its affiliates (collectively,
+# // "SISW"), or its licensors. Access to and use of this information is strictly
+# // limited as set forth in the Customer's applicable agreements with SISW.
+# //
+# // This material may not be copied, distributed, or otherwise disclosed outside
+# // of the Customer's facilities without the express written permission of SISW,
+# // and may not be used in any way not expressly authorized by SISW.
+# //
+# Loading sv_std.std
+# Loading mtiUvm.uvm_pkg(fast)
+# Loading work.rv32i_alu_sv_unit(fast)
+# Loading mtiUvm.questa_uvm_pkg(fast)
+# Loading work.rv32i_alu_tb(fast)
+# Loading /home/niko/intelFPGA_pro/24.3.1/questa_fe/uvm-1.1d/linux_x86_64/uvm_dpi.so
+# ----------------------------------------------------------------
+# UVM-1.1d
+# (C) 2007-2013 Mentor Graphics Corporation
+# (C) 2007-2013 Cadence Design Systems, Inc.
+# (C) 2006-2013 Synopsys, Inc.
+# (C) 2011-2013 Cypress Semiconductor Corp.
+# ----------------------------------------------------------------
+# 
+#   ***********       IMPORTANT RELEASE NOTES         ************
+# 
+#   You are using a version of the UVM library that has been compiled
+#   with `UVM_NO_DEPRECATED undefined.
+#   See http://www.eda.org/svdb/view.php?id=3313 for more details.
+# 
+#   You are using a version of the UVM library that has been compiled
+#   with `UVM_OBJECT_MUST_HAVE_CONSTRUCTOR undefined.
+#   See http://www.eda.org/svdb/view.php?id=3770 for more details.
+# 
+#       (Specify +UVM_NO_RELNOTES to turn off this notice)
+# 
+# UVM_INFO verilog_src/questa_uvm_pkg-1.2/src/questa_uvm_pkg.sv(277) @ 0: reporter [Questa UVM] QUESTA_UVM-1.2.3
+# UVM_INFO verilog_src/questa_uvm_pkg-1.2/src/questa_uvm_pkg.sv(278) @ 0: reporter [Questa UVM]  questa_uvm::init(+struct)
+# alu_op = 00000000000001
+# rs1 = 00000000000000000000000000001100
+# imm = 00000000000000000000000000001010
+# alu output =	00000000000000000000000000010110
+# correct output =	00000000000000000000000000010110
+# alu_op = 00000000000010
+# rs1 = 00000000000000000000000000001100
+# imm = 00000000000000000000000000001010
+# alu output =	00000000000000000000000000000010
+# correct output =	00000000000000000000000000000010
+# alu_op = 00000000000100
+# rs1 = 00000000000000000000000000001100
+# imm = 00000000000000000000000000001010
+# alu output =	00000000000000000000000000000000
+# correct output =	00000000000000000000000000000000
+# alu_op = 00000000001000
+# rs1 = 00000000000000000000000000001100
+# imm = 00000000000000000000000000001010
+# alu output =	00000000000000000000000000000000
+# correct output =	00000000000000000000000000000000
+# alu_op = 00000000010000
+# rs1 = 00000000000000000000000000001100
+# imm = 00000000000000000000000000001010
+# alu output =	00000000000000000000000000000110
+# correct output =	00000000000000000000000000000110
+# alu_op = 00000000100000
+# rs1 = 00000000000000000000000000001100
+# imm = 00000000000000000000000000001010
+# alu output =	00000000000000000000000000001110
+# correct output =	00000000000000000000000000001110
+# alu_op = 00000001000000
+# rs1 = 00000000000000000000000000001100
+# imm = 00000000000000000000000000001010
+# alu output =	00000000000000000000000000001000
+# correct output =	00000000000000000000000000001000
+# alu_op = 00000010000000
+# rs1 = 00000000000000000000000000001100
+# imm = 00000000000000000000000000001010
+# alu output =	00000000000000000011000000000000
+# correct output =	00000000000000000011000000000000
+# alu_op = 00000100000000
+# rs1 = 00000000000000000000000000001100
+# imm = 00000000000000000000000000001010
+# alu output =	00000000000000000000000000000000
+# correct output =	00000000000000000000000000000000
+# alu_op = 00001000000000
+# rs1 = 00000000000000000000000000001100
+# imm = 00000000000000000000000000001010
+# alu output =	00000000000000000000000000000000
+# correct output =	00000000000000000000000000000000
+# alu_op = 00010000000000
+# rs1 = 00000000000000000000000000001100
+# imm = 00000000000000000000000000001010
+# alu output =	00000000000000000000000000000000
+# correct output =	00000000000000000000000000000000
+# alu_op = 00100000000000
+# rs1 = 00000000000000000000000000001100
+# imm = 00000000000000000000000000001010
+# alu output =	00000000000000000000000000000001
+# correct output =	00000000000000000000000000000001
+# alu_op = 01000000000000
+# rs1 = 00000000000000000000000000001100
+# imm = 00000000000000000000000000001010
+# alu output =	00000000000000000000000000000001
+# correct output =	00000000000000000000000000000001
+# alu_op = 10000000000000
+# rs1 = 00000000000000000000000000001100
+# imm = 00000000000000000000000000001010
+# alu output =	00000000000000000000000000000001
+# correct output =	00000000000000000000000000000001
+# ** Note: $finish    : rv32i_alu_tb.sv(195)
+#    Time: 400 ns  Iteration: 0  Instance: /rv32i_alu_tb
+# End time: 18:15:35 on Feb 17,2025, Elapsed time: 0:00:03
+# Errors: 0, Warnings: 0
