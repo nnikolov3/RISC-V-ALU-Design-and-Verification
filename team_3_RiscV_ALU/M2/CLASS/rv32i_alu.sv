@@ -43,7 +43,7 @@ Summary:
 
 
 `timescale 1ns / 1ps `default_nettype none
-`include "rv32i_header.sv"
+`include "rv32i_alu_header.sv"
 
 `include "uvm_macros.svh"
 import uvm_pkg::*;
@@ -128,7 +128,7 @@ module rv32i_alu (
   output logic o_flush;  //flush previous stages
 
 
-// Internal signals
+  // Internal signals
   logic alu_add;
   logic alu_sub;
   logic alu_slt;
@@ -172,8 +172,8 @@ module rv32i_alu (
 
   always_ff @(posedge i_clk, negedge i_rst_n) begin
     if (!i_rst_n) begin
-      o_exception <= 0;
-      o_ce <= 0;
+      o_exception      <= 0;
+      o_ce             <= 0;
       o_stall_from_alu <= 0;
     end else begin
       if (i_ce && !stall_bit) begin  //update logicister only if this stage is enabled
@@ -341,9 +341,12 @@ module rv32i_alu (
   always_comb begin
     if (i_alu[`SLTU]) assert (y_d[0] == $unsigned(a) < $unsigned(b));
     if (i_alu[`SLT]) assert (y_d[0] == $signed(a) < $signed(b));
-    if (i_alu[`SLL]) assert ($unsigned(y_d) == $unsigned(a) << $unsigned(b[4:0]));
-    if (i_alu[`SRL]) assert ($unsigned(y_d) == $unsigned(a) >> $unsigned(b[4:0]));
-    if (i_alu[`SRA]) assert ($signed(y_d) == ($signed(a) >>> $unsigned(b[4:0])));
+    if (i_alu[`SLL])
+      assert ($unsigned(y_d) == $unsigned(a) << $unsigned(b[4:0]));
+    if (i_alu[`SRL])
+      assert ($unsigned(y_d) == $unsigned(a) >> $unsigned(b[4:0]));
+    if (i_alu[`SRA])
+      assert ($signed(y_d) == ($signed(a) >>> $unsigned(b[4:0])));
     if (i_alu[`GEU]) assert (y_d[0] == ($unsigned(a) >= $unsigned(b)));
     if (i_alu[`GE]) assert (y_d[0] == ($signed(a) >= $signed(b)));
   end
