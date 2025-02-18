@@ -143,10 +143,13 @@ class generator;
                 2: begin
                     // Fully random case: no special constraints enabled.
                 end
+                default: begin
+                    // Fully random case: no special constraints enabled.
+                end
             endcase
 
             // Randomize transaction parameters.
-            void'(trans.randomize());
+            trans.randomize();
             trans_clone = trans.clone();
 
             // Send the generated transaction to the driver.
@@ -392,6 +395,7 @@ class generator;
         endcase
 
         // Display scenario details.
+
         $display("\n=== %s ===", scenario_name);
         $display("Operation Type: %s", alu_op.name());
         $display("Instruction Type: %s", opcode_str);

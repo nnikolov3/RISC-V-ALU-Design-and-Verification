@@ -11,9 +11,9 @@
 //-----------------------------------------------------------------------------
 class monitor_in;
     // Virtual interface instance to access DUT input signals.
-    virtual intf vif;
+    virtual alu_if vif;
     // Mailbox to send captured input transactions to the scoreboard.
-    mailbox mon_in2scb;
+    mailbox #(transaction) mon_in2scb = new();
 
     //-------------------------------------------------------------------------
     // Constructor: new
@@ -25,7 +25,7 @@ class monitor_in;
     //   vif        - Virtual interface instance connected to the DUT.
     //   mon_in2scb - Mailbox to send transactions to the scoreboard.
     //-------------------------------------------------------------------------
-    function new(virtual intf vif, mailbox mon_in2scb);
+    function new(virtual alu_if vif, mailbox#(transaction) mon_in2scb);
         this.vif        = vif;
         this.mon_in2scb = mon_in2scb;
     endfunction
@@ -85,9 +85,9 @@ class monitor_out;
     // Counter for the number of output transactions captured.
     int tx_count = 0;
     // Virtual interface instance to access DUT output signals.
-    virtual intf vif;
+    virtual alu_if vif;
     // Mailbox to send captured output transactions to the scoreboard.
-    mailbox mon_out2scb;
+    mailbox #(transaction) mon_out2scb = new();
 
     //-------------------------------------------------------------------------
     // Constructor: new
@@ -99,7 +99,7 @@ class monitor_out;
     //   vif         - Virtual interface instance connected to the DUT.
     //   mon_out2scb - Mailbox to send transactions to the scoreboard.
     //-------------------------------------------------------------------------
-    function new(virtual intf vif, mailbox mon_out2scb);
+    function new(virtual alu_if vif, mailbox#(transaction) mon_out2scb);
         this.vif         = vif;
         this.mon_out2scb = mon_out2scb;
     endfunction

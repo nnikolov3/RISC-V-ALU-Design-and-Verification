@@ -3,27 +3,33 @@
 # vmap work work 
 # Modifying modelsim.ini
 # Questa Intel FPGA Edition-64 vlog 2024.1 Compiler 2024.04 Apr 19 2024
-# Start time: 18:34:48 on Feb 17,2025
+# Start time: 15:30:05 on Feb 18,2025
 # vlog coverage.sv driver.sv generator.sv interface.sv monitor.sv rv32i_alu.sv rv32i_alu_header.sv rv32i_alu_tb.sv scoreboard.sv transaction.sv 
 # ** Note: (vlog-2286) coverage.sv(10): Using implicit +incdir+/home/niko/intelFPGA_pro/24.3.1/questa_fe/uvm-1.1d/../verilog_src/uvm-1.1d/src from import uvm_pkg
 # -- Compiling package coverage_sv_unit
 # -- Importing package mtiUvm.uvm_pkg (uvm-1.1d Built-in)
 # -- Compiling package driver_sv_unit
 # -- Compiling package generator_sv_unit
+# ** Warning: generator.sv(152): (vlog-2240) Treating stand-alone use of function 'randomize' as an implicit VOID cast.
 # -- Compiling interface alu_if
 # -- Compiling package monitor_sv_unit
 # -- Compiling package rv32i_alu_sv_unit
 # -- Compiling module rv32i_alu
+# -- Compiling interface alu_if
+# ** Warning: ** while parsing file included at rv32i_alu_tb.sv(41)
+# ** at interface.sv(7): (vlog-2275) Existing interface 'alu_if' at line 7 will be overwritten.
+# -- Compiling package rv32i_alu_tb_sv_unit
+# -- Compiling interface alu_if
 # -- Compiling module rv32i_alu_tb
 # -- Compiling package scoreboard_sv_unit
 # -- Compiling package transaction_sv_unit
 # 
 # Top level modules:
 # 	rv32i_alu_tb
-# End time: 18:34:48 on Feb 17,2025, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
+# End time: 15:30:05 on Feb 18,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 2
 # vsim work.rv32i_alu_tb 
-# Start time: 18:34:48 on Feb 17,2025
+# Start time: 15:30:05 on Feb 18,2025
 # ** Note: (vsim-3812) Design is being optimized...
 # //  Questa Intel FPGA Edition-64
 # //  Version 2024.1 linux_x86_64 Apr 19 2024
@@ -42,8 +48,10 @@
 # Loading sv_std.std
 # Loading mtiUvm.uvm_pkg(fast)
 # Loading work.rv32i_alu_sv_unit(fast)
+# Loading work.rv32i_alu_tb_sv_unit(fast)
 # Loading mtiUvm.questa_uvm_pkg(fast)
 # Loading work.rv32i_alu_tb(fast)
+# Loading work.alu_if(fast)
 # Loading /home/niko/intelFPGA_pro/24.3.1/questa_fe/uvm-1.1d/linux_x86_64/uvm_dpi.so
 # ----------------------------------------------------------------
 # UVM-1.1d
@@ -67,77 +75,345 @@
 # 
 # UVM_INFO verilog_src/questa_uvm_pkg-1.2/src/questa_uvm_pkg.sv(277) @ 0: reporter [Questa UVM] QUESTA_UVM-1.2.3
 # UVM_INFO verilog_src/questa_uvm_pkg-1.2/src/questa_uvm_pkg.sv(278) @ 0: reporter [Questa UVM]  questa_uvm::init(+struct)
+# monitor_in started
+# monitor_out started
+# ERROR!!!!
+# DUT values =
+# 1
+# DUT CLK = 1
+# DUT rs1_addr =  x
+# DUT rs1 =          x
+# DUT rs2 =          x
+# DUT imm =          x
+# DUT funct3 = x
+# DUT opcode =    x
+# DUT exception =  x
+# DUT pc =          x
+# DUT rd_addr =  x
+# DUT ce = x
+# DUT stall = x
+# DUT force_stall = x
+# DUT flush = x
+# DUT stall_bit = x
+# DUT alu ADD = x
 # alu_op = 00000000000001
 # rs1 = 00000000000000000000000000001100
 # imm = 00000000000000000000000000001010
-# alu output =	00000000000000000000000000010110
+# alu output =	xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 # correct output =	00000000000000000000000000010110
+# ERROR!!!!
+# DUT values =
+# 1
+# DUT CLK = 1
+# DUT rs1_addr =  x
+# DUT rs1 =          x
+# DUT rs2 =          x
+# DUT imm =          x
+# DUT funct3 = x
+# DUT opcode =    x
+# DUT exception =  x
+# DUT pc =          x
+# DUT rd_addr =  x
+# DUT ce = x
+# DUT stall = x
+# DUT force_stall = x
+# DUT flush = x
+# DUT stall_bit = x
+# DUT alu ADD = x
 # alu_op = 00000000000010
 # rs1 = 00000000000000000000000000001100
 # imm = 00000000000000000000000000001010
-# alu output =	00000000000000000000000000000010
+# alu output =	xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 # correct output =	00000000000000000000000000000010
+# ERROR!!!!
+# DUT values =
+# 1
+# DUT CLK = 1
+# DUT rs1_addr =  x
+# DUT rs1 =          x
+# DUT rs2 =          x
+# DUT imm =          x
+# DUT funct3 = x
+# DUT opcode =    x
+# DUT exception =  x
+# DUT pc =          x
+# DUT rd_addr =  x
+# DUT ce = x
+# DUT stall = x
+# DUT force_stall = x
+# DUT flush = x
+# DUT stall_bit = x
+# DUT alu ADD = x
 # alu_op = 00000000000100
 # rs1 = 00000000000000000000000000001100
 # imm = 00000000000000000000000000001010
-# alu output =	00000000000000000000000000000000
+# alu output =	xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 # correct output =	00000000000000000000000000000000
+# ERROR!!!!
+# DUT values =
+# 1
+# DUT CLK = 1
+# DUT rs1_addr =  x
+# DUT rs1 =          x
+# DUT rs2 =          x
+# DUT imm =          x
+# DUT funct3 = x
+# DUT opcode =    x
+# DUT exception =  x
+# DUT pc =          x
+# DUT rd_addr =  x
+# DUT ce = x
+# DUT stall = x
+# DUT force_stall = x
+# DUT flush = x
+# DUT stall_bit = x
+# DUT alu ADD = x
 # alu_op = 00000000001000
 # rs1 = 00000000000000000000000000001100
 # imm = 00000000000000000000000000001010
-# alu output =	00000000000000000000000000000000
+# alu output =	xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 # correct output =	00000000000000000000000000000000
+# ERROR!!!!
+# DUT values =
+# 1
+# DUT CLK = 1
+# DUT rs1_addr =  x
+# DUT rs1 =          x
+# DUT rs2 =          x
+# DUT imm =          x
+# DUT funct3 = x
+# DUT opcode =    x
+# DUT exception =  x
+# DUT pc =          x
+# DUT rd_addr =  x
+# DUT ce = x
+# DUT stall = x
+# DUT force_stall = x
+# DUT flush = x
+# DUT stall_bit = x
+# DUT alu ADD = x
 # alu_op = 00000000010000
 # rs1 = 00000000000000000000000000001100
 # imm = 00000000000000000000000000001010
-# alu output =	00000000000000000000000000000110
+# alu output =	xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 # correct output =	00000000000000000000000000000110
+# ERROR!!!!
+# DUT values =
+# 1
+# DUT CLK = 1
+# DUT rs1_addr =  x
+# DUT rs1 =          x
+# DUT rs2 =          x
+# DUT imm =          x
+# DUT funct3 = x
+# DUT opcode =    x
+# DUT exception =  x
+# DUT pc =          x
+# DUT rd_addr =  x
+# DUT ce = x
+# DUT stall = x
+# DUT force_stall = x
+# DUT flush = x
+# DUT stall_bit = x
+# DUT alu ADD = x
 # alu_op = 00000000100000
 # rs1 = 00000000000000000000000000001100
 # imm = 00000000000000000000000000001010
-# alu output =	00000000000000000000000000001110
+# alu output =	xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 # correct output =	00000000000000000000000000001110
+# ERROR!!!!
+# DUT values =
+# 1
+# DUT CLK = 1
+# DUT rs1_addr =  x
+# DUT rs1 =          x
+# DUT rs2 =          x
+# DUT imm =          x
+# DUT funct3 = x
+# DUT opcode =    x
+# DUT exception =  x
+# DUT pc =          x
+# DUT rd_addr =  x
+# DUT ce = x
+# DUT stall = x
+# DUT force_stall = x
+# DUT flush = x
+# DUT stall_bit = x
+# DUT alu ADD = x
 # alu_op = 00000001000000
 # rs1 = 00000000000000000000000000001100
 # imm = 00000000000000000000000000001010
-# alu output =	00000000000000000000000000001000
+# alu output =	xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 # correct output =	00000000000000000000000000001000
+# ERROR!!!!
+# DUT values =
+# 1
+# DUT CLK = 1
+# DUT rs1_addr =  x
+# DUT rs1 =          x
+# DUT rs2 =          x
+# DUT imm =          x
+# DUT funct3 = x
+# DUT opcode =    x
+# DUT exception =  x
+# DUT pc =          x
+# DUT rd_addr =  x
+# DUT ce = x
+# DUT stall = x
+# DUT force_stall = x
+# DUT flush = x
+# DUT stall_bit = x
+# DUT alu ADD = x
 # alu_op = 00000010000000
 # rs1 = 00000000000000000000000000001100
 # imm = 00000000000000000000000000001010
-# alu output =	00000000000000000011000000000000
+# alu output =	xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 # correct output =	00000000000000000011000000000000
+# ERROR!!!!
+# DUT values =
+# 1
+# DUT CLK = 1
+# DUT rs1_addr =  x
+# DUT rs1 =          x
+# DUT rs2 =          x
+# DUT imm =          x
+# DUT funct3 = x
+# DUT opcode =    x
+# DUT exception =  x
+# DUT pc =          x
+# DUT rd_addr =  x
+# DUT ce = x
+# DUT stall = x
+# DUT force_stall = x
+# DUT flush = x
+# DUT stall_bit = x
+# DUT alu ADD = x
 # alu_op = 00000100000000
 # rs1 = 00000000000000000000000000001100
 # imm = 00000000000000000000000000001010
-# alu output =	00000000000000000000000000000000
+# alu output =	xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 # correct output =	00000000000000000000000000000000
+# ERROR!!!!
+# DUT values =
+# 1
+# DUT CLK = 1
+# DUT rs1_addr =  x
+# DUT rs1 =          x
+# DUT rs2 =          x
+# DUT imm =          x
+# DUT funct3 = x
+# DUT opcode =    x
+# DUT exception =  x
+# DUT pc =          x
+# DUT rd_addr =  x
+# DUT ce = x
+# DUT stall = x
+# DUT force_stall = x
+# DUT flush = x
+# DUT stall_bit = x
+# DUT alu ADD = x
 # alu_op = 00001000000000
 # rs1 = 00000000000000000000000000001100
 # imm = 00000000000000000000000000001010
-# alu output =	00000000000000000000000000000000
+# alu output =	xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 # correct output =	00000000000000000000000000000000
+# ERROR!!!!
+# DUT values =
+# 1
+# DUT CLK = 1
+# DUT rs1_addr =  x
+# DUT rs1 =          x
+# DUT rs2 =          x
+# DUT imm =          x
+# DUT funct3 = x
+# DUT opcode =    x
+# DUT exception =  x
+# DUT pc =          x
+# DUT rd_addr =  x
+# DUT ce = x
+# DUT stall = x
+# DUT force_stall = x
+# DUT flush = x
+# DUT stall_bit = x
+# DUT alu ADD = x
 # alu_op = 00010000000000
 # rs1 = 00000000000000000000000000001100
 # imm = 00000000000000000000000000001010
-# alu output =	00000000000000000000000000000000
+# alu output =	xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 # correct output =	00000000000000000000000000000000
+# ERROR!!!!
+# DUT values =
+# 1
+# DUT CLK = 1
+# DUT rs1_addr =  x
+# DUT rs1 =          x
+# DUT rs2 =          x
+# DUT imm =          x
+# DUT funct3 = x
+# DUT opcode =    x
+# DUT exception =  x
+# DUT pc =          x
+# DUT rd_addr =  x
+# DUT ce = x
+# DUT stall = x
+# DUT force_stall = x
+# DUT flush = x
+# DUT stall_bit = x
+# DUT alu ADD = x
 # alu_op = 00100000000000
 # rs1 = 00000000000000000000000000001100
 # imm = 00000000000000000000000000001010
-# alu output =	00000000000000000000000000000001
+# alu output =	xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 # correct output =	00000000000000000000000000000001
+# ERROR!!!!
+# DUT values =
+# 1
+# DUT CLK = 1
+# DUT rs1_addr =  x
+# DUT rs1 =          x
+# DUT rs2 =          x
+# DUT imm =          x
+# DUT funct3 = x
+# DUT opcode =    x
+# DUT exception =  x
+# DUT pc =          x
+# DUT rd_addr =  x
+# DUT ce = x
+# DUT stall = x
+# DUT force_stall = x
+# DUT flush = x
+# DUT stall_bit = x
+# DUT alu ADD = x
 # alu_op = 01000000000000
 # rs1 = 00000000000000000000000000001100
 # imm = 00000000000000000000000000001010
-# alu output =	00000000000000000000000000000001
+# alu output =	xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 # correct output =	00000000000000000000000000000001
+# ERROR!!!!
+# DUT values =
+# 1
+# DUT CLK = 1
+# DUT rs1_addr =  x
+# DUT rs1 =          x
+# DUT rs2 =          x
+# DUT imm =          x
+# DUT funct3 = x
+# DUT opcode =    x
+# DUT exception =  x
+# DUT pc =          x
+# DUT rd_addr =  x
+# DUT ce = x
+# DUT stall = x
+# DUT force_stall = x
+# DUT flush = x
+# DUT stall_bit = x
+# DUT alu ADD = x
 # alu_op = 10000000000000
 # rs1 = 00000000000000000000000000001100
 # imm = 00000000000000000000000000001010
-# alu output =	00000000000000000000000000000001
+# alu output =	xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 # correct output =	00000000000000000000000000000001
-# ** Note: $finish    : rv32i_alu_tb.sv(195)
-#    Time: 400 ns  Iteration: 0  Instance: /rv32i_alu_tb
-# End time: 18:34:51 on Feb 17,2025, Elapsed time: 0:00:03
+# ** Note: $finish    : rv32i_alu_tb.sv(236)
+#    Time: 400 ps  Iteration: 0  Instance: /rv32i_alu_tb
+# End time: 15:30:09 on Feb 18,2025, Elapsed time: 0:00:04
 # Errors: 0, Warnings: 0
