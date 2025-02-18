@@ -1,8 +1,14 @@
 // ----------------------------------------------------------------------------
 // ECE544 M2 - RV32I ALU Driver
 // ----------------------------------------------------------------------------
-// This file implements a UVM driver for the RV32I ALU. It drives input signals
-// to the DUT based on the provided transactions.
+// Description:
+//   This module implements a UVM driver for the RV32I ALU DUT (Design Under Test).
+//   It converts high-level transaction objects into corresponding low-level signal
+//   manipulations on the DUT's interface. In essence, it "drives" the ALU inputs
+//   based on the sequencer's transactions.
+//
+//   Note: A virtual interface (alu_if) must be set in the UVM configuration database
+//         with the key "drv_if" prior to simulation.
 // ----------------------------------------------------------------------------
 
 import uvm_pkg::*;
@@ -10,52 +16,48 @@ import uvm_pkg::*;
 `include "uvm_macros.svh"
 `include "transaction.sv"
 
-class driver extends uvm_driver #(transaction);
+class driver;
 
-    `uvm_component_utils(driver)
+    mailbox #(transaction) shared_mb;
 
-    virtual rv32i_alu_if drv_if;  // Virtual interface handle
+    // Virtual interface for DUT connection.
+    virtual alu_if drv_if;
 
-    function new(string name = "driver", uvm_component parent);
-        super.new(name, parent);
+    function new(virtual alu_if drv_vif, mailbox#(transaction) mb);
+        this.drv_if = drv_if;
+        this.shared_mb = mb;
     endfunction
 
-    function void build_phase(uvm_phase phase);
-        super.build_phase(phase);
-        if (!uvm_config_db#(virtual rv32i_alu_if)::get(
-                this, "", "drv_if", drv_if
-            )) begin
-            `uvm_fatal(get_type_name(), "Failed to get virtual interface!")
-        end
-    endfunction
-
-    task run_phase(uvm_phase phase);
-        transaction req;
+    task run();
+        transaction tx;
+        // Example: retrieve an expected transaction from the mailbox for comparison
         forever begin
-            seq_item_port.get_next_item(req);
-
-            // Drive the DUT signals
-            drv_if.i_opcode      = req.i_opcode;
-            drv_if.i_alu         = req.i_alu;
-            drv_if.i_rs1         = req.i_rs1;
-            drv_if.i_rs2         = req.i_rs2;
-            drv_if.i_imm         = req.i_imm;
-            drv_if.i_funct3      = req.i_funct3;
-            drv_if.i_pc          = req.i_pc;
-            drv_if.i_rs1_addr    = req.i_rs1_addr;
-            drv_if.i_rd_addr     = req.i_rd_addr;
-            drv_if.i_ce          = req.i_ce;
-            drv_if.i_rst_n       = req.i_rst_n;
-            drv_if.i_stall       = req.i_stall;
-            drv_if.i_force_stall = req.i_force_stall;
-            drv_if.i_flush       = req.i_flush;
-
-            // Wait for the next clock edge
-            @(posedge drv_if.i_clk);
-
-            // Finish the transaction
-            seq_item_port.item_done();
+            shared_mb.get(tx);
+            // Use the transaction 'tx' for comparison or further processing.
+            drive_item(tx);
         end
+    endtask
+
+    // drive_item: Drives the DUT input signals based on the provided transaction.
+    // @param tx - The transaction object containing the data for all DUT signals.
+    virtual task drive_item(transaction tx);
+        // Map each field from the transaction to its corresponding DUT signal.
+        drv_if.i_opcode      = tx.i_opcode;
+        drv_if.i_alu         = tx.i_alu;
+        drv_if.i_rs1         = tx.i_rs1;
+        drv_if.i_rs2         = tx.i_rs2;
+        drv_if.i_imm         = tx.i_imm;
+        drv_if.i_funct3      = tx.i_funct3;
+        drv_if.i_pc          = tx.i_pc;
+        drv_if.i_rs1_addr    = tx.i_rs1_addr;
+        drv_if.i_rd_addr     = tx.i_rd_addr;
+        drv_if.i_ce          = tx.i_ce;
+        drv_if.i_stall       = tx.i_stall;
+        drv_if.i_force_stall = tx.i_force_stall;
+        drv_if.i_flush       = tx.i_flush;
+
+        // Wait for the next positive clock edge to synchronize signal updates.
+        @(posedge drv_if.i_clk);
     endtask
 
 endclass

@@ -34,8 +34,8 @@ class coverage extends uvm_subscriber #(transaction);
     // Write method: called automatically when a transaction is received
     // This method samples the current state of the ALU and updates coverage
     virtual function void write(transaction t);
-        opcode = t.i_opcode;  // Corrected field name
-        alu = t.i_alu;  // Corrected field name
+        opcode = t.i_opcode;
+        alu    = t.i_alu;
         alu_cg.sample();
     endfunction
 

@@ -15,6 +15,8 @@ class scoreboard;
     mailbox mon_in2scb;  // Mailbox for receiving input transactions from the monitor.
     mailbox mon_out2scb;  // Mailbox for receiving output transactions from the monitor.
 
+
+
     //-------------------------------------------------------------------------
     // FIFO Arrays to Store Input Signals
     // These arrays buffer the input signals from incoming transactions,
