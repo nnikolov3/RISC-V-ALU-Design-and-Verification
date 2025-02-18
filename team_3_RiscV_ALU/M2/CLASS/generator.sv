@@ -58,7 +58,7 @@ class generator;
     transaction trans;  // Transaction object used for scenario generation.
     mail_box gen2drv_mb;  // Mailbox to send transactions to the driver.
     int num_transactions = 50;  // Number of random transactions to generate.
-    event       generation_complete;    // Event to signal completion of scenario generation.
+    event generation_complete;  // Event to signal completion of scenario generation.
 
     //-------------------------------------------------------------------------
     // Constructor: Initialize the generator with a mailbox reference.
@@ -141,6 +141,9 @@ class generator;
                     trans.max_value_c.constraint_mode(1);
                 end
                 2: begin
+                    // Fully random case: no special constraints enabled.
+                end
+                default: begin
                     // Fully random case: no special constraints enabled.
                 end
             endcase

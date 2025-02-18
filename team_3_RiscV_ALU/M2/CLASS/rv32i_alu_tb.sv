@@ -39,7 +39,7 @@ Summary:
 `include "driver.sv"
 `include "monitor.sv"
 `include "interface.sv"
-//`include "scoreboard.sv"
+`include "scoreboard.sv"
 
 module rv32i_alu_tb;
 
@@ -101,6 +101,7 @@ module rv32i_alu_tb;
     driver driver_inst;
     monitor_in mon_in_inst;
     monitor_out mon_out_inst;
+    scoreboard scoreboard_inst;
 
     //scoreboard scoreboard_inst;
 
@@ -156,30 +157,30 @@ module rv32i_alu_tb;
 
     // Initial block
     initial begin
-        i_clk         = 0;
-        i_rst_n       = 0;
-        i_alu         = 0;
-        i_rs1_addr    = 5'b0;
-        i_rs1         = 32'b0;
-        i_rs2         = 32'b0;
-        i_imm         = 32'b0;
-        i_funct3      = 3'b0;
-        i_opcode      = 0;
-        i_exception   = 0;
-        i_pc          = 32'b0;
-        i_rd_addr     = 5'b0;
-        i_ce          = 1'b1;
-        i_stall       = 1'b0;
-        i_force_stall = 1'b0;
-        i_flush       = 1'b0;
+        i_clk           = 0;
+        i_rst_n         = 0;
+        i_alu           = 0;
+        i_rs1_addr      = 5'b0;
+        i_rs1           = 32'b0;
+        i_rs2           = 32'b0;
+        i_imm           = 32'b0;
+        i_funct3        = 3'b0;
+        i_opcode        = 0;
+        i_exception     = 0;
+        i_pc            = 32'b0;
+        i_rd_addr       = 5'b0;
+        i_ce            = 1'b1;
+        i_stall         = 1'b0;
+        i_force_stall   = 1'b0;
+        i_flush         = 1'b0;
 
 
 
         // Create driver and monitors
-        driver_inst   = new(dut_if, driver_mb);
-        mon_in_inst   = new(dut_if, mon_in2scb);
-        mon_out_inst  = new(dut_if, mon_out2scb);
-        //scoreboard_inst = new(mon_in2scb, mon_out2scb);
+        driver_inst     = new(dut_if, driver_mb);
+        mon_in_inst     = new(dut_if, mon_in2scb);
+        mon_out_inst    = new(dut_if, mon_out2scb);
+        scoreboard_inst = new(mon_in2scb, mon_out2scb);
 
 
 
@@ -188,7 +189,7 @@ module rv32i_alu_tb;
             driver_inst.run();
             mon_in_inst.main();
             mon_out_inst.main();
-            // scoreboard_inst.run();
+            scoreboard_inst.main();
         join_none
 
 

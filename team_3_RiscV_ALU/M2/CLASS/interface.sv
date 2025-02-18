@@ -1,4 +1,6 @@
 `include "rv32i_alu_header.sv"
+`ifndef ALU_IF_SV
+`define ALU_IF_SV
 
 // ALU Interface for RISC-V 32I implementation
 // Handles communication between ALU and pipeline stages
@@ -50,3 +52,4 @@ interface alu_if (
     logic o_flush;  // Propagated flush signal
 
 endinterface
+`endif

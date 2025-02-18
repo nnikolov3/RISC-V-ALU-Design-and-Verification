@@ -24,7 +24,7 @@ class driver;
     virtual alu_if drv_if;
 
     function new(virtual alu_if drv_vif, mailbox#(transaction) mb);
-        this.drv_if = drv_if;
+        this.drv_if    = drv_if;
         this.shared_mb = mb;
     endfunction
 

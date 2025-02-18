@@ -12,8 +12,8 @@ class scoreboard;
     //-------------------------------------------------------------------------
     // Mailboxes for communication between the monitor and scoreboard.
     //-------------------------------------------------------------------------
-    mailbox mon_in2scb;  // Mailbox for receiving input transactions from the monitor.
-    mailbox mon_out2scb;  // Mailbox for receiving output transactions from the monitor.
+    mailbox #(transaction) mon_in2scb = new();
+    mailbox #(transaction) mon_out2scb = new();
 
 
 
@@ -22,8 +22,8 @@ class scoreboard;
     // These arrays buffer the input signals from incoming transactions,
     // so they can be matched later with the corresponding output transaction.
     //-------------------------------------------------------------------------
-    // bit i_clk_fifo[$];          // (Optional) FIFO for clock signals (currently commented out)
-    // bit i_rst_n_fifo[$];        // (Optional) FIFO for reset signals if needed.
+    bit i_clk_fifo[$];  // (Optional) FIFO for clock signals (currently commented out)
+    bit i_rst_n_fifo[$];  // (Optional) FIFO for reset signals if needed.
     bit [`ALU_WIDTH-1:0] i_alu_fifo[$];  // FIFO for ALU control signals.
     bit [4:0] i_rs1_addr_fifo[$];  // FIFO for RS1 register addresses.
     bit [31:0] i_rs1_fifo[$];  // FIFO for RS1 data.
@@ -42,7 +42,8 @@ class scoreboard;
     //-------------------------------------------------------------------------
     // Constructor: Initializes the scoreboard with the provided mailboxes.
     //-------------------------------------------------------------------------
-    function new(mailbox mon_in2scb, mailbox mon_out2scb);
+    function new(mailbox#(transaction) mon_in2scb,
+                 mailbox#(transaction) mon_out2scb);
         this.mon_in2scb  = mon_in2scb;
         this.mon_out2scb = mon_out2scb;
     endfunction
@@ -70,8 +71,8 @@ class scoreboard;
             mon_in2scb.get(tx);
 
             // Store input signals from the transaction into FIFOs.
-            // Uncomment the following line if clock signals are needed.
-            // i_clk_fifo.push_back(tx.i_clk);
+
+            i_clk_fifo.push_back(tx.i_clk);
             i_rst_n_fifo.push_back(tx.i_rst_n);
             i_alu_fifo.push_back(tx.i_alu);
             i_rs1_addr_fifo.push_back(tx.i_rs1_addr);
@@ -147,7 +148,8 @@ class scoreboard;
 
             //-------------------------------------------------------------------------
             // Check for errors based on reset conditions and expected output.
-            //-------------------------------------------------------------------------
+            // mailbox #(transaction) mon_in2scb;
+            // mailbox #(transaction) mon_out2scb;
             if (rst_n === 0 && tx.o_exception !== 0 && tx.o_ce !== 0 && tx.o_stall_from_alu !== 0) begin
                 error = 1;
             end else begin
