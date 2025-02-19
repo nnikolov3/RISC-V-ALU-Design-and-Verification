@@ -1,5 +1,5 @@
 // ----------------------------------------------------------------------------
-// ECE544 M2 - RV32I ALU Scoreboard
+// ECE593 M2 - RV32I ALU Scoreboard
 // ----------------------------------------------------------------------------
 // This file implements a scoreboard to verify the correctness of the ALU
 // outputs by comparing them with expected results.

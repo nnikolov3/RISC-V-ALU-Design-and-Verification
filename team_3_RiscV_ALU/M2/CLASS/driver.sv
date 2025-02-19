@@ -1,5 +1,5 @@
 // ----------------------------------------------------------------------------
-// ECE544 M2 - RV32I ALU Driver
+// ECE593 M2 - RV32I ALU Driver
 // ----------------------------------------------------------------------------
 // Description:
 //   This module implements a UVM driver for the RV32I ALU DUT (Design Under Test).
@@ -11,9 +11,8 @@
 //         with the key "drv_if" prior to simulation.
 // ----------------------------------------------------------------------------
 
-import uvm_pkg::*;
+
 `include "rv32i_alu_header.sv"
-`include "uvm_macros.svh"
 `include "transaction.sv"
 
 class driver;

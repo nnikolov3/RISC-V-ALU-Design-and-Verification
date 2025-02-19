@@ -1,6 +1,3 @@
-`include "rv32i_alu_header.sv"
-`include "transaction.sv"
-
 //-----------------------------------------------------------------------------
 // Class: monitor_in
 //
@@ -9,6 +6,9 @@
 //   interface (vif) and packages them into a transaction object. The
 //   transaction is then sent to the scoreboard via the mon_in2scb mailbox.
 //-----------------------------------------------------------------------------
+
+`include "rv32i_alu_header.sv"
+`include "transaction.sv"
 class monitor_in;
     // Virtual interface instance to access DUT input signals.
     virtual alu_if vif;

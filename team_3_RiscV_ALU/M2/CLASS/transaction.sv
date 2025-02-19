@@ -1,5 +1,5 @@
 // ----------------------------------------------------------------------------
-// ECE544 M2 - RV32I ALU Transaction
+// ECE593 M2 - RV32I ALU Transaction
 // ----------------------------------------------------------------------------
 // This file defines the transaction class used to generate stimulus for the
 // RISC-V ALU design under verification. Each transaction represents a data
