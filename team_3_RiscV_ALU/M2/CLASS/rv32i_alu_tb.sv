@@ -239,7 +239,7 @@ module rv32i_alu_tb;
 
 
         // End simulation after testing
-        #100000 $finish;
+        #10000 $finish;
     end
 
 
