@@ -121,7 +121,7 @@ class monitor_out;
             // Wait for the next positive clock edge.
             @(posedge vif.i_clk);
             // Wait until the output valid signal is asserted.
-            wait (vif.o_rd_valid);
+            wait (vif.o_ce);
 
             // Capture DUT output signals into the transaction.
             tx.o_rs1_addr       = vif.o_rs1_addr;
