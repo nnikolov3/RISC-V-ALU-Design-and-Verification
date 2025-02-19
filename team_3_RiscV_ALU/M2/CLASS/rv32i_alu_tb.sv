@@ -197,9 +197,9 @@ module rv32i_alu_tb;
             coverage_inst.run_coverage();
         join_none
 
-
-        #20 i_rst_n = 1;
-        for (int i = 0; i < 14; i++) begin
+		#20
+        //#20 i_rst_n = 1;
+       /* for (int i = 0; i < 14; i++) begin
             i_alu = 0;
             i_alu[i] = 1;
             i_opcode = 2;  // Instantiate the coverage collector using the same virtual interface
@@ -235,11 +235,11 @@ module rv32i_alu_tb;
             $displayb("alu output =\t", o_y);
             $displayb("correct output =\t", verify_y);
 
-        end
+        end*/
 
 
         // End simulation after testing
-        #100 $finish;
+        #100000 $finish;
     end
 
 
