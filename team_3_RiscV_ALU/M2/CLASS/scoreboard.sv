@@ -38,6 +38,9 @@ class scoreboard;
     bit i_stall_fifo[$];  // FIFO for stall signals.
     bit i_force_stall_fifo[$];  // FIFO for force stall signals.
     bit i_flush_fifo[$];  // FIFO for flush signals.
+	
+	int count_in = 0;
+	int count_out = 0;
 
     //-------------------------------------------------------------------------
     // Constructor: Initializes the scoreboard with the provided mailboxes.
@@ -69,7 +72,8 @@ class scoreboard;
         forever begin
             $display("Scoreboard get_input waiting for transaction...");
             mon_in2scb.get(tx);
-            $display("Scoreboard received transaction!");
+			count_in += 1;
+            $display("Scoreboard received input transaction %d", count_in);
             // Store input signals from the transaction into FIFOs.
 
             i_clk_fifo.push_back(tx.i_clk);
@@ -125,6 +129,8 @@ class scoreboard;
 
         forever begin
             mon_out2scb.get(tx);
+			count_out += 1;
+			$display("Scoreboard received output transaction %d", count_out);
             error       = 0;
             wr_rd_d     = 0;
             rd_d        = 0;
@@ -248,8 +254,8 @@ class scoreboard;
 
             // If an error is detected, display detailed information about the inputs and outputs.
             if (error == 1) begin
-                $display(
-                    "**********ERROR**********", "\ni_rst_n = ", rst_n,
+                $displayh(
+                    "**********ERROR from Scoreboard**********", "\ni_rst_n = ", rst_n,
                     "\ni_alu = ",
                     i_alu_fifo,  // Displaying the entire FIFO content might be useful for debugging.
                     "\ni_rs1_addr = ", i_rs1_addr_fifo, "\ni_rs1 = ",
