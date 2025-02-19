@@ -41,6 +41,7 @@ Summary:
 `include "driver.sv"
 `include "monitor.sv"
 `include "scoreboard.sv"
+`include "coverage.sv"
 
 
 module rv32i_alu_tb;
@@ -105,6 +106,7 @@ module rv32i_alu_tb;
     monitor_in mon_in_inst;
     monitor_out mon_out_inst;
     scoreboard scoreboard_inst;
+    coverage coverage_inst;
 
     rv32i_alu DUT (
         .i_clk           (dut_if.i_clk),
@@ -181,7 +183,8 @@ module rv32i_alu_tb;
         mon_in_inst     = new(dut_if, mon_in2scb);
         mon_out_inst    = new(dut_if, mon_out2scb);
         scoreboard_inst = new(mon_in2scb, mon_out2scb);
-
+        coverage_inst   = new(dut_if);
+        // Instantiate the coverage collector
 
 
         // Fork off driver, monitors, and scoreboard
@@ -191,17 +194,19 @@ module rv32i_alu_tb;
             mon_in_inst.main();
             mon_out_inst.main();
             scoreboard_inst.main();
+            coverage_inst.run_coverage();
         join_none
 
-
-        #20 i_rst_n = 1;
-        for (int i = 0; i < 14; i++) begin
-            i_alu    = 0;
+		#20
+        //#20 i_rst_n = 1;
+       /* for (int i = 0; i < 14; i++) begin
+            i_alu = 0;
             i_alu[i] = 1;
-            i_opcode = 2;
-            i_rs1    = 4'b1100;
-            i_imm    = 4'b1010;
-            i_ce     = 1;
+            i_opcode = 2;  // Instantiate the coverage collector using the same virtual interface
+
+            i_rs1 = 4'b1100;
+            i_imm = 4'b1010;
+            i_ce = 1;
             #20 verify_y = alu_operation(i_rs1, i_imm, i_alu);
             if (verify_y !== o_y) begin
                 $display("ERROR!!!!\nDUT values =\n", DUT.i_rst_n);
@@ -230,12 +235,20 @@ module rv32i_alu_tb;
             $displayb("alu output =\t", o_y);
             $displayb("correct output =\t", verify_y);
 
-        end
+        end*/
 
 
         // End simulation after testing
-        #100 $finish;
+        #10000 $finish;
     end
+
+
+    initial begin
+        wait ($time == 100);
+        coverage_inst.display_coverpoint_info();
+        coverage_inst.display_cross_info();
+    end
+
 
     //skeleton given by chatgpt, and then modified
     function automatic logic [31:0] alu_operation(input logic [31:0] a,

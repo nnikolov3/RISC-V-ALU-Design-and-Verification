@@ -1,6 +1,3 @@
-`include "rv32i_alu_header.sv"
-`include "transaction.sv"
-
 //-----------------------------------------------------------------------------
 // Class: monitor_in
 //
@@ -9,6 +6,9 @@
 //   interface (vif) and packages them into a transaction object. The
 //   transaction is then sent to the scoreboard via the mon_in2scb mailbox.
 //-----------------------------------------------------------------------------
+
+`include "rv32i_alu_header.sv"
+`include "transaction.sv"
 class monitor_in;
     // Virtual interface instance to access DUT input signals.
     virtual alu_if vif;
@@ -121,7 +121,7 @@ class monitor_out;
             // Wait for the next positive clock edge.
             @(posedge vif.i_clk);
             // Wait until the output valid signal is asserted.
-            wait (vif.o_rd_valid);
+            wait (vif.o_ce);
 
             // Capture DUT output signals into the transaction.
             tx.o_rs1_addr       = vif.o_rs1_addr;
