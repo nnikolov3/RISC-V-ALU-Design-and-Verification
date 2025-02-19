@@ -36,17 +36,17 @@ typedef enum {
 // Enumeration for opcode types corresponding to different RISC-V instruction formats.
 //------------------------------------------------------------------------------
 typedef enum {
-    R_TYPE = 'b00000000000,  // Register-type instruction
-    I_TYPE = 'b00000000001,  // Immediate-type instruction
-    LOAD   = 'b00000000010,  // Load instruction
-    STORE  = 'b00000000011,  // Store instruction
-    BRANCH = 'b00000000100,  // Branch instruction
-    JAL    = 'b00000000101,  // Jump and Link
-    JALR   = 'b00000000110,  // Jump and Link Register
-    LUI    = 'b00000000111,  // Load Upper Immediate
-    AUIPC  = 'b00000001000,  // Add Upper Immediate to PC
-    SYSTEM = 'b00000001001,  // System instructions (e.g., CSR)
-    FENCE  = 'b00000001010   // Fence instructions (memory ordering)
+    R_TYPE = 'b00000000001,  // Register-type instruction
+    I_TYPE = 'b00000000010,  // Immediate-type instruction
+    LOAD   = 'b00000000100,  // Load instruction
+    STORE  = 'b00000001000,  // Store instruction
+    BRANCH = 'b00000010000,  // Branch instruction
+    JAL    = 'b00000100000,  // Jump and Link
+    JALR   = 'b00001000000,  // Jump and Link Register
+    LUI    = 'b00010000000,  // Load Upper Immediate
+    AUIPC  = 'b00100000000,  // Add Upper Immediate to PC
+    SYSTEM = 'b01000000000,  // System instructions (e.g., CSR)
+    FENCE  = 'b10000000000   // Fence instructions (memory ordering)
 } opcode_type_e;
 
 class generator;
@@ -163,25 +163,25 @@ class generator;
     //-------------------------------------------------------------------------
     task test_arithmetic_scenarios();
         // ADD: Test overflow condition.
-        trans.set_values(0, 11'b00000000000, 32'h7FFFFFFF, 32'h00000001, 32'h0,
+        trans.set_values(0, `RTYPE_BITS, 32'h7FFFFFFF, 32'h00000001, 32'h0,
                          1'b1);
         gen2drv_mb.put(trans.clone());
         print_scenario("ADD: Overflow Test");
 
         // ADD: Test using maximum operand values.
-        trans.set_values(0, 11'b00000000000, 32'hFFFFFFFF, 32'hFFFFFFFF, 32'h0,
+        trans.set_values(0, `RTYPE_BITS, 32'hFFFFFFFF, 32'hFFFFFFFF, 32'h0,
                          1'b1);
         gen2drv_mb.put(trans.clone());
         print_scenario("ADD: Maximum Values");
 
         // SUB: Test underflow condition.
-        trans.set_values(1, 11'b00000000000, 32'h80000000, 32'h00000001, 32'h0,
+        trans.set_values(1, `RTYPE_BITS, 32'h80000000, 32'h00000001, 32'h0,
                          1'b1);
         gen2drv_mb.put(trans.clone());
         print_scenario("SUB: Underflow Test");
 
         // SUB: Test resulting in zero.
-        trans.set_values(1, 11'b00000000000, 32'h5A5A5A5A, 32'h5A5A5A5A, 32'h0,
+        trans.set_values(1, `RTYPE_BITS, 32'h5A5A5A5A, 32'h5A5A5A5A, 32'h0,
                          1'b1);
         gen2drv_mb.put(trans.clone());
         print_scenario("SUB: Zero Result");
@@ -193,19 +193,19 @@ class generator;
     //-------------------------------------------------------------------------
     task test_logical_scenarios();
         // AND: Test with alternating bit pattern operands.
-        trans.set_values(2, 11'b00000000000, 32'hAAAAAAAA, 32'h55555555, 32'h0,
+        trans.set_values(2, `RTYPE_BITS, 32'hAAAAAAAA, 32'h55555555, 32'h0,
                          1'b1);
         gen2drv_mb.put(trans.clone());
         print_scenario("AND: Alternating Bits");
 
         // OR: Test with complementary bit patterns.
-        trans.set_values(3, 11'b00000000000, 32'hF0F0F0F0, 32'h0F0F0F0F, 32'h0,
+        trans.set_values(3, `RTYPE_BITS, 32'hF0F0F0F0, 32'h0F0F0F0F, 32'h0,
                          1'b1);
         gen2drv_mb.put(trans.clone());
         print_scenario("OR: Complementary Patterns");
 
         // XOR: Test with identical operands.
-        trans.set_values(4, 11'b00000000000, 32'hAAAAAAAA, 32'hAAAAAAAA, 32'h0,
+        trans.set_values(4, `RTYPE_BITS, 32'hAAAAAAAA, 32'hAAAAAAAA, 32'h0,
                          1'b1);
         gen2drv_mb.put(trans.clone());
         print_scenario("XOR: Same Values");
@@ -217,19 +217,19 @@ class generator;
     //-------------------------------------------------------------------------
     task test_shift_scenarios();
         // SLL: Test with maximum shift amount.
-        trans.set_values(5, 11'b00000000000, 32'h00000001, 32'h0000001F, 32'h0,
+        trans.set_values(5, `RTYPE_BITS, 32'h00000001, 32'h0000001F, 32'h0,
                          1'b1);
         gen2drv_mb.put(trans.clone());
         print_scenario("SLL: Maximum Shift");
 
         // SRL: Test shifting a sign bit value.
-        trans.set_values(6, 11'b00000000000, 32'h80000000, 32'h00000001, 32'h0,
+        trans.set_values(6, `RTYPE_BITS, 32'h80000000, 32'h00000001, 32'h0,
                          1'b1);
         gen2drv_mb.put(trans.clone());
         print_scenario("SRL: Sign Bit Test");
 
         // SRA: Test preserving the sign during arithmetic right shift.
-        trans.set_values(7, 11'b00000000000, 32'h80000000, 32'h0000001F, 32'h0,
+        trans.set_values(7, `RTYPE_BITS, 32'h80000000, 32'h0000001F, 32'h0,
                          1'b1);
         gen2drv_mb.put(trans.clone());
         print_scenario("SRA: Sign Preservation");
@@ -241,25 +241,25 @@ class generator;
     //-------------------------------------------------------------------------
     task test_comparison_scenarios();
         // SLT: Test with operands at the sign boundary.
-        trans.set_values(8, 11'b00000000000, 32'h80000000, 32'h7FFFFFFF, 32'h0,
+        trans.set_values(8, `RTYPE_BITS, 32'h80000000, 32'h7FFFFFFF, 32'h0,
                          1'b1);
         gen2drv_mb.put(trans.clone());
         print_scenario("SLT: Sign Boundary");
 
         // SLTU: Test comparing maximum unsigned value with zero.
-        trans.set_values(9, 11'b00000000000, 32'hFFFFFFFF, 32'h00000000, 32'h0,
+        trans.set_values(9, `RTYPE_BITS, 32'hFFFFFFFF, 32'h00000000, 32'h0,
                          1'b1);
         gen2drv_mb.put(trans.clone());
         print_scenario("SLTU: Maximum vs Zero");
 
         // EQ: Test for equality with identical operands.
-        trans.set_values(10, 11'b00000000000, 32'hAAAAAAAA, 32'hAAAAAAAA, 32'h0,
+        trans.set_values(10, `RTYPE_BITS, 32'hAAAAAAAA, 32'hAAAAAAAA, 32'h0,
                          1'b1);
         gen2drv_mb.put(trans.clone());
         print_scenario("EQ: Equal Values");
 
         // GE: Test equality edge case using equal operands.
-        trans.set_values(12, 11'b00000000000, 32'h80000000, 32'h80000000, 32'h0,
+        trans.set_values(12, `RTYPE_BITS, 32'h80000000, 32'h80000000, 32'h0,
                          1'b1);
         gen2drv_mb.put(trans.clone());
         print_scenario("GE: Equal Values Edge Case");
@@ -271,12 +271,12 @@ class generator;
     //-------------------------------------------------------------------------
     task test_memory_scenarios();
         // LOAD: Test with properly aligned address.
-        trans.set_values(0, `LOAD, 32'h00000004, 32'h0, 32'h00000FFF, 1'b1);
+        trans.set_values(0, `LOAD_BITS, 32'h00000004, 32'h0, 32'h00000FFF, 1'b1);
         gen2drv_mb.put(trans.clone());
         print_scenario("LOAD: Address Alignment Test");
 
         // STORE: Test with an address at the upper boundary.
-        trans.set_values(0, `STORE, 32'hFFFFFFFC, 32'hAAAAAAAA, 32'h0, 1'b1);
+        trans.set_values(0, `STORE_BITS, 32'hFFFFFFFC, 32'hAAAAAAAA, 32'h0, 1'b1);
         gen2drv_mb.put(trans.clone());
         print_scenario("STORE: Maximum Address Test");
     endtask
@@ -287,13 +287,13 @@ class generator;
     //-------------------------------------------------------------------------
     task test_branch_scenarios();
         // BRANCH: Test scenario where branch condition is met (taken).
-        trans.set_values(10, `BRANCH, 32'h00000005, 32'h00000005, 32'h00000100,
+        trans.set_values(10, `BRANCH_BITS, 32'h00000005, 32'h00000005, 32'h00000100,
                          1'b1);
         gen2drv_mb.put(trans.clone());
         print_scenario("BRANCH: Taken Condition");
 
         // BRANCH: Test scenario where branch condition is not met (not taken).
-        trans.set_values(10, `BRANCH, 32'h00000005, 32'h00000006, 32'h00000100,
+        trans.set_values(10, `BRANCH_BITS, 32'h00000005, 32'h00000006, 32'h00000100,
                          1'b1);
         gen2drv_mb.put(trans.clone());
         print_scenario("BRANCH: Not Taken Condition");
@@ -305,12 +305,12 @@ class generator;
     //-------------------------------------------------------------------------
     task test_jump_scenarios();
         // JAL: Test a forward jump with a large immediate offset.
-        trans.set_values(0, `JAL, 32'h00001000, 32'h0, 32'h00000FFF, 1'b1);
+        trans.set_values(0, `JAL_BITS, 32'h00001000, 32'h0, 32'h00000FFF, 1'b1);
         gen2drv_mb.put(trans.clone());
         print_scenario("JAL: Forward Jump");
 
         // JALR: Test jump with a return address.
-        trans.set_values(0, `JALR, 32'h00000100, 32'h0, 32'h00000004, 1'b1);
+        trans.set_values(0, `JALR_BITS, 32'h00000100, 32'h0, 32'h00000004, 1'b1);
         gen2drv_mb.put(trans.clone());
         print_scenario("JALR: Return Address");
     endtask
@@ -321,12 +321,12 @@ class generator;
     //-------------------------------------------------------------------------
     task test_upper_immediate_scenarios();
         // LUI: Test using the maximum immediate value.
-        trans.set_values(0, `LUI, 32'h0, 32'h0, 32'hFFFFF000, 1'b1);
+        trans.set_values(0, `LUI_BITS, 32'h0, 32'h0, 32'hFFFFF000, 1'b1);
         gen2drv_mb.put(trans.clone());
         print_scenario("LUI: Maximum Immediate");
 
         // AUIPC: Test PC-relative addressing using an upper immediate value.
-        trans.set_values(0, `AUIPC, 32'h00001000, 32'h0, 32'h000FF000, 1'b1);
+        trans.set_values(0, `AUIPC_BITS, 32'h00001000, 32'h0, 32'h000FF000, 1'b1);
         gen2drv_mb.put(trans.clone());
         print_scenario("AUIPC: PC-relative Addressing");
     endtask
@@ -337,12 +337,12 @@ class generator;
     //-------------------------------------------------------------------------
     task test_system_and_fence_scenarios();
         // SYSTEM: Test a CSR operation (e.g., read/write).
-        trans.set_values(0, `SYSTEM, 32'h00000FFF, 32'h0, 32'h00000001, 1'b1);
+        trans.set_values(0, `SYSTEM_BITS, 32'h00000FFF, 32'h0, 32'h00000001, 1'b1);
         gen2drv_mb.put(trans.clone());
         print_scenario("SYSTEM: CSR Operation");
 
         // FENCE: Test memory ordering constraints.
-        trans.set_values(0, `FENCE, 32'h0, 32'h0, 32'h0, 1'b1);
+        trans.set_values(0, `FENCE_BITS, 32'h0, 32'h0, 32'h0, 1'b1);
         gen2drv_mb.put(trans.clone());
         print_scenario("FENCE: Memory Ordering");
     endtask
