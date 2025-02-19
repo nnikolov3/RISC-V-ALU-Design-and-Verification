@@ -35,11 +35,13 @@ Summary:
 */
 
 `include "rv32i_alu_header.sv"
+`include "generator.sv"
 `include "transaction.sv"
+`include "interface.sv"
 `include "driver.sv"
 `include "monitor.sv"
-`include "interface.sv"
 `include "scoreboard.sv"
+
 
 module rv32i_alu_tb;
 
@@ -98,14 +100,11 @@ module rv32i_alu_tb;
 
 
     // Driver, Monitors, and Scoreboard
+    generator generator_inst;
     driver driver_inst;
     monitor_in mon_in_inst;
     monitor_out mon_out_inst;
     scoreboard scoreboard_inst;
-
-    //scoreboard scoreboard_inst;
-
-
 
     rv32i_alu DUT (
         .i_clk           (dut_if.i_clk),
@@ -177,6 +176,7 @@ module rv32i_alu_tb;
 
 
         // Create driver and monitors
+        generator_inst  = new(driver_mb);
         driver_inst     = new(dut_if, driver_mb);
         mon_in_inst     = new(dut_if, mon_in2scb);
         mon_out_inst    = new(dut_if, mon_out2scb);
@@ -186,6 +186,7 @@ module rv32i_alu_tb;
 
         // Fork off driver, monitors, and scoreboard
         fork
+            generator_inst.generate_scenarios();
             driver_inst.run();
             mon_in_inst.main();
             mon_out_inst.main();

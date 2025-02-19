@@ -3,20 +3,259 @@
 # vmap work work 
 # Modifying modelsim.ini
 # Questa Intel FPGA Edition-64 vlog 2024.1 Compiler 2024.04 Apr 19 2024
-# Start time: 15:30:05 on Feb 18,2025
+# Start time: 16:11:55 on Feb 18,2025
+# vlog coverage.sv driver.sv generator.sv interface.sv monitor.sv rv32i_alu.sv rv32i_alu_header.sv rv32i_alu_tb.sv scoreboard.sv transaction.sv 
+# ** Note: (vlog-2286) coverage.sv(10): Using implicit +incdir+/home/niko/intelFPGA_pro/24.3.1/questa_fe/uvm-1.1d/../verilog_src/uvm-1.1d/src from import uvm_pkg
+# -- Compiling package coverage_sv_unit
+# -- Importing package mtiUvm.uvm_pkg (uvm-1.1d Built-in)
+# -- Compiling package driver_sv_unit
+# ** Error: (vlog-13069) generator.sv(62): near "gen2drv_mb": syntax error, unexpected IDENTIFIER, expecting ')' or ','.
+# -- Compiling interface alu_if
+# ** Error: ** while parsing file included at monitor.sv(2)
+# ** at transaction.sv(14): (vlog-2426) Typedef 'transaction' multiply defined. Previous definition found at 'transaction.sv(14)'.
+# -- Compiling module rv32i_alu
+# ** Error: ** while parsing file included at rv32i_alu_tb.sv(38)
+# ** at transaction.sv(14): (vlog-2426) Typedef 'transaction' multiply defined. Previous definition found at 'transaction.sv(14)'.
+# ** Error: ** while parsing file included at rv32i_alu_tb.sv(40)
+# ** at monitor.sv(12): (vlog-2426) Typedef 'monitor_in' multiply defined. Previous definition found at 'monitor.sv(12)'.
+# ** Error: ** while parsing file included at rv32i_alu_tb.sv(40)
+# ** at monitor.sv(84): (vlog-2426) Typedef 'monitor_out' multiply defined. Previous definition found at 'monitor.sv(84)'.
+# -- Compiling interface alu_if
+# ** Error: ** while parsing file included at rv32i_alu_tb.sv(41)
+# ** at interface.sv(7): 'alu_if' already exists - must not be redefined.
+# ** Warning: ** while parsing file included at rv32i_alu_tb.sv(41)
+# ** at interface.sv(7): (vlog-2275) Existing interface 'alu_if' at line 7 will be overwritten.
+# -- Compiling module rv32i_alu_tb
+# ** Error: (vlog-13069) rv32i_alu_tb.sv(182): near "driver_inst": syntax error, unexpected IDENTIFIER, expecting ';'.
+# ** Error: ** while parsing file included at scoreboard.sv(9)
+# ** at transaction.sv(14): (vlog-2426) Typedef 'transaction' multiply defined. Previous definition found at 'transaction.sv(14)'.
+# ** Error: scoreboard.sv(11): (vlog-2426) Typedef 'scoreboard' multiply defined. Previous definition found at 'scoreboard.sv(11)'.
+# ** Error: transaction.sv(14): (vlog-2426) Typedef 'transaction' multiply defined. Previous definition found at 'transaction.sv(14)'.
+# End time: 16:11:55 on Feb 18,2025, Elapsed time: 0:00:00
+# Errors: 10, Warnings: 1
+# ** Error: /home/niko/intelFPGA_pro/24.3.1/questa_fe/linux_x86_64/vlog failed.
+# Error in macro ./run.do line 9
+# /home/niko/intelFPGA_pro/24.3.1/questa_fe/linux_x86_64/vlog failed.
+#     while executing
+# "vlog *.sv"
+# Questa Intel FPGA Edition-64 vmap 2024.1 Lib Mapping Utility 2024.04 Apr 19 2024
+# vmap work work 
+# Modifying modelsim.ini
+# Questa Intel FPGA Edition-64 vlog 2024.1 Compiler 2024.04 Apr 19 2024
+# Start time: 16:12:54 on Feb 18,2025
+# vlog coverage.sv driver.sv generator.sv interface.sv monitor.sv rv32i_alu.sv rv32i_alu_header.sv rv32i_alu_tb.sv scoreboard.sv transaction.sv 
+# ** Note: (vlog-2286) coverage.sv(10): Using implicit +incdir+/home/niko/intelFPGA_pro/24.3.1/questa_fe/uvm-1.1d/../verilog_src/uvm-1.1d/src from import uvm_pkg
+# -- Compiling package coverage_sv_unit
+# -- Importing package mtiUvm.uvm_pkg (uvm-1.1d Built-in)
+# -- Compiling package driver_sv_unit
+# ** Error: generator.sv(59): Invalid type 'mail_box'. Please check the type of the variable 'gen2drv_mb'.
+# ** Error: generator.sv(66): (vlog-2400) Identifier ('mail_box') found where a type or type identifier is required.
+# ** Error: ** while parsing file included at monitor.sv(2)
+# ** at transaction.sv(14): (vlog-2426) Typedef 'transaction' multiply defined. Previous definition found at 'transaction.sv(14)'.
+# ** Error: ** while parsing file included at rv32i_alu_tb.sv(38)
+# ** at transaction.sv(14): (vlog-2426) Typedef 'transaction' multiply defined. Previous definition found at 'transaction.sv(14)'.
+# ** Error: ** while parsing file included at rv32i_alu_tb.sv(40)
+# ** at monitor.sv(12): (vlog-2426) Typedef 'monitor_in' multiply defined. Previous definition found at 'monitor.sv(12)'.
+# ** Error: ** while parsing file included at rv32i_alu_tb.sv(40)
+# ** at monitor.sv(84): (vlog-2426) Typedef 'monitor_out' multiply defined. Previous definition found at 'monitor.sv(84)'.
+# -- Compiling interface alu_if
+# ** Warning: ** while parsing file included at rv32i_alu_tb.sv(41)
+# ** at interface.sv(7): (vlog-2275) Existing interface 'alu_if' at line 7 will be overwritten.
+# ** Error: (vlog-13069) rv32i_alu_tb.sv(182): near "driver_inst": syntax error, unexpected IDENTIFIER, expecting ';'.
+# ** Error: ** while parsing file included at scoreboard.sv(9)
+# ** at transaction.sv(14): (vlog-2426) Typedef 'transaction' multiply defined. Previous definition found at 'transaction.sv(14)'.
+# ** Error: scoreboard.sv(11): (vlog-2426) Typedef 'scoreboard' multiply defined. Previous definition found at 'scoreboard.sv(11)'.
+# ** Error: transaction.sv(14): (vlog-2426) Typedef 'transaction' multiply defined. Previous definition found at 'transaction.sv(14)'.
+# End time: 16:12:54 on Feb 18,2025, Elapsed time: 0:00:00
+# Errors: 10, Warnings: 1
+# ** Error: /home/niko/intelFPGA_pro/24.3.1/questa_fe/linux_x86_64/vlog failed.
+# Error in macro ./run.do line 9
+# /home/niko/intelFPGA_pro/24.3.1/questa_fe/linux_x86_64/vlog failed.
+#     while executing
+# "vlog *.sv"
+# Questa Intel FPGA Edition-64 vmap 2024.1 Lib Mapping Utility 2024.04 Apr 19 2024
+# vmap work work 
+# Modifying modelsim.ini
+# Questa Intel FPGA Edition-64 vlog 2024.1 Compiler 2024.04 Apr 19 2024
+# Start time: 16:14:24 on Feb 18,2025
 # vlog coverage.sv driver.sv generator.sv interface.sv monitor.sv rv32i_alu.sv rv32i_alu_header.sv rv32i_alu_tb.sv scoreboard.sv transaction.sv 
 # ** Note: (vlog-2286) coverage.sv(10): Using implicit +incdir+/home/niko/intelFPGA_pro/24.3.1/questa_fe/uvm-1.1d/../verilog_src/uvm-1.1d/src from import uvm_pkg
 # -- Compiling package coverage_sv_unit
 # -- Importing package mtiUvm.uvm_pkg (uvm-1.1d Built-in)
 # -- Compiling package driver_sv_unit
 # -- Compiling package generator_sv_unit
-# ** Warning: generator.sv(152): (vlog-2240) Treating stand-alone use of function 'randomize' as an implicit VOID cast.
+# ** Error (suppressible): (vlog-13276) generator.sv(66:4): Could not find field/method name (gen2drv_mb) in 'this' of 'this.gen2drv_mb'.
+# ** Warning: generator.sv(151): (vlog-2240) Treating stand-alone use of function 'randomize' as an implicit VOID cast.
+# End time: 16:14:25 on Feb 18,2025, Elapsed time: 0:00:01
+# Errors: 1, Warnings: 1
+# ** Error: /home/niko/intelFPGA_pro/24.3.1/questa_fe/linux_x86_64/vlog failed.
+# Error in macro ./run.do line 9
+# /home/niko/intelFPGA_pro/24.3.1/questa_fe/linux_x86_64/vlog failed.
+#     while executing
+# "vlog *.sv"
+# Questa Intel FPGA Edition-64 vmap 2024.1 Lib Mapping Utility 2024.04 Apr 19 2024
+# vmap work work 
+# Modifying modelsim.ini
+# Questa Intel FPGA Edition-64 vlog 2024.1 Compiler 2024.04 Apr 19 2024
+# Start time: 16:15:02 on Feb 18,2025
+# vlog coverage.sv driver.sv generator.sv interface.sv monitor.sv rv32i_alu.sv rv32i_alu_header.sv rv32i_alu_tb.sv scoreboard.sv transaction.sv 
+# ** Note: (vlog-2286) coverage.sv(10): Using implicit +incdir+/home/niko/intelFPGA_pro/24.3.1/questa_fe/uvm-1.1d/../verilog_src/uvm-1.1d/src from import uvm_pkg
+# -- Compiling package coverage_sv_unit
+# -- Importing package mtiUvm.uvm_pkg (uvm-1.1d Built-in)
+# -- Compiling package driver_sv_unit
+# -- Compiling package generator_sv_unit
+# ** Warning: generator.sv(146): (vlog-2240) Treating stand-alone use of function 'randomize' as an implicit VOID cast.
 # -- Compiling interface alu_if
 # -- Compiling package monitor_sv_unit
 # -- Compiling package rv32i_alu_sv_unit
 # -- Compiling module rv32i_alu
 # -- Compiling interface alu_if
 # ** Warning: ** while parsing file included at rv32i_alu_tb.sv(41)
+# ** at interface.sv(7): (vlog-2275) Existing interface 'alu_if' at line 7 will be overwritten.
+# ** Error: (vlog-13069) rv32i_alu_tb.sv(182): near "driver_inst": syntax error, unexpected IDENTIFIER, expecting ';'.
+# ** Error: ** while parsing file included at scoreboard.sv(9)
+# ** at transaction.sv(14): (vlog-2426) Typedef 'transaction' multiply defined. Previous definition found at 'transaction.sv(14)'.
+# ** Error: scoreboard.sv(11): (vlog-2426) Typedef 'scoreboard' multiply defined. Previous definition found at 'scoreboard.sv(11)'.
+# ** Error: transaction.sv(14): (vlog-2426) Typedef 'transaction' multiply defined. Previous definition found at 'transaction.sv(14)'.
+# End time: 16:15:02 on Feb 18,2025, Elapsed time: 0:00:00
+# Errors: 4, Warnings: 2
+# ** Error: /home/niko/intelFPGA_pro/24.3.1/questa_fe/linux_x86_64/vlog failed.
+# Error in macro ./run.do line 9
+# /home/niko/intelFPGA_pro/24.3.1/questa_fe/linux_x86_64/vlog failed.
+#     while executing
+# "vlog *.sv"
+# Questa Intel FPGA Edition-64 vmap 2024.1 Lib Mapping Utility 2024.04 Apr 19 2024
+# vmap work work 
+# Modifying modelsim.ini
+# Questa Intel FPGA Edition-64 vlog 2024.1 Compiler 2024.04 Apr 19 2024
+# Start time: 16:20:21 on Feb 18,2025
+# vlog coverage.sv driver.sv generator.sv interface.sv monitor.sv rv32i_alu.sv rv32i_alu_header.sv rv32i_alu_tb.sv scoreboard.sv transaction.sv 
+# ** Note: (vlog-2286) coverage.sv(10): Using implicit +incdir+/home/niko/intelFPGA_pro/24.3.1/questa_fe/uvm-1.1d/../verilog_src/uvm-1.1d/src from import uvm_pkg
+# -- Compiling package coverage_sv_unit
+# -- Importing package mtiUvm.uvm_pkg (uvm-1.1d Built-in)
+# -- Compiling package driver_sv_unit
+# -- Compiling package generator_sv_unit
+# ** Warning: generator.sv(146): (vlog-2240) Treating stand-alone use of function 'randomize' as an implicit VOID cast.
+# -- Compiling interface alu_if
+# -- Compiling package monitor_sv_unit
+# -- Compiling package rv32i_alu_sv_unit
+# -- Compiling module rv32i_alu
+# -- Compiling interface alu_if
+# ** Warning: ** while parsing file included at rv32i_alu_tb.sv(41)
+# ** at interface.sv(7): (vlog-2275) Existing interface 'alu_if' at line 7 will be overwritten.
+# ** Error: (vlog-13069) rv32i_alu_tb.sv(178): near "driver_inst": syntax error, unexpected IDENTIFIER, expecting ';'.
+# ** Error: ** while parsing file included at scoreboard.sv(9)
+# ** at transaction.sv(14): (vlog-2426) Typedef 'transaction' multiply defined. Previous definition found at 'transaction.sv(14)'.
+# ** Error: scoreboard.sv(11): (vlog-2426) Typedef 'scoreboard' multiply defined. Previous definition found at 'scoreboard.sv(11)'.
+# ** Error: transaction.sv(14): (vlog-2426) Typedef 'transaction' multiply defined. Previous definition found at 'transaction.sv(14)'.
+# End time: 16:20:22 on Feb 18,2025, Elapsed time: 0:00:01
+# Errors: 4, Warnings: 2
+# ** Error: /home/niko/intelFPGA_pro/24.3.1/questa_fe/linux_x86_64/vlog failed.
+# Error in macro ./run.do line 9
+# /home/niko/intelFPGA_pro/24.3.1/questa_fe/linux_x86_64/vlog failed.
+#     while executing
+# "vlog *.sv"
+# Questa Intel FPGA Edition-64 vmap 2024.1 Lib Mapping Utility 2024.04 Apr 19 2024
+# vmap work work 
+# Modifying modelsim.ini
+# Questa Intel FPGA Edition-64 vlog 2024.1 Compiler 2024.04 Apr 19 2024
+# Start time: 16:23:05 on Feb 18,2025
+# vlog coverage.sv driver.sv generator.sv interface.sv monitor.sv rv32i_alu.sv rv32i_alu_header.sv rv32i_alu_tb.sv scoreboard.sv transaction.sv 
+# ** Note: (vlog-2286) coverage.sv(10): Using implicit +incdir+/home/niko/intelFPGA_pro/24.3.1/questa_fe/uvm-1.1d/../verilog_src/uvm-1.1d/src from import uvm_pkg
+# -- Compiling package coverage_sv_unit
+# -- Importing package mtiUvm.uvm_pkg (uvm-1.1d Built-in)
+# -- Compiling package driver_sv_unit
+# -- Compiling package generator_sv_unit
+# -- Compiling interface alu_if
+# -- Compiling package monitor_sv_unit
+# -- Compiling package rv32i_alu_sv_unit
+# -- Compiling module rv32i_alu
+# -- Compiling interface alu_if
+# ** Warning: ** while parsing file included at rv32i_alu_tb.sv(40)
+# ** at interface.sv(7): (vlog-2275) Existing interface 'alu_if' at line 7 will be overwritten.
+# ** Error: (vlog-13069) rv32i_alu_tb.sv(180): near "driver_inst": syntax error, unexpected IDENTIFIER, expecting ';'.
+# ** Error: ** while parsing file included at scoreboard.sv(9)
+# ** at transaction.sv(14): (vlog-2426) Typedef 'transaction' multiply defined. Previous definition found at 'transaction.sv(14)'.
+# ** Error: scoreboard.sv(11): (vlog-2426) Typedef 'scoreboard' multiply defined. Previous definition found at 'scoreboard.sv(11)'.
+# ** Error: transaction.sv(14): (vlog-2426) Typedef 'transaction' multiply defined. Previous definition found at 'transaction.sv(14)'.
+# End time: 16:23:05 on Feb 18,2025, Elapsed time: 0:00:00
+# Errors: 4, Warnings: 1
+# ** Error: /home/niko/intelFPGA_pro/24.3.1/questa_fe/linux_x86_64/vlog failed.
+# Error in macro ./run.do line 9
+# /home/niko/intelFPGA_pro/24.3.1/questa_fe/linux_x86_64/vlog failed.
+#     while executing
+# "vlog *.sv"
+# Questa Intel FPGA Edition-64 vmap 2024.1 Lib Mapping Utility 2024.04 Apr 19 2024
+# vmap work work 
+# Modifying modelsim.ini
+# Questa Intel FPGA Edition-64 vlog 2024.1 Compiler 2024.04 Apr 19 2024
+# Start time: 16:23:32 on Feb 18,2025
+# vlog coverage.sv driver.sv generator.sv interface.sv monitor.sv rv32i_alu.sv rv32i_alu_header.sv rv32i_alu_tb.sv scoreboard.sv transaction.sv 
+# ** Note: (vlog-2286) coverage.sv(10): Using implicit +incdir+/home/niko/intelFPGA_pro/24.3.1/questa_fe/uvm-1.1d/../verilog_src/uvm-1.1d/src from import uvm_pkg
+# -- Compiling package coverage_sv_unit
+# -- Importing package mtiUvm.uvm_pkg (uvm-1.1d Built-in)
+# -- Compiling package driver_sv_unit
+# -- Compiling package generator_sv_unit
+# -- Compiling interface alu_if
+# -- Compiling package monitor_sv_unit
+# -- Compiling package rv32i_alu_sv_unit
+# -- Compiling module rv32i_alu
+# -- Compiling interface alu_if
+# ** Warning: ** while parsing file included at rv32i_alu_tb.sv(40)
+# ** at interface.sv(7): (vlog-2275) Existing interface 'alu_if' at line 7 will be overwritten.
+# -- Compiling package rv32i_alu_tb_sv_unit
+# -- Compiling interface alu_if
+# -- Compiling module rv32i_alu_tb
+# ** Error (suppressible): (vlog-13276) rv32i_alu_tb.sv(189:6): Could not find field/method name (main) in 'generator_inst' of 'generator_inst.main'.
+# End time: 16:23:32 on Feb 18,2025, Elapsed time: 0:00:00
+# Errors: 1, Warnings: 1
+# ** Error: /home/niko/intelFPGA_pro/24.3.1/questa_fe/linux_x86_64/vlog failed.
+# Error in macro ./run.do line 9
+# /home/niko/intelFPGA_pro/24.3.1/questa_fe/linux_x86_64/vlog failed.
+#     while executing
+# "vlog *.sv"
+# Questa Intel FPGA Edition-64 vmap 2024.1 Lib Mapping Utility 2024.04 Apr 19 2024
+# vmap work work 
+# Modifying modelsim.ini
+# Questa Intel FPGA Edition-64 vlog 2024.1 Compiler 2024.04 Apr 19 2024
+# Start time: 16:24:52 on Feb 18,2025
+# vlog coverage.sv driver.sv generator.sv interface.sv monitor.sv rv32i_alu.sv rv32i_alu_header.sv rv32i_alu_tb.sv scoreboard.sv transaction.sv 
+# ** Note: (vlog-2286) coverage.sv(10): Using implicit +incdir+/home/niko/intelFPGA_pro/24.3.1/questa_fe/uvm-1.1d/../verilog_src/uvm-1.1d/src from import uvm_pkg
+# -- Compiling package coverage_sv_unit
+# -- Importing package mtiUvm.uvm_pkg (uvm-1.1d Built-in)
+# -- Compiling package driver_sv_unit
+# -- Compiling package generator_sv_unit
+# ** Error (suppressible): (vlog-13276) generator.sv(171:4): Could not find field/method name (set_valmaiues) in 'trans' of 'trans.set_valmaiues'.
+# ** Error (suppressible): (vlog-13276) generator.sv(171:4): Could not find field/method name (set_valmaiues) in 'trans' of 'trans.set_valmaiues.$0'.
+# ** Error (suppressible): (vlog-13276) generator.sv(171:4): Could not find field/method name (set_valmaiues) in 'trans' of 'trans.set_valmaiues.$1'.
+# ** Error (suppressible): (vlog-13276) generator.sv(171:4): Could not find field/method name (set_valmaiues) in 'trans' of 'trans.set_valmaiues.$2'.
+# ** Error (suppressible): (vlog-13276) generator.sv(171:4): Could not find field/method name (set_valmaiues) in 'trans' of 'trans.set_valmaiues.$3'.
+# ** Error (suppressible): (vlog-13276) generator.sv(171:4): Could not find field/method name (set_valmaiues) in 'trans' of 'trans.set_valmaiues.$4'.
+# ** Error (suppressible): (vlog-13276) generator.sv(171:4): Could not find field/method name (set_valmaiues) in 'trans' of 'trans.set_valmaiues.$5'.
+# End time: 16:24:53 on Feb 18,2025, Elapsed time: 0:00:01
+# Errors: 7, Warnings: 0
+# ** Error: /home/niko/intelFPGA_pro/24.3.1/questa_fe/linux_x86_64/vlog failed.
+# Error in macro ./run.do line 9
+# /home/niko/intelFPGA_pro/24.3.1/questa_fe/linux_x86_64/vlog failed.
+#     while executing
+# "vlog *.sv"
+# Questa Intel FPGA Edition-64 vmap 2024.1 Lib Mapping Utility 2024.04 Apr 19 2024
+# vmap work work 
+# Modifying modelsim.ini
+# Questa Intel FPGA Edition-64 vlog 2024.1 Compiler 2024.04 Apr 19 2024
+# Start time: 16:28:46 on Feb 18,2025
+# vlog coverage.sv driver.sv generator.sv interface.sv monitor.sv rv32i_alu.sv rv32i_alu_header.sv rv32i_alu_tb.sv scoreboard.sv transaction.sv 
+# ** Note: (vlog-2286) coverage.sv(10): Using implicit +incdir+/home/niko/intelFPGA_pro/24.3.1/questa_fe/uvm-1.1d/../verilog_src/uvm-1.1d/src from import uvm_pkg
+# -- Compiling package coverage_sv_unit
+# -- Importing package mtiUvm.uvm_pkg (uvm-1.1d Built-in)
+# -- Compiling package driver_sv_unit
+# -- Compiling package generator_sv_unit
+# -- Compiling interface alu_if
+# -- Compiling package monitor_sv_unit
+# -- Compiling package rv32i_alu_sv_unit
+# -- Compiling module rv32i_alu
+# -- Compiling interface alu_if
+# ** Warning: ** while parsing file included at rv32i_alu_tb.sv(40)
 # ** at interface.sv(7): (vlog-2275) Existing interface 'alu_if' at line 7 will be overwritten.
 # -- Compiling package rv32i_alu_tb_sv_unit
 # -- Compiling interface alu_if
@@ -26,10 +265,10 @@
 # 
 # Top level modules:
 # 	rv32i_alu_tb
-# End time: 15:30:05 on Feb 18,2025, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 2
+# End time: 16:28:46 on Feb 18,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 1
 # vsim work.rv32i_alu_tb 
-# Start time: 15:30:05 on Feb 18,2025
+# Start time: 16:28:46 on Feb 18,2025
 # ** Note: (vsim-3812) Design is being optimized...
 # //  Questa Intel FPGA Edition-64
 # //  Version 2024.1 linux_x86_64 Apr 19 2024
@@ -75,345 +314,304 @@
 # 
 # UVM_INFO verilog_src/questa_uvm_pkg-1.2/src/questa_uvm_pkg.sv(277) @ 0: reporter [Questa UVM] QUESTA_UVM-1.2.3
 # UVM_INFO verilog_src/questa_uvm_pkg-1.2/src/questa_uvm_pkg.sv(278) @ 0: reporter [Questa UVM]  questa_uvm::init(+struct)
-# monitor_in started
-# monitor_out started
-# ERROR!!!!
-# DUT values =
-# 1
-# DUT CLK = 1
-# DUT rs1_addr =  x
-# DUT rs1 =          x
-# DUT rs2 =          x
-# DUT imm =          x
-# DUT funct3 = x
-# DUT opcode =    x
-# DUT exception =  x
-# DUT pc =          x
-# DUT rd_addr =  x
-# DUT ce = x
-# DUT stall = x
-# DUT force_stall = x
-# DUT flush = x
-# DUT stall_bit = x
-# DUT alu ADD = x
-# alu_op = 00000000000001
-# rs1 = 00000000000000000000000000001100
-# imm = 00000000000000000000000000001010
-# alu output =	xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-# correct output =	00000000000000000000000000010110
-# ERROR!!!!
-# DUT values =
-# 1
-# DUT CLK = 1
-# DUT rs1_addr =  x
-# DUT rs1 =          x
-# DUT rs2 =          x
-# DUT imm =          x
-# DUT funct3 = x
-# DUT opcode =    x
-# DUT exception =  x
-# DUT pc =          x
-# DUT rd_addr =  x
-# DUT ce = x
-# DUT stall = x
-# DUT force_stall = x
-# DUT flush = x
-# DUT stall_bit = x
-# DUT alu ADD = x
-# alu_op = 00000000000010
-# rs1 = 00000000000000000000000000001100
-# imm = 00000000000000000000000000001010
-# alu output =	xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-# correct output =	00000000000000000000000000000010
-# ERROR!!!!
-# DUT values =
-# 1
-# DUT CLK = 1
-# DUT rs1_addr =  x
-# DUT rs1 =          x
-# DUT rs2 =          x
-# DUT imm =          x
-# DUT funct3 = x
-# DUT opcode =    x
-# DUT exception =  x
-# DUT pc =          x
-# DUT rd_addr =  x
-# DUT ce = x
-# DUT stall = x
-# DUT force_stall = x
-# DUT flush = x
-# DUT stall_bit = x
-# DUT alu ADD = x
-# alu_op = 00000000000100
-# rs1 = 00000000000000000000000000001100
-# imm = 00000000000000000000000000001010
-# alu output =	xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-# correct output =	00000000000000000000000000000000
-# ERROR!!!!
-# DUT values =
-# 1
-# DUT CLK = 1
-# DUT rs1_addr =  x
-# DUT rs1 =          x
-# DUT rs2 =          x
-# DUT imm =          x
-# DUT funct3 = x
-# DUT opcode =    x
-# DUT exception =  x
-# DUT pc =          x
-# DUT rd_addr =  x
-# DUT ce = x
-# DUT stall = x
-# DUT force_stall = x
-# DUT flush = x
-# DUT stall_bit = x
-# DUT alu ADD = x
-# alu_op = 00000000001000
-# rs1 = 00000000000000000000000000001100
-# imm = 00000000000000000000000000001010
-# alu output =	xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-# correct output =	00000000000000000000000000000000
-# ERROR!!!!
-# DUT values =
-# 1
-# DUT CLK = 1
-# DUT rs1_addr =  x
-# DUT rs1 =          x
-# DUT rs2 =          x
-# DUT imm =          x
-# DUT funct3 = x
-# DUT opcode =    x
-# DUT exception =  x
-# DUT pc =          x
-# DUT rd_addr =  x
-# DUT ce = x
-# DUT stall = x
-# DUT force_stall = x
-# DUT flush = x
-# DUT stall_bit = x
-# DUT alu ADD = x
-# alu_op = 00000000010000
-# rs1 = 00000000000000000000000000001100
-# imm = 00000000000000000000000000001010
-# alu output =	xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-# correct output =	00000000000000000000000000000110
-# ERROR!!!!
-# DUT values =
-# 1
-# DUT CLK = 1
-# DUT rs1_addr =  x
-# DUT rs1 =          x
-# DUT rs2 =          x
-# DUT imm =          x
-# DUT funct3 = x
-# DUT opcode =    x
-# DUT exception =  x
-# DUT pc =          x
-# DUT rd_addr =  x
-# DUT ce = x
-# DUT stall = x
-# DUT force_stall = x
-# DUT flush = x
-# DUT stall_bit = x
-# DUT alu ADD = x
-# alu_op = 00000000100000
-# rs1 = 00000000000000000000000000001100
-# imm = 00000000000000000000000000001010
-# alu output =	xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-# correct output =	00000000000000000000000000001110
-# ERROR!!!!
-# DUT values =
-# 1
-# DUT CLK = 1
-# DUT rs1_addr =  x
-# DUT rs1 =          x
-# DUT rs2 =          x
-# DUT imm =          x
-# DUT funct3 = x
-# DUT opcode =    x
-# DUT exception =  x
-# DUT pc =          x
-# DUT rd_addr =  x
-# DUT ce = x
-# DUT stall = x
-# DUT force_stall = x
-# DUT flush = x
-# DUT stall_bit = x
-# DUT alu ADD = x
-# alu_op = 00000001000000
-# rs1 = 00000000000000000000000000001100
-# imm = 00000000000000000000000000001010
-# alu output =	xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-# correct output =	00000000000000000000000000001000
-# ERROR!!!!
-# DUT values =
-# 1
-# DUT CLK = 1
-# DUT rs1_addr =  x
-# DUT rs1 =          x
-# DUT rs2 =          x
-# DUT imm =          x
-# DUT funct3 = x
-# DUT opcode =    x
-# DUT exception =  x
-# DUT pc =          x
-# DUT rd_addr =  x
-# DUT ce = x
-# DUT stall = x
-# DUT force_stall = x
-# DUT flush = x
-# DUT stall_bit = x
-# DUT alu ADD = x
-# alu_op = 00000010000000
-# rs1 = 00000000000000000000000000001100
-# imm = 00000000000000000000000000001010
-# alu output =	xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-# correct output =	00000000000000000011000000000000
-# ERROR!!!!
-# DUT values =
-# 1
-# DUT CLK = 1
-# DUT rs1_addr =  x
-# DUT rs1 =          x
-# DUT rs2 =          x
-# DUT imm =          x
-# DUT funct3 = x
-# DUT opcode =    x
-# DUT exception =  x
-# DUT pc =          x
-# DUT rd_addr =  x
-# DUT ce = x
-# DUT stall = x
-# DUT force_stall = x
-# DUT flush = x
-# DUT stall_bit = x
-# DUT alu ADD = x
-# alu_op = 00000100000000
-# rs1 = 00000000000000000000000000001100
-# imm = 00000000000000000000000000001010
-# alu output =	xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-# correct output =	00000000000000000000000000000000
-# ERROR!!!!
-# DUT values =
-# 1
-# DUT CLK = 1
-# DUT rs1_addr =  x
-# DUT rs1 =          x
-# DUT rs2 =          x
-# DUT imm =          x
-# DUT funct3 = x
-# DUT opcode =    x
-# DUT exception =  x
-# DUT pc =          x
-# DUT rd_addr =  x
-# DUT ce = x
-# DUT stall = x
-# DUT force_stall = x
-# DUT flush = x
-# DUT stall_bit = x
-# DUT alu ADD = x
-# alu_op = 00001000000000
-# rs1 = 00000000000000000000000000001100
-# imm = 00000000000000000000000000001010
-# alu output =	xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-# correct output =	00000000000000000000000000000000
-# ERROR!!!!
-# DUT values =
-# 1
-# DUT CLK = 1
-# DUT rs1_addr =  x
-# DUT rs1 =          x
-# DUT rs2 =          x
-# DUT imm =          x
-# DUT funct3 = x
-# DUT opcode =    x
-# DUT exception =  x
-# DUT pc =          x
-# DUT rd_addr =  x
-# DUT ce = x
-# DUT stall = x
-# DUT force_stall = x
-# DUT flush = x
-# DUT stall_bit = x
-# DUT alu ADD = x
-# alu_op = 00010000000000
-# rs1 = 00000000000000000000000000001100
-# imm = 00000000000000000000000000001010
-# alu output =	xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-# correct output =	00000000000000000000000000000000
-# ERROR!!!!
-# DUT values =
-# 1
-# DUT CLK = 1
-# DUT rs1_addr =  x
-# DUT rs1 =          x
-# DUT rs2 =          x
-# DUT imm =          x
-# DUT funct3 = x
-# DUT opcode =    x
-# DUT exception =  x
-# DUT pc =          x
-# DUT rd_addr =  x
-# DUT ce = x
-# DUT stall = x
-# DUT force_stall = x
-# DUT flush = x
-# DUT stall_bit = x
-# DUT alu ADD = x
-# alu_op = 00100000000000
-# rs1 = 00000000000000000000000000001100
-# imm = 00000000000000000000000000001010
-# alu output =	xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-# correct output =	00000000000000000000000000000001
-# ERROR!!!!
-# DUT values =
-# 1
-# DUT CLK = 1
-# DUT rs1_addr =  x
-# DUT rs1 =          x
-# DUT rs2 =          x
-# DUT imm =          x
-# DUT funct3 = x
-# DUT opcode =    x
-# DUT exception =  x
-# DUT pc =          x
-# DUT rd_addr =  x
-# DUT ce = x
-# DUT stall = x
-# DUT force_stall = x
-# DUT flush = x
-# DUT stall_bit = x
-# DUT alu ADD = x
-# alu_op = 01000000000000
-# rs1 = 00000000000000000000000000001100
-# imm = 00000000000000000000000000001010
-# alu output =	xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-# correct output =	00000000000000000000000000000001
-# ERROR!!!!
-# DUT values =
-# 1
-# DUT CLK = 1
-# DUT rs1_addr =  x
-# DUT rs1 =          x
-# DUT rs2 =          x
-# DUT imm =          x
-# DUT funct3 = x
-# DUT opcode =    x
-# DUT exception =  x
-# DUT pc =          x
-# DUT rd_addr =  x
-# DUT ce = x
-# DUT stall = x
-# DUT force_stall = x
-# DUT flush = x
-# DUT stall_bit = x
-# DUT alu ADD = x
-# alu_op = 10000000000000
-# rs1 = 00000000000000000000000000001100
-# imm = 00000000000000000000000000001010
-# alu output =	xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-# correct output =	00000000000000000000000000000001
-# ** Note: $finish    : rv32i_alu_tb.sv(236)
-#    Time: 400 ps  Iteration: 0  Instance: /rv32i_alu_tb
-# End time: 15:30:09 on Feb 18,2025, Elapsed time: 0:00:04
-# Errors: 0, Warnings: 0
+# 
+# === ADD: Overflow Test ===
+# Operation Type: ADD
+# Instruction Type: R_TYPE
+# ALU Control: 00000000000001
+# Opcode: 00000000000
+# RS1: 7fffffff (Decimal: 2147483647)
+# RS2: 00000001 (Decimal: 1)
+# IMM: 00000000 (Decimal: 0)
+# Clock Enable: 1
+# Expected Result: 80000000 (Decimal: 2147483648)
+# --------------------
+# 
+# === ADD: Maximum Values ===
+# Operation Type: ADD
+# Instruction Type: R_TYPE
+# ALU Control: 00000000000001
+# Opcode: 00000000000
+# RS1: ffffffff (Decimal: 4294967295)
+# RS2: ffffffff (Decimal: 4294967295)
+# IMM: 00000000 (Decimal: 0)
+# Clock Enable: 1
+# Expected Result: fffffffe (Decimal: 4294967294)
+# --------------------
+# 
+# === SUB: Underflow Test ===
+# Operation Type: SUB
+# Instruction Type: R_TYPE
+# ALU Control: 00000000000010
+# Opcode: 00000000000
+# RS1: 80000000 (Decimal: 2147483648)
+# RS2: 00000001 (Decimal: 1)
+# IMM: 00000000 (Decimal: 0)
+# Clock Enable: 1
+# Expected Result: 7fffffff (Decimal: 2147483647)
+# --------------------
+# 
+# === SUB: Zero Result ===
+# Operation Type: SUB
+# Instruction Type: R_TYPE
+# ALU Control: 00000000000010
+# Opcode: 00000000000
+# RS1: 5a5a5a5a (Decimal: 1515870810)
+# RS2: 5a5a5a5a (Decimal: 1515870810)
+# IMM: 00000000 (Decimal: 0)
+# Clock Enable: 1
+# Expected Result: 00000000 (Decimal: 0)
+# --------------------
+# 
+# === AND: Alternating Bits ===
+# Operation Type: AND
+# Instruction Type: R_TYPE
+# ALU Control: 00000000000100
+# Opcode: 00000000000
+# RS1: aaaaaaaa (Decimal: 2863311530)
+# RS2: 55555555 (Decimal: 1431655765)
+# IMM: 00000000 (Decimal: 0)
+# Clock Enable: 1
+# Expected Result: 00000000 (Decimal: 0)
+# --------------------
+# 
+# === OR: Complementary Patterns ===
+# Operation Type: OR
+# Instruction Type: R_TYPE
+# ALU Control: 00000000001000
+# Opcode: 00000000000
+# RS1: f0f0f0f0 (Decimal: 4042322160)
+# RS2: 0f0f0f0f (Decimal: 252645135)
+# IMM: 00000000 (Decimal: 0)
+# Clock Enable: 1
+# Expected Result: ffffffff (Decimal: 4294967295)
+# --------------------
+# 
+# === XOR: Same Values ===
+# Operation Type: XOR
+# Instruction Type: R_TYPE
+# ALU Control: 00000000010000
+# Opcode: 00000000000
+# RS1: aaaaaaaa (Decimal: 2863311530)
+# RS2: aaaaaaaa (Decimal: 2863311530)
+# IMM: 00000000 (Decimal: 0)
+# Clock Enable: 1
+# Expected Result: 00000000 (Decimal: 0)
+# --------------------
+# 
+# === SLL: Maximum Shift ===
+# Operation Type: SLL
+# Instruction Type: R_TYPE
+# ALU Control: 00000000100000
+# Opcode: 00000000000
+# RS1: 00000001 (Decimal: 1)
+# RS2: 0000001f (Decimal: 31)
+# IMM: 00000000 (Decimal: 0)
+# Clock Enable: 1
+# Expected Result: 80000000 (Decimal: 2147483648)
+# --------------------
+# 
+# === SRL: Sign Bit Test ===
+# Operation Type: SRL
+# Instruction Type: R_TYPE
+# ALU Control: 00000001000000
+# Opcode: 00000000000
+# RS1: 80000000 (Decimal: 2147483648)
+# RS2: 00000001 (Decimal: 1)
+# IMM: 00000000 (Decimal: 0)
+# Clock Enable: 1
+# Expected Result: 40000000 (Decimal: 1073741824)
+# --------------------
+# 
+# === SRA: Sign Preservation ===
+# Operation Type: SRA
+# Instruction Type: R_TYPE
+# ALU Control: 00000010000000
+# Opcode: 00000000000
+# RS1: 80000000 (Decimal: 2147483648)
+# RS2: 0000001f (Decimal: 31)
+# IMM: 00000000 (Decimal: 0)
+# Clock Enable: 1
+# Expected Result: ffffffff (Decimal: 4294967295)
+# --------------------
+# 
+# === SLT: Sign Boundary ===
+# Operation Type: SLT
+# Instruction Type: R_TYPE
+# ALU Control: 00000100000000
+# Opcode: 00000000000
+# RS1: 80000000 (Decimal: 2147483648)
+# RS2: 7fffffff (Decimal: 2147483647)
+# IMM: 00000000 (Decimal: 0)
+# Clock Enable: 1
+# Expected Result: 00000001 (Decimal: 1)
+# --------------------
+# 
+# === SLTU: Maximum vs Zero ===
+# Operation Type: SLTU
+# Instruction Type: R_TYPE
+# ALU Control: 00001000000000
+# Opcode: 00000000000
+# RS1: ffffffff (Decimal: 4294967295)
+# RS2: 00000000 (Decimal: 0)
+# IMM: 00000000 (Decimal: 0)
+# Clock Enable: 1
+# Expected Result: 00000000 (Decimal: 0)
+# --------------------
+# 
+# === EQ: Equal Values ===
+# Operation Type: EQ
+# Instruction Type: R_TYPE
+# ALU Control: 00010000000000
+# Opcode: 00000000000
+# RS1: aaaaaaaa (Decimal: 2863311530)
+# RS2: aaaaaaaa (Decimal: 2863311530)
+# IMM: 00000000 (Decimal: 0)
+# Clock Enable: 1
+# Expected Result: 00000001 (Decimal: 1)
+# --------------------
+# 
+# === GE: Equal Values Edge Case ===
+# Operation Type: GE
+# Instruction Type: R_TYPE
+# ALU Control: 01000000000000
+# Opcode: 00000000000
+# RS1: 80000000 (Decimal: 2147483648)
+# RS2: 80000000 (Decimal: 2147483648)
+# IMM: 00000000 (Decimal: 0)
+# Clock Enable: 1
+# Expected Result: 00000001 (Decimal: 1)
+# --------------------
+# 
+# === LOAD: Address Alignment Test ===
+# Operation Type: ADD
+# Instruction Type: LOAD
+# ALU Control: 00000000000001
+# Opcode: 00000000010
+# RS1: 00000004 (Decimal: 4)
+# RS2: 00000000 (Decimal: 0)
+# IMM: 00000fff (Decimal: 4095)
+# Clock Enable: 1
+# Expected Result: 00000004 (Decimal: 4)
+# --------------------
+# 
+# === STORE: Maximum Address Test ===
+# Operation Type: ADD
+# Instruction Type: STORE
+# ALU Control: 00000000000001
+# Opcode: 00000000011
+# RS1: fffffffc (Decimal: 4294967292)
+# RS2: aaaaaaaa (Decimal: 2863311530)
+# IMM: 00000000 (Decimal: 0)
+# Clock Enable: 1
+# Expected Result: fffffffc (Decimal: 4294967292)
+# --------------------
+# 
+# === BRANCH: Taken Condition ===
+# Operation Type: EQ
+# Instruction Type: BRANCH
+# ALU Control: 00010000000000
+# Opcode: 00000000100
+# RS1: 00000005 (Decimal: 5)
+# RS2: 00000005 (Decimal: 5)
+# IMM: 00000100 (Decimal: 256)
+# Clock Enable: 1
+# Expected Result: 00000001 (Decimal: 1)
+# --------------------
+# 
+# === BRANCH: Not Taken Condition ===
+# Operation Type: EQ
+# Instruction Type: BRANCH
+# ALU Control: 00010000000000
+# Opcode: 00000000100
+# RS1: 00000005 (Decimal: 5)
+# RS2: 00000006 (Decimal: 6)
+# IMM: 00000100 (Decimal: 256)
+# Clock Enable: 1
+# Expected Result: 00000000 (Decimal: 0)
+# --------------------
+# 
+# === JAL: Forward Jump ===
+# Operation Type: ADD
+# Instruction Type: JAL
+# ALU Control: 00000000000001
+# Opcode: 00000000101
+# RS1: 00001000 (Decimal: 4096)
+# RS2: 00000000 (Decimal: 0)
+# IMM: 00000fff (Decimal: 4095)
+# Clock Enable: 1
+# Expected Result: 00001fff (Decimal: 8191)
+# --------------------
+# 
+# === JALR: Return Address ===
+# Operation Type: ADD
+# Instruction Type: JALR
+# ALU Control: 00000000000001
+# Opcode: 00000000110
+# RS1: 00000100 (Decimal: 256)
+# RS2: 00000000 (Decimal: 0)
+# IMM: 00000004 (Decimal: 4)
+# Clock Enable: 1
+# Expected Result: 00000100 (Decimal: 256)
+# --------------------
+# 
+# === LUI: Maximum Immediate ===
+# Operation Type: ADD
+# Instruction Type: LUI
+# ALU Control: 00000000000001
+# Opcode: 00000000111
+# RS1: 00000000 (Decimal: 0)
+# RS2: 00000000 (Decimal: 0)
+# IMM: fffff000 (Decimal: 4294963200)
+# Clock Enable: 1
+# Expected Result: fffff000 (Decimal: 4294963200)
+# --------------------
+# 
+# === AUIPC: PC-relative Addressing ===
+# Operation Type: ADD
+# Instruction Type: AUIPC
+# ALU Control: 00000000000001
+# Opcode: 00000001000
+# RS1: 00001000 (Decimal: 4096)
+# RS2: 00000000 (Decimal: 0)
+# IMM: 000ff000 (Decimal: 1044480)
+# Clock Enable: 1
+# Expected Result: 00001000 (Decimal: 4096)
+# --------------------
+# 
+# === SYSTEM: CSR Operation ===
+# Operation Type: ADD
+# Instruction Type: SYSTEM
+# ALU Control: 00000000000001
+# Opcode: 00000001001
+# RS1: 00000fff (Decimal: 4095)
+# RS2: 00000000 (Decimal: 0)
+# IMM: 00000001 (Decimal: 1)
+# Clock Enable: 1
+# Expected Result: 00001000 (Decimal: 4096)
+# --------------------
+# 
+# === FENCE: Memory Ordering ===
+# Operation Type: ADD
+# Instruction Type: FENCE
+# ALU Control: 00000000000001
+# Opcode: 00000001010
+# RS1: 00000000 (Decimal: 0)
+# RS2: 00000000 (Decimal: 0)
+# IMM: 00000000 (Decimal: 0)
+# Clock Enable: 1
+# Expected Result: 00000000 (Decimal: 0)
+# --------------------
+# ** Error: Failure to checkout svverification license feature.
+# ** Fatal: (vsim-7099) Unable to check out a verification license for the randomize() feature.
+# 
+#    Time: 0 ps  Iteration: 0  Process: /rv32i_alu_tb/#FORK#189_7fefdc34e86 File: generator.sv Line: 146
+# Fatal error in Task rv32i_alu_tb_sv_unit/generator::generate_random_scenarios at generator.sv line 146
+# 
+# HDL call sequence:
+# Stopped at generator.sv 146 Task rv32i_alu_tb_sv_unit/generator::generate_random_scenarios
+# called from  generator.sv 74 Task rv32i_alu_tb_sv_unit/generator::generate_scenarios
+# called from  rv32i_alu_tb.sv 189  
+# 
+# End time: 16:30:14 on Feb 18,2025, Elapsed time: 0:01:28
+# Errors: 2, Warnings: 0

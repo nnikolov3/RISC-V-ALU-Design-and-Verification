@@ -67,8 +67,9 @@ class scoreboard;
     task get_input();
         transaction tx;
         forever begin
+            $display("Scoreboard get_input waiting for transaction...");
             mon_in2scb.get(tx);
-
+            $display("Scoreboard received transaction!");
             // Store input signals from the transaction into FIFOs.
 
             i_clk_fifo.push_back(tx.i_clk);
@@ -247,7 +248,7 @@ class scoreboard;
 
             // If an error is detected, display detailed information about the inputs and outputs.
             if (error == 1) begin
-                $displayh(
+                $display(
                     "**********ERROR**********", "\ni_rst_n = ", rst_n,
                     "\ni_alu = ",
                     i_alu_fifo,  // Displaying the entire FIFO content might be useful for debugging.

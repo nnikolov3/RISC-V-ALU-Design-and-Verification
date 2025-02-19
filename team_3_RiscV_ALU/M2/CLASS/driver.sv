@@ -18,23 +18,24 @@ import uvm_pkg::*;
 
 class driver;
 
-    mailbox #(transaction) shared_mb;
+    mailbox #(transaction) driver_mb;
 
     // Virtual interface for DUT connection.
     virtual alu_if drv_if;
 
     function new(virtual alu_if drv_vif, mailbox#(transaction) mb);
         this.drv_if    = drv_if;
-        this.shared_mb = mb;
+        this.driver_mb = mb;
     endfunction
 
     task run();
         transaction tx;
         // Example: retrieve an expected transaction from the mailbox for comparison
         forever begin
-            shared_mb.get(tx);
-            // Use the transaction 'tx' for comparison or further processing.
+            driver_mb.get(tx);
+            $display("Tx %d \n", tx);
             drive_item(tx);
+            //driver_mb.put(tx);
         end
     endtask
 
@@ -58,6 +59,9 @@ class driver;
 
         // Wait for the next positive clock edge to synchronize signal updates.
         @(posedge drv_if.i_clk);
+        driver_mb.put(tx);
+        $display("Tx %d \n", tx);
+        #20;
     endtask
 
 endclass

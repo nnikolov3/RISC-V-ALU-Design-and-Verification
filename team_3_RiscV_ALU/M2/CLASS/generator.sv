@@ -49,21 +49,15 @@ typedef enum {
     FENCE  = 'b00000001010   // Fence instructions (memory ordering)
 } opcode_type_e;
 
-//------------------------------------------------------------------------------
-// Define a mailbox type for communication between the generator and driver.
-//------------------------------------------------------------------------------
-typedef mailbox#(transaction) mail_box;
-
 class generator;
     transaction trans;  // Transaction object used for scenario generation.
-    mail_box gen2drv_mb;  // Mailbox to send transactions to the driver.
     int num_transactions = 50;  // Number of random transactions to generate.
     event generation_complete;  // Event to signal completion of scenario generation.
-
+    mailbox #(transaction) gen2drv_mb;
     //-------------------------------------------------------------------------
     // Constructor: Initialize the generator with a mailbox reference.
     //-------------------------------------------------------------------------
-    function new(mail_box gen2drv_mb);
+    function new(mailbox#(transaction) gen2drv_mb);
         this.gen2drv_mb = gen2drv_mb;
         trans           = new();
     endfunction
@@ -149,7 +143,10 @@ class generator;
             endcase
 
             // Randomize transaction parameters.
-            trans.randomize();
+            if (!trans.randomize()) begin
+                $error("Randomization failed");
+            end
+
             trans_clone = trans.clone();
 
             // Send the generated transaction to the driver.
