@@ -11,7 +11,8 @@ Description:
 */
 
 `include "transaction.sv"
-
+`ifndef ALU_GEN_SV
+`define ALU_GEN_SV
 //------------------------------------------------------------------------------
 // Enumeration for ALU operations used during transaction generation.
 //------------------------------------------------------------------------------
@@ -51,7 +52,7 @@ typedef enum {
 
 class generator;
     transaction trans;  // Transaction object used for scenario generation.
-    int num_transactions = 50;  // Number of random transactions to generate.
+    int num_transactions = 1000;  // Number of random transactions to generate.
     event generation_complete;  // Event to signal completion of scenario generation.
     mailbox #(transaction) gen2drv_mb;
     //-------------------------------------------------------------------------
@@ -420,3 +421,4 @@ class generator;
     endfunction
 
 endclass
+`endif

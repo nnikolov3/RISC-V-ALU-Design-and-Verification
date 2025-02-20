@@ -14,7 +14,8 @@
 
 `include "rv32i_alu_header.sv"
 `include "transaction.sv"
-
+`ifndef ALU_DRV_SV
+`define ALU_DRV_SV
 class driver;
 
     mailbox #(transaction) driver_mb;
@@ -64,3 +65,4 @@ class driver;
     endtask
 
 endclass
+`endif

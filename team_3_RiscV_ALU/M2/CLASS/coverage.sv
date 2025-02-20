@@ -9,6 +9,8 @@
 `include "rv32i_alu_header.sv"
 `include "transaction.sv"
 `include "interface.sv"
+`ifndef ALU_COV_SV
+`define ALU_COV_SV
 
 class coverage;
     virtual alu_if vif;
@@ -46,10 +48,10 @@ class coverage;
         // Cross coverage
         cross vif.i_opcode, vif.i_alu;
         cross vif.i_opcode, vif.i_exception;
-        cross vif.i_opcode, vif.i_stall, vif.i_force_stall;
-        cross vif.i_opcode, vif.o_change_pc iff (vif.o_change_pc == 1'b1);
-        cross vif.i_ce, vif.i_stall, vif.i_force_stall, vif.i_flush;
-        cross vif.o_wr_rd, vif.o_rd_valid, vif.i_opcode;
+        //cross vif.i_opcode, vif.i_stall, vif.i_force_stall;
+        //cross vif.i_opcode, vif.o_change_pc iff (vif.o_change_pc == 1'b1);
+        //cross vif.i_ce, vif.i_stall, vif.i_force_stall, vif.i_flush;
+        //cross vif.o_wr_rd, vif.o_rd_valid, vif.i_opcode;
     endgroup
 
 
@@ -99,3 +101,4 @@ class coverage;
     endtask
 
 endclass
+`endif

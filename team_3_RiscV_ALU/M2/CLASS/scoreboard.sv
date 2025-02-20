@@ -7,7 +7,8 @@
 
 `include "rv32i_alu_header.sv"
 `include "transaction.sv"
-
+`ifndef ALU_SCB_SV
+`define ALU_SCB_SV
 class scoreboard;
     //-------------------------------------------------------------------------
     // Mailboxes for communication between the monitor and scoreboard.
@@ -324,3 +325,4 @@ class scoreboard;
     endfunction
 
 endclass
+`endif

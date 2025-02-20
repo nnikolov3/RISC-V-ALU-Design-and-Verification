@@ -42,7 +42,7 @@ Summary:
 `include "monitor.sv"
 `include "scoreboard.sv"
 `include "coverage.sv"
-
+`timescale 1ns / 1ps `default_nettype none
 
 module rv32i_alu_tb;
 
@@ -239,7 +239,7 @@ module rv32i_alu_tb;
 
 
         // End simulation after testing
-        #10000 $finish;
+        #1000000 $finish;
     end
 
 
@@ -249,34 +249,5 @@ module rv32i_alu_tb;
         coverage_inst.display_cross_info();
     end
 
-
-    //skeleton given by chatgpt, and then modified
-    function automatic logic [31:0] alu_operation(input logic [31:0] a,
-                                                  input logic [31:0] b,
-                                                  input logic [`ALU_WIDTH-1:0] op  // 6-bit operation code to cover given values
-);
-        //because this is one hot encoded, this will return the location of the highest bit
-        case ($clog2(
-            op
-        ))
-            0: return a + b;  // ADD
-            1: return a - b;  // SUB
-            2: return (a < b) ? 1 : 0;  // SLT (Signed Less Than)
-            3:
-            return (unsigned'(a) < unsigned'(b)) ? 1 : 0;  // SLTU (Unsigned Less Than)
-            4: return a ^ b;  // XOR
-            5: return a | b;  // OR
-            6: return a & b;  // AND
-            7: return a << b[4:0];  // SLL
-            8: return a >> b[4:0];  // SRL
-            9: return $signed(a) >>> b[4:0];  // SRA
-            10: return (a == b) ? 1 : 0;  // EQ
-            11: return (a != b) ? 1 : 0;  // NEQ
-            12: return (a >= b) ? 1 : 0;  // GE
-            13: return (unsigned'(a) >= unsigned'(b)) ? 1 : 0;  // GEU
-
-            default: return 32'hDEADBEEF;  // Invalid operation
-        endcase
-    endfunction
 
 endmodule
