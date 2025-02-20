@@ -10,7 +10,6 @@
 `define TRANSACTION_SV
 
 `include "rv32i_alu_header.sv"
-
 class transaction;
     //--------------------------------------------------------------------------
     // Randomized ALU Input Signals
@@ -94,14 +93,14 @@ class transaction;
         i_opcode inside {11'b00000000000,  // R-type instructions
         11'b00000000001,  // I-type instructions
         11'b00000000010,  // Load instructions
-        11'b00000000011,  // Store instructions
-        11'b00000000100,  // Branch instructions
-        11'b00000000101,  // Jump and Link (JAL)
-        11'b00000000110,  // Jump and Link Register (JALR)
-        11'b00000000111,  // Load Upper Immediate (LUI)
-        11'b00000001000,  // Add Upper Immediate to PC (AUIPC)
-        11'b00000001001,  // System instructions
-        11'b00000001010  // Memory fence instructions
+        11'b00000000100,  // Store instructions
+        11'b00000001000,  // Branch instructions
+        11'b00000010000,  // Jump and Link (JAL)
+        11'b00000100000,  // Jump and Link Register (JALR)
+        11'b00001000000,  // Load Upper Immediate (LUI)
+        11'b00010000000,  // Add Upper Immediate to PC (AUIPC)
+        11'b00100000000,  // System instructions
+        11'b01000000000  // Memory fence instructions
         };
     }
 
@@ -205,6 +204,7 @@ class transaction;
         i_imm          = imm;  // Assign immediate value.
         i_ce           = ce;  // Set clock enable.
     endfunction
+	
 
     //--------------------------------------------------------------------------
     // Function: alu_operation
