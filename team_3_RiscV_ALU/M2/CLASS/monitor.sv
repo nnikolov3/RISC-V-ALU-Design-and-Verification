@@ -9,6 +9,8 @@
 
 `include "rv32i_alu_header.sv"
 `include "transaction.sv"
+`ifndef MON_SV
+`define MON_SV
 class monitor_in;
     // Virtual interface instance to access DUT input signals.
     virtual alu_if vif;
@@ -152,3 +154,5 @@ class monitor_out;
         $display("monitor_out finished");
     endtask
 endclass
+
+`endif
