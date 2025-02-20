@@ -6,9 +6,9 @@ vlib work
 vmap work work
 
 # Compile all Verilog Files
-vlog *.sv
+vlog -mfcu -lint *.sv 
 
 
-vsim work.rv32i_alu_tb
+vsim -coverage work.rv32i_alu_tb -voptargs="+cover=bcesf"
 
 run -all
