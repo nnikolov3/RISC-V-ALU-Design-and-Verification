@@ -1,3 +1,11 @@
+`ifndef UVM_MONITOR_SV
+`define UVM_MONITOR_SV
+
+`include "uvm_macros.svh"
+import uvm_pkg::*;
+`include "rv32i_alu_header.sv"
+`include "transaction.sv"
+
 //-----------------------------------------------------------------------------
 // Class: monitor_in
 //
@@ -6,49 +14,82 @@
 //   interface (vif) and packages them into a transaction object. The
 //   transaction is then sent to the scoreboard via the mon_in2scb mailbox.
 //-----------------------------------------------------------------------------
-
-`include "rv32i_alu_header.sv"
-`include "transaction.sv"
-`ifndef MON_SV
-`define MON_SV
-class monitor_in;
-    // Virtual interface instance to access DUT input signals.
+class monitor_in extends uvm_monitor;
+    `uvm_component_utils(monitor_in)
+    
+    // Virtual interface to access input signals of the DUT.
     virtual alu_if vif;
-    // Mailbox to send captured input transactions to the scoreboard.
-    mailbox #(transaction) mon_in2scb = new();
+    
+    // Analysis port to send input transactions to the scoreboard.
+    uvm_analysis_port#(transaction) mon_in2scb;
 
     //-------------------------------------------------------------------------
     // Constructor: new
     //
     // Description:
-    //   Initializes the monitor_in with a virtual interface and mailbox.
+    //   Initializes the monitor_in component with a virtual interface and 
+    //   analysis port for communication with the scoreboard.
     //
     // Parameters:
-    //   vif        - Virtual interface instance connected to the DUT.
-    //   mon_in2scb - Mailbox to send transactions to the scoreboard.
+    //   name   - Name of the monitor (optional, default "monitor_in").
+    //   parent - Parent UVM component (passed to super class).
     //-------------------------------------------------------------------------
-    function new(virtual alu_if vif, mailbox#(transaction) mon_in2scb);
-        this.vif        = vif;
-        this.mon_in2scb = mon_in2scb;
+    function new(string name = "monitor_in", uvm_component parent);
+        super.new(name, parent);
+    endfunction
+    
+    //-------------------------------------------------------------------------
+    // Phase: build_phase
+    //
+    // Description:
+    //   Sets up the virtual interface by getting it from the UVM configuration 
+    //   database. If the interface is not set, an error is raised.
+    //
+    // Parameters:
+    //   phase - The UVM phase object (used for UVM lifecycle).
+    //-------------------------------------------------------------------------
+    virtual function void build_phase(uvm_phase phase);
+        super.build_phase(phase);
+        if (!uvm_config_db#(virtual alu_if)::get(this, "", "vif", vif)) begin
+            `uvm_fatal("MONITOR_IN", "Virtual interface not set")
+        end
     endfunction
 
     //-------------------------------------------------------------------------
-    // Task: main
+    // Phase: connect_phase
     //
     // Description:
-    //   Continuously samples the input signals on every positive clock edge.
-    //   If the clock enable signal (i_ce) is asserted, it captures the inputs,
-    //   populates a transaction, and sends it via the mailbox.
+    //   Initializes the analysis port for communication with the scoreboard.
+    //
+    // Parameters:
+    //   phase - The UVM phase object (used for UVM lifecycle).
     //-------------------------------------------------------------------------
-    task main;
-        $display("monitor_in started");
+    virtual function void connect_phase(uvm_phase phase);
+        super.connect_phase(phase);
+        mon_in2scb = new("mon_in2scb", this);
+    endfunction
+    
+    //-------------------------------------------------------------------------
+    // Task: run_phase
+    //
+    // Description:
+    //   Continuously samples input signals from the DUT on each positive clock 
+    //   edge. If clock enable (i_ce) is asserted, the signals are captured and 
+    //   packaged into a transaction object, which is sent to the scoreboard.
+    //
+    // Parameters:
+    //   phase - The UVM phase object (used for UVM lifecycle).
+    //-------------------------------------------------------------------------
+    virtual task run_phase(uvm_phase phase);
+        transaction tx;
+        `uvm_info("MONITOR_IN", "Monitor started", UVM_MEDIUM)
+        
         forever begin
-            // Create a new transaction object for each sample.
-            transaction tx = new();
-            // Wait for the next positive clock edge.
-            @(posedge vif.i_clk);
-            // Sample the inputs only if clock enable is asserted.
-            if (vif.i_ce) begin
+            @(posedge vif.i_clk);  // Wait for the next clock edge
+            if (vif.i_ce) begin  // Capture signals if clock enable is high
+                tx = transaction::type_id::create("tx", this);
+                
+                // Capture DUT input signals into the transaction object
                 tx.i_clk         = vif.i_clk;
                 tx.i_rst_n       = vif.i_rst_n;
                 tx.i_alu         = vif.i_alu;
@@ -66,11 +107,10 @@ class monitor_in;
                 tx.i_force_stall = vif.i_force_stall;
                 tx.i_flush       = vif.i_flush;
 
-                // Send the populated transaction to the scoreboard.
-                mon_in2scb.put(tx);
+                // Send the captured transaction to the scoreboard
+                mon_in2scb.write(tx);
             end
         end
-        $display("monitor_in finished");
     endtask
 endclass
 
@@ -78,80 +118,112 @@ endclass
 // Class: monitor_out
 //
 // Description:
-//   This monitor samples the output signals from the DUT via the virtual
+//   This monitor samples output signals from the DUT via the virtual
 //   interface (vif), packages them into a transaction object, and sends the
 //   transaction to the scoreboard through the mon_out2scb mailbox. It also
 //   keeps a count of the output transactions processed.
 //-----------------------------------------------------------------------------
-class monitor_out;
-    // Counter for the number of output transactions captured.
-    int tx_count = 0;
-    // Virtual interface instance to access DUT output signals.
+class monitor_out extends uvm_monitor;
+    `uvm_component_utils(monitor_out)
+    
+    // Virtual interface to access output signals of the DUT.
     virtual alu_if vif;
-    // Mailbox to send captured output transactions to the scoreboard.
-    mailbox #(transaction) mon_out2scb = new();
+    
+    // Analysis port to send output transactions to the scoreboard.
+    uvm_analysis_port#(transaction) mon_out2scb;
 
     //-------------------------------------------------------------------------
     // Constructor: new
     //
     // Description:
-    //   Initializes the monitor_out with a virtual interface and mailbox.
+    //   Initializes the monitor_out component with a virtual interface and 
+    //   analysis port for communication with the scoreboard.
     //
     // Parameters:
-    //   vif         - Virtual interface instance connected to the DUT.
-    //   mon_out2scb - Mailbox to send transactions to the scoreboard.
+    //   name   - Name of the monitor (optional, default "monitor_out").
+    //   parent - Parent UVM component (passed to super class).
     //-------------------------------------------------------------------------
-    function new(virtual alu_if vif, mailbox#(transaction) mon_out2scb);
-        this.vif         = vif;
-        this.mon_out2scb = mon_out2scb;
+    function new(string name = "monitor_out", uvm_component parent);
+        super.new(name, parent);
+    endfunction
+    
+    //-------------------------------------------------------------------------
+    // Phase: build_phase
+    //
+    // Description:
+    //   Sets up the virtual interface by getting it from the UVM configuration 
+    //   database. If the interface is not set, an error is raised.
+    //
+    // Parameters:
+    //   phase - The UVM phase object (used for UVM lifecycle).
+    //-------------------------------------------------------------------------
+    virtual function void build_phase(uvm_phase phase);
+        super.build_phase(phase);
+        if (!uvm_config_db#(virtual alu_if)::get(this, "", "vif", vif)) begin
+            `uvm_fatal("MONITOR_OUT", "Virtual interface not set")
+        end
     endfunction
 
     //-------------------------------------------------------------------------
-    // Task: main
+    // Phase: connect_phase
     //
     // Description:
-    //   Continuously samples the output signals from the DUT on every positive
-    //   clock edge. It waits until the output valid signal (o_rd_valid) is asserted,
-    //   then captures the outputs into a transaction, sends it via the mailbox,
-    //   and increments the transaction count.
+    //   Initializes the analysis port for communication with the scoreboard.
+    //
+    // Parameters:
+    //   phase - The UVM phase object (used for UVM lifecycle).
     //-------------------------------------------------------------------------
-    task main;
-        $display("monitor_out started");
+    virtual function void connect_phase(uvm_phase phase);
+        super.connect_phase(phase);
+        mon_out2scb = new("mon_out2scb", this);
+    endfunction
+    
+    //-------------------------------------------------------------------------
+    // Task: run_phase
+    //
+    // Description:
+    //   Continuously samples the DUT output signals on each positive clock 
+    //   edge. If output clock enable (o_ce) is asserted, the signals are 
+    //   captured and packaged into a transaction object, which is sent to the 
+    //   scoreboard. The task also increments a counter for the output transactions.
+    //
+    // Parameters:
+    //   phase - The UVM phase object (used for UVM lifecycle).
+    //-------------------------------------------------------------------------
+    virtual task run_phase(uvm_phase phase);
+        transaction tx;
+        `uvm_info("MONITOR_OUT", "Monitor started", UVM_MEDIUM)
+        
         forever begin
-            // Create a new transaction object for each output sample.
-            transaction tx = new();
-            // Wait for the next positive clock edge.
-            @(posedge vif.i_clk);
-            // Wait until the output valid signal is asserted.
-            wait (vif.o_ce);
+            @(posedge vif.i_clk);  // Wait for the next clock edge
+            if (vif.o_ce) begin  // Capture signals if output clock enable is high
+                tx = transaction::type_id::create("tx", this);
+                
+                // Capture DUT output signals into the transaction object
+                tx.o_rs1_addr       = vif.o_rs1_addr;
+                tx.o_rs1            = vif.o_rs1;
+                tx.o_rs2            = vif.o_rs2;
+                tx.o_imm            = vif.o_imm;
+                tx.o_funct3         = vif.o_funct3;
+                tx.o_opcode         = vif.o_opcode;
+                tx.o_exception      = vif.o_exception;
+                tx.o_y              = vif.o_y;
+                tx.o_pc             = vif.o_pc;
+                tx.o_next_pc        = vif.o_next_pc;
+                tx.o_change_pc      = vif.o_change_pc;
+                tx.o_wr_rd          = vif.o_wr_rd;
+                tx.o_rd_addr        = vif.o_rd_addr;
+                tx.o_rd             = vif.o_rd;
+                tx.o_rd_valid       = vif.o_rd_valid;
+                tx.o_stall_from_alu = vif.o_stall_from_alu;
+                tx.o_ce             = vif.o_ce;
+                tx.o_stall          = vif.o_stall;
+                tx.o_flush          = vif.o_flush;
 
-            // Capture DUT output signals into the transaction.
-            tx.o_rs1_addr       = vif.o_rs1_addr;
-            tx.o_rs1            = vif.o_rs1;
-            tx.o_rs2            = vif.o_rs2;
-            tx.o_imm            = vif.o_imm;
-            tx.o_funct3         = vif.o_funct3;
-            tx.o_opcode         = vif.o_opcode;
-            tx.o_exception      = vif.o_exception;
-            tx.o_y              = vif.o_y;
-            tx.o_pc             = vif.o_pc;
-            tx.o_next_pc        = vif.o_next_pc;
-            tx.o_change_pc      = vif.o_change_pc;
-            tx.o_wr_rd          = vif.o_wr_rd;
-            tx.o_rd_addr        = vif.o_rd_addr;
-            tx.o_rd             = vif.o_rd;
-            tx.o_rd_valid       = vif.o_rd_valid;
-            tx.o_stall_from_alu = vif.o_stall_from_alu;
-            tx.o_ce             = vif.o_ce;
-            tx.o_stall          = vif.o_stall;
-            tx.o_flush          = vif.o_flush;
-
-            // Send the populated transaction to the scoreboard.
-            mon_out2scb.put(tx);
-            // Increment the transaction count.
-            tx_count++;
+                // Send the captured transaction to the scoreboard
+                mon_out2scb.write(tx);
+            end
         end
-        $display("monitor_out finished");
     endtask
 endclass
 
