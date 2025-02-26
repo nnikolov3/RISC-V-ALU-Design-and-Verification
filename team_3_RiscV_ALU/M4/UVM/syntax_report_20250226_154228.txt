@@ -1,13 +1,21 @@
 Verilog/SystemVerilog Syntax Report
-Generated on: Wed Feb 26 01:44:09 PM PST 2025
+Generated on: Wed Feb 26 03:42:28 PM PST 2025
 Directory: /home/niko/Dev/RISC-V-ALU-Design-and-Verification/team_3_RiscV_ALU/M4/UVM
 ===================================
+
+Analyzing file: agent.sv
+----------------
+No syntax issues found
 
 Analyzing file: coverage.sv
 ----------------
 No syntax issues found
 
 Analyzing file: driver.sv
+----------------
+No syntax issues found
+
+Analyzing file: environment.sv
 ----------------
 No syntax issues found
 
@@ -113,6 +121,10 @@ Analyzing file: scoreboard.sv
 No syntax issues found
 
 Analyzing file: sequencer.sv
+----------------
+No syntax issues found
+
+Analyzing file: test.sv
 ----------------
 No syntax issues found
 

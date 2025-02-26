@@ -1,13 +1,21 @@
 Verilog/SystemVerilog Linting Report
-Generated on: Wed Feb 26 01:43:18 PM PST 2025
+Generated on: Wed Feb 26 03:42:21 PM PST 2025
 Directory: /home/niko/Dev/RISC-V-ALU-Design-and-Verification/team_3_RiscV_ALU/M4/UVM
 ===================================
+
+Linting file: agent.sv
+-------------
+No linting issues found
 
 Linting file: coverage.sv
 -------------
 No linting issues found
 
 Linting file: driver.sv
+-------------
+No linting issues found
+
+Linting file: environment.sv
 -------------
 No linting issues found
 
@@ -32,12 +40,15 @@ rv32i_alu.sv:228:101-149: Line length exceeds max: 100; is: 149 [Style: line-len
 
 Linting file: scoreboard.sv
 -------------
-scoreboard.sv:79:101-110: Line length exceeds max: 100; is: 110 [Style: line-length] [line-length]
-scoreboard.sv:102:101: Line length exceeds max: 100; is: 101 [Style: line-length] [line-length]
+No linting issues found
 
 Linting file: sequencer.sv
 -------------
-sequencer.sv:55:13-16: Explicitly define a default case for every case statement or add `unique` qualifier to the case statement. [Style: case-statements] [case-missing-default]
+sequencer.sv:63:13-16: Explicitly define a default case for every case statement or add `unique` qualifier to the case statement. [Style: case-statements] [case-missing-default]
+
+Linting file: test.sv
+-------------
+No linting issues found
 
 Linting file: top.sv
 -------------
