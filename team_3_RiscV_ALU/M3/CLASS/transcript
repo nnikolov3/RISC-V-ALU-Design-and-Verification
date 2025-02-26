@@ -1,0 +1,65 @@
+# //  Questa Intel FPGA Edition-64
+# //  Version 2024.1 linux_x86_64 Apr 19 2024
+# //
+# // Unpublished work. Copyright 2024 Siemens
+# //
+# // This material contains trade secrets or otherwise confidential information
+# // owned by Siemens Industry Software Inc. or its affiliates (collectively,
+# // "SISW"), or its licensors. Access to and use of this information is strictly
+# // limited as set forth in the Customer's applicable agreements with SISW.
+# //
+# // This material may not be copied, distributed, or otherwise disclosed outside
+# // of the Customer's facilities without the express written permission of SISW,
+# // and may not be used in any way not expressly authorized by SISW.
+# //
+vlog -reportprogress 300 -work work /home/niko/Dev/RISC-V-ALU-Design-and-Verification/team_3_RiscV_ALU/M2/CLASS/coverage.sv /home/niko/Dev/RISC-V-ALU-Design-and-Verification/team_3_RiscV_ALU/M2/CLASS/driver.sv /home/niko/Dev/RISC-V-ALU-Design-and-Verification/team_3_RiscV_ALU/M2/CLASS/generator.sv /home/niko/Dev/RISC-V-ALU-Design-and-Verification/team_3_RiscV_ALU/M2/CLASS/interface.sv /home/niko/Dev/RISC-V-ALU-Design-and-Verification/team_3_RiscV_ALU/M2/CLASS/monitor.sv /home/niko/Dev/RISC-V-ALU-Design-and-Verification/team_3_RiscV_ALU/M2/CLASS/rv32i_alu.sv /home/niko/Dev/RISC-V-ALU-Design-and-Verification/team_3_RiscV_ALU/M2/CLASS/rv32i_alu_header.sv /home/niko/Dev/RISC-V-ALU-Design-and-Verification/team_3_RiscV_ALU/M2/CLASS/rv32i_alu_tb.sv /home/niko/Dev/RISC-V-ALU-Design-and-Verification/team_3_RiscV_ALU/M2/CLASS/scoreboard.sv /home/niko/Dev/RISC-V-ALU-Design-and-Verification/team_3_RiscV_ALU/M2/CLASS/transaction.sv
+# Questa Intel FPGA Edition-64 vlog 2024.1 Compiler 2024.04 Apr 19 2024
+# Start time: 18:00:40 on Feb 18,2025
+# vlog -reportprogress 300 -work work /home/niko/Dev/RISC-V-ALU-Design-and-Verification/team_3_RiscV_ALU/M2/CLASS/coverage.sv /home/niko/Dev/RISC-V-ALU-Design-and-Verification/team_3_RiscV_ALU/M2/CLASS/driver.sv /home/niko/Dev/RISC-V-ALU-Design-and-Verification/team_3_RiscV_ALU/M2/CLASS/generator.sv /home/niko/Dev/RISC-V-ALU-Design-and-Verification/team_3_RiscV_ALU/M2/CLASS/interface.sv /home/niko/Dev/RISC-V-ALU-Design-and-Verification/team_3_RiscV_ALU/M2/CLASS/monitor.sv /home/niko/Dev/RISC-V-ALU-Design-and-Verification/team_3_RiscV_ALU/M2/CLASS/rv32i_alu.sv /home/niko/Dev/RISC-V-ALU-Design-and-Verification/team_3_RiscV_ALU/M2/CLASS/rv32i_alu_header.sv /home/niko/Dev/RISC-V-ALU-Design-and-Verification/team_3_RiscV_ALU/M2/CLASS/rv32i_alu_tb.sv /home/niko/Dev/RISC-V-ALU-Design-and-Verification/team_3_RiscV_ALU/M2/CLASS/scoreboard.sv /home/niko/Dev/RISC-V-ALU-Design-and-Verification/team_3_RiscV_ALU/M2/CLASS/transaction.sv 
+# ** Warning: transaction.sv(14): (vlog-13233) Design unit "coverage_sv_unit" already exists and will be overwritten. Overwriting SystemVerilog $unit with different source files.
+# -- Compiling package coverage_sv_unit
+# ** Warning: /home/niko/Dev/RISC-V-ALU-Design-and-Verification/team_3_RiscV_ALU/M2/CLASS/coverage.sv(48): (vlog-2727) One of implicit coverpoints at line '48' is a duplicate of the explicitly declared coverpoint '#coverpoint__2#' at line '22'. The coverage score may be skewed as a result.
+# ** Warning: /home/niko/Dev/RISC-V-ALU-Design-and-Verification/team_3_RiscV_ALU/M2/CLASS/coverage.sv(50): (vlog-2727) One of implicit coverpoints at line '50' is a duplicate of the explicitly declared coverpoint '#coverpoint__4#' at line '26'. The coverage score may be skewed as a result.
+# ** Warning: /home/niko/Dev/RISC-V-ALU-Design-and-Verification/team_3_RiscV_ALU/M2/CLASS/coverage.sv(50): (vlog-2727) One of implicit coverpoints at line '50' is a duplicate of the explicitly declared coverpoint '#coverpoint__5#' at line '27'. The coverage score may be skewed as a result.
+# ** Warning: /home/niko/Dev/RISC-V-ALU-Design-and-Verification/team_3_RiscV_ALU/M2/CLASS/coverage.sv(49): (vlog-2727) One of implicit coverpoints at line '49' is a duplicate of the explicitly declared coverpoint '#coverpoint__7#' at line '31'. The coverage score may be skewed as a result.
+# ** Warning: /home/niko/Dev/RISC-V-ALU-Design-and-Verification/team_3_RiscV_ALU/M2/CLASS/coverage.sv(49): (vlog-2727) One of implicit coverpoints at line '49' is a duplicate of the explicitly declared coverpoint '#coverpoint__8#' at line '32'. The coverage score may be skewed as a result.
+# ** Warning: /home/niko/Dev/RISC-V-ALU-Design-and-Verification/team_3_RiscV_ALU/M2/CLASS/coverage.sv(49): (vlog-2727) One of implicit coverpoints at line '49' is a duplicate of the explicitly declared coverpoint '#coverpoint__9#' at line '33'. The coverage score may be skewed as a result.
+# ** Warning: /home/niko/Dev/RISC-V-ALU-Design-and-Verification/team_3_RiscV_ALU/M2/CLASS/coverage.sv(49): (vlog-2727) One of implicit coverpoints at line '49' is a duplicate of the explicitly declared coverpoint '#coverpoint__10#' at line '34'. The coverage score may be skewed as a result.
+# -- Compiling interface alu_if
+# ** Warning: transaction.sv(14): (vlog-13233) Design unit "driver_sv_unit" already exists and will be overwritten. Overwriting SystemVerilog $unit with different source files.
+# -- Compiling package driver_sv_unit
+# ** Warning: transaction.sv(14): (vlog-13233) Design unit "generator_sv_unit" already exists and will be overwritten. Overwriting SystemVerilog $unit with different source files.
+# -- Compiling package generator_sv_unit
+# -- Compiling interface alu_if
+# ** Warning: /home/niko/Dev/RISC-V-ALU-Design-and-Verification/team_3_RiscV_ALU/M2/CLASS/interface.sv(7): (vlog-2275) Existing interface 'alu_if' at interface.sv(7) will be overwritten.
+# ** Warning: transaction.sv(14): (vlog-13233) Design unit "monitor_sv_unit" already exists and will be overwritten. Overwriting SystemVerilog $unit with different source files.
+# -- Compiling package monitor_sv_unit
+# ** Note: (vlog-2286) /home/niko/Dev/RISC-V-ALU-Design-and-Verification/team_3_RiscV_ALU/M2/CLASS/rv32i_alu.sv(48): Using implicit +incdir+/home/niko/intelFPGA_pro/24.3.1/questa_fe/uvm-1.1d/../verilog_src/uvm-1.1d/src from import uvm_pkg
+# ** Warning: /home/niko/Dev/RISC-V-ALU-Design-and-Verification/team_3_RiscV_ALU/M2/CLASS/rv32i_alu.sv(49): (vlog-13233) Design unit "rv32i_alu_sv_unit" already exists and will be overwritten. Overwriting SystemVerilog $unit with different source files.
+# -- Compiling package rv32i_alu_sv_unit
+# -- Importing package mtiUvm.uvm_pkg (uvm-1.1d Built-in)
+# -- Compiling module rv32i_alu
+# -- Compiling interface alu_if
+# ** Warning: ** while parsing file included at /home/niko/Dev/RISC-V-ALU-Design-and-Verification/team_3_RiscV_ALU/M2/CLASS/rv32i_alu_tb.sv(40)
+# ** at interface.sv(7): (vlog-2275) Existing interface 'alu_if' at /home/niko/Dev/RISC-V-ALU-Design-and-Verification/team_3_RiscV_ALU/M2/CLASS/interface.sv(7) will be overwritten.
+# ** Warning: transaction.sv(14): (vlog-13233) Design unit "rv32i_alu_tb_sv_unit" already exists and will be overwritten. Overwriting SystemVerilog $unit with different source files.
+# -- Compiling package rv32i_alu_tb_sv_unit
+# ** Warning: coverage.sv(48): (vlog-2727) One of implicit coverpoints at line '48' is a duplicate of the explicitly declared coverpoint '#coverpoint__2#' at line '22'. The coverage score may be skewed as a result.
+# ** Warning: coverage.sv(50): (vlog-2727) One of implicit coverpoints at line '50' is a duplicate of the explicitly declared coverpoint '#coverpoint__4#' at line '26'. The coverage score may be skewed as a result.
+# ** Warning: coverage.sv(50): (vlog-2727) One of implicit coverpoints at line '50' is a duplicate of the explicitly declared coverpoint '#coverpoint__5#' at line '27'. The coverage score may be skewed as a result.
+# ** Warning: coverage.sv(49): (vlog-2727) One of implicit coverpoints at line '49' is a duplicate of the explicitly declared coverpoint '#coverpoint__7#' at line '31'. The coverage score may be skewed as a result.
+# ** Warning: coverage.sv(49): (vlog-2727) One of implicit coverpoints at line '49' is a duplicate of the explicitly declared coverpoint '#coverpoint__8#' at line '32'. The coverage score may be skewed as a result.
+# ** Warning: coverage.sv(49): (vlog-2727) One of implicit coverpoints at line '49' is a duplicate of the explicitly declared coverpoint '#coverpoint__9#' at line '33'. The coverage score may be skewed as a result.
+# ** Warning: coverage.sv(49): (vlog-2727) One of implicit coverpoints at line '49' is a duplicate of the explicitly declared coverpoint '#coverpoint__10#' at line '34'. The coverage score may be skewed as a result.
+# -- Compiling interface alu_if
+# -- Compiling module rv32i_alu_tb
+# ** Warning: transaction.sv(14): (vlog-13233) Design unit "scoreboard_sv_unit" already exists and will be overwritten. Overwriting SystemVerilog $unit with different source files.
+# -- Compiling package scoreboard_sv_unit
+# ** Warning: /home/niko/Dev/RISC-V-ALU-Design-and-Verification/team_3_RiscV_ALU/M2/CLASS/transaction.sv(14): (vlog-13233) Design unit "transaction_sv_unit" already exists and will be overwritten. Overwriting SystemVerilog $unit with different source files.
+# -- Compiling package transaction_sv_unit
+# 
+# Top level modules:
+# 	rv32i_alu_tb
+# End time: 18:00:41 on Feb 18,2025, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 24
+# Load canceled
