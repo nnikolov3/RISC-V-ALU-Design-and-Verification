@@ -15,14 +15,12 @@ import uvm_pkg::*;
 //   an error message is logged. Successful comparisons are reported via 
 //   UVM info.
 //-----------------------------------------------------------------------------
-class uvm_scoreboard extends uvm_component;
-    `uvm_component_utils(uvm_scoreboard)
+class uvm_scb extends uvm_scoreboard;
+    `uvm_component_utils(uvm_scb)
 
-    // Input FIFO: Receives transactions from the input monitor.
-    uvm_tlm_analysis_fifo#(transaction) in_fifo;
+    uvm_analysis_imp #(transaction, uvm_scb) scb_port;
 
-    // Output FIFO: Receives transactions from the output monitor.
-    uvm_tlm_analysis_fifo#(transaction) out_fifo;
+	transaction tx[$];
 
     //-------------------------------------------------------------------------
     // Constructor: new
@@ -34,7 +32,7 @@ class uvm_scoreboard extends uvm_component;
     //   name   - The name of the scoreboard component.
     //   parent - The parent component to which this scoreboard belongs.
     //-------------------------------------------------------------------------
-    function new(string name, uvm_component parent);
+    function new(string name = "uvm_scb", uvm_component parent);
         super.new(name, parent);
     endfunction
 
@@ -52,9 +50,14 @@ class uvm_scoreboard extends uvm_component;
     function void build_phase(uvm_phase phase);
         super.build_phase(phase);
         // Initialize FIFOs
-        in_fifo  = new("in_fifo", this);
-        out_fifo = new("out_fifo", this);
+        scb_port = new("scb_port", this);
     endfunction
+	
+	
+	function void connect_phase(uvm_phase phase);
+		super.connect_phase(phase);
+		`uvm_info("SCB_CLASS", "connect phase", UVM_HIGH)
+	endfunction
 
     //-------------------------------------------------------------------------
     // Run phase: Continuously compare transactions from both FIFOs
@@ -69,16 +72,15 @@ class uvm_scoreboard extends uvm_component;
     //   phase - The current phase of the simulation.
     //-------------------------------------------------------------------------
     task run_phase(uvm_phase phase);
-        transaction in_t, out_t;
+        transaction curr_tx;
         forever begin
             // Wait until both FIFOs have transactions to process.
-            wait(in_fifo.used() > 0 && out_fifo.used() > 0);
+            wait(tx.size() > 0);
             // Retrieve transactions from FIFOs.
-            in_fifo.get(in_t);
-            out_fifo.get(out_t);
+            curr_tx = tx.pop_front();
 
             // Compare the transactions for correctness.
-            compare_transactions(in_t, out_t);
+            compare_transactions(curr_tx);
         end
     endtask
 
@@ -97,46 +99,46 @@ class uvm_scoreboard extends uvm_component;
     //   in_t  - The input transaction to compare.
     //   out_t - The output transaction to compare.
     //-------------------------------------------------------------------------
-    function void compare_transactions(transaction in_t, transaction out_t);
+    function void compare_transactions(transaction curr_tx);
         // Compare program counters (PC).
-        if (in_t.i_pc !== out_t.o_pc) begin
-            `uvm_error("SCOREBOARD", $sformatf("PC mismatch: Expected %h, Got %h", in_t.i_pc, out_t.o_pc));
+        if (curr_tx.i_pc !== curr_tx.o_pc) begin
+            `uvm_error("SCOREBOARD", $sformatf("PC mismatch: Expected %h, Got %h", curr_tx.i_pc, curr_tx.o_pc));
         end
         
         // Check for flush, stall, or force stall conditions.
-        if (in_t.i_flush || in_t.i_stall || in_t.i_force_stall) begin
-            if (out_t.o_change_pc !== 0) begin
+        if (curr_tx.i_flush || curr_tx.i_stall || curr_tx.i_force_stall) begin
+            if (curr_tx.o_change_pc !== 0) begin
                 `uvm_error("SCOREBOARD", "Unexpected PC change during flush/stall!")
             end
-        end else if (in_t.i_pc + 4 !== out_t.o_next_pc && out_t.o_change_pc) begin
-            `uvm_error("SCOREBOARD", $sformatf("Unexpected PC change: Expected %h, Got %h", in_t.i_pc + 4, out_t.o_next_pc));
+        end else if (curr_tx.i_pc + 4 !== curr_tx.o_next_pc && curr_tx.o_change_pc) begin
+            `uvm_error("SCOREBOARD", $sformatf("Unexpected PC change: Expected %h, Got %h", curr_tx.i_pc + 4, curr_tx.o_next_pc));
         end
         
         // Compare flush signals.
-        if (in_t.i_flush !== out_t.o_flush) begin
+        if (curr_tx.i_flush !== curr_tx.o_flush) begin
             `uvm_error("SCOREBOARD", "Flush signal mismatch!");
         end
         
         // Check register write conditions.
-        if (in_t.i_rd_addr != 0) begin
-            if (in_t.i_ce && !in_t.i_stall) begin
+        if (curr_tx.i_rd_addr != 0) begin
+            if (curr_tx.i_ce && !curr_tx.i_stall) begin
                 // Ensure write enable signal is set.
-                if (!out_t.o_wr_rd) begin
+                if (!curr_tx.o_wr_rd) begin
                     `uvm_error("SCOREBOARD", "Missing register write enable!");
                 end
                 // Check if register address matches.
-                if (out_t.o_rd_addr !== in_t.i_rd_addr) begin
-                    `uvm_error("SCOREBOARD", $sformatf("RD Address mismatch: Expected %0d, Got %0d", in_t.i_rd_addr, out_t.o_rd_addr));
+                if (curr_tx.o_rd_addr !== curr_tx.i_rd_addr) begin
+                    `uvm_error("SCOREBOARD", $sformatf("RD Address mismatch: Expected %0d, Got %0d", curr_tx.i_rd_addr, curr_tx.o_rd_addr));
                 end
                 // Ensure RD Valid signal is set.
-                if (out_t.o_rd_valid !== 1) begin
+                if (curr_tx.o_rd_valid !== 1) begin
                     `uvm_error("SCOREBOARD", "RD Valid signal mismatch!");
                 end
             end
         end
         
         // Compare stall signals.
-        if (in_t.i_stall !== out_t.o_stall) begin
+        if (curr_tx.i_stall !== curr_tx.o_stall) begin
             `uvm_error("SCOREBOARD", "Stall signal mismatch!");
         end
         
