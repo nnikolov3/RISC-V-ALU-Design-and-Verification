@@ -87,7 +87,7 @@ module rv32i_alu (
         output logic [2:0] o_funct3;  // function type
         output logic [`OPCODE_WIDTH-1:0] o_opcode;  //opcode type
         output logic [`EXCEPTION_WIDTH-1:0]
-                o_exception;  //exception: illegal inst,ecall,ebreak,mret
+            o_exception;  //exception: illegal inst,ecall,ebreak,mret
         output logic [31:0] o_y;  //result of arithmetic operation
         output logic [31:0] o_pc;  //pc logicister in pipeline
         output logic [31:0] o_next_pc;  //new pc value
@@ -97,7 +97,7 @@ module rv32i_alu (
         output logic [31:0] o_rd;  //value to be written back to destination logicister
         output logic o_rd_valid;  //high if o_rd is valid (not load nor csr instruction)
         output logic o_stall_from_alu
-                ;  //prepare to stall next stage(memory-access stage) for load/store instruction
+            ;  //prepare to stall next stage(memory-access stage) for load/store instruction
         output logic o_ce;  // output clk enable for pipeline stalling of next stage
         output logic o_stall;  //informs pipeline to stall
         output logic o_flush;  //flush previous stages
@@ -157,17 +157,19 @@ module rv32i_alu (
                                 o_rd <= rd_d;
                                 o_rd_valid <= rd_valid_d;
                                 o_wr_rd <= wr_rd_d;
-                                o_stall_from_alu <= i_opcode[`STORE] || i_opcode[`LOAD];  //stall next stage(memory-access stage) when need to store/load
-                                o_pc <= i_pc;  //since accessing data memory always takes more than 1 cycle
+                                o_stall_from_alu <= i_opcode[`STORE] || i_opcode[`LOAD]
+                                    ;  //stall next stage(memory-access stage) when need to store/load
+                                o_pc <= i_pc
+                                    ;  //since accessing data memory always takes more than 1 cycle
                         end
                         if (i_flush && !stall_bit) begin  //flush this stage so clock-enable of next stage is disabled at next clock cycle
                                 o_ce <= 0;
-                        end else if (
-                                !stall_bit) begin  //clock-enable will change only when not stalled
+                        end else
+                            if (!stall_bit) begin  //clock-enable will change only when not stalled
                                 o_ce <= i_ce;
                         end else if (stall_bit && !i_stall)
-                                o_ce <= 0
-                                        ;  //if this stage is stalled but next stage is not, disable
+                                o_ce <=
+                                    0;  //if this stage is stalled but next stage is not, disable
                         //clock enable of next stage at next clock cycle (pipeline bubble)
                 end
         end
@@ -219,7 +221,7 @@ module rv32i_alu (
                                 o_change_pc = i_ce;  //change PC when ce of this stage is high (o_change_pc is valid)
                                 o_flush = i_ce;
                                 rd_d = i_pc +
-                                        4;  //logicister the next pc value to destination logicister
+                                    4;  //logicister the next pc value to destination logicister
                         end
                 end
                 if (opcode_lui) rd_d = i_imm;
@@ -236,7 +238,7 @@ module rv32i_alu (
                 o_stall = (i_stall || i_force_stall) && !i_flush;  //stall when alu needs wait time
         end
         assign sum = a_pc +
-                i_imm;  //share adder for all addition operation for less resource utilization
+            i_imm;  //share adder for all addition operation for less resource utilization
         assign stall_bit = o_stall || i_stall;
         assign alu_add = i_alu[`ADD];
         assign alu_sub = i_alu[`SUB];
@@ -266,11 +268,11 @@ module rv32i_alu (
 `ifdef FORMAL
         // assumption on inputs(not more than one opcode and alu operation is high)
         logic [4:0] f_alu = i_alu[`ADD] + i_alu[`SUB] + i_alu[`SLT] + i_alu[`SLTU] + i_alu[`XOR] +
-                i_alu[`OR] + i_alu[`AND] + i_alu[`SLL] + i_alu[`SRL] + i_alu[`SRA] + i_alu[`EQ] +
-                i_alu[`NEQ] + i_alu[`GE] + i_alu[`GEU] + 0;
+            i_alu[`OR] + i_alu[`AND] + i_alu[`SLL] + i_alu[`SRL] + i_alu[`SRA] + i_alu[`EQ] +
+            i_alu[`NEQ] + i_alu[`GE] + i_alu[`GEU] + 0;
         logic [4:0] f_opcode = i_opcode[`RTYPE] + i_opcode[`ITYPE] + i_opcode[`LOAD] +
-                i_opcode[`STORE] + i_opcode[`BRANCH] + i_opcode[`JAL] + i_opcode[`JALR] +
-                i_opcode[`LUI] + i_opcode[`AUIPC] + i_opcode[`SYSTEM] + i_opcode[`FENCE];
+            i_opcode[`STORE] + i_opcode[`BRANCH] + i_opcode[`JAL] + i_opcode[`JALR] +
+            i_opcode[`LUI] + i_opcode[`AUIPC] + i_opcode[`SYSTEM] + i_opcode[`FENCE];
         always_comb begin
                 assume (f_alu <= 1);
                 assume (f_opcode <= 1);

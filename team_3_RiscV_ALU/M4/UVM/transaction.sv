@@ -129,7 +129,7 @@ class transaction extends uvm_sequence_item;
         }
         constraint sign_boundary_c {
                 (i_rs1 inside {32'h7FFFFFFF, 32'h80000000}) ||
-                        (i_rs2 inside {32'h7FFFFFFF, 32'h80000000});
+                    (i_rs2 inside {32'h7FFFFFFF, 32'h80000000});
         }
 
         //--------------------------------------------------------------------------
@@ -163,7 +163,7 @@ class transaction extends uvm_sequence_item;
         //--------------------------------------------------------------------------
         function bit [31:0] alu_operation();
                 bit [31:0] operand_b = (i_opcode == 7'b0010011) ? i_imm :
-                        i_rs2;  // Use imm for I-type, rs2 otherwise
+                    i_rs2;  // Use imm for I-type, rs2 otherwise
                 case (i_alu)
                         14'b00000000000001: verify_y = i_rs1 + operand_b;  // ADD
                         14'b00000000000010: verify_y = i_rs1 - operand_b;  // SUB
@@ -244,11 +244,11 @@ class transaction extends uvm_sequence_item;
                 transaction rhs_;
                 if (!$cast(rhs_, rhs)) return 0;
                 return super.do_compare(
-                        rhs, comparer
+                    rhs, comparer
                 ) && (this.i_alu == rhs_.i_alu) && (this.i_rs1 == rhs_.i_rs1) &&
-                        (this.i_rs2 == rhs_.i_rs2) && (this.i_imm == rhs_.i_imm) &&
-                        (this.i_opcode == rhs_.i_opcode) && (this.i_ce == rhs_.i_ce) &&
-                        (this.verify_y == rhs_.verify_y);
+                    (this.i_rs2 == rhs_.i_rs2) && (this.i_imm == rhs_.i_imm) &&
+                    (this.i_opcode == rhs_.i_opcode) && (this.i_ce == rhs_.i_ce) &&
+                    (this.verify_y == rhs_.verify_y);
         endfunction
 
         //--------------------------------------------------------------------------
@@ -257,16 +257,16 @@ class transaction extends uvm_sequence_item;
         //--------------------------------------------------------------------------
         function string convert2string();
                 return $sformatf(
-                        "i_alu=%b, i_opcode=%b, i_rs1=%h, i_rs2=%h, i_imm=%h, i_ce=%b, i_rst_n=%b, verify_y=%h"
-                                ,
-                        i_alu,
-                        i_opcode,
-                        i_rs1,
-                        i_rs2,
-                        i_imm,
-                        i_ce,
-                        i_rst_n,
-                        verify_y
+                    "i_alu=%b, i_opcode=%b, i_rs1=%h, i_rs2=%h, i_imm=%h, i_ce=%b, i_rst_n=%b, verify_y=%h"
+                        ,
+                    i_alu,
+                    i_opcode,
+                    i_rs1,
+                    i_rs2,
+                    i_imm,
+                    i_ce,
+                    i_rst_n,
+                    verify_y
                 );
         endfunction
 endclass

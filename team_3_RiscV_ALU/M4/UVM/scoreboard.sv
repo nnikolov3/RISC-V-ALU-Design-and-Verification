@@ -53,12 +53,12 @@ class alu_scoreboard extends uvm_scoreboard;
                 end else begin
                         // Compute expected ALU output and predict exception
                         expected_y = alu_operation(
-                                (input_tx.i_opcode[`JAL] || input_tx.i_opcode[`AUIPC]) ?
-                                        input_tx.i_pc : input_tx.i_rs1,
-                                (input_tx.i_opcode[`RTYPE] || input_tx.i_opcode[`BRANCH]) ?
-                                        input_tx.i_rs2 : input_tx.i_imm,
-                                input_tx.i_alu,
-                                expected_exception
+                            (input_tx.i_opcode[`JAL] || input_tx.i_opcode[`AUIPC]) ? input_tx.i_pc :
+                                input_tx.i_rs1,
+                            (input_tx.i_opcode[`RTYPE] || input_tx.i_opcode[`BRANCH]) ?
+                                input_tx.i_rs2 : input_tx.i_imm,
+                            input_tx.i_alu,
+                            expected_exception
                         );
                         // Handle flush condition
                         if (!input_tx.i_flush) begin
@@ -76,13 +76,11 @@ class alu_scoreboard extends uvm_scoreboard;
                                             expected_flush !== output_tx.o_flush) begin
                                                 error = 1;
                                                 `uvm_error(
-                                                        "SCB",
-                                                        $sformatf(
-                                                                "Branch mismatch: Expected next_pc=%h, Got %h; Expected change_pc=%b, Got %b",
-                                                                expected_next_pc,
-                                                                output_tx.o_next_pc,
-                                                                expected_change_pc,
-                                                                output_tx.o_change_pc))
+                                                    "SCB",
+                                                    $sformatf(
+                                                        "Branch mismatch: Expected next_pc=%h, Got %h; Expected change_pc=%b, Got %b",
+                                                        expected_next_pc, output_tx.o_next_pc,
+                                                        expected_change_pc, output_tx.o_change_pc))
                                         end
                                 end
                                 // Jump instructions (JAL/JALR)
@@ -102,11 +100,11 @@ class alu_scoreboard extends uvm_scoreboard;
                                             expected_rd !== output_tx.o_rd) begin
                                                 error = 1;
                                                 `uvm_error(
-                                                        "SCB",
-                                                        $sformatf(
-                                                                "Jump mismatch: Expected next_pc=%h, Got %h; Expected rd=%h, Got %h",
-                                                                sum, output_tx.o_next_pc,
-                                                                expected_rd, output_tx.o_rd))
+                                                    "SCB",
+                                                    $sformatf(
+                                                        "Jump mismatch: Expected next_pc=%h, Got %h; Expected rd=%h, Got %h",
+                                                        sum, output_tx.o_next_pc, expected_rd,
+                                                        output_tx.o_rd))
                                         end
                                 end
                                 // LUI instruction
@@ -119,12 +117,12 @@ class alu_scoreboard extends uvm_scoreboard;
                                 end
                                 // Determine write and validity conditions
                                 expected_wr_rd =
-                                        !(input_tx.i_opcode[`BRANCH] || input_tx.i_opcode[`STORE] ||
-                                          (input_tx.i_opcode[`SYSTEM] && input_tx.i_funct3 == 0) ||
-                                          input_tx.i_opcode[`FENCE]);
+                                    !(input_tx.i_opcode[`BRANCH] || input_tx.i_opcode[`STORE] ||
+                                      (input_tx.i_opcode[`SYSTEM] && input_tx.i_funct3 == 0) ||
+                                      input_tx.i_opcode[`FENCE]);
                                 expected_rd_valid =
-                                        !(input_tx.i_opcode[`LOAD] ||
-                                          (input_tx.i_opcode[`SYSTEM] && input_tx.i_funct3 != 0));
+                                    !(input_tx.i_opcode[`LOAD] ||
+                                      (input_tx.i_opcode[`SYSTEM] && input_tx.i_funct3 != 0));
                                 // Stall condition
                                 if (output_tx.o_stall !==
                                     (input_tx.i_stall || input_tx.i_force_stall)) begin
@@ -136,53 +134,50 @@ class alu_scoreboard extends uvm_scoreboard;
                                         if (input_tx.i_opcode !== output_tx.o_opcode) begin
                                                 error = 1;
                                                 `uvm_error(
-                                                        "SCB",
-                                                        $sformatf(
-                                                                "Opcode mismatch: Expected %b, Got %b",
-                                                                input_tx.i_opcode,
-                                                                output_tx.o_opcode))
+                                                    "SCB",
+                                                    $sformatf(
+                                                        "Opcode mismatch: Expected %b, Got %b",
+                                                        input_tx.i_opcode, output_tx.o_opcode))
                                         end
                                         if (expected_exception !== output_tx.o_exception) begin
                                                 error = 1;
                                                 `uvm_error(
-                                                        "SCB",
-                                                        $sformatf(
-                                                                "Exception mismatch: Expected %b, Got %b",
-                                                                expected_exception,
-                                                                output_tx.o_exception))
+                                                    "SCB",
+                                                    $sformatf(
+                                                        "Exception mismatch: Expected %b, Got %b",
+                                                        expected_exception, output_tx.o_exception))
                                         end
                                         if (expected_y !== output_tx.o_y) begin
                                                 error = 1;
                                                 `uvm_error(
-                                                        "SCB",
-                                                        $sformatf(
-                                                                "ALU result mismatch: Expected %h, Got %h",
-                                                                expected_y, output_tx.o_y))
+                                                    "SCB",
+                                                    $sformatf(
+                                                        "ALU result mismatch: Expected %h, Got %h",
+                                                        expected_y, output_tx.o_y))
                                         end
                                         if (expected_rd !== output_tx.o_rd) begin
                                                 error = 1;
                                                 `uvm_error(
-                                                        "SCB",
-                                                        $sformatf(
-                                                                "Register destination mismatch: Expected %h, Got %h",
-                                                                expected_rd, output_tx.o_rd))
+                                                    "SCB",
+                                                    $sformatf(
+                                                        "Register destination mismatch: Expected %h, Got %h",
+                                                        expected_rd, output_tx.o_rd))
                                         end
                                         if (expected_wr_rd !== output_tx.o_wr_rd) begin
                                                 error = 1;
                                                 `uvm_error(
-                                                        "SCB",
-                                                        $sformatf(
-                                                                "Write enable mismatch: Expected %b, Got %b",
-                                                                expected_wr_rd, output_tx.o_wr_rd))
+                                                    "SCB",
+                                                    $sformatf(
+                                                        "Write enable mismatch: Expected %b, Got %b",
+                                                        expected_wr_rd, output_tx.o_wr_rd))
                                         end
                                         if (expected_rd_valid !== output_tx.o_rd_valid) begin
                                                 error = 1;
                                                 `uvm_error(
-                                                        "SCB",
-                                                        $sformatf(
-                                                                "Result valid mismatch: Expected %b, Got %b",
-                                                                expected_rd_valid,
-                                                                output_tx.o_rd_valid))
+                                                    "SCB",
+                                                    $sformatf(
+                                                        "Result valid mismatch: Expected %b, Got %b",
+                                                        expected_rd_valid, output_tx.o_rd_valid))
                                         end
                                 end
                         end
@@ -210,7 +205,7 @@ class alu_scoreboard extends uvm_scoreboard;
                 bit [31:0] result;
                 exception = 0;
                 case ($clog2(
-                        op
+                    op
                 ))
                         0: begin  // ADD
                                 result = a + b;

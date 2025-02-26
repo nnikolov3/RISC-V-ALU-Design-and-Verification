@@ -32,7 +32,7 @@ for file in *.sv; do
         --column_limit=100 \
         --line_break_penalty=2 \
         --over_column_limit_penalty=1000 \
-        --wrap_spaces=8 \
+        --wrap_spaces=4 \
         --assignment_statement_alignment=align \
         --case_items_alignment=align \
         --class_member_variable_alignment=align \

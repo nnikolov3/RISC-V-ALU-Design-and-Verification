@@ -33,8 +33,8 @@ class alu_sequence extends uvm_sequence #(transaction);
 
         virtual task body();
                 if (!uvm_config_db#(int)::get(
-                                null, get_full_name(), "num_transactions", num_transactions
-                        ))
+                        null, get_full_name(), "num_transactions", num_transactions
+                    ))
                         `uvm_info("CONFIG", "Using default num_transactions = 1000", UVM_HIGH)
 
                 generate_predefined_scenarios();
@@ -171,7 +171,7 @@ class alu_sequence extends uvm_sequence #(transaction);
 
                 `uvm_info("SCENARIO", $sformatf(
                           "\n=== %s ===\nOperation Type: %s\nInstruction Type: %s\nRS1: %h\nRS2: %h\nIMM: %h\nCE: %b"
-                                  ,
+                              ,
                           scenario_name,
                           alu_op.name(),
                           opcode_str,
