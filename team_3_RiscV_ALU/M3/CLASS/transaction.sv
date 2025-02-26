@@ -15,7 +15,7 @@ import uvm_pkg::*;
 //   the driver, monitor, and scoreboard. It also includes functions for 
 //   setting values, performing ALU operations, and cloning transactions.
 //-----------------------------------------------------------------------------
-class transaction extends uvm_object;
+class transaction extends uvm_sequence_item;
     `uvm_object_utils(transaction)  // Register with UVM factory
 
     //--------------------------------------------------------------------------
