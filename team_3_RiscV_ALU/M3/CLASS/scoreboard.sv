@@ -34,6 +34,7 @@ class uvm_scb extends uvm_scoreboard;
     //-------------------------------------------------------------------------
     function new(string name = "uvm_scb", uvm_component parent);
         super.new(name, parent);
+		`uvm_info("SCB", "Inside constructor", UVM_HIGH)
     endfunction
 
     //-------------------------------------------------------------------------
@@ -51,12 +52,13 @@ class uvm_scb extends uvm_scoreboard;
         super.build_phase(phase);
         // Initialize FIFOs
         scb_port = new("scb_port", this);
+		`uvm_info("SCB", "build phase", UVM_HIGH)
     endfunction
 	
 	
 	function void connect_phase(uvm_phase phase);
 		super.connect_phase(phase);
-		`uvm_info("SCB_CLASS", "connect phase", UVM_HIGH)
+		`uvm_info("SCB", "connect phase", UVM_HIGH)
 	endfunction
 
     //-------------------------------------------------------------------------
@@ -73,6 +75,7 @@ class uvm_scb extends uvm_scoreboard;
     //-------------------------------------------------------------------------
     task run_phase(uvm_phase phase);
         transaction curr_tx;
+		`uvm_info("SCB", "SCB started", UVM_MEDIUM)
         forever begin
             // Wait until both FIFOs have transactions to process.
             wait(tx.size() > 0);
@@ -102,21 +105,21 @@ class uvm_scb extends uvm_scoreboard;
     function void compare_transactions(transaction curr_tx);
         // Compare program counters (PC).
         if (curr_tx.i_pc !== curr_tx.o_pc) begin
-            `uvm_error("SCOREBOARD", $sformatf("PC mismatch: Expected %h, Got %h", curr_tx.i_pc, curr_tx.o_pc));
+            `uvm_error("SCB", $sformatf("PC mismatch: Expected %h, Got %h", curr_tx.i_pc, curr_tx.o_pc));
         end
         
         // Check for flush, stall, or force stall conditions.
         if (curr_tx.i_flush || curr_tx.i_stall || curr_tx.i_force_stall) begin
             if (curr_tx.o_change_pc !== 0) begin
-                `uvm_error("SCOREBOARD", "Unexpected PC change during flush/stall!")
+                `uvm_error("SCB", "Unexpected PC change during flush/stall!")
             end
         end else if (curr_tx.i_pc + 4 !== curr_tx.o_next_pc && curr_tx.o_change_pc) begin
-            `uvm_error("SCOREBOARD", $sformatf("Unexpected PC change: Expected %h, Got %h", curr_tx.i_pc + 4, curr_tx.o_next_pc));
+            `uvm_error("SCB", $sformatf("Unexpected PC change: Expected %h, Got %h", curr_tx.i_pc + 4, curr_tx.o_next_pc));
         end
         
         // Compare flush signals.
         if (curr_tx.i_flush !== curr_tx.o_flush) begin
-            `uvm_error("SCOREBOARD", "Flush signal mismatch!");
+            `uvm_error("SCB", "Flush signal mismatch!");
         end
         
         // Check register write conditions.
@@ -124,26 +127,26 @@ class uvm_scb extends uvm_scoreboard;
             if (curr_tx.i_ce && !curr_tx.i_stall) begin
                 // Ensure write enable signal is set.
                 if (!curr_tx.o_wr_rd) begin
-                    `uvm_error("SCOREBOARD", "Missing register write enable!");
+                    `uvm_error("SCB", "Missing register write enable!");
                 end
                 // Check if register address matches.
                 if (curr_tx.o_rd_addr !== curr_tx.i_rd_addr) begin
-                    `uvm_error("SCOREBOARD", $sformatf("RD Address mismatch: Expected %0d, Got %0d", curr_tx.i_rd_addr, curr_tx.o_rd_addr));
+                    `uvm_error("SCB", $sformatf("RD Address mismatch: Expected %0d, Got %0d", curr_tx.i_rd_addr, curr_tx.o_rd_addr));
                 end
                 // Ensure RD Valid signal is set.
                 if (curr_tx.o_rd_valid !== 1) begin
-                    `uvm_error("SCOREBOARD", "RD Valid signal mismatch!");
+                    `uvm_error("SCB", "RD Valid signal mismatch!");
                 end
             end
         end
         
         // Compare stall signals.
         if (curr_tx.i_stall !== curr_tx.o_stall) begin
-            `uvm_error("SCOREBOARD", "Stall signal mismatch!");
+            `uvm_error("SCB", "Stall signal mismatch!");
         end
         
         // Log successful verification.
-        `uvm_info("SCOREBOARD", "Transaction successfully verified!", UVM_LOW)
+        `uvm_info("SCB", "Transaction successfully verified!", UVM_LOW)
     endfunction
 
 endclass
