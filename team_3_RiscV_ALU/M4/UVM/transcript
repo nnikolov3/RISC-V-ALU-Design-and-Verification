@@ -3,7 +3,7 @@
 # vmap work work 
 # Modifying modelsim.ini
 # Questa Intel FPGA Edition-64 vlog 2024.1 Compiler 2024.04 Apr 19 2024
-# Start time: 13:14:01 on Feb 26,2025
+# Start time: 13:28:45 on Feb 26,2025
 # vlog -mfcu -lint coverage.sv driver.sv interface.sv monitor.sv rv32i_alu.sv rv32i_alu_header.sv scoreboard.sv sequencer.sv top.sv transaction.sv 
 # ** Note: (vlog-2286) coverage.sv(13): Using implicit +incdir+/home/niko/intelFPGA_pro/24.3.1/questa_fe/uvm-1.1d/../verilog_src/uvm-1.1d/src from import uvm_pkg
 # -- Compiling package coverage_sv_unit
@@ -14,5 +14,5 @@
 # 
 # Top level modules:
 # 	top
-# End time: 13:14:02 on Feb 26,2025, Elapsed time: 0:00:01
+# End time: 13:28:46 on Feb 26,2025, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 0

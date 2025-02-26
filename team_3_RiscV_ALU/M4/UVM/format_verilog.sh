@@ -1,7 +1,7 @@
 #!/bin/bash
-/* Date: February 26, 2025 */
+/* Date: $(date +"%B %d, %Y") */
 # Verible Verilog Formatter Script
-# Formats all *.sv files in the current directory with 8-space alignment
+# Formats all *.sv files with 4-space alignment, no tabs, and no trailing spaces
 # Usage: ./format_verilog.sh
 
 # Check if verible-verilog-format is installed
@@ -28,7 +28,7 @@ for file in *.sv; do
     echo "  Backup created: $BACKUP_DIR/$(basename "$file").bak"
     verible-verilog-format \
         --inplace \
-        --indentation_spaces=8 \
+        --indentation_spaces=4 \
         --column_limit=100 \
         --line_break_penalty=2 \
         --over_column_limit_penalty=1000 \
@@ -55,6 +55,7 @@ for file in *.sv; do
     if [ $? -eq 0 ]; then
         echo "  Successfully formatted: $file"
         sed -i 's/[[:space:]]*$//' "$file"
+        expand -t 4 "$file" > "$file.tmp" && mv "$file.tmp" "$file"
         awk 'BEGIN {blanks=0} !NF {blanks++; if (blanks<=1) print ""; next} {blanks=0; print}' "$file" > "$file.tmp" && mv "$file.tmp" "$file"
     else
         echo "  Error formatting: $file - restoring backup"
