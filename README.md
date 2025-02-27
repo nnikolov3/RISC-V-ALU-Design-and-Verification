@@ -1,7 +1,5 @@
 # RISC-V-ALU-Design-and-Verification
 
-# RISC-V ALU Design and Verification
-
 This project implements and verifies an RV32I Arithmetic Logic Unit (ALU) using SystemVerilog and the Universal Verification Methodology (UVM). 
 The ALU supports essential RISC-V 32I operations, including arithmetic (e.g., addition, subtraction), logical operations (e.g., AND, OR, XOR), and control for branches and jumps. 
 The UVM testbench ensures comprehensive verification, covering functionality, edge cases, pipeline interactions, exceptions, and reset behavior.
