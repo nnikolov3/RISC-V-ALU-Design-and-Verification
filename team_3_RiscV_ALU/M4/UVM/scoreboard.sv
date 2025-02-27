@@ -17,6 +17,7 @@ import uvm_pkg::*;
 //-----------------------------------------------------------------------------
 class alu_scoreboard extends uvm_scoreboard;
     `uvm_component_utils(alu_scoreboard)
+	int count = 0;
 
     uvm_analysis_imp #(transaction, alu_scoreboard) scb_port;
 
@@ -85,6 +86,7 @@ class alu_scoreboard extends uvm_scoreboard;
             wait(tx.size() > 0);
             // Retrieve transactions from FIFOs.
             curr_tx = tx.pop_front();
+			this.count = this.count + 1;
 
             // Compare the transactions for correctness.
             compare_transactions(curr_tx);
@@ -150,7 +152,7 @@ class alu_scoreboard extends uvm_scoreboard;
         end
         
         // Log successful verification.
-        `uvm_info("SCB", "Transaction successfully verified!", UVM_LOW)
+        `uvm_info("SCB", $sformatf("Transaction %d successfully verified!", this.count), UVM_LOW)
     endfunction
 
 endclass

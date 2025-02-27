@@ -69,9 +69,9 @@ class alu_monitor extends uvm_monitor;
         
         forever begin
             @(posedge vif.i_clk); // Wait for the next clock edge
-            
-            if (vif.i_ce && vif.o_ce) begin
-                tx = transaction::type_id::create("tx", this);
+            tx = transaction::type_id::create("tx", this);
+            wait (vif.i_ce) begin
+                
                 
                 // Capture input signals
                 //tx.i_clk         = vif.i_clk;
@@ -90,7 +90,9 @@ class alu_monitor extends uvm_monitor;
                 tx.i_stall       = vif.i_stall;
                 tx.i_force_stall = vif.i_force_stall;
                 tx.i_flush       = vif.i_flush;
-                
+			end
+            
+			wait (vif.o_ce) begin
                 // Capture output signals
                 tx.o_rs1_addr       = vif.o_rs1_addr;
                 tx.o_rs1            = vif.o_rs1;
@@ -111,10 +113,11 @@ class alu_monitor extends uvm_monitor;
                 tx.o_ce             = vif.o_ce;
                 tx.o_stall          = vif.o_stall;
                 tx.o_flush          = vif.o_flush;
+			end
                 
                 // Send the transaction to the scoreboard
-                mon2scb.write(tx);
-            end
+            mon2scb.write(tx);
+
         end
     endtask
 endclass
