@@ -1,0 +1,73 @@
+<certe_dump>
+  <instance type=" alu_base_test "> 
+     uvm_test_top 
+  
+     <instance type=" alu_env "> 
+        env 
+  
+        <instance type=" alu_agent "> 
+           agent 
+  
+           <instance type=" alu_driver "> 
+              driver 
+  
+              <port if_type = "uvm_analysis_port" txn_type = "anonymous"> 
+                 rsp_port 
+              </port> 
+  
+              <port if_type = "uvm_seq_item_pull_port" txn_type = "anonymous"> 
+                 seq_item_port 
+                 <connection>  uvm_test_top.env.agent.sequencer.seq_item_export  </connection> 
+              </port> 
+           </instance> 
+  
+  
+           <instance type=" alu_monitor "> 
+              monitor 
+  
+              <port if_type = "uvm_analysis_port" txn_type = "anonymous"> 
+                 mon2scb 
+                 <connection>  uvm_test_top.env.coverage.analysis_imp  </connection> 
+                 <connection>  uvm_test_top.env.scoreboard.scb_port  </connection> 
+              </port> 
+           </instance> 
+  
+  
+           <instance type=" uvm_sequencer "> 
+              sequencer 
+  
+              <export if_type = "uvm_analysis_export" txn_type = "anonymous"> 
+                 rsp_export 
+                 <connection>  uvm_test_top.env.agent.sequencer.sqr_rsp_analysis_fifo.analysis_export  </connection> 
+              </export> 
+  
+              <imp if_type = "uvm_seq_item_pull_imp" txn_type = "anonymous"> 
+                 seq_item_export 
+              </imp> 
+           </instance> 
+  
+        </instance> 
+  
+  
+        <instance type=" alu_coverage "> 
+           coverage 
+  
+           <imp if_type = "uvm_analysis_imp" txn_type = "anonymous"> 
+              analysis_imp 
+           </imp> 
+        </instance> 
+  
+  
+        <instance type=" alu_scoreboard "> 
+           scoreboard 
+  
+           <imp if_type = "uvm_analysis_imp" txn_type = "anonymous"> 
+              scb_port 
+           </imp> 
+        </instance> 
+  
+     </instance> 
+  
+  </instance> 
+  
+  </certe_dump>

@@ -19,7 +19,7 @@ class alu_monitor extends uvm_monitor;
 
     // Virtual interface to access DUT signals
     virtual alu_if                   vif;
-
+	integer log_file;
     // Single analysis port to send transactions to the scoreboard
     uvm_analysis_port #(transaction) mon2scb;
 
@@ -45,6 +45,25 @@ class alu_monitor extends uvm_monitor;
     //-------------------------------------------------------------------------
     virtual function void build_phase(uvm_phase phase);
         super.build_phase(phase);
+
+		log_file = $fopen("uvm_log.txt", "a");
+
+        if (log_file) begin
+            // Set the report server to write to the file
+			set_report_severity_action_hier(UVM_INFO, UVM_DISPLAY | UVM_LOG);   // Ensure info messages are displayed and logged
+			set_report_severity_action_hier(UVM_WARNING, UVM_LOG);               // Log warnings
+			set_report_severity_action_hier(UVM_ERROR, UVM_LOG | UVM_DISPLAY);   // Log and display errors
+
+			set_report_severity_file_hier(UVM_INFO, log_file);  // Ensure the info messages go to the log file
+			set_report_severity_file_hier(UVM_WARNING, log_file);
+			set_report_severity_file_hier(UVM_ERROR, log_file);
+			//set_report_id_file("ENV", log_file);
+			set_report_default_file_hier(log_file);
+			`uvm_info("MONITOR", "Set report server severities and outputs", UVM_NONE);
+        end else begin
+            `uvm_error("MONITOR", "Failed to open log file")
+        end
+
         `uvm_info("MONITOR", "Build phase", UVM_HIGH)
 
         if (!uvm_config_db#(virtual alu_if)::get(this, "", "alu_vif", vif)) begin
@@ -111,7 +130,7 @@ class alu_monitor extends uvm_monitor;
                 tx.o_stall          = vif.o_stall;
                 tx.o_flush          = vif.o_flush;
             end
-
+			mon2scb.write(tx);
         end
     endtask
 endclass

@@ -23,7 +23,7 @@ import uvm_pkg::*;
 //------------------------------------------------------------------------------
 class alu_sequence extends uvm_sequence #(transaction);
     `uvm_object_utils(alu_sequence)
-
+	integer log_file;
     // Configurable number of random transactions
     int num_transactions = 20;
 

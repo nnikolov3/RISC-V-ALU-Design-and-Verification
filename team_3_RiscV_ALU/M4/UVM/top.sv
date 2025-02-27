@@ -63,6 +63,7 @@ module top;
     initial begin
         uvm_config_db#(virtual alu_if)::set(null, "*", "alu_vif", dut_if);
     end
+	
     // Run the UVM test
     initial begin
         run_test("alu_base_test");

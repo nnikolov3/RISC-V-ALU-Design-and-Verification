@@ -20,7 +20,7 @@ class alu_scoreboard extends uvm_scoreboard;
     int                                             count         = 0;
 
     uvm_analysis_imp #(transaction, alu_scoreboard) scb_port;
-
+	integer log_file;
     transaction                                     tx       [$];
 
     //-------------------------------------------------------------------------
@@ -53,6 +53,24 @@ class alu_scoreboard extends uvm_scoreboard;
         super.build_phase(phase);
         // Initialize FIFOs
         scb_port = new("scb_port", this);
+
+		log_file = $fopen("uvm_log.txt", "a");
+
+        if (log_file) begin
+            // Set the report server to write to the file
+			set_report_severity_action_hier(UVM_INFO, UVM_DISPLAY | UVM_LOG);   // Ensure info messages are displayed and logged
+			set_report_severity_action_hier(UVM_WARNING, UVM_LOG);               // Log warnings
+			set_report_severity_action_hier(UVM_ERROR, UVM_LOG | UVM_DISPLAY);   // Log and display errors
+
+			set_report_severity_file_hier(UVM_INFO, log_file);  // Ensure the info messages go to the log file
+			set_report_severity_file_hier(UVM_WARNING, log_file);
+			set_report_severity_file_hier(UVM_ERROR, log_file);
+			//set_report_id_file("ENV", log_file);
+			set_report_default_file_hier(log_file);
+			`uvm_info("SCB", "Set report server severities and outputs", UVM_NONE);
+        end else begin
+            `uvm_error("SCB", "Failed to open log file")
+        end
         `uvm_info("SCB", "build phase", UVM_HIGH)
     endfunction
 

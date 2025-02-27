@@ -1,0 +1,86 @@
+UVM_INFO test.sv(76) @ 0: uvm_test_top [TEST] Set report server severities and outputs
+UVM_INFO environment.sv(47) @ 0: uvm_test_top.env [ENV] ENV Building
+coreboard [SCB] SCB started
+UVM_INFO scoreboard.sv(177) @ 35000: uvm_test_top.env.scoreboard [SCB] Transaction           1 successfully verified!
+UVM_INFO scoreboard.sv(177) @ 45000: uvm_test_top.env.scoreboard [SCB] Transaction           2 successfully verified!
+UVM_INFO scoreboard.sv(177) @ 55000: uvm_test_top.env.scoreboard [SCB] Transaction           3 successfully verified!
+UVM_INFO scoreboard.sv(177) @ 65000: uvm_test_top.env.scoreboard [SCB] Transaction           4 successfully verified!
+UVM_ERROR scoreboard.sv(126) @ 75000: uvm_test_top.env.scoreboard [SCB] PC mismatch: Expected 56484997, Got 00000000
+UVM_ERROR scoreboard.sv(157) @ 75000: uvm_test_top.env.scoreboard [SCB] RD Address mismatch: Expected 30, Got 0
+UVM_INFO scoreboard.sv(177) @ 75000: uvm_test_top.env.scoreboard [SCB] Transaction           5 successfully verified!
+UVM_ERROR scoreboard.sv(126) @ 85000: uvm_test_top.env.scoreboard [SCB] PC mismatch: Expected 27c07d50, Got 56484997
+UVM_ERROR scoreboard.sv(137) @ 85000: uvm_test_top.env.scoreboard [SCB] Unexpected PC change: Expected 27c07d54, Got 27c07d4f
+UVM_ERROR scoreboard.sv(144) @ 85000: uvm_test_top.env.scoreboard [SCB] Flush signal mismatch!
+UVM_ERROR scoreboard.sv(157) @ 85000: uvm_test_top.env.scoreboard [SCB] RD Address mismatch: Expected 5, Got 30
+UVM_INFO scoreboard.sv(177) @ 85000: uvm_test_top.env.scoreboard [SCB] Transaction           6 successfully verified!
+UVM_ERROR scoreboard.sv(126) @ 95000: uvm_test_top.env.scoreboard [SCB] PC mismatch: Expected 4b2b84cc, Got 27c07d50
+UVM_ERROR scoreboard.sv(137) @ 95000: uvm_test_top.env.scoreboard [SCB] Unexpected PC change: Expected 4b2b84d0, Got 19098d2f
+UVM_ERROR scoreboard.sv(144) @ 95000: uvm_test_top.env.scoreboard [SCB] Flush signal mismatch!
+UVM_ERROR scoreboard.sv(157) @ 95000: uvm_test_top.env.scoreboard [SCB] RD Address mismatch: Expected 16, Got 5
+UVM_INFO scoreboard.sv(177) @ 95000: uvm_test_top.env.scoreboard [SCB] Transaction           7 successfully verified!
+UVM_ERROR scoreboard.sv(126) @ 105000: uvm_test_top.env.scoreboard [SCB] PC mismatch: Expected e0b0133a, Got 4b2b84cc
+UVM_ERROR scoreboard.sv(157) @ 105000: uvm_test_top.env.scoreboard [SCB] RD Address mismatch: Expected 25, Got 16
+UVM_INFO scoreboard.sv(177) @ 105000: uvm_test_top.env.scoreboard [SCB] Transaction           8 successfully verified!
+UVM_ERROR scoreboard.sv(126) @ 115000: uvm_test_top.env.scoreboard [SCB] PC mismatch: Expected 7ac9bb53, Got e0b0133a
+UVM_ERROR scoreboard.sv(157) @ 115000: uvm_test_top.env.scoreboard [SCB] RD Address mismatch: Expected 8, Got 25
+UVM_INFO scoreboard.sv(177) @ 115000: uvm_test_top.env.scoreboard [SCB] Transaction           9 successfully verified!
+UVM_ERROR scoreboard.sv(126) @ 125000: uvm_test_top.env.scoreboard [SCB] PC mismatch: Expected a408b0fc, Got 7ac9bb53
+UVM_ERROR scoreboard.sv(152) @ 125000: uvm_test_top.env.scoreboard [SCB] Missing register write enable!
+UVM_ERROR scoreboard.sv(157) @ 125000: uvm_test_top.env.scoreboard [SCB] RD Address mismatch: Expected 17, Got 8
+UVM_INFO scoreboard.sv(177) @ 125000: uvm_test_top.env.scoreboard [SCB] Transaction          10 successfully verified!
+UVM_ERROR scoreboard.sv(126) @ 135000: uvm_test_top.env.scoreboard [SCB] PC mismatch: Expected 6e98b0e3, Got a408b0fc
+UVM_ERROR scoreboard.sv(152) @ 135000: uvm_test_top.env.scoreboard [SCB] Missing register write enable!
+UVM_ERROR scoreboard.sv(157) @ 135000: uvm_test_top.env.scoreboard [SCB] RD Address mismatch: Expected 2, Got 17
+UVM_INFO scoreboard.sv(177) @ 135000: uvm_test_top.env.scoreboard [SCB] Transaction          11 successfully verified!
+UVM_ERROR scoreboard.sv(126) @ 145000: uvm_test_top.env.scoreboard [SCB] PC mismatch: Expected 31e39f0f, Got 6e98b0e3
+UVM_ERROR scoreboard.sv(157) @ 145000: uvm_test_top.env.scoreboard [SCB] RD Address mismatch: Expected 26, Got 2
+UVM_INFO scoreboard.sv(177) @ 145000: uvm_test_top.env.scoreboard [SCB] Transaction          12 successfully verified!
+UVM_ERROR scoreboard.sv(126) @ 155000: uvm_test_top.env.scoreboard [SCB] PC mismatch: Expected 8554d277, Got 31e39f0f
+UVM_ERROR scoreboard.sv(157) @ 155000: uvm_test_top.env.scoreboard [SCB] RD Address mismatch: Expected 16, Got 26
+UVM_ERROR scoreboard.sv(166) @ 155000: uvm_test_top.env.scoreboard [SCB] RD Valid signal mismatch!
+UVM_INFO scoreboard.sv(177) @ 155000: uvm_test_top.env.scoreboard [SCB] Transaction          13 successfully verified!
+UVM_ERROR scoreboard.sv(126) @ 165000: uvm_test_top.env.scoreboard [SCB] PC mismatch: Expected f24a267f, Got 8554d277
+UVM_ERROR scoreboard.sv(157) @ 165000: uvm_test_top.env.scoreboard [SCB] RD Address mismatch: Expected 4, Got 16
+UVM_ERROR scoreboard.sv(166) @ 165000: uvm_test_top.env.scoreboard [SCB] RD Valid signal mismatch!
+UVM_INFO scoreboard.sv(177) @ 165000: uvm_test_top.env.scoreboard [SCB] Transaction          14 successfully verified!
+UVM_ERROR scoreboard.sv(126) @ 175000: uvm_test_top.env.scoreboard [SCB] PC mismatch: Expected 2a758d3a, Got f24a267f
+UVM_ERROR scoreboard.sv(157) @ 175000: uvm_test_top.env.scoreboard [SCB] RD Address mismatch: Expected 5, Got 4
+UVM_INFO scoreboard.sv(177) @ 175000: uvm_test_top.env.scoreboard [SCB] Transaction          15 successfully verified!
+UVM_ERROR scoreboard.sv(126) @ 185000: uvm_test_top.env.scoreboard [SCB] PC mismatch: Expected 7aa64200, Got 2a758d3a
+UVM_ERROR scoreboard.sv(152) @ 185000: uvm_test_top.env.scoreboard [SCB] Missing register write enable!
+UVM_ERROR scoreboard.sv(157) @ 185000: uvm_test_top.env.scoreboard [SCB] RD Address mismatch: Expected 6, Got 5
+UVM_INFO scoreboard.sv(177) @ 185000: uvm_test_top.env.scoreboard [SCB] Transaction          16 successfully verified!
+UVM_ERROR scoreboard.sv(126) @ 195000: uvm_test_top.env.scoreboard [SCB] PC mismatch: Expected 363671ff, Got 7aa64200
+UVM_ERROR scoreboard.sv(137) @ 195000: uvm_test_top.env.scoreboard [SCB] Unexpected PC change: Expected 36367203, Got 7fffffff
+UVM_ERROR scoreboard.sv(144) @ 195000: uvm_test_top.env.scoreboard [SCB] Flush signal mismatch!
+UVM_ERROR scoreboard.sv(152) @ 195000: uvm_test_top.env.scoreboard [SCB] Missing register write enable!
+UVM_ERROR scoreboard.sv(157) @ 195000: uvm_test_top.env.scoreboard [SCB] RD Address mismatch: Expected 5, Got 6
+UVM_INFO scoreboard.sv(177) @ 195000: uvm_test_top.env.scoreboard [SCB] Transaction          17 successfully verified!
+UVM_ERROR scoreboard.sv(126) @ 205000: uvm_test_top.env.scoreboard [SCB] PC mismatch: Expected e3d65cad, Got 363671ff
+UVM_ERROR scoreboard.sv(157) @ 205000: uvm_test_top.env.scoreboard [SCB] RD Address mismatch: Expected 22, Got 5
+UVM_INFO scoreboard.sv(177) @ 205000: uvm_test_top.env.scoreboard [SCB] Transaction          18 successfully verified!
+UVM_ERROR scoreboard.sv(126) @ 215000: uvm_test_top.env.scoreboard [SCB] PC mismatch: Expected ce7be619, Got e3d65cad
+UVM_ERROR scoreboard.sv(157) @ 215000: uvm_test_top.env.scoreboard [SCB] RD Address mismatch: Expected 2, Got 22
+UVM_INFO scoreboard.sv(177) @ 215000: uvm_test_top.env.scoreboard [SCB] Transaction          19 successfully verified!
+UVM_ERROR scoreboard.sv(126) @ 225000: uvm_test_top.env.scoreboard [SCB] PC mismatch: Expected 43133fdd, Got ce7be619
+UVM_ERROR scoreboard.sv(157) @ 225000: uvm_test_top.env.scoreboard [SCB] RD Address mismatch: Expected 10, Got 2
+UVM_INFO scoreboard.sv(177) @ 225000: uvm_test_top.env.scoreboard [SCB] Transaction          20 successfully verified!
+UVM_ERROR scoreboard.sv(126) @ 235000: uvm_test_top.env.scoreboard [SCB] PC mismatch: Expected dd4616ac, Got 43133fdd
+UVM_ERROR scoreboard.sv(157) @ 235000: uvm_test_top.env.scoreboard [SCB] RD Address mismatch: Expected 11, Got 10
+UVM_INFO scoreboard.sv(177) @ 235000: uvm_test_top.env.scoreboard [SCB] Transaction          21 successfully verified!
+UVM_ERROR scoreboard.sv(126) @ 245000: uvm_test_top.env.scoreboard [SCB] PC mismatch: Expected c58d7ec4, Got dd4616ac
+UVM_ERROR scoreboard.sv(152) @ 245000: uvm_test_top.env.scoreboard [SCB] Missing register write enable!
+UVM_INFO scoreboard.sv(177) @ 245000: uvm_test_top.env.scoreboard [SCB] Transaction          UVM_INFO agent.sv(41) @ 0: uvm_test_top.env.agent [AGENT] Set report server severities and outputs
+UVM_INFO driver.sv(42) @ 0: uvm_test_top.env.agent.driver [DRV] Set report server severities and outputs
+UVM_INFO driver.sv(46) @ 0: uvm_test_top.env.agent.driver [DRV] DRIVER Building
+UVM_INFO monitor.sv(62) @ 0: uvm_test_top.env.agent.monitor [MONITOR] Set report server severities and outputs
+UVM_INFO monitor.sv(85) @ 0: uvm_test_top.env.agent.monitor [MONITOR] Monitor started
+22 successfully verified!
+UVM_ERROR scoreboard.sv(126) @ 255000: uvm_test_top.env.scoreboard [SCB] PC mismatch: Expected 6aac9a54, Got c58d7ec4
+UVM_ERROR scoreboard.sv(157) @ 255000: uvm_test_top.env.scoreboard [SCB] RD Address mismatch: Expected 17, Got 11
+UVM_ERROR scoreboard.sv(166) @ 255000: uvm_test_top.env.scoreboard [SCB] RD Valid signal mismatch!
+UVM_INFO scoreboard.sv(177) @ 255000: uvm_test_top.env.scoreboard [SCB] Transaction          23 successfully verified!
+UVM_ERROR scoreboard.sv(126) @ 265000: uvm_test_top.env.scoreboard [SCB] PC mismatch: Expected e21ed70a, Got 6aac9a54
+UVM_ERROR scoreboard.sv(157) @ 265000: uvm_test_top.env.scoreboard [SCB] RD Address mismatch: Expected 21, Got 17
+UVM_ERROR scoreboard.sv(166) @ 265000: uvm_test_top.env.scoreboard [SCB] RD Valid signal mismatch!
+UVM_INFO scoreboard.sv(177) @ 265000: uvm_test_top.env.scoreboard [SCB] Transaction          24 successfully verified!
