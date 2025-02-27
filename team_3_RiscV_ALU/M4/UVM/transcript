@@ -1,9 +1,10 @@
 # do run.do
 # Questa Intel FPGA Edition-64 vmap 2024.1 Lib Mapping Utility 2024.04 Apr 19 2024
 # vmap work work 
+# Copying /home/niko/intelFPGA_pro/24.3.1/questa_fe/linux_x86_64/../modelsim.ini to modelsim.ini
 # Modifying modelsim.ini
 # Questa Intel FPGA Edition-64 vlog 2024.1 Compiler 2024.04 Apr 19 2024
-# Start time: 17:23:05 on Feb 26,2025
+# Start time: 17:28:32 on Feb 26,2025
 # vlog -mfcu -lint top.sv rv32i_alu.sv transaction.sv agent.sv coverage.sv driver.sv environment.sv monitor.sv scoreboard.sv sequencer.sv test.sv 
 # ** Note: (vlog-2286) top.sv(17): Using implicit +incdir+/home/niko/intelFPGA_pro/24.3.1/questa_fe/uvm-1.1d/../verilog_src/uvm-1.1d/src from import uvm_pkg
 # -- Compiling package top_sv_unit
@@ -14,5 +15,5 @@
 # 
 # Top level modules:
 # 	top
-# End time: 17:23:05 on Feb 26,2025, Elapsed time: 0:00:00
+# End time: 17:28:32 on Feb 26,2025, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 1

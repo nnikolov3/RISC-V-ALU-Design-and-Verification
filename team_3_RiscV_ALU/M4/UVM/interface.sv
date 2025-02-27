@@ -48,9 +48,9 @@ interface alu_if (
         localparam EXCEPTION_WIDTH = 2;     // Default to 2-bit exception width
     `endif
 
-                              //////////////////////////////////////////////////
-    // Input Signals to ALU (Driven by Controller)  //
-                              //////////////////////////////////////////////////
+    // ------------------------------------------------------------------------
+    // Input Signals to ALU (Driven by Controller)
+    //
     // Description:
     //   Signals driven by the controller or testbench to stimulate the ALU.
     // ------------------------------------------------------------------------
@@ -69,9 +69,9 @@ interface alu_if (
     logic                       i_force_stall; // Debug/testbench-forced stall signal
     logic                       i_flush;       // Pipeline flush signal
 
-                            ////////////////////////////////////////////////////
-    // Output Signals from ALU (To Writeback Stage)   //
-                            ////////////////////////////////////////////////////
+    // ------------------------------------------------------------------------
+    // Output Signals from ALU (To Writeback Stage)
+    //
     // Description:
     //   Signals output by the ALU for use by the writeback stage or monitoring.
     // ------------------------------------------------------------------------
