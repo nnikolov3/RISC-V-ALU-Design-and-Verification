@@ -1,14 +1,3 @@
-<<<<<<< HEAD
-// ----------------------------------------------------------------------------
-// *********************************************
-// UVM Test Class for ALU Verification
-// Part of the RISC-V 32I ALU verification environment
-// ECE593: Milestone 4, Group 3
-// File: test.sv (Version: 1.0)
-// Class: alu_base_test
-// **********************************************
-// ----------------------------------------------------------------------------
-=======
 /**********************************************
  UVM Test Class for ALU Verification
  Part of the RISC-V 32I ALU verification environment
@@ -16,7 +5,6 @@
  File: test.sv (Version: 1.0)
  Class: alu_base_test
 ***********************************************/
->>>>>>> 0ac4d9171178c574000bfc552743e5b208a58ccf
 
 // Prevent multiple inclusions of this file to avoid redefinition errors
 `ifndef ALU_TEST_SV
@@ -42,10 +30,10 @@ class alu_base_test extends uvm_test;
     `uvm_component_utils(alu_base_test)
 
     // Declare an instance of the ALU environment, which includes agents and other components
-    alu_env env;
-	alu_scoreboard scb;
+    alu_env        env;
+    alu_scoreboard scb;
 
-	virtual alu_if vif;
+    virtual alu_if vif;
     // Constructor to initialize the test class
     // - name: Unique instance name for this test
     // - parent: Parent component, typically the testbench top
@@ -59,7 +47,7 @@ class alu_base_test extends uvm_test;
         // Execute the parent’s build_phase for foundational setup
         super.build_phase(phase);
 
-//		uvm_config_db #(virtual alu_if)::set(this, "*", "alu_vif", vif);
+        //      uvm_config_db #(virtual alu_if)::set(this, "*", "alu_vif", vif);
         // Create the environment instance using the UVM factory
         env = alu_env::type_id::create("env", this);
     endfunction
@@ -75,7 +63,7 @@ class alu_base_test extends uvm_test;
         // Start the sequence on the agent’s sequencer to drive transactions to the DUT
         seq.start(env.agent.sequencer);
 
-		#10000;
+        #10000;
         // Drop the objection to signal that the test is complete, allowing simulation to end
         phase.drop_objection(this);
     endtask

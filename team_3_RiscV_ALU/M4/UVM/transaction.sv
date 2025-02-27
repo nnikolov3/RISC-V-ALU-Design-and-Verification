@@ -28,9 +28,9 @@ class transaction extends uvm_sequence_item;
     rand bit [                 2:0] i_funct3;  // Function field (3-bit)
     rand bit [                31:0] i_pc;  // Program counter (32-bit)
     rand bit [                 4:0] i_rd_addr;  // Destination register address (5-bit)
-    bit                        i_stall;  // Stall signal
-    bit                        i_force_stall;  // Force stall signal
-    bit                        i_flush;  // Flush signal
+    bit                             i_stall;  // Stall signal
+    bit                             i_force_stall;  // Force stall signal
+    bit                             i_flush;  // Flush signal
     rand bit                        i_rst_n;  // Active-low reset signal
 
     // Non-randomized fields (set externally or in specific cases)

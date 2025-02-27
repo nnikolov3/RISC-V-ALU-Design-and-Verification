@@ -18,7 +18,7 @@ class alu_monitor extends uvm_monitor;
     `uvm_component_utils(alu_monitor)
 
     // Virtual interface to access DUT signals
-    virtual alu_if vif;
+    virtual alu_if                   vif;
 
     // Single analysis port to send transactions to the scoreboard
     uvm_analysis_port #(transaction) mon2scb;

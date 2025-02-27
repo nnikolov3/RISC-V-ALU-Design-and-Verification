@@ -65,21 +65,21 @@ class alu_driver extends uvm_driver #(transaction);
             drv_if.i_flush       <= 0;
         end else begin
             // Use clocking block if available (assumes cb_input is defined in alu_if)
-//            if (drv_if.cb_input) begin
-                drv_if.cb_input.i_alu         <= tx.i_alu;
-                drv_if.cb_input.i_rs1_addr    <= tx.i_rs1_addr;
-                drv_if.cb_input.i_rs1         <= tx.i_rs1;
-                drv_if.cb_input.i_rs2         <= tx.i_rs2;
-                drv_if.cb_input.i_imm         <= tx.i_imm;
-                drv_if.cb_input.i_funct3      <= tx.i_funct3;
-                drv_if.cb_input.i_opcode      <= tx.i_opcode;
-                drv_if.cb_input.i_pc          <= tx.i_pc;
-                drv_if.cb_input.i_rd_addr     <= tx.i_rd_addr;
-                drv_if.cb_input.i_ce          <= tx.i_ce;
-                drv_if.cb_input.i_stall       <= tx.i_stall;
-                drv_if.cb_input.i_force_stall <= tx.i_force_stall;
-                drv_if.cb_input.i_flush       <= tx.i_flush;
-/*            end else begin
+            //            if (drv_if.cb_input) begin
+            drv_if.cb_input.i_alu         <= tx.i_alu;
+            drv_if.cb_input.i_rs1_addr    <= tx.i_rs1_addr;
+            drv_if.cb_input.i_rs1         <= tx.i_rs1;
+            drv_if.cb_input.i_rs2         <= tx.i_rs2;
+            drv_if.cb_input.i_imm         <= tx.i_imm;
+            drv_if.cb_input.i_funct3      <= tx.i_funct3;
+            drv_if.cb_input.i_opcode      <= tx.i_opcode;
+            drv_if.cb_input.i_pc          <= tx.i_pc;
+            drv_if.cb_input.i_rd_addr     <= tx.i_rd_addr;
+            drv_if.cb_input.i_ce          <= tx.i_ce;
+            drv_if.cb_input.i_stall       <= tx.i_stall;
+            drv_if.cb_input.i_force_stall <= tx.i_force_stall;
+            drv_if.cb_input.i_flush       <= tx.i_flush;
+            /*            end else begin
                 // Fallback if no clocking block is defined
                 drv_if.i_alu         <= tx.i_alu;
                 drv_if.i_rs1_addr    <= tx.i_rs1_addr;

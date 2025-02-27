@@ -17,11 +17,11 @@ import uvm_pkg::*;
 //-----------------------------------------------------------------------------
 class alu_scoreboard extends uvm_scoreboard;
     `uvm_component_utils(alu_scoreboard)
-    int count = 0;
+    int                                             count         = 0;
 
     uvm_analysis_imp #(transaction, alu_scoreboard) scb_port;
 
-    transaction tx[$];
+    transaction                                     tx       [$];
 
     //-------------------------------------------------------------------------
     // Constructor: new
@@ -53,13 +53,12 @@ class alu_scoreboard extends uvm_scoreboard;
         super.build_phase(phase);
         // Initialize FIFOs
         scb_port = new("scb_port", this);
-		`uvm_info("SCB", "build phase", UVM_HIGH)
+        `uvm_info("SCB", "build phase", UVM_HIGH)
     endfunction
 
-
-	function void write(transaction item);
-		tx.push_back(item);
-	endfunction
+    function void write(transaction item);
+        tx.push_back(item);
+    endfunction
     //-------------------------------------------------------------------------
     // Run phase: Continuously compare transactions from both FIFOs
     //
@@ -79,7 +78,7 @@ class alu_scoreboard extends uvm_scoreboard;
             // Wait until both FIFOs have transactions to process.
             wait (tx.size() > 0);
             // Retrieve transactions from FIFOs.
-            curr_tx = tx.pop_front();
+            curr_tx    = tx.pop_front();
             this.count = this.count + 1;
 
             // Compare the transactions for correctness.
