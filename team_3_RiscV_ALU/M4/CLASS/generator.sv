@@ -73,7 +73,7 @@ class generator;
 
         // Generate scenarios with random values and varying constraints.
         generate_random_scenarios();
-		
+
 		deactivate_ce();
 
         // Signal that the generation process is complete.
@@ -349,14 +349,14 @@ class generator;
         gen2drv_mb.put(trans.clone());
         print_scenario("FENCE: Memory Ordering");
     endtask
-	
-	
+
+
 	task deactivate_ce();
-		
+
 		trans.set_values(0, `FENCE_BITS, 32'h0, 32'h0, 32'h0, 1'b0);
         gen2drv_mb.put(trans.clone());
         print_scenario("Deactivate Clock Enable");
-		
+
 	endtask
 
     //-------------------------------------------------------------------------
