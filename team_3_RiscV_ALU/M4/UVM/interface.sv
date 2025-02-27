@@ -16,12 +16,15 @@
 // **********************************************
 // ----------------------------------------------------------------------------
 `include "rv32i_alu_header.sv"
+`timescale 1ns / 1ps `default_nettype none
 `ifndef ALU_IF_SV
 `define ALU_IF_SV
 
 interface alu_if (
-    input logic i_clk,   // Main clock signal for synchronization
-    input logic i_rst_n  // Active-low asynchronous reset signal
+
+    input wire i_clk,   // Main clock
+    input wire i_rst_n  // Active-low asynchronous reset
+
 );
     // ------------------------------------------------------------------------
     // Parameter Definitions
@@ -69,18 +72,17 @@ interface alu_if (
     logic                       i_force_stall; // Debug/testbench-forced stall signal
     logic                       i_flush;       // Pipeline flush signal
 
-    // ------------------------------------------------------------------------
-    // Output Signals from ALU (To Writeback Stage)
-    //
-    // Description:
-    //   Signals output by the ALU for use by the writeback stage or monitoring.
-    // ------------------------------------------------------------------------
-    logic [4:0]                 o_rs1_addr;        // Bypassed RS1 address (5-bit)
-    logic [31:0]                o_rs1;             // Bypassed RS1 value (32-bit)
-    logic [31:0]                o_rs2;             // Bypassed RS2 value (32-bit)
-    logic [31:0]                o_imm;             // Bypassed immediate value (32-bit)
-    logic [2:0]                 o_funct3;          // Bypassed function code (3-bit)
-    logic [OPCODE_WIDTH-1:0]    o_opcode;          // Bypassed opcode (parameterized width)
+
+
+    ////////////////////////////////////////////////////
+    // Output signals from ALU (To Writeback Stage)   //
+    ////////////////////////////////////////////////////
+    logic [4:0]                 o_rs1_addr;        // Bypassed RS1 address
+    logic [31:0]                o_rs1;             // Bypassed RS1 value
+    logic [31:0]                o_rs2;             // Bypassed RS2 value
+    logic [11:0]                o_imm;             // Bypassed immediate value (32-bit)
+    logic [2:0]                 o_funct3;          // Bypassed function code
+    logic [OPCODE_WIDTH-1:0]    o_opcode;          // Bypassed opcode
     logic [EXCEPTION_WIDTH-1:0] o_exception;       // Propagated exception status
     logic [31:0]                o_y;               // ALU computation result (32-bit)
     logic [31:0]                o_pc;              // Current PC value (32-bit)

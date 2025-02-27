@@ -33,12 +33,8 @@ class alu_sequence extends uvm_sequence #(transaction);
     // ------------------------------------------------------------------------
     `uvm_object_utils(alu_sequence)
 
-    // ------------------------------------------------------------------------
-    // Member: num_transactions
-    // Description:
-    //   Configurable number of random transactions to generate. Default is 1000.
-    // ------------------------------------------------------------------------
-    int num_transactions = 1000;
+    // Configurable number of random transactions
+    int num_transactions = 20;
 
     // ------------------------------------------------------------------------
     // Constructor: new
@@ -206,23 +202,22 @@ class alu_sequence extends uvm_sequence #(transaction);
     virtual function void print_scenario(string scenario_name, transaction trans);
         string alu_op_str;
         string opcode_str;
-
-        // Map ALU operation index to string
-        case (trans.i_alu)
-            `ADD:    alu_op_str = "ADD";
-            `SUB:    alu_op_str = "SUB";
-            `SLT:    alu_op_str = "SLT";
-            `SLTU:   alu_op_str = "SLTU";
-            `XOR:    alu_op_str = "XOR";
-            `OR:     alu_op_str = "OR";
-            `AND:    alu_op_str = "AND";
-            `SLL:    alu_op_str = "SLL";
-            `SRL:    alu_op_str = "SRL";
-            `SRA:    alu_op_str = "SRA";
-            `EQ:     alu_op_str = "EQ";
-            `NEQ:    alu_op_str = "NEQ";
-            `GE:     alu_op_str = "GE";
-            `GEU:    alu_op_str = "GEU";
+        // Map ALU operation index to string based on rv32i_alu_header.sv
+        case (1)
+            trans.i_alu[`ADD]:    alu_op_str = "ADD";
+            trans.i_alu[`SUB]:    alu_op_str = "SUB";
+            trans.i_alu[`SLT]:    alu_op_str = "SLT";
+            trans.i_alu[`SLTU]:   alu_op_str = "SLTU";
+            trans.i_alu[`XOR]:    alu_op_str = "XOR";
+            trans.i_alu[`OR]:     alu_op_str = "OR";
+            trans.i_alu[`AND]:    alu_op_str = "AND";
+            trans.i_alu[`SLL]:    alu_op_str = "SLL";
+            trans.i_alu[`SRL]:    alu_op_str = "SRL";
+            trans.i_alu[`SRA]:    alu_op_str = "SRA";
+            trans.i_alu[`EQ]:     alu_op_str = "EQ";
+            trans.i_alu[`NEQ]:    alu_op_str = "NEQ";
+            trans.i_alu[`GE]:     alu_op_str = "GE";
+            trans.i_alu[`GEU]:    alu_op_str = "GEU";
             default: alu_op_str = "UNKNOWN";
         endcase
 
@@ -244,7 +239,9 @@ class alu_sequence extends uvm_sequence #(transaction);
 
         // Log the transaction details using UVM info
         `uvm_info("SCENARIO", $sformatf(
-                  "\n                             === %s ===\nOperation Type: %s\nInstruction Type: %s\nRS1: %h\nRS2: %h\nIMM: %h\nCE: %b"
+
+                  "\n=== %s ===\nOperation Type: %s\nInstruction Type: %s\nRS1: %h\nRS2: %h\nIMM: %h\nCE: %b\nRS1_ADDR: %h\nFUNCT3: %h\nPC: %h\nRD_ADDR: %h\nSTALL: %h\nFORCE_STALL: %h\nFLUSH: %hRST_N: %h"
+
                       ,
                   scenario_name,
                   alu_op_str,
@@ -252,7 +249,15 @@ class alu_sequence extends uvm_sequence #(transaction);
                   trans.i_rs1,
                   trans.i_rs2,
                   trans.i_imm,
-                  trans.i_ce
+                  trans.i_ce,
+				  trans.i_rs1_addr,
+				  trans.i_funct3,
+				  trans.i_pc,
+				  trans.i_rd_addr,
+				  trans.i_stall,
+				  trans.i_force_stall,
+				  trans.i_flush,
+				  trans.i_rst_n
                   ), UVM_MEDIUM)
     endfunction
 

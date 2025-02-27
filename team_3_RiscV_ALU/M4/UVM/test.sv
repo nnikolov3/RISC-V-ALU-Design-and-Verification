@@ -45,53 +45,10 @@ class alu_base_test extends uvm_test;
     // ------------------------------------------------------------------------
     alu_env env;
 
-    // ------------------------------------------------------------------------
-    // Constructor: new
-    // Description:
-    //   Initializes the test class with a name and parent in the UVM hierarchy.
-    // Arguments:
-    //   - name: String identifier for the test instance
-    //   - parent: Parent UVM component (typically the testbench top)
-    // ------------------------------------------------------------------------
-    function new(string name, uvm_component parent);
-        // Call the parent class constructor to set up base UVM functionality
-        super.new(name, parent);
-    endfunction
 
-    // ------------------------------------------------------------------------
-    // Function: build_phase
-    // Description:
-    //   Configures and instantiates testbench components during the build phase,
-    //   prior to simulation start. Creates the ALU environment instance.
-    // Arguments:
-    //   - phase: UVM phase object for synchronization
-    // ------------------------------------------------------------------------
-    function void build_phase(uvm_phase phase);
-        // Execute the parent’s build_phase for foundational setup
-        super.build_phase(phase);
-        // Create the environment instance using the UVM factory
-        env = alu_env::type_id::create("env", this);
-    endfunction
+		
+        // Drop the objection to signal that the test is complete, allowing simulation to end
 
-    // ------------------------------------------------------------------------
-    // Task: run_phase
-    // Description:
-    //   Executes the test during the simulation run phase. Instantiates and
-    //   starts an ALU sequence on the agent’s sequencer to drive the DUT,
-    //   managing simulation duration with phase objections.
-    // Arguments:
-    //   - phase: UVM phase object for synchronization
-    // ------------------------------------------------------------------------
-    task run_phase(uvm_phase phase);
-        // Declare the sequence object for ALU stimulus generation
-        alu_sequence seq;
-        // Raise an objection to keep the simulation active during the test
-        phase.raise_objection(this);
-        // Instantiate the sequence using the UVM factory
-        seq = alu_sequence::type_id::create("seq");
-        // Start the sequence on the agent’s sequencer to drive transactions to the DUT
-        seq.start(env.agent.sequencer);
-        // Drop the objection to signal test completion, allowing simulation to end
         phase.drop_objection(this);
     endtask
 

@@ -106,17 +106,17 @@ class transaction extends uvm_sequence_item;
 
     // Constraint for opcode: restricts to valid RISC-V 32I instruction types
     constraint opcode_c {
-        i_opcode inside {7'b0110011,  // R-type
-        7'b0010011,  // I-type
-        7'b0000011,  // Load
-        7'b0100011,  // Store
-        7'b1100011,  // Branch
-        7'b1101111,  // JAL
-        7'b1100111,  // JALR
-        7'b0110111,  // LUI
-        7'b0010111,  // AUIPC
-        7'b1110011,  // System
-        7'b0001111};  // Fence
+        i_opcode inside {11'b00000000001,  // R-type
+        11'b00000000010,  // I-type
+        11'b00000000100,  // Load
+        11'b00000001000,  // Store
+        11'b00000010000,  // Branch
+        11'b00000100000,  // JAL
+        11'b00001000000,  // JALR
+        11'b00010000000,  // LUI
+        11'b00100000000,  // AUIPC
+        11'b01000000000,  // System
+        11'b10000000000};  // Fence
     }
 
     // Constraint for clock enable: biases towards enabled state

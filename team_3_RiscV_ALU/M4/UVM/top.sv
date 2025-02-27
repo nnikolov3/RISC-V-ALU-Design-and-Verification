@@ -125,7 +125,10 @@ module top;
     //   class, which orchestrates stimulus generation and DUT verification.
     // ------------------------------------------------------------------------
     initial begin
-        run_test("alu_base_test");  // Execute the ALU base test
+
+		run_test("alu_base_test");
+		#1000;
+
     end
 
 endmodule

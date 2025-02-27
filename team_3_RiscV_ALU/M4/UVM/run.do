@@ -1,4 +1,4 @@
-if [file exists "work"] {vdel -all}
+if {[file exists "work"]} {vdel -lib work -all}
 # Create work directory
 vlib work
 
@@ -6,9 +6,9 @@ vlib work
 vmap work work
 
 # Compile all Verilog Files
-vlog -mfcu -lint top.sv rv32i_alu.sv transaction.sv agent.sv coverage.sv driver.sv environment.sv monitor.sv scoreboard.sv sequencer.sv test.sv
+vlog -mfcu -lint top.sv interface.sv rv32i_alu.sv transaction.sv agent.sv coverage.sv driver.sv environment.sv monitor.sv scoreboard.sv sequencer.sv test.sv 
 
 
-#vsim -coverage work.top -voptargs="+cover=bcesf"
+vsim -coverage work.top -voptargs="+cover=bcesf"
 
-#run -all
+run -all

@@ -120,14 +120,10 @@ class alu_driver extends uvm_driver #(transaction);
             drv_if.i_force_stall <= 0;
             drv_if.i_flush       <= 0;
         end else begin
-            // ------------------------------------------------------------------------
-            // Normal Operation
-            // Description:
-            //   Drive DUT inputs with transaction values. Use a clocking block
-            //   (cb_input) if defined in the interface; otherwise, use direct
-            //   signal assignments.
-            // ------------------------------------------------------------------------
-            if (drv_if.cb_input) begin
+
+            // Use clocking block if available (assumes cb_input is defined in alu_if)
+//            if (drv_if.cb_input) begin
+
                 drv_if.cb_input.i_alu         <= tx.i_alu;
                 drv_if.cb_input.i_rs1_addr    <= tx.i_rs1_addr;
                 drv_if.cb_input.i_rs1         <= tx.i_rs1;
@@ -141,8 +137,10 @@ class alu_driver extends uvm_driver #(transaction);
                 drv_if.cb_input.i_stall       <= tx.i_stall;
                 drv_if.cb_input.i_force_stall <= tx.i_force_stall;
                 drv_if.cb_input.i_flush       <= tx.i_flush;
-            end else begin
-                // Fallback to direct assignments if no clocking block exists
+
+/*            end else begin
+                // Fallback if no clocking block is defined
+
                 drv_if.i_alu         <= tx.i_alu;
                 drv_if.i_rs1_addr    <= tx.i_rs1_addr;
                 drv_if.i_rs1         <= tx.i_rs1;
@@ -155,8 +153,9 @@ class alu_driver extends uvm_driver #(transaction);
                 drv_if.i_ce          <= tx.i_ce;
                 drv_if.i_stall       <= tx.i_stall;
                 drv_if.i_force_stall <= tx.i_force_stall;
-                drv_if.i_flush       <= tx.i_flush;
-            end
+
+                drv_if.i_flush       <= tx.i_flush; 
+            end */
 
         end
 
