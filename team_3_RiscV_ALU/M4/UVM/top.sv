@@ -60,11 +60,11 @@ module top;
         i_rst_n = 1;
     end
     // Set virtual interface in UVM configuration database with updated key
-    initial begin
+/*    initial begin
         uvm_config_db#(virtual alu_if)::set(null, "*", "alu_vif", dut_if);
-    end
+    end */
     // Run the UVM test
     initial begin
-        run_test("alu_base_test");
+		run_test("alu_base_test");
     end
 endmodule

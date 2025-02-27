@@ -6,12 +6,13 @@
  Class: alu_if
 ***********************************************/
 `include "rv32i_alu_header.sv"
+`timescale 1ns / 1ps `default_nettype none
 `ifndef ALU_IF_SV
 `define ALU_IF_SV
 
 interface alu_if (
-    input logic i_clk,   // Main clock
-    input logic i_rst_n  // Active-low asynchronous reset
+    input wire i_clk,   // Main clock
+    input wire i_rst_n  // Active-low asynchronous reset
 );
     // Default parameter values if not defined in header
     `ifdef ALU_WIDTH
@@ -56,7 +57,7 @@ interface alu_if (
     logic [4:0]                 o_rs1_addr;        // Bypassed RS1 address
     logic [31:0]                o_rs1;             // Bypassed RS1 value
     logic [31:0]                o_rs2;             // Bypassed RS2 value
-    logic [31:0]                o_imm;             // Bypassed immediate value (32-bit)
+    logic [11:0]                o_imm;             // Bypassed immediate value (32-bit)
     logic [2:0]                 o_funct3;          // Bypassed function code
     logic [OPCODE_WIDTH-1:0]    o_opcode;          // Bypassed opcode
     logic [EXCEPTION_WIDTH-1:0] o_exception;       // Propagated exception status

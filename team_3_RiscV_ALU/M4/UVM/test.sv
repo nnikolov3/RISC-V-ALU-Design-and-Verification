@@ -32,6 +32,7 @@ class alu_base_test extends uvm_test;
     // Declare an instance of the ALU environment, which includes agents and other components
     alu_env env;
 
+	virtual alu_if vif;
     // Constructor to initialize the test class
     // - name: Unique instance name for this test
     // - parent: Parent component, typically the testbench top
@@ -44,6 +45,11 @@ class alu_base_test extends uvm_test;
     function void build_phase(uvm_phase phase);
         // Execute the parent’s build_phase for foundational setup
         super.build_phase(phase);
+/*		if (!uvm_config_db#(virtual alu_if)::get(this, "", "vif", vif)) begin
+            `uvm_fatal("MONITOR", "Virtual interface not set")
+		end */
+		
+		uvm_config_db #(virtual alu_if)::set(this, "*", "alu_vif", vif);
         // Create the environment instance using the UVM factory
         env = alu_env::type_id::create("env", this);
     endfunction

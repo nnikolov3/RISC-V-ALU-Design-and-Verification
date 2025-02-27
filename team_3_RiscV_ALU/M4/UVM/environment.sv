@@ -59,10 +59,10 @@ class alu_env extends uvm_env;
     function void connect_phase(uvm_phase phase);
         // Connect the monitor’s analysis port (ap) to the scoreboard’s analysis import
         // This allows the scoreboard to receive transactions captured by the monitor
-        agent.monitor.ap.connect(scoreboard.ap);
+        agent.monitor.mon2scb.connect(scoreboard.scb_port);
         // Connect the monitor’s analysis port to the coverage collector’s analysis export
         // This enables the coverage component to sample transactions for coverage analysis
-        agent.monitor.ap.connect(coverage.analysis_export);
+        agent.monitor.mon2scb.connect(coverage.analysis_export);
     endfunction
 endclass
 
