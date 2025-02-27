@@ -1,12 +1,16 @@
 // ----------------------------------------------------------------------------
 // Class: alu_sequence
+// ECE 593
+// Milestone 4 - RV32I ALU Sequence
+// Team 3
 // Description:
 //   This UVM sequence generates transactions to stimulate an Arithmetic Logic
 //   Unit (ALU) in a RISC-V 32I processor verification environment. It includes
-//   predefined scenarios targeting arithmetic and logical operations, random
-//   transactions with configurable constraints, and a clock enable deactivation
-//   test. The sequence drives the ALU through a UVM sequencer to verify its
-//   functionality across various operation types and pipeline conditions.
+//   predefined test scenarios for arithmetic and logical operations, random
+//   transactions with configurable constraints, and a clock enable
+//   deactivation test using a FENCE instruction. The sequence drives the ALU
+//   through a UVM sequencer to verify functionality across various operation
+//   types, edge cases, and pipeline conditions.
 // Updated: Feb 26, 2025
 // ----------------------------------------------------------------------------
 
@@ -22,34 +26,66 @@ import uvm_pkg::*;
 // Extends uvm_sequence to generate ALU test transactions
 //------------------------------------------------------------------------------
 class alu_sequence extends uvm_sequence #(transaction);
+    // ------------------------------------------------------------------------
+    // Registration: Factory Registration
+    // Description:
+    //   Registers the sequence with the UVM factory for dynamic instantiation.
+    // ------------------------------------------------------------------------
     `uvm_object_utils(alu_sequence)
 
-    // Configurable number of random transactions
+    // ------------------------------------------------------------------------
+    // Member: num_transactions
+    // Description:
+    //   Configurable number of random transactions to generate. Default is 1000.
+    // ------------------------------------------------------------------------
     int num_transactions = 1000;
 
-    // Constructor
+    // ------------------------------------------------------------------------
+    // Constructor: new
+    // Description:
+    //   Initializes the sequence with a given name.
+    // Arguments:
+    //   - name: String identifier for the sequence instance (default: "alu_sequence")
+    // ------------------------------------------------------------------------
     function new(string name = "alu_sequence");
         super.new(name);
     endfunction
 
-    // Main sequence body: orchestrates the test sequence
+    // ------------------------------------------------------------------------
+    // Task: body
+    // Description:
+    //   Main execution logic of the sequence. Retrieves the number of random
+    //   transactions from the config database, then executes predefined test
+    //   scenarios, random scenarios, and a clock enable deactivation test.
+    // ------------------------------------------------------------------------
     virtual task body();
-        // Retrieve num_transactions from config DB, default to 1000 if unset
+        // Retrieve num_transactions from config DB; use default if not set
         if (!uvm_config_db#(int)::get(null, get_full_name(), "num_transactions", num_transactions))
             `uvm_info("CONFIG", "Using default num_transactions = 1000", UVM_HIGH)
 
-        generate_predefined_scenarios();  // Run predefined test cases
+        generate_predefined_scenarios();  // Execute predefined test cases
         generate_random_scenarios();  // Generate random transactions
         deactivate_ce();  // Test clock enable deactivation
     endtask
 
-    // Generate predefined test scenarios for ALU operations
+    // ------------------------------------------------------------------------
+    // Task: generate_predefined_scenarios
+    // Description:
+    //   Generates predefined test scenarios focusing on arithmetic and logical
+    //   ALU operations to ensure coverage of specific edge cases.
+    // ------------------------------------------------------------------------
     virtual task generate_predefined_scenarios();
         test_arithmetic_scenarios();  // Test arithmetic operations (ADD, SUB)
         test_logical_scenarios();  // Test logical operations (AND, OR, XOR)
     endtask
 
-    // Generate random transactions with varying constraints
+    // ------------------------------------------------------------------------
+    // Task: generate_random_scenarios
+    // Description:
+    //   Generates a configurable number of random transactions with cyclic
+    //   constraints (zero operands, max values, or fully random) to test a wide
+    //   range of ALU behaviors.
+    // ------------------------------------------------------------------------
     virtual task generate_random_scenarios();
         transaction trans;
         // Loop to generate the specified number of random transactions
@@ -71,7 +107,12 @@ class alu_sequence extends uvm_sequence #(transaction);
         end
     endtask
 
-    // Test arithmetic operations with specific edge cases
+    // ------------------------------------------------------------------------
+    // Task: test_arithmetic_scenarios
+    // Description:
+    //   Tests arithmetic operations (ADD, SUB) with specific edge cases like
+    //   overflow, underflow, maximum values, and zero results.
+    // ------------------------------------------------------------------------
     virtual task test_arithmetic_scenarios();
         transaction trans;
 
@@ -104,7 +145,12 @@ class alu_sequence extends uvm_sequence #(transaction);
         print_scenario("SUB: Zero Result", trans);
     endtask
 
-    // Test logical operations with specific patterns
+    // ------------------------------------------------------------------------
+    // Task: test_logical_scenarios
+    // Description:
+    //   Tests logical operations (AND, OR, XOR) with specific bit patterns to
+    //   verify correct handling of alternating, complementary, and identical inputs.
+    // ------------------------------------------------------------------------
     virtual task test_logical_scenarios();
         transaction trans;
 
@@ -130,7 +176,12 @@ class alu_sequence extends uvm_sequence #(transaction);
         print_scenario("XOR: Same Values", trans);
     endtask
 
-    // Test deactivation of clock enable with a FENCE instruction
+    // ------------------------------------------------------------------------
+    // Task: deactivate_ce
+    // Description:
+    //   Tests clock enable deactivation by sending a FENCE instruction with
+    //   i_ce set to 0, verifying ALU behavior under stalled conditions.
+    // ------------------------------------------------------------------------
     virtual task deactivate_ce();
         transaction trans;
 
@@ -142,12 +193,20 @@ class alu_sequence extends uvm_sequence #(transaction);
         print_scenario("Deactivate Clock Enable", trans);
     endtask
 
-    // Print transaction details for debugging and logging
+    // ------------------------------------------------------------------------
+    // Function: print_scenario
+    // Description:
+    //   Logs transaction details for debugging and verification, mapping ALU
+    //   operations and opcodes to readable strings based on rv32i_alu_header.sv.
+    // Arguments:
+    //   - scenario_name: Name of the test scenario
+    //   - trans: Transaction object to log
+    // ------------------------------------------------------------------------
     virtual function void print_scenario(string scenario_name, transaction trans);
         string alu_op_str;
         string opcode_str;
 
-        // Map ALU operation index to string based on rv32i_alu_header.sv
+        // Map ALU operation index to string
         case (trans.i_alu)
             `ADD:    alu_op_str = "ADD";
             `SUB:    alu_op_str = "SUB";
@@ -166,7 +225,7 @@ class alu_sequence extends uvm_sequence #(transaction);
             default: alu_op_str = "UNKNOWN";
         endcase
 
-        // Map opcode to string based on rv32i_alu_header.sv
+        // Map opcode to string
         case (trans.i_opcode)
             `RTYPE_BITS:  opcode_str = "R_TYPE";
             `ITYPE_BITS:  opcode_str = "I_TYPE";

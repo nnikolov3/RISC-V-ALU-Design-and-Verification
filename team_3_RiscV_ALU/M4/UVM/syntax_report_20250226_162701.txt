@@ -1,5 +1,5 @@
 Verilog/SystemVerilog Syntax Report
-Generated on: Wed Feb 26 03:42:28 PM PST 2025
+Generated on: Wed Feb 26 04:27:01 PM PST 2025
 Directory: /home/niko/Dev/RISC-V-ALU-Design-and-Verification/team_3_RiscV_ALU/M4/UVM
 ===================================
 
@@ -21,7 +21,7 @@ No syntax issues found
 
 Analyzing file: interface.sv
 ----------------
-interface.sv:122:28-36: syntax error at token "cb_output"
+interface.sv:168:28-36: syntax error at token "cb_output"
 
 Note: verifytree will fail because syntax errors caused sections of text to be dropped during error-recovery.
 

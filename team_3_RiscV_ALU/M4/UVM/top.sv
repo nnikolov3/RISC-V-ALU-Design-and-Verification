@@ -1,16 +1,49 @@
+/**********************************************
+ UVM Testbench Top Module for ALU Verification
+ ECE 593: Milestone 4, Group 3
+ File: top.sv
+ Description:
+   This top-level SystemVerilog module acts as the integration point for the
+   UVM-based verification of the RV32I Arithmetic Logic Unit (ALU) within a
+   RISC-V 32I processor environment. It instantiates the ALU DUT and its
+   interface, generates clock and reset signals, configures the UVM framework
+   with the virtual interface, and launches the ALU base test to drive
+   verification.
+ Updated: Feb 26, 2025
+***********************************************/
+
 `include "uvm_macros.svh"
 import uvm_pkg::*;
-`timescale 1ns / 1ps `default_nettype none
+`timescale 1ns / 1ps  // Timescale set to 1ns unit, 1ps precision
+`default_nettype none  // Prevents implicit net creation for safer design
+
 module top;
-    // Clock and reset signals
-    logic i_clk;
-    logic i_rst_n;
-    // Interface instantiation
+    // ------------------------------------------------------------------------
+    // Signals: Clock and Reset
+    // Description:
+    //   Declares clock and reset signals essential for DUT operation and
+    //   testbench synchronization.
+    // ------------------------------------------------------------------------
+    logic i_clk;  // Clock signal driving the DUT
+    logic i_rst_n;  // Active-low reset signal
+
+    // ------------------------------------------------------------------------
+    // Interface Instantiation: dut_if
+    // Description:
+    //   Creates an instance of the ALU interface, connecting clock and reset
+    //   signals to facilitate DUT-testbench interaction.
+    // ------------------------------------------------------------------------
     alu_if dut_if (
         .i_clk  (i_clk),
         .i_rst_n(i_rst_n)
     );
-    // DUT instantiation
+
+    // ------------------------------------------------------------------------
+    // DUT Instantiation: rv32i_alu
+    // Description:
+    //   Instantiates the RV32I ALU DUT, wiring all input and output signals
+    //   through the interface for verification.
+    // ------------------------------------------------------------------------
     rv32i_alu DUT (
         .i_clk           (dut_if.i_clk),
         .i_rst_n         (dut_if.i_rst_n),
@@ -48,23 +81,48 @@ module top;
         .o_stall         (dut_if.o_stall),
         .o_flush         (dut_if.o_flush)
     );
-    // Clock generation
+
+    // ------------------------------------------------------------------------
+    // Clock Generation
+    // Description:
+    //   Produces a continuous clock signal with a 10ns period (100MHz frequency)
+    //   to synchronize the DUT and testbench operations.
+    // ------------------------------------------------------------------------
     initial begin
         i_clk = 0;
-        forever #5 i_clk = ~i_clk;  // 10ns period
+        forever #5 i_clk = ~i_clk;  // Toggle every 5ns for 10ns period
     end
-    // Reset assertion
+
+    // ------------------------------------------------------------------------
+    // Reset Assertion
+    // Description:
+    //   Initializes the DUT with a 20ns reset pulse, asserting reset low then
+    //   releasing it to begin normal operation.
+    // ------------------------------------------------------------------------
     initial begin
-        i_rst_n = 0;
-        #20;
-        i_rst_n = 1;
+        i_rst_n = 0;  // Start with reset active
+        #20;  // Hold for 20ns
+        i_rst_n = 1;  // Release reset
     end
-    // Set virtual interface in UVM configuration database with updated key
+
+    // ------------------------------------------------------------------------
+    // UVM Configuration: Virtual Interface Registration
+    // Description:
+    //   Registers the virtual interface in the UVM configuration database under
+    //   the key "alu_vif", using a wildcard path for accessibility across the
+    //   testbench hierarchy.
+    // ------------------------------------------------------------------------
     initial begin
         uvm_config_db#(virtual alu_if)::set(null, "*", "alu_vif", dut_if);
     end
-    // Run the UVM test
+
+    // ------------------------------------------------------------------------
+    // UVM Test Execution
+    // Description:
+    //   Launches the UVM verification process by running the "alu_base_test"
+    //   class, which orchestrates stimulus generation and DUT verification.
+    // ------------------------------------------------------------------------
     initial begin
-        run_test("alu_base_test");
+        run_test("alu_base_test");  // Execute the ALU base test
     end
 endmodule

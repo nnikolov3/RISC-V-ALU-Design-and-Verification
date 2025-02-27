@@ -1,5 +1,8 @@
 // ----------------------------------------------------------------------------
 // Class: alu_coverage
+// ECE 593
+// Milestone 4
+// Team 3
 // Description:
 //   This UVM subscriber collects coverage by sampling transactions received
 //   from the monitor's analysis port. It ensures comprehensive coverage of ALU

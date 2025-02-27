@@ -1,5 +1,5 @@
 Verilog/SystemVerilog Linting Report
-Generated on: Wed Feb 26 03:42:21 PM PST 2025
+Generated on: Wed Feb 26 04:27:05 PM PST 2025
 Directory: /home/niko/Dev/RISC-V-ALU-Design-and-Verification/team_3_RiscV_ALU/M4/UVM
 ===================================
 
@@ -21,7 +21,7 @@ No linting issues found
 
 Linting file: interface.sv
 -------------
-interface.sv:18:32-41: preprocessing error at token "`ALU_WIDTH" : Error expanding macro identifier, might not be defined before.
+interface.sv:32:32-41: preprocessing error at token "`ALU_WIDTH" : Error expanding macro identifier, might not be defined before.
         localparam ALU_WIDTH = `ALU_WIDTH;
                                ^
 
@@ -44,7 +44,7 @@ No linting issues found
 
 Linting file: sequencer.sv
 -------------
-sequencer.sv:63:13-16: Explicitly define a default case for every case statement or add `unique` qualifier to the case statement. [Style: case-statements] [case-missing-default]
+sequencer.sv:99:13-16: Explicitly define a default case for every case statement or add `unique` qualifier to the case statement. [Style: case-statements] [case-missing-default]
 
 Linting file: test.sv
 -------------
@@ -56,7 +56,7 @@ No linting issues found
 
 Linting file: transaction.sv
 -------------
-transaction.sv:119:16-29: Constraint names must obey the following regex: ([a-z0-9]+_)+c [Style: constraints] [constraint-name-style]
+transaction.sv:139:16-29: Constraint names must obey the following regex: ([a-z0-9]+_)+c [Style: constraints] [constraint-name-style]
 
 ===================================
 Report generation complete
