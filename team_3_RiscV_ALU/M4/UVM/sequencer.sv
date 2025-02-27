@@ -243,7 +243,7 @@ class alu_sequence extends uvm_sequence #(transaction);
 
         // Log the transaction details using UVM info
         `uvm_info("SCENARIO", $sformatf(
-                  "\n=== %s ===\nOperation Type: %s\nInstruction Type: %s\nRS1: %h\nRS2: %h\nIMM: %h\nCE: %b"
+                  "\n                             === %s ===\nOperation Type: %s\nInstruction Type: %s\nRS1: %h\nRS2: %h\nIMM: %h\nCE: %b"
                       ,
                   scenario_name,
                   alu_op_str,

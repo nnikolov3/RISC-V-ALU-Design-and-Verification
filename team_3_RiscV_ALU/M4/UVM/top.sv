@@ -1,16 +1,18 @@
-/**********************************************
- UVM Testbench Top Module for ALU Verification
- ECE 593: Milestone 4, Group 3
- File: top.sv
- Description:
-   This top-level SystemVerilog module acts as the integration point for the
-   UVM-based verification of the RV32I Arithmetic Logic Unit (ALU) within a
-   RISC-V 32I processor environment. It instantiates the ALU DUT and its
-   interface, generates clock and reset signals, configures the UVM framework
-   with the virtual interface, and launches the ALU base test to drive
-   verification.
- Updated: Feb 26, 2025
-***********************************************/
+// ----------------------------------------------------------------------------
+// *********************************************
+// UVM Testbench Top Module for ALU Verification
+// ECE 593: Milestone 4, Group 3
+// File: top.sv
+// Description:
+// This top-level SystemVerilog module acts as the integration point for the
+// UVM-based verification of the RV32I Arithmetic Logic Unit (ALU) within a
+// RISC-V 32I processor environment. It instantiates the ALU DUT and its
+// interface, generates clock and reset signals, configures the UVM framework
+// with the virtual interface, and launches the ALU base test to drive
+// verification.
+// Updated: Feb 26, 2025
+// **********************************************
+// ----------------------------------------------------------------------------
 
 `include "uvm_macros.svh"
 import uvm_pkg::*;

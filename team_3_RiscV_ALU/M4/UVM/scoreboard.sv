@@ -155,11 +155,10 @@ class alu_scoreboard extends uvm_scoreboard;
                 //   Define when rd should be written (wr_rd) and when rd is valid (rd_valid)
                 //   based on instruction type.
                 // ------------------------------------------------------------------------
-                expected_wr_rd =
+                expected_wr_rd                  =
                     !(tx.i_opcode[`BRANCH] || tx.i_opcode[`STORE] ||
                       (tx.i_opcode[`SYSTEM] && tx.i_funct3 == 0) || tx.i_opcode[`FENCE]);
-                expected_rd_valid =
-                    !(tx.i_opcode[`LOAD] || (tx.i_opcode[`SYSTEM] && tx.i_funct3 != 0));
+                expected_rd_valid = !(tx.i_opcode[`LOAD] || (tx.i_opcode[`SYSTEM] && tx.i_funct3 != 0));
 
                 // ------------------------------------------------------------------------
                 // Output Comparisons

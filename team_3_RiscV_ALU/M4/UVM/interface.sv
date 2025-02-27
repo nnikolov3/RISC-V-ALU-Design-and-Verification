@@ -1,18 +1,20 @@
-/**********************************************
- ALU Interface for RISC-V 32I Implementation
- ECE 593: Milestone 4, Group 3
- File: interface.sv
- Class: alu_if
- Description:
-   This SystemVerilog interface defines the signal connections between the
-   RV32I Arithmetic Logic Unit (ALU) and pipeline stages in a verification
-   environment. It includes input signals from the controller, output signals
-   to the writeback stage, clocking blocks for testbench and DUT synchronization,
-   modports for DUT and testbench connectivity, and assertions for signal
-   integrity. Parameterized widths allow customization of ALU operations,
-   opcodes, and exceptions.
- Updated: Feb 26, 2025
-***********************************************/
+// ----------------------------------------------------------------------------
+// *********************************************
+// ALU Interface for RISC-V 32I Implementation
+// ECE 593: Milestone 4, Group 3
+// File: interface.sv
+// Class: alu_if
+// Description:
+// This SystemVerilog interface defines the signal connections between the
+// RV32I Arithmetic Logic Unit (ALU) and pipeline stages in a verification
+// environment. It includes input signals from the controller, output signals
+// to the writeback stage, clocking blocks for testbench and DUT synchronization,
+// modports for DUT and testbench connectivity, and assertions for signal
+// integrity. Parameterized widths allow customization of ALU operations,
+// opcodes, and exceptions.
+// Updated: Feb 26, 2025
+// **********************************************
+// ----------------------------------------------------------------------------
 `include "rv32i_alu_header.sv"
 `ifndef ALU_IF_SV
 `define ALU_IF_SV
@@ -46,9 +48,9 @@ interface alu_if (
         localparam EXCEPTION_WIDTH = 2;     // Default to 2-bit exception width
     `endif
 
-    //////////////////////////////////////////////////
+                              //////////////////////////////////////////////////
     // Input Signals to ALU (Driven by Controller)  //
-    //////////////////////////////////////////////////
+                              //////////////////////////////////////////////////
     // Description:
     //   Signals driven by the controller or testbench to stimulate the ALU.
     // ------------------------------------------------------------------------
@@ -67,9 +69,9 @@ interface alu_if (
     logic                       i_force_stall; // Debug/testbench-forced stall signal
     logic                       i_flush;       // Pipeline flush signal
 
-    ////////////////////////////////////////////////////
+                            ////////////////////////////////////////////////////
     // Output Signals from ALU (To Writeback Stage)   //
-    ////////////////////////////////////////////////////
+                            ////////////////////////////////////////////////////
     // Description:
     //   Signals output by the ALU for use by the writeback stage or monitoring.
     // ------------------------------------------------------------------------

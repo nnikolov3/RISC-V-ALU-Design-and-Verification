@@ -1,16 +1,18 @@
-/**********************************************
- UVM Test Class for ALU Verification
- ECE 593: Milestone 4, Group 3
- File: test.sv
- Class: alu_base_test
- Description:
-   This UVM base test class establishes the foundation for verifying the
-   RV32I Arithmetic Logic Unit (ALU) within a RISC-V 32I processor verification
-   environment. It instantiates an ALU environment and executes a predefined
-   sequence to stimulate the Device Under Test (DUT) via an agent’s sequencer.
-   The test manages simulation phases and objections to ensure proper execution.
- Updated: Feb 26, 2025
-***********************************************/
+// ----------------------------------------------------------------------------
+// *********************************************
+// UVM Test Class for ALU Verification
+// ECE 593: Milestone 4, Group 3
+// File: test.sv
+// Class: alu_base_test
+// Description:
+// This UVM base test class establishes the foundation for verifying the
+// RV32I Arithmetic Logic Unit (ALU) within a RISC-V 32I processor verification
+// environment. It instantiates an ALU environment and executes a predefined
+// sequence to stimulate the Device Under Test (DUT) via an agent’s sequencer.
+// The test manages simulation phases and objections to ensure proper execution.
+// Updated: Feb 26, 2025
+// **********************************************
+// ----------------------------------------------------------------------------
 
 // Prevent multiple inclusions of this file to avoid redefinition errors
 `ifndef ALU_TEST_SV

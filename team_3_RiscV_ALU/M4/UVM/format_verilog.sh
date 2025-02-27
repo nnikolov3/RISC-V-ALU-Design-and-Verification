@@ -1,27 +1,126 @@
 #!/bin/bash
-/* Date: $(date +"%B %d, %Y") */
-# Verible Verilog Formatter Script
-# Formats all *.sv files with 4-space alignment, no tabs, and no trailing spaces
-# Usage: ./format_verilog.sh
+# ----------------------------------------------------------------------------
+# Script: Verible Verilog Formatter with Safe Alignment
+# Date: February 26, 2025
+# Description:
+#   Formats *.sv files with Verible, aligns = in simple signal declarations to
+#   column 32, places // comments 2 spaces after code (left-aligned), converts
+#   /* */ to // ---- blocks, limits blank lines to one, uses 4-space indentation,
+#   and backs up files. Avoids breaking code by preserving complex lines.
+# Usage:
+#   ./format_verilog.sh
+# ----------------------------------------------------------------------------
 
-# Check if verible-verilog-format is installed
+# ------------------------------------------------------------------------
+# Tool Check
+# Description:
+#   Ensures verible-verilog-format is installed.
+# ------------------------------------------------------------------------
 if ! command -v verible-verilog-format &> /dev/null; then
     echo "Error: verible-verilog-format not found. Please install it first."
     exit 1
 fi
 
-# Check for .sv files in the current directory
+# ------------------------------------------------------------------------
+# File Check
+# Description:
+#   Verifies at least one .sv file exists in the current directory.
+# ------------------------------------------------------------------------
 if ! ls *.sv >/dev/null 2>&1; then
     echo "No .sv files found in the current directory."
     exit 1
 fi
 
-# Create a timestamped backup directory
+# ------------------------------------------------------------------------
+# Backup Setup
+# Description:
+#   Creates a timestamped backup directory for original files.
+# ------------------------------------------------------------------------
 BACKUP_DIR="verilog_backups_$(date +%Y%m%d_%H%M%S)"
 mkdir -p "$BACKUP_DIR"
 echo "Backup directory created: $BACKUP_DIR"
 
-# Process each .sv file
+# ------------------------------------------------------------------------
+# Alignment Function
+# Description:
+#   Aligns = to column 32 in simple signal declarations, places // comments 2
+#   spaces after code, converts /* */ to blocks, and preserves other code.
+# ------------------------------------------------------------------------
+align_code() {
+    local file="$1"
+    awk '
+    BEGIN { in_multiline=0 }
+    # Convert multi-line /* */ comments
+    /^\/\*/ && !/\*\// {
+        in_multiline=1
+        sub(/^\/\*[[:space:]]*/, "")
+        print "// ----------------------------------------------------------------------------"
+        print "// " $0
+        next
+    }
+    in_multiline && /\*\// {
+        in_multiline=0
+        sub(/[[:space:]]*\*\//, "")
+        if ($0 !~ /^[[:space:]]*$/) print "// " $0
+        print "// ----------------------------------------------------------------------------"
+        next
+    }
+    in_multiline {
+        sub(/^[[:space:]]*/, "")
+        if ($0 !~ /^[[:space:]]*$/) print "// " $0
+        next
+    }
+    # Convert single-line /* */ comments
+    /^\/\*/ && /\*\// {
+        sub(/^\/\*[[:space:]]*/, "")
+        sub(/[[:space:]]*\*\//, "")
+        print "// ----------------------------------------------------------------------------"
+        print "// " $0
+        print "// ----------------------------------------------------------------------------"
+        next
+    }
+    # Align simple signal declarations with = (no multi-line, no comparisons)
+    /^[[:space:]]*(bit|logic|int|rand)\s*(\[.*\])?\s+[a-zA-Z0-9_]+\s*=[^=;]*$/ {
+        indent=substr($0, 1, match($0, /[^[:space:]]/)-1)
+        signal=substr($0, match($0, /[^[:space:]]/), match($0, /=/)-match($0, /[^[:space:]]/)+1)
+        value=substr($0, match($0, /=/)+1)
+        comment=""
+        if (match($0, /\/\//)) {
+            value=substr($0, match($0, /=/)+1, match($0, /\/\//)-match($0, /=/)-1)
+            comment=substr($0, match($0, /\/\//))
+            sub(/^[[:space:]]+/, "", comment)
+        }
+        sub(/^[[:space:]]+/, "", value)
+        if (length(signal) <= 31) {
+            if (comment) {
+                printf "%s%-31s = %s  %s\n", indent, signal, value, comment
+            } else {
+                printf "%s%-31s = %s\n", indent, signal, value
+            }
+        } else {
+            print $0
+        }
+        next
+    }
+    # Align standalone // comments
+    /^[[:space:]]*\/\// {
+        indent=substr($0, 1, match($0, /\/\//)-1)
+        comment=substr($0, match($0, /\/\//))
+        sub(/^[[:space:]]+/, "", comment)
+        printf "%s%s\n", indent, comment
+        next
+    }
+    # Preserve other lines unchanged (e.g., comparisons, multi-line assignments)
+    { print $0 }
+    ' "$file" > "$file.tmp" && mv "$file.tmp" "$file"
+}
+
+# ------------------------------------------------------------------------
+# File Processing Loop
+# Description:
+#   Processes each .sv file: backs up, formats with Verible, aligns code and
+#   comments, and applies final formatting rules without breaking code.
+# ------------------------------------------------------------------------
 for file in *.sv; do
     echo "Processing: $file"
     cp "$file" "$BACKUP_DIR/$(basename "$file").bak"
@@ -30,38 +129,23 @@ for file in *.sv; do
         --inplace \
         --indentation_spaces=4 \
         --column_limit=100 \
-        --line_break_penalty=2 \
-        --over_column_limit_penalty=1000 \
-        --wrap_spaces=4 \
-        --assignment_statement_alignment=align \
-        --case_items_alignment=align \
-        --class_member_variable_alignment=align \
-        --distribution_items_alignment=align \
-        --enum_assignment_statement_alignment=align \
-        --formal_parameters_alignment=align \
-        --formal_parameters_indentation=indent \
-        --module_net_variable_alignment=align \
-        --named_parameter_alignment=align \
-        --named_parameter_indentation=indent \
-        --named_port_alignment=align \
-        --named_port_indentation=indent \
-        --port_declarations_alignment=align \
-        --port_declarations_indentation=indent \
-        --struct_union_members_alignment=align \
-        --try_wrap_long_lines=true \
-        --max_search_states=100000 \
-        --verify_convergence=true \
         "$file"
     if [ $? -eq 0 ]; then
-        echo "  Successfully formatted: $file"
-        sed -i 's/[[:space:]]*$//' "$file"
-        expand -t 4 "$file" > "$file.tmp" && mv "$file.tmp" "$file"
-        awk 'BEGIN {blanks=0} !NF {blanks++; if (blanks<=1) print ""; next} {blanks=0; print}' "$file" > "$file.tmp" && mv "$file.tmp" "$file"
+        echo "  Formatted with Verible: $file"
+        align_code "$file"  # Align = in simple declarations, and comments
+        sed -i 's/[[:space:]]*$//' "$file"  # Remove trailing spaces
+        expand -t 4 "$file" > "$file.tmp" && mv "$file.tmp" "$file"  # 4 spaces, no tabs
+        awk 'BEGIN {blanks=0} !NF {blanks++; if (blanks<=1) print ""; next} {blanks=0; print}' "$file" > "$file.tmp" && mv "$file.tmp" "$file"  # One blank line max
+        echo "  Alignment and formatting complete: $file"
     else
         echo "  Error formatting: $file - restoring backup"
         cp "$BACKUP_DIR/$(basename "$file").bak" "$file"
     fi
 done
 
-# Final message
-echo "Formatting complete!"
+# ------------------------------------------------------------------------
+# Completion Message
+# Description:
+#   Indicates that all processing is complete.
+# ------------------------------------------------------------------------
+echo "Formatting and alignment complete!"

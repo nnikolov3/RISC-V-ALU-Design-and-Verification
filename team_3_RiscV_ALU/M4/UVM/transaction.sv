@@ -147,7 +147,7 @@ class transaction extends uvm_sequence_item;
         (i_rs1 == 0) || (i_rs2 == 0) || (i_imm == 0);  // At least one operand zero
     }
     constraint max_value_c {
-        (i_rs1 == 32'hFFFFFFFF) || (i_rs2 == 32'hFFFFFFFF) ||
+        (i_rs1                          == 32'hFFFFFFFF) || (i_rs2 == 32'hFFFFFFFF) ||
             (i_imm == 32'hFFFFFFFF);  // At least one max value
     }
     constraint sign_boundary_c {
@@ -309,7 +309,7 @@ class transaction extends uvm_sequence_item;
     //--------------------------------------------------------------------------
     function string convert2string();
         return $sformatf(
-            "i_alu=%b, i_opcode=%b, i_rs1=%h, i_rs2=%h, i_imm=%h, i_ce=%b, i_rst_n=%b, verify_y=%h",
+            "i_alu                          =%b, i_opcode=%b, i_rs1=%h, i_rs2=%h, i_imm=%h, i_ce=%b, i_rst_n=%b, verify_y=%h",
             i_alu,
             i_opcode,
             i_rs1,

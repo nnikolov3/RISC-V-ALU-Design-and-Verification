@@ -1,29 +1,30 @@
 
-/*
-ECE593: Milestone 4, Group 3
-Original: https://github.com/AngeloJacobo/RISC-V/blob/main/rtl/
-#Design:
-**Operand Selection**:
-    * Chooses between PC or rs1 for Operand A.
-    * Selects either rs2 or an immediate value for Operand B based on the opcode.
-**ALU Operations**:
-    * Executes operations like ADD, SUB, SLT, SLTU, XOR, OR, AND, SLL, SRL, SRA, EQ, NEQ, GE, and GEU.
-    * Stores the result in the y_d register.
-**Branch and Jump Handling**:
-    * Calculates next PC for branches and jumps.
-    * Uses o_change_pc to signal a need for PC change.
-**Register Writeback**:
-    * Computes value for destination register rd.
-    * Manages writeback with o_wr_rd and o_rd_valid signals, disabling write for branches or stores.
-**Pipeline Management**:
-    * Stalling: Uses o_stall_from_alu to pause the memory-access stage for operations like load/store.
-    * Flushing: Responds to i_stall, i_force_stall, and i_flush signals to manage pipeline flow.
-Summary:
-    The rv32i_alu module in the RISC-V core's execute stage selects operands, performs arithmetic,
-    logical, and comparison operations, manages branch/jump instructions,
-    handles register writeback, and controls pipeline flow through stalling,
-    and flushing based on the current instruction.
-*/
+// ----------------------------------------------------------------------------
+//
+// ECE593: Milestone 4, Group 3
+// Original: https://github.com/AngeloJacobo/RISC-V/blob/main/rtl/
+// #Design:
+// **Operand Selection**:
+// * Chooses between PC or rs1 for Operand A.
+// * Selects either rs2 or an immediate value for Operand B based on the opcode.
+// **ALU Operations**:
+// * Executes operations like ADD, SUB, SLT, SLTU, XOR, OR, AND, SLL, SRL, SRA, EQ, NEQ, GE, and GEU.
+// * Stores the result in the y_d register.
+// **Branch and Jump Handling**:
+// * Calculates next PC for branches and jumps.
+// * Uses o_change_pc to signal a need for PC change.
+// **Register Writeback**:
+// * Computes value for destination register rd.
+// * Manages writeback with o_wr_rd and o_rd_valid signals, disabling write for branches or stores.
+// **Pipeline Management**:
+// * Stalling: Uses o_stall_from_alu to pause the memory-access stage for operations like load/store.
+// * Flushing: Responds to i_stall, i_force_stall, and i_flush signals to manage pipeline flow.
+// Summary:
+// The rv32i_alu module in the RISC-V core's execute stage selects operands, performs arithmetic,
+// logical, and comparison operations, manages branch/jump instructions,
+// handles register writeback, and controls pipeline flow through stalling,
+// and flushing based on the current instruction.
+// ----------------------------------------------------------------------------
 `timescale 1ns / 1ps `default_nettype none
 `include "rv32i_alu_header.sv"
 `include "uvm_macros.svh"
@@ -207,15 +208,13 @@ module rv32i_alu (
             if (opcode_rtype || opcode_itype) rd_d = y_d;
             if (opcode_branch && y_d[0]) begin
                 o_next_pc = sum;  //branch iff value of ALU is 1(true)
-                o_change_pc =
-                    i_ce;  //change PC when ce of this stage is high (o_change_pc is valid)
+                o_change_pc = i_ce;  //change PC when ce of this stage is high (o_change_pc is valid)
                 o_flush = i_ce;
             end
             if (opcode_jal || opcode_jalr) begin
                 if (opcode_jalr) a_pc = i_rs1;
                 o_next_pc = sum;  //jump to new PC
-                o_change_pc =
-                    i_ce;  //change PC when ce of this stage is high (o_change_pc is valid)
+                o_change_pc = i_ce;  //change PC when ce of this stage is high (o_change_pc is valid)
                 o_flush = i_ce;
                 rd_d = i_pc + 4;  //logicister the next pc value to destination logicister
             end
@@ -225,16 +224,14 @@ module rv32i_alu (
         if (opcode_branch || opcode_store || (opcode_system && i_funct3 == 0) || opcode_fence)
             wr_rd_d = 0;  //i_funct3==0 are the non-csr system instructions
         else
-            wr_rd_d = 1;  //always write to the destination logic except when instruction is BRANCH or STORE or SYSTEM(except CSR system instruction)
+            wr_rd_d                         =1;                                             //always write to the destination logic except when instruction is BRANCH or STORE or SYSTEM(except CSR system instruction)
         if (opcode_load || (opcode_system && i_funct3 != 0))
-            rd_valid_d =
-                0;  //value of o_rd for load and CSR write is not yet available at this stage
+            rd_valid_d = 0;  //value of o_rd for load and CSR write is not yet available at this stage
         else rd_valid_d = 1;
         //stall logic (stall when upper stages are stalled, when forced to stall, or when needs to flush previous stages but are still stalled)
         o_stall = (i_stall || i_force_stall) && !i_flush;  //stall when alu needs wait time
     end
-    assign
-        sum = a_pc + i_imm;  //share adder for all addition operation for less resource utilization
+    assign sum = a_pc + i_imm;  //share adder for all addition operation for less resource utilization
     assign stall_bit = o_stall || i_stall;
     assign alu_add = i_alu[`ADD];
     assign alu_sub = i_alu[`SUB];
@@ -263,10 +260,10 @@ module rv32i_alu (
     assign opcode_fence = i_opcode[`FENCE];
 `ifdef FORMAL
     // assumption on inputs(not more than one opcode and alu operation is high)
-    logic [4:0] f_alu = i_alu[`ADD] + i_alu[`SUB] + i_alu[`SLT] + i_alu[`SLTU] + i_alu[`XOR] +
+    logic [4:0] f_alu =             = i_alu[`ADD] + i_alu[`SUB] + i_alu[`SLT] + i_alu[`SLTU] + i_alu[`XOR] +
         i_alu[`OR] + i_alu[`AND] + i_alu[`SLL] + i_alu[`SRL] + i_alu[`SRA] + i_alu[`EQ] +
         i_alu[`NEQ] + i_alu[`GE] + i_alu[`GEU] + 0;
-    logic [4:0] f_opcode = i_opcode[`RTYPE] + i_opcode[`ITYPE] + i_opcode[`LOAD] +
+    logic [4:0] f_opcode =          = i_opcode[`RTYPE] + i_opcode[`ITYPE] + i_opcode[`LOAD] +
         i_opcode[`STORE] + i_opcode[`BRANCH] + i_opcode[`JAL] + i_opcode[`JALR] + i_opcode[`LUI] +
         i_opcode[`AUIPC] + i_opcode[`SYSTEM] + i_opcode[`FENCE];
     always_comb begin
