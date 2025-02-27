@@ -3,16 +3,48 @@
 # vmap work work 
 # Modifying modelsim.ini
 # Questa Intel FPGA Edition-64 vlog 2024.1 Compiler 2024.04 Apr 19 2024
-# Start time: 17:52:59 on Feb 26,2025
-# vlog -mfcu -lint top.sv rv32i_alu.sv transaction.sv agent.sv coverage.sv driver.sv environment.sv monitor.sv scoreboard.sv sequencer.sv test.sv 
+# Start time: 18:29:22 on Feb 26,2025
+# vlog -mfcu -lint top.sv interface.sv rv32i_alu.sv transaction.sv agent.sv coverage.sv driver.sv environment.sv monitor.sv scoreboard.sv sequencer.sv test.sv 
 # ** Note: (vlog-2286) top.sv(17): Using implicit +incdir+/home/niko/intelFPGA_pro/24.3.1/questa_fe/uvm-1.1d/../verilog_src/uvm-1.1d/src from import uvm_pkg
 # -- Compiling package top_sv_unit
 # -- Importing package mtiUvm.uvm_pkg (uvm-1.1d Built-in)
-# ** Warning: scoreboard.sv(54): (vlog-2875) Task "check_transaction" is being called in function "write".
 # -- Compiling module top
+# -- Compiling interface alu_if
 # -- Compiling module rv32i_alu
 # 
 # Top level modules:
 # 	top
-# End time: 17:53:00 on Feb 26,2025, Elapsed time: 0:00:01
-# Errors: 0, Warnings: 1
+# End time: 18:29:23 on Feb 26,2025, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0
+# vsim -coverage work.top -voptargs=""+cover=bcesf"" 
+# Start time: 18:29:23 on Feb 26,2025
+# ** Note: (vsim-3812) Design is being optimized...
+# ** Warning: (vopt-13408) Code coverage will be disabled for some DUs/packages/classes and source files.
+# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=1.
+# //  Questa Intel FPGA Edition-64
+# //  Version 2024.1 linux_x86_64 Apr 19 2024
+# //
+# // Unpublished work. Copyright 2024 Siemens
+# //
+# // This material contains trade secrets or otherwise confidential information
+# // owned by Siemens Industry Software Inc. or its affiliates (collectively,
+# // "SISW"), or its licensors. Access to and use of this information is strictly
+# // limited as set forth in the Customer's applicable agreements with SISW.
+# //
+# // This material may not be copied, distributed, or otherwise disclosed outside
+# // of the Customer's facilities without the express written permission of SISW,
+# // and may not be used in any way not expressly authorized by SISW.
+# //
+# Loading sv_std.std
+# Loading work.alu_if(fast)
+# Loading mtiUvm.uvm_pkg(fast)
+# Loading work.top_sv_unit(fast)
+# Loading mtiUvm.questa_uvm_pkg(fast)
+# Loading work.top(fast)
+# Loading /home/niko/intelFPGA_pro/24.3.1/questa_fe/uvm-1.1d/linux_x86_64/uvm_dpi.so
+# ** Error: Failure to checkout svverification license feature.
+# ** Error: (vsim-1) Unable to checkout verification license - required for testbench features (randomize, randcase, randsequence, covergroup).
+#    Time: 0 ps  Iteration: 0  Instance: /top File: top.sv
+# Error loading design
+# End time: 18:29:26 on Feb 26,2025, Elapsed time: 0:00:03
+# Errors: 2, Warnings: 1

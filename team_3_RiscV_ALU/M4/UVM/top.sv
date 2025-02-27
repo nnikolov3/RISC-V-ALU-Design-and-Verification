@@ -126,8 +126,8 @@ module top;
     // ------------------------------------------------------------------------
     initial begin
 
-		run_test("alu_base_test");
-		#1000;
+        run_test("alu_base_test");
+        #1000;
 
     end
 

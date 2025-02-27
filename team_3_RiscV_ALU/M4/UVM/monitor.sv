@@ -38,67 +38,63 @@ class alu_monitor extends uvm_monitor;
     //   Registers the monitor with the UVM factory for dynamic instantiation.
     // ------------------------------------------------------------------------
     `uvm_component_utils(alu_monitor)
-    
+
     // Virtual interface to access DUT signals
     virtual alu_if vif;
-    
+
     // Single analysis port to send transactions to the scoreboard
-    uvm_analysis_port#(transaction) mon2scb;
-    
+    uvm_analysis_port #(transaction) mon2scb;
+
     //-------------------------------------------------------------------------
     // Constructor: new
     //
     // Description:
-    //   Initializes the monitor component with a virtual interface and 
+    //   Initializes the monitor component with a virtual interface and
     //   analysis port for communication with the scoreboard.
     //-------------------------------------------------------------------------
     function new(string name = "alu_monitor", uvm_component parent);
         super.new(name, parent);
         `uvm_info("MONITOR", "Inside constructor", UVM_HIGH)
-		mon2scb = new("mon2scb", this);
+        mon2scb = new("mon2scb", this);
     endfunction
-    
+
     //-------------------------------------------------------------------------
     // Phase: build_phase
     //
     // Description:
-    //   Sets up the virtual interface by getting it from the UVM configuration 
+    //   Sets up the virtual interface by getting it from the UVM configuration
     //   database. If the interface is not set, an error is raised.
     //-------------------------------------------------------------------------
     virtual function void build_phase(uvm_phase phase);
 
         super.build_phase(phase);
         `uvm_info("MONITOR", "Build phase", UVM_HIGH)
-        
 
-        
         if (!uvm_config_db#(virtual alu_if)::get(this, "", "alu_vif", vif)) begin
             `uvm_fatal("MONITOR", "Virtual interface not set")
         end
 
     endfunction
 
-    
     //-------------------------------------------------------------------------
     // Task: run_phase
     //
     // Description:
-    //   Continuously samples input and output signals from the DUT on each 
-    //   positive clock edge. If either input or output clock enable is 
-    //   asserted, the signals are captured and packaged into a transaction 
+    //   Continuously samples input and output signals from the DUT on each
+    //   positive clock edge. If either input or output clock enable is
+    //   asserted, the signals are captured and packaged into a transaction
     //   object, which is sent to the scoreboard.
     //-------------------------------------------------------------------------
     virtual task run_phase(uvm_phase phase);
 
         transaction tx;
         `uvm_info("MONITOR", "Monitor started", UVM_MEDIUM)
-        
+
         forever begin
-            @(posedge vif.i_clk); // Wait for the next clock edge
+            @(posedge vif.i_clk);  // Wait for the next clock edge
             tx = transaction::type_id::create("tx", this);
             wait (vif.i_ce) begin
-                
-                
+
                 // Capture input signals
                 //tx.i_clk         = vif.i_clk;
                 tx.i_rst_n       = vif.i_rst_n;
@@ -116,9 +112,9 @@ class alu_monitor extends uvm_monitor;
                 tx.i_stall       = vif.i_stall;
                 tx.i_force_stall = vif.i_force_stall;
                 tx.i_flush       = vif.i_flush;
-			end
-            
-			wait (vif.o_ce) begin
+            end
+
+            wait (vif.o_ce) begin
                 // Capture output signals
                 tx.o_rs1_addr       = vif.o_rs1_addr;
                 tx.o_rs1            = vif.o_rs1;
@@ -139,11 +135,10 @@ class alu_monitor extends uvm_monitor;
                 tx.o_ce             = vif.o_ce;
                 tx.o_stall          = vif.o_stall;
                 tx.o_flush          = vif.o_flush;
-			end
-                
-                // Send the transaction to the scoreboard
-            mon2scb.write(tx);
+            end
 
+            // Send the transaction to the scoreboard
+            mon2scb.write(tx);
 
         end
 

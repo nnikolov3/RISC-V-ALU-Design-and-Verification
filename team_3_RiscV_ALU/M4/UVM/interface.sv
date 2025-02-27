@@ -72,8 +72,6 @@ interface alu_if (
     logic                       i_force_stall; // Debug/testbench-forced stall signal
     logic                       i_flush;       // Pipeline flush signal
 
-
-
     ////////////////////////////////////////////////////
     // Output signals from ALU (To Writeback Stage)   //
     ////////////////////////////////////////////////////

@@ -234,7 +234,7 @@ module rv32i_alu (
         if (opcode_branch || opcode_store || (opcode_system && i_funct3 == 0) || opcode_fence)
             wr_rd_d = 0;  //i_funct3==0 are the non-csr system instructions
         else
-            wr_rd_d                         =1;                                             //always write to the destination logic except when instruction is BRANCH or STORE or SYSTEM(except CSR system instruction)
+            wr_rd_d = 1;  //always write to the destination logic except when instruction is BRANCH or STORE or SYSTEM(except CSR system instruction)
         if (opcode_load || (opcode_system && i_funct3 != 0))
             rd_valid_d = 0;  //value of o_rd for load and CSR write is not yet available at this stage
         else rd_valid_d = 1;
@@ -271,10 +271,10 @@ module rv32i_alu (
     assign opcode_fence = i_opcode[`FENCE];
 `ifdef FORMAL
     // assumption on inputs(not more than one opcode and alu operation is high)
-    logic [4:0] f_alu == i_alu[`ADD] + i_alu[`SUB] + i_alu[`SLT] + i_alu[`SLTU] + i_alu[`XOR] +
+    logic [4:0] f_alu =             = i_alu[`ADD] + i_alu[`SUB] + i_alu[`SLT] + i_alu[`SLTU] + i_alu[`XOR] +
         i_alu[`OR] + i_alu[`AND] + i_alu[`SLL] + i_alu[`SRL] + i_alu[`SRA] + i_alu[`EQ] +
         i_alu[`NEQ] + i_alu[`GE] + i_alu[`GEU] + 0;
-    logic [4:0] f_opcode == i_opcode[`RTYPE] + i_opcode[`ITYPE] + i_opcode[`LOAD] +
+    logic [4:0] f_opcode =          = i_opcode[`RTYPE] + i_opcode[`ITYPE] + i_opcode[`LOAD] +
         i_opcode[`STORE] + i_opcode[`BRANCH] + i_opcode[`JAL] + i_opcode[`JALR] + i_opcode[`LUI] +
         i_opcode[`AUIPC] + i_opcode[`SYSTEM] + i_opcode[`FENCE];
     always_comb begin
