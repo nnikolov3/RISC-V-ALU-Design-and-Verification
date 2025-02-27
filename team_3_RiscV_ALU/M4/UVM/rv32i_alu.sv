@@ -260,10 +260,10 @@ module rv32i_alu (
     assign opcode_fence = i_opcode[`FENCE];
 `ifdef FORMAL
     // assumption on inputs(not more than one opcode and alu operation is high)
-    logic [4:0] f_alu =             = i_alu[`ADD] + i_alu[`SUB] + i_alu[`SLT] + i_alu[`SLTU] + i_alu[`XOR] +
+    logic [4:0] f_alu == i_alu[`ADD] + i_alu[`SUB] + i_alu[`SLT] + i_alu[`SLTU] + i_alu[`XOR] +
         i_alu[`OR] + i_alu[`AND] + i_alu[`SLL] + i_alu[`SRL] + i_alu[`SRA] + i_alu[`EQ] +
         i_alu[`NEQ] + i_alu[`GE] + i_alu[`GEU] + 0;
-    logic [4:0] f_opcode =          = i_opcode[`RTYPE] + i_opcode[`ITYPE] + i_opcode[`LOAD] +
+    logic [4:0] f_opcode == i_opcode[`RTYPE] + i_opcode[`ITYPE] + i_opcode[`LOAD] +
         i_opcode[`STORE] + i_opcode[`BRANCH] + i_opcode[`JAL] + i_opcode[`JALR] + i_opcode[`LUI] +
         i_opcode[`AUIPC] + i_opcode[`SYSTEM] + i_opcode[`FENCE];
     always_comb begin

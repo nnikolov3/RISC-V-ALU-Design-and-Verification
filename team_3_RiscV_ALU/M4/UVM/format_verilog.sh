@@ -6,7 +6,7 @@
 #   Formats *.sv files with Verible, aligns = in simple signal declarations to
 #   column 32, places // comments 2 spaces after code (left-aligned), converts
 #   /* */ to // ---- blocks, limits blank lines to one, uses 4-space indentation,
-#   and backs up files. Avoids breaking code by preserving complex lines.
+#   and backs up files. Preserves lines with == as distinct from = assignments.
 # Usage:
 #   ./format_verilog.sh
 # ----------------------------------------------------------------------------
@@ -44,7 +44,7 @@ echo "Backup directory created: $BACKUP_DIR"
 # Alignment Function
 # Description:
 #   Aligns = to column 32 in simple signal declarations, places // comments 2
-#   spaces after code, converts /* */ to blocks, and preserves other code.
+#   spaces after code, converts /* */ to blocks, and preserves lines with ==.
 # ------------------------------------------------------------------------
 align_code() {
     local file="$1"
@@ -79,8 +79,8 @@ align_code() {
         print "// ----------------------------------------------------------------------------"
         next
     }
-    # Align simple signal declarations with = (no multi-line, no comparisons)
-    /^[[:space:]]*(bit|logic|int|rand)\s*(\[.*\])?\s+[a-zA-Z0-9_]+\s*=[^=;]*$/ {
+    # Align simple signal declarations with = (no ==, no multi-line)
+    /^[[:space:]]*(bit|logic|int|rand)\s*(\[.*\])?\s+[a-zA-Z0-9_]+\s*=[^=;]*$/ && !/==/ {
         indent=substr($0, 1, match($0, /[^[:space:]]/)-1)
         signal=substr($0, match($0, /[^[:space:]]/), match($0, /=/)-match($0, /[^[:space:]]/)+1)
         value=substr($0, match($0, /=/)+1)
@@ -110,7 +110,7 @@ align_code() {
         printf "%s%s\n", indent, comment
         next
     }
-    # Preserve other lines unchanged (e.g., comparisons, multi-line assignments)
+    # Preserve other lines unchanged (e.g., lines with ==)
     { print $0 }
     ' "$file" > "$file.tmp" && mv "$file.tmp" "$file"
 }
