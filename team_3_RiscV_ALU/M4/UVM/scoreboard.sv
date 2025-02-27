@@ -1,17 +1,3 @@
-
-// ----------------------------------------------------------------------------
-// Class: alu_scoreboard
-// Description:
-//   This UVM scoreboard verifies the functionality of an Arithmetic Logic Unit
-//   (ALU) in a RISC-V 32I processor verification environment. It receives
-//   transactions via an analysis port, computes expected ALU outputs, and
-//   compares them against the Device Under Test (DUT) outputs. The scoreboard
-//   handles arithmetic and logical operations, branch and jump conditions,
-//   reset states, and exceptions, ensuring correct behavior across various
-//   instruction types and pipeline scenarios.
-// Updated: Feb 26, 2025
-// ----------------------------------------------------------------------------
-
 `ifndef UVM_SCOREBOARD_SV
 `define UVM_SCOREBOARD_SV
 `include "uvm_macros.svh"
@@ -48,7 +34,6 @@ class alu_scoreboard extends uvm_scoreboard;
     //   parent - The parent component to which this scoreboard belongs.
     //-------------------------------------------------------------------------
     function new(string name = "alu_scoreboard", uvm_component parent);
-
         super.new(name, parent);
         `uvm_info("SCB", "Inside constructor", UVM_HIGH)
     endfunction
@@ -68,19 +53,13 @@ class alu_scoreboard extends uvm_scoreboard;
         super.build_phase(phase);
         // Initialize FIFOs
         scb_port = new("scb_port", this);
-        `uvm_info("SCB", "build phase", UVM_HIGH)
-
+		`uvm_info("SCB", "build phase", UVM_HIGH)
     endfunction
 
-    function void connect_phase(uvm_phase phase);
-        super.connect_phase(phase);
-        `uvm_info("SCB", "connect phase", UVM_HIGH)
-    endfunction
 
-    function void write(transaction item);
-        tx.push_back(item);
-    endfunction
-
+	function void write(transaction item);
+		tx.push_back(item);
+	endfunction
     //-------------------------------------------------------------------------
     // Run phase: Continuously compare transactions from both FIFOs
     //
@@ -168,11 +147,8 @@ class alu_scoreboard extends uvm_scoreboard;
                 // Ensure RD Valid signal is set.
                 if (curr_tx.o_rd_valid !== 1) begin
                     `uvm_error("SCB", "RD Valid signal mismatch!");
-
                 end
-
             end
-
         end
 
         // Compare stall signals.
@@ -182,7 +158,6 @@ class alu_scoreboard extends uvm_scoreboard;
 
         // Log successful verification.
         `uvm_info("SCB", $sformatf("Transaction %d successfully verified!", this.count), UVM_LOW)
-
     endfunction
 
 endclass

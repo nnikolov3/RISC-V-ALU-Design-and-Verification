@@ -1,17 +1,11 @@
 // ----------------------------------------------------------------------------
-// Class: transaction
-// ECE 593: Milestone 4 - RV32I ALU Transaction
-// Team 3
-// Description:
-//   This UVM transaction class defines the structure for stimulus generation
-//   and monitoring in the RISC-V 32I Arithmetic Logic Unit (ALU) verification
-//   environment. Extending uvm_sequence_item, it supports UVM sequencers and
-//   drivers with randomized inputs, monitored outputs, constraints for valid
-//   test cases, and methods for manual configuration, expected result
-//   computation, and debugging.
+// ECE593 M4 - RV32I ALU Transaction (Updated)
+// ----------------------------------------------------------------------------
+// This file defines the transaction class used to generate stimulus for the
+// RISC-V ALU design under verification. It extends uvm_sequence_item for
+// compatibility with UVM sequencers and drivers.
 // Updated: Feb 26, 2025
 // ----------------------------------------------------------------------------
-
 `ifndef TRANSACTION_SV
 `define TRANSACTION_SV
 `include "uvm_macros.svh"
@@ -19,75 +13,61 @@ import uvm_pkg::*;
 `include "rv32i_alu_header.sv"
 
 class transaction extends uvm_sequence_item;
-    // ------------------------------------------------------------------------
-    // Registration: Factory Registration
-    // Description:
-    //   Registers the transaction class with the UVM factory for dynamic creation.
-    // ------------------------------------------------------------------------
     `uvm_object_utils(transaction)
 
     //--------------------------------------------------------------------------
     // Randomized Input Signals (for stimulus generation)
-    // Description:
-    //   Randomized fields representing ALU input signals, designed to generate
-    //   diverse test stimuli compatible with the RISC-V 32I ALU interface.
     //--------------------------------------------------------------------------
-    rand bit [                13:0] i_alu;  // 14-bit one-hot ALU control signal
-    rand bit [                31:0] i_rs1;  // 32-bit first operand
-    rand bit [                31:0] i_rs2;  // 32-bit second operand
-    rand bit [                31:0] i_imm;  // 32-bit immediate value
-    rand bit [   `OPCODE_WIDTH-1:0] i_opcode;  // 7-bit opcode (parameterized width)
+    rand bit [                13:0] i_alu;  // ALU control signal (14-bit one-hot encoded)
+    rand bit [                31:0] i_rs1;  // First operand (32-bit)
+    rand bit [                31:0] i_rs2;  // Second operand (32-bit)
+    rand bit [                31:0] i_imm;  // Immediate value (32-bit)
+    rand bit [   `OPCODE_WIDTH-1:0] i_opcode;  // Opcode (7-bit, aligned with rv32i_alu_header.sv)
     rand bit                        i_ce;  // Clock enable signal
-    rand bit [                 4:0] i_rs1_addr;  // 5-bit source register 1 address
-    rand bit [                 2:0] i_funct3;  // 3-bit function field
-    rand bit [                31:0] i_pc;  // 32-bit program counter
-    rand bit [                 4:0] i_rd_addr;  // 5-bit destination register address
-    rand bit                        i_stall;  // Pipeline stall signal
-    rand bit                        i_force_stall;  // Forced stall signal (e.g., debug)
-    rand bit                        i_flush;  // Pipeline flush signal
+    rand bit [                 4:0] i_rs1_addr;  // Address for source register 1 (5-bit)
+    rand bit [                 2:0] i_funct3;  // Function field (3-bit)
+    rand bit [                31:0] i_pc;  // Program counter (32-bit)
+    rand bit [                 4:0] i_rd_addr;  // Destination register address (5-bit)
+    bit                        i_stall;  // Stall signal
+    bit                        i_force_stall;  // Force stall signal
+    bit                        i_flush;  // Flush signal
     rand bit                        i_rst_n;  // Active-low reset signal
 
-    // Non-randomized field for external control
-    bit      [`EXCEPTION_WIDTH-1:0] i_exception;  // Exception signal (parameterized width)
+    // Non-randomized fields (set externally or in specific cases)
+    bit      [`EXCEPTION_WIDTH-1:0] i_exception;  // Exception signal
 
     //--------------------------------------------------------------------------
-    // Output Signals (for monitoring and verification)
-    // Description:
-    //   Non-randomized fields capturing ALU outputs, sampled by the monitor for
-    //   verification purposes; not driven to the DUT.
+    // Output Signals (for monitoring and verification, not driven to DUT)
     //--------------------------------------------------------------------------
-    bit      [                 4:0] o_rs1_addr;  // 5-bit output source register 1 address
-    bit      [                31:0] o_rs1;  // 32-bit output first operand
-    bit      [                31:0] o_rs2;  // 32-bit output second operand
-    bit      [                31:0] o_imm;  // 32-bit output immediate value
-    bit      [                 2:0] o_funct3;  // 3-bit output function field
-    bit      [   `OPCODE_WIDTH-1:0] o_opcode;  // Output opcode (parameterized width)
+    bit      [                 4:0] o_rs1_addr;  // Output source register address
+    bit      [                31:0] o_rs1;  // Output value of the first operand
+    bit      [                31:0] o_rs2;  // Output value of the second operand
+    bit      [                31:0] o_imm;  // Output immediate value (32-bit)
+    bit      [                 2:0] o_funct3;  // Output function field
+    bit      [   `OPCODE_WIDTH-1:0] o_opcode;  // Output opcode
     bit      [`EXCEPTION_WIDTH-1:0] o_exception;  // Output exception signal
-    bit      [                31:0] o_y;  // 32-bit ALU result
-    bit      [                31:0] o_pc;  // 32-bit output program counter
-    bit      [                31:0] o_next_pc;  // 32-bit output next program counter
-    bit                             o_change_pc;  // Flag for PC change (e.g., branch/jump)
-    bit                             o_wr_rd;  // Write enable for destination register
-    bit      [                 4:0] o_rd_addr;  // 5-bit output destination register address
-    bit      [                31:0] o_rd;  // 32-bit output destination register data
-    bit                             o_rd_valid;  // Validity flag for destination data
-    bit                             o_stall_from_alu;  // Stall signal from ALU
-    bit                             o_ce;  // Output clock enable
-    bit                             o_stall;  // Combined stall signal output
-    bit                             o_flush;  // Output flush signal
+    bit      [                31:0] o_y;  // Output ALU result
+    bit      [                31:0] o_pc;  // Output program counter
+    bit      [                31:0] o_next_pc;  // Output next program counter
+    bit                             o_change_pc;  // Flag indicating a change in PC
+    bit                             o_wr_rd;  // Write/read flag for destination register
+    bit      [                 4:0] o_rd_addr;  // Output destination register address
+    bit      [                31:0] o_rd;  // Output data for destination register
+    bit                             o_rd_valid;  // Validity flag for destination register data
+    bit                             o_stall_from_alu;  // Stall signal from the ALU
+    bit                             o_ce;  // Clock enable output
+    bit                             o_stall;  // Stall signal output
+    bit                             o_flush;  // Flush signal output
 
     // Expected output for verification
-    bit      [                31:0] verify_y;  // 32-bit expected ALU result
+    bit      [                31:0] verify_y;  // Expected ALU result (32-bit)
 
     //--------------------------------------------------------------------------
     // Constraints
-    // Description:
-    //   Constraints ensuring valid stimulus generation, including one-hot ALU
-    //   control, RISC-V opcodes, and biased distributions for control signals.
     //--------------------------------------------------------------------------
-    // Constraint for ALU control: ensures one-hot encoding and valid operations
+    // Constraint for ALU control: one-hot and valid operations
     constraint alu_ctrl_c {
-        $onehot(i_alu);  // Only one ALU operation active
+        $onehot(i_alu);
         i_alu inside {14'b00000000000001,  // ADD
         14'b00000000000010,  // SUB
         14'b00000000000100,  // AND
@@ -104,7 +84,7 @@ class transaction extends uvm_sequence_item;
         14'b10000000000000};  // GEU
     }
 
-    // Constraint for opcode: restricts to valid RISC-V 32I instruction types
+    // Constraint for opcode: valid RISC-V instruction types (7-bit)
     constraint opcode_c {
         i_opcode inside {11'b00000000001,  // R-type
         11'b00000000010,  // I-type
@@ -119,90 +99,70 @@ class transaction extends uvm_sequence_item;
         11'b10000000000};  // Fence
     }
 
-    // Constraint for clock enable: biases towards enabled state
+    // Constraint for clock enable: 90% enabled
     constraint ce_c {
         i_ce dist {
             1 := 90,
             0 := 10
-        };  // 90% chance of clock enable being active
+        };
     }
 
-    // Constraint for reset: biases towards no reset
+    // Constraint for reset: defaults to active (1) unless testing reset
     constraint reset_c {
         i_rst_n dist {
             1 := 95,
             0 := 5
-        };  // 95% chance of reset being inactive
+        };
     }
 
-    // Constraint for operand ranges: full 32-bit unsigned range
+    // Constraint for operand ranges
     constraint operand_ranges {
         i_rs1 inside {[0 : (1 << 32) - 1]};
         i_rs2 inside {[0 : (1 << 32) - 1]};
         i_imm inside {[0 : (1 << 32) - 1]};
     }
 
-    // Special constraints (togglable externally for specific test scenarios)
-    constraint zero_operand_c {
-        (i_rs1 == 0) || (i_rs2 == 0) || (i_imm == 0);  // At least one operand zero
-    }
+    // Special constraints (can be activated externally)
+    constraint zero_operand_c {(i_rs1 == 0) || (i_rs2 == 0) || (i_imm == 0);}
     constraint max_value_c {
-        (i_rs1                          == 32'hFFFFFFFF) || (i_rs2 == 32'hFFFFFFFF) ||
-            (i_imm == 32'hFFFFFFFF);  // At least one max value
+        (i_rs1 == 32'hFFFFFFFF) || (i_rs2 == 32'hFFFFFFFF) || (i_imm == 32'hFFFFFFFF);
     }
     constraint sign_boundary_c {
-        (i_rs1 inside {32'h7FFFFFFF, 32'h80000000}) ||
-            (i_rs2 inside {32'h7FFFFFFF, 32'h80000000});  // Sign edges
+        (i_rs1 inside {32'h7FFFFFFF, 32'h80000000}) || (i_rs2 inside {32'h7FFFFFFF, 32'h80000000});
     }
 
     //--------------------------------------------------------------------------
-    // Constructor: new
-    // Description:
-    //   Initializes the transaction with a name and sets default values for
-    //   non-randomized fields.
-    // Arguments:
-    //   - name: String identifier (default: "transaction")
+    // Constructor
     //--------------------------------------------------------------------------
     function new(string name = "transaction");
         super.new(name);
-        i_exception = 0;  // Default exception to zero
+        // Initialize non-randomized fields to defaults
+        i_exception = 0;
     endfunction
 
     //--------------------------------------------------------------------------
     // Function: set_values
-    // Description:
-    //   Sets specific values for key fields in predefined test scenarios,
-    //   ensuring one-hot ALU control and defaulting reset to active.
-    // Arguments:
-    //   - alu_idx: ALU operation index (0-13)
-    //   - opcode: 7-bit opcode
-    //   - rs1: First operand (32-bit)
-    //   - rs2: Second operand (32-bit)
-    //   - imm: Immediate value (32-bit)
-    //   - ce: Clock enable value
+    // Manually set transaction fields for predefined scenarios
     //--------------------------------------------------------------------------
     function void set_values(int alu_idx, bit [`OPCODE_WIDTH-1:0] opcode, bit [31:0] rs1,
                              bit [31:0] rs2, bit [31:0] imm, bit ce);
-        i_alu          = 0;  // Reset ALU control
-        i_alu[alu_idx] = 1;  // Enable specified ALU operation
-        i_opcode       = opcode;  // Set opcode
-        i_rs1          = rs1;  // Set first operand
-        i_rs2          = rs2;  // Set second operand
-        i_imm          = imm;  // Set immediate
+        i_alu          = 0;  // Clear previous ALU control settings
+        i_alu[alu_idx] = 1;  // Set the specified ALU control bit
+        i_opcode       = opcode;  // Set the instruction opcode
+        i_rs1          = rs1;  // Assign first operand
+        i_rs2          = rs2;  // Assign second operand
+        i_imm          = imm;  // Assign immediate value
         i_ce           = ce;  // Set clock enable
-        i_rst_n        = 1;  // Default to no reset
+        i_rst_n        = 1;  // Default to active unless explicitly testing reset
     endfunction
 
     //--------------------------------------------------------------------------
     // Function: alu_operation
-    // Description:
-    //   Calculates the expected ALU output based on input fields, selecting
-    //   between rs2 and imm based on opcode, and updates verify_y.
-    // Returns:
-    //   32-bit expected result
+    // Computes the expected ALU result based on class fields
     //--------------------------------------------------------------------------
     function bit [31:0] alu_operation();
-        bit [31:0] operand_b = (i_opcode == 7'b0010011) ? i_imm : i_rs2;  // I-type uses imm
+        bit [31:0] operand_b = (i_opcode == 7'b0010011) ? i_imm :
+            i_rs2;  // Use imm for I-type, rs2 otherwise
         case (i_alu)
             14'b00000000000001: verify_y = i_rs1 + operand_b;  // ADD
             14'b00000000000010: verify_y = i_rs1 - operand_b;  // SUB
@@ -220,25 +180,20 @@ class transaction extends uvm_sequence_item;
             14'b01000000000000:
             verify_y = ($signed(i_rs1) >= $signed(operand_b)) ? 32'h1 : 32'h0;  // GE
             14'b10000000000000: verify_y = (i_rs1 >= operand_b) ? 32'h1 : 32'h0;  // GEU
-            default: verify_y = 0;  // Default to zero
+            default: verify_y = 0;
         endcase
         return verify_y;
     endfunction
 
     //--------------------------------------------------------------------------
     // Function: do_copy
-    // Description:
-    //   Copies all fields from another transaction object, supporting UVM’s
-    //   deep copy mechanism.
-    // Arguments:
-    //   - rhs: Source transaction object to copy from
+    // Implements UVM copy functionality
     //--------------------------------------------------------------------------
     function void do_copy(uvm_object rhs);
         transaction rhs_;
         if (!$cast(rhs_, rhs)) begin
             `uvm_fatal("COPY_ERROR", "Cannot cast rhs to transaction")
         end
-
         super.do_copy(rhs);
         // Copy input fields
         this.i_alu            = rhs_.i_alu;
@@ -282,14 +237,7 @@ class transaction extends uvm_sequence_item;
 
     //--------------------------------------------------------------------------
     // Function: do_compare
-    // Description:
-    //   Compares key fields with another transaction object for verification,
-    //   used in UVM scoreboards.
-    // Arguments:
-    //   - rhs: Object to compare against
-    //   - comparer: UVM comparer for customization
-    // Returns:
-    //   1 if comparison passes, 0 if it fails
+    // Implements comparison for UVM (useful in scoreboards)
     //--------------------------------------------------------------------------
     function bit do_compare(uvm_object rhs, uvm_comparer comparer);
         transaction rhs_;
@@ -303,14 +251,11 @@ class transaction extends uvm_sequence_item;
 
     //--------------------------------------------------------------------------
     // Function: convert2string
-    // Description:
-    //   Generates a string representation of key fields for logging and debugging.
-    // Returns:
-    //   Formatted string of transaction data
+    // For debugging and logging (enhanced)
     //--------------------------------------------------------------------------
     function string convert2string();
         return $sformatf(
-            "i_alu =%b, i_opcode=%b, i_rs1=%h, i_rs2=%h, i_imm=%h, i_ce=%b, i_rst_n=%b, verify_y=%h",
+            "i_alu=%b, i_opcode=%b, i_rs1=%h, i_rs2=%h, i_imm=%h, i_ce=%b, i_rst_n=%b, verify_y=%h",
             i_alu,
             i_opcode,
             i_rs1,
@@ -321,7 +266,6 @@ class transaction extends uvm_sequence_item;
             verify_y
         );
     endfunction
-
 endclass
 
 `endif
