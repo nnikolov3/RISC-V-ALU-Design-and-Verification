@@ -1,20 +1,3 @@
-
-// ----------------------------------------------------------------------------
-// Class: alu_monitor
-// ECE 593
-// Milestone 4 - RV32I ALU Monitor
-// Team 3
-// Description:
-//   This UVM monitor observes the RV32I Arithmetic Logic Unit (ALU) Device
-//   Under Test (DUT) by sampling input and output signals through a virtual
-//   interface. It captures these signals into transactions and broadcasts
-//   them via an analysis port to components like scoreboards and coverage
-//   collectors. The monitor operates synchronously with the DUT clock and
-//   relies on a virtual interface (alu_if) configured in the UVM database
-//   under the key "alu_vif".
-// Updated: Feb 26, 2025
-// ----------------------------------------------------------------------------
-
 `ifndef UVM_MONITOR_SV
 `define UVM_MONITOR_SV
 
@@ -32,11 +15,6 @@ import uvm_pkg::*;
 //   object. The transaction is then sent to the scoreboard via an analysis port.
 //-----------------------------------------------------------------------------
 class alu_monitor extends uvm_monitor;
-    // ------------------------------------------------------------------------
-    // Registration: Factory Registration
-    // Description:
-    //   Registers the monitor with the UVM factory for dynamic instantiation.
-    // ------------------------------------------------------------------------
     `uvm_component_utils(alu_monitor)
     
     // Virtual interface to access DUT signals
@@ -66,7 +44,6 @@ class alu_monitor extends uvm_monitor;
     //   database. If the interface is not set, an error is raised.
     //-------------------------------------------------------------------------
     virtual function void build_phase(uvm_phase phase);
-
         super.build_phase(phase);
         `uvm_info("MONITOR", "Build phase", UVM_HIGH)
         
@@ -75,9 +52,7 @@ class alu_monitor extends uvm_monitor;
         if (!uvm_config_db#(virtual alu_if)::get(this, "", "alu_vif", vif)) begin
             `uvm_fatal("MONITOR", "Virtual interface not set")
         end
-
     endfunction
-
     
     //-------------------------------------------------------------------------
     // Task: run_phase
@@ -89,7 +64,6 @@ class alu_monitor extends uvm_monitor;
     //   object, which is sent to the scoreboard.
     //-------------------------------------------------------------------------
     virtual task run_phase(uvm_phase phase);
-
         transaction tx;
         `uvm_info("MONITOR", "Monitor started", UVM_MEDIUM)
         
@@ -144,11 +118,8 @@ class alu_monitor extends uvm_monitor;
                 // Send the transaction to the scoreboard
             mon2scb.write(tx);
 
-
         end
-
     endtask
-
 endclass
 
 `endif
