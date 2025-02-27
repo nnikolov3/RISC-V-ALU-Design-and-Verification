@@ -49,7 +49,7 @@ class alu_base_test extends uvm_test;
             `uvm_fatal("MONITOR", "Virtual interface not set")
 		end */
 		
-		uvm_config_db #(virtual alu_if)::set(this, "*", "alu_vif", vif);
+//		uvm_config_db #(virtual alu_if)::set(this, "*", "alu_vif", vif);
         // Create the environment instance using the UVM factory
         env = alu_env::type_id::create("env", this);
     endfunction
