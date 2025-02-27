@@ -85,6 +85,7 @@ class alu_scoreboard extends uvm_scoreboard;
                 error = 1;
                 `uvm_error("SCB", "Reset condition failed: outputs not in reset state")
             end
+
         end else if (tx.i_ce) begin  // Process only if clock enable is active
             // ------------------------------------------------------------------------
             // ALU Operation Computation
@@ -170,21 +171,25 @@ class alu_scoreboard extends uvm_scoreboard;
                     `uvm_error("SCB", $sformatf("ALU result mismatch: Expected %h, Got %h",
                                                 expected_y, tx.o_y))
                 end
+
                 if (expected_wr_rd && tx.o_rd !== expected_rd) begin
                     error = 1;
                     `uvm_error("SCB", $sformatf("RD mismatch: Expected %h, Got %h", expected_rd,
                                                 tx.o_rd))
                 end
+
                 if (tx.o_wr_rd !== expected_wr_rd) begin
                     error = 1;
                     `uvm_error("SCB", $sformatf("Write enable mismatch: Expected %b, Got %b",
                                                 expected_wr_rd, tx.o_wr_rd))
                 end
+
                 if (tx.o_rd_valid !== expected_rd_valid) begin
                     error = 1;
                     `uvm_error("SCB", $sformatf("RD valid mismatch: Expected %b, Got %b",
                                                 expected_rd_valid, tx.o_rd_valid))
                 end
+
                 if ((tx.i_opcode[`BRANCH] || tx.i_opcode[`JAL] || tx.i_opcode[`JALR]) &&
                     (tx.o_next_pc !== expected_next_pc ||
                      tx.o_change_pc !== expected_change_pc)) begin
@@ -195,16 +200,19 @@ class alu_scoreboard extends uvm_scoreboard;
                                    expected_next_pc, expected_change_pc, tx.o_next_pc,
                                    tx.o_change_pc))
                 end
+
                 if (tx.o_exception !== expected_exception) begin
                     error = 1;
                     `uvm_error("SCB", $sformatf("Exception mismatch: Expected %b, Got %b",
                                                 expected_exception, tx.o_exception))
                 end
+
                 if (tx.o_flush !== expected_flush) begin
                     error = 1;
                     `uvm_error("SCB", $sformatf("Flush mismatch: Expected %b, Got %b",
                                                 expected_flush, tx.o_flush))
                 end
+
             end else begin  // Flush case
                 // ------------------------------------------------------------------------
                 // Flush Check
@@ -216,7 +224,9 @@ class alu_scoreboard extends uvm_scoreboard;
                     error = 1;
                     `uvm_error("SCB", "Flush condition failed: unexpected output states")
                 end
+
             end
+
         end
 
         // ------------------------------------------------------------------------
@@ -252,10 +262,12 @@ class alu_scoreboard extends uvm_scoreboard;
                 result = a + b;
                 if ((a[31] == b[31]) && (result[31] != a[31])) exception = 1;  // Overflow check
             end
+
             1: begin  // SUB
                 result = a - b;
                 if ((a[31] != b[31]) && (result[31] != a[31])) exception = 1;  // Underflow check
             end
+
             2:       result = ($signed(a) < $signed(b)) ? 32'h1 : 32'h0;  // SLT
             3:       result = (a < b) ? 32'h1 : 32'h0;  // SLTU
             4:       result = a ^ b;  // XOR
@@ -272,5 +284,7 @@ class alu_scoreboard extends uvm_scoreboard;
         endcase
         return result;
     endfunction
+
 endclass
+
 `endif

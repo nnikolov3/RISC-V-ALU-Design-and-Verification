@@ -102,6 +102,7 @@ class alu_env extends uvm_env;
         // Allows the coverage component to sample transactions for coverage metrics
         agent.monitor.ap.connect(coverage.analysis_export);
     endfunction
+
 endclass
 
 // End of the include guard

@@ -105,6 +105,7 @@ class alu_sequence extends uvm_sequence #(transaction);
             finish_item(trans);
             print_scenario($sformatf("Random Scenario %0d", i), trans);
         end
+
     endtask
 
     // ------------------------------------------------------------------------
@@ -254,4 +255,6 @@ class alu_sequence extends uvm_sequence #(transaction);
                   trans.i_ce
                   ), UVM_MEDIUM)
     endfunction
+
 endclass
+

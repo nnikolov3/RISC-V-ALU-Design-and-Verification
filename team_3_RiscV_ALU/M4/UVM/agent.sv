@@ -65,6 +65,7 @@ class alu_agent extends uvm_agent;
             sequencer = uvm_sequencer#(transaction)::type_id::create("sequencer", this);
             driver    = alu_driver::type_id::create("driver", this);
         end
+
     endfunction
 
     // ------------------------------------------------------------------------
@@ -80,6 +81,9 @@ class alu_agent extends uvm_agent;
         if (get_is_active() == UVM_ACTIVE) begin
             driver.seq_item_port.connect(sequencer.seq_item_export);
         end
+
     endfunction
+
 endclass
+
 `endif

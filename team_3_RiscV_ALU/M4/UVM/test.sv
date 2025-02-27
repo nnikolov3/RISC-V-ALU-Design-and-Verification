@@ -94,6 +94,7 @@ class alu_base_test extends uvm_test;
         // Drop the objection to signal test completion, allowing simulation to end
         phase.drop_objection(this);
     endtask
+
 endclass
 
 // End of the include guard

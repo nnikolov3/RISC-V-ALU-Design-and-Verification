@@ -61,6 +61,7 @@ class alu_driver extends uvm_driver #(transaction);
         if (!uvm_config_db#(virtual alu_if)::get(this, "", "alu_vif", drv_if)) begin
             `uvm_fatal("NO_VIF", "Virtual interface not found in config db with key 'alu_vif'")
         end
+
     endfunction
 
     // ------------------------------------------------------------------------
@@ -81,6 +82,7 @@ class alu_driver extends uvm_driver #(transaction);
             // Notify the sequencer that the transaction is complete
             seq_item_port.item_done();
         end
+
     endtask
 
     // ------------------------------------------------------------------------
@@ -155,6 +157,7 @@ class alu_driver extends uvm_driver #(transaction);
                 drv_if.i_force_stall <= tx.i_force_stall;
                 drv_if.i_flush       <= tx.i_flush;
             end
+
         end
 
         // ------------------------------------------------------------------------
@@ -165,5 +168,7 @@ class alu_driver extends uvm_driver #(transaction);
         // ------------------------------------------------------------------------
         @(posedge drv_if.i_clk);
     endtask
+
 endclass
+
 `endif

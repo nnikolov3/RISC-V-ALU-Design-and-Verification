@@ -127,4 +127,5 @@ module top;
     initial begin
         run_test("alu_base_test");  // Execute the ALU base test
     end
+
 endmodule

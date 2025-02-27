@@ -166,6 +166,7 @@ class alu_coverage extends uvm_subscriber #(transaction);
         if (tr.i_ce || !tr.i_rst_n) begin  // Sample if CE is on or reset is active
             alu_cg.sample();
         end
+
     endfunction
 
     // ------------------------------------------------------------------------
@@ -181,6 +182,7 @@ class alu_coverage extends uvm_subscriber #(transaction);
         `uvm_info("COVERAGE", $sformatf("Functional Coverage: %0.2f%%", alu_cg.get_coverage()),
                   UVM_LOW)
     endfunction
+
 endclass
 
 `endif

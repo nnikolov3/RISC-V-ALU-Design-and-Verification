@@ -238,6 +238,7 @@ class transaction extends uvm_sequence_item;
         if (!$cast(rhs_, rhs)) begin
             `uvm_fatal("COPY_ERROR", "Cannot cast rhs to transaction")
         end
+
         super.do_copy(rhs);
         // Copy input fields
         this.i_alu            = rhs_.i_alu;
@@ -320,6 +321,7 @@ class transaction extends uvm_sequence_item;
             verify_y
         );
     endfunction
+
 endclass
 
 `endif

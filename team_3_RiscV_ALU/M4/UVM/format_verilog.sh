@@ -5,8 +5,9 @@
 # Description:
 #   Formats *.sv files with Verible, aligns = in simple signal declarations to
 #   column 32, places // comments 2 spaces after code (left-aligned), converts
-#   /* */ to // ---- blocks, limits blank lines to one, uses 4-space indentation,
-#   and backs up files. Preserves lines with == as distinct from = assignments.
+#   /* */ to // ---- blocks, adds one blank line between logical code blocks
+#   (e.g., after endfunction), uses 4-space indentation, and backs up files.
+#   Preserves lines with ==.
 # Usage:
 #   ./format_verilog.sh
 # ----------------------------------------------------------------------------
@@ -44,18 +45,20 @@ echo "Backup directory created: $BACKUP_DIR"
 # Alignment Function
 # Description:
 #   Aligns = to column 32 in simple signal declarations, places // comments 2
-#   spaces after code, converts /* */ to blocks, and preserves lines with ==.
+#   spaces after code, converts /* */ to blocks, and adds one blank line after
+#   logical blocks (e.g., endfunction).
 # ------------------------------------------------------------------------
 align_code() {
     local file="$1"
     awk '
-    BEGIN { in_multiline=0 }
+    BEGIN { in_multiline=0; prev_line_end_block=0 }
     # Convert multi-line /* */ comments
     /^\/\*/ && !/\*\// {
         in_multiline=1
         sub(/^\/\*[[:space:]]*/, "")
         print "// ----------------------------------------------------------------------------"
         print "// " $0
+        prev_line_end_block=0
         next
     }
     in_multiline && /\*\// {
@@ -63,11 +66,13 @@ align_code() {
         sub(/[[:space:]]*\*\//, "")
         if ($0 !~ /^[[:space:]]*$/) print "// " $0
         print "// ----------------------------------------------------------------------------"
+        prev_line_end_block=1  # Treat comment block end as block end
         next
     }
     in_multiline {
         sub(/^[[:space:]]*/, "")
         if ($0 !~ /^[[:space:]]*$/) print "// " $0
+        prev_line_end_block=0
         next
     }
     # Convert single-line /* */ comments
@@ -77,6 +82,7 @@ align_code() {
         print "// ----------------------------------------------------------------------------"
         print "// " $0
         print "// ----------------------------------------------------------------------------"
+        prev_line_end_block=1  # Treat comment block end as block end
         next
     }
     # Align simple signal declarations with = (no ==, no multi-line)
@@ -100,6 +106,7 @@ align_code() {
         } else {
             print $0
         }
+        prev_line_end_block=0
         next
     }
     # Align standalone // comments
@@ -108,10 +115,31 @@ align_code() {
         comment=substr($0, match($0, /\/\//))
         sub(/^[[:space:]]+/, "", comment)
         printf "%s%s\n", indent, comment
+        prev_line_end_block=0
+        next
+    }
+    # Detect end of logical block (e.g., endfunction, endclass)
+    /^[[:space:]]*(endfunction|endclass|endtask|endgroup|end)$/ {
+        print $0
+        print ""  # Add one blank line after block end
+        prev_line_end_block=1
         next
     }
     # Preserve other lines unchanged (e.g., lines with ==)
-    { print $0 }
+    {
+        print $0
+        prev_line_end_block=0
+    }
+    ' "$file" > "$file.tmp" && mv "$file.tmp" "$file"
+    # Final pass to limit consecutive blank lines to one
+    awk '
+    BEGIN { blanks=0 }
+    /^[[:space:]]*$/ {
+        blanks++
+        if (blanks <= 1) print ""
+        next
+    }
+    { blanks=0; print $0 }
     ' "$file" > "$file.tmp" && mv "$file.tmp" "$file"
 }
 
@@ -132,10 +160,9 @@ for file in *.sv; do
         "$file"
     if [ $? -eq 0 ]; then
         echo "  Formatted with Verible: $file"
-        align_code "$file"  # Align = in simple declarations, and comments
+        align_code "$file"  # Align = in simple declarations, comments, and add blank lines
         sed -i 's/[[:space:]]*$//' "$file"  # Remove trailing spaces
         expand -t 4 "$file" > "$file.tmp" && mv "$file.tmp" "$file"  # 4 spaces, no tabs
-        awk 'BEGIN {blanks=0} !NF {blanks++; if (blanks<=1) print ""; next} {blanks=0; print}' "$file" > "$file.tmp" && mv "$file.tmp" "$file"  # One blank line max
         echo "  Alignment and formatting complete: $file"
     else
         echo "  Error formatting: $file - restoring backup"

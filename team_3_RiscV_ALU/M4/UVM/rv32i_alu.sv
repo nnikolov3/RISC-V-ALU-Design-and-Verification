@@ -160,6 +160,7 @@ module rv32i_alu (
                     ;  //stall next stage(memory-access stage) when need to store/load
                 o_pc <= i_pc;  //since accessing data memory always takes more than 1 cycle
             end
+
             if (i_flush && !stall_bit) begin  //flush this stage so clock-enable of next stage is disabled at next clock cycle
                 o_ce <= 0;
             end else if (!stall_bit) begin  //clock-enable will change only when not stalled
@@ -168,7 +169,9 @@ module rv32i_alu (
                 o_ce <= 0;  //if this stage is stalled but next stage is not, disable
             //clock enable of next stage at next clock cycle (pipeline bubble)
         end
+
     end
+
     // determine operation used then compute for y output
     always_comb begin
         y_d = 0;
@@ -180,6 +183,7 @@ module rv32i_alu (
             y_d = {31'b0, (a < b)};
             if (alu_slt) y_d = (a[31] ^ b[31]) ? {31'b0, a[31]} : y_d;
         end
+
         if (alu_xor) y_d = a ^ b;
         if (alu_or) y_d = a | b;
         if (alu_and) y_d = a & b;
@@ -190,11 +194,14 @@ module rv32i_alu (
             y_d = {31'b0, (a == b)};
             if (alu_neq) y_d = {31'b0, !y_d[0]};
         end
+
         if (alu_ge || alu_geu) begin
             y_d = {31'b0, (a >= b)};
             if (alu_ge) y_d = (a[31] ^ b[31]) ? {31'b0, b[31]} : y_d;
         end
+
     end
+
     //determine o_rd to be saved to baseg and next value of PC
     always_comb begin
         o_flush     = i_flush;  //flush this stage along with the previous stages
@@ -211,6 +218,7 @@ module rv32i_alu (
                 o_change_pc = i_ce;  //change PC when ce of this stage is high (o_change_pc is valid)
                 o_flush = i_ce;
             end
+
             if (opcode_jal || opcode_jalr) begin
                 if (opcode_jalr) a_pc = i_rs1;
                 o_next_pc = sum;  //jump to new PC
@@ -218,7 +226,9 @@ module rv32i_alu (
                 o_flush = i_ce;
                 rd_d = i_pc + 4;  //logicister the next pc value to destination logicister
             end
+
         end
+
         if (opcode_lui) rd_d = i_imm;
         if (opcode_auipc) rd_d = sum;
         if (opcode_branch || opcode_store || (opcode_system && i_funct3 == 0) || opcode_fence)
@@ -231,6 +241,7 @@ module rv32i_alu (
         //stall logic (stall when upper stages are stalled, when forced to stall, or when needs to flush previous stages but are still stalled)
         o_stall = (i_stall || i_force_stall) && !i_flush;  //stall when alu needs wait time
     end
+
     assign sum = a_pc + i_imm;  //share adder for all addition operation for less resource utilization
     assign stall_bit = o_stall || i_stall;
     assign alu_add = i_alu[`ADD];
@@ -270,6 +281,7 @@ module rv32i_alu (
         assume (f_alu <= 1);
         assume (f_opcode <= 1);
     end
+
     // verify all operations with $signed/$unsigned distinctions
     always_comb begin
         if (i_alu[`SLTU]) assert (y_d[0] == $unsigned(a) < $unsigned(b));
@@ -280,5 +292,6 @@ module rv32i_alu (
         if (i_alu[`GEU]) assert (y_d[0] == ($unsigned(a) >= $unsigned(b)));
         if (i_alu[`GE]) assert (y_d[0] == ($signed(a) >= $signed(b)));
     end
+
 `endif
 endmodule

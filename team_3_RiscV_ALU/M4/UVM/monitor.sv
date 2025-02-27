@@ -64,6 +64,7 @@ class alu_monitor extends uvm_monitor;
         if (!uvm_config_db#(virtual alu_if)::get(this, "", "alu_vif", vif)) begin
             `uvm_fatal("NO_VIF", "Virtual interface not found in config db")
         end
+
     endfunction
 
     // ------------------------------------------------------------------------
@@ -140,6 +141,9 @@ class alu_monitor extends uvm_monitor;
             `uvm_info("MONITOR", $sformatf("Captured transaction: %s", tx.convert2string()),
                       UVM_HIGH)
         end
+
     endtask
+
 endclass
+
 `endif
