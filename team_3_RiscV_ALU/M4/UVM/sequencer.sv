@@ -25,7 +25,7 @@ class alu_sequence extends uvm_sequence #(transaction);
     `uvm_object_utils(alu_sequence)
 	integer log_file;
     // Configurable number of random transactions
-    int num_transactions = 20;
+    int num_transactions = 1000;
 
     // Constructor
     function new(string name = "alu_sequence");
@@ -45,6 +45,7 @@ class alu_sequence extends uvm_sequence #(transaction);
 
     // Generate predefined test scenarios for ALU operations
     virtual task generate_predefined_scenarios();
+		reset_signals();
         test_arithmetic_scenarios();  // Test arithmetic operations (ADD, SUB)
         test_logical_scenarios();  // Test logical operations (AND, OR, XOR)
     endtask
@@ -70,6 +71,17 @@ class alu_sequence extends uvm_sequence #(transaction);
             print_scenario($sformatf("Random Scenario %0d", i), trans);
         end
     endtask
+	
+	virtual task reset_signals();
+        transaction trans;
+
+        // Scenario 0: Reset
+        trans = transaction::type_id::create("trans");
+        start_item(trans);
+        trans.set_values(`ADD, `RTYPE_BITS, 32'h7FFFFFFF, 32'h00000001, 32'h0, 1'b1, 0);
+        finish_item(trans);
+        print_scenario("Reset", trans);		
+	endtask
 
     // Test arithmetic operations with specific edge cases
     virtual task test_arithmetic_scenarios();
@@ -78,28 +90,28 @@ class alu_sequence extends uvm_sequence #(transaction);
         // Scenario 1: ADD with potential overflow
         trans = transaction::type_id::create("trans");
         start_item(trans);
-        trans.set_values(`ADD, `RTYPE_BITS, 32'h7FFFFFFF, 32'h00000001, 32'h0, 1'b1);
+        trans.set_values(`ADD, `RTYPE_BITS, 32'h7FFFFFFF, 32'h00000001, 32'h0, 1'b1, 1);
         finish_item(trans);
         print_scenario("ADD: Overflow Test", trans);
 
         // Scenario 2: ADD with maximum values
         trans = transaction::type_id::create("trans");
         start_item(trans);
-        trans.set_values(`ADD, `RTYPE_BITS, 32'hFFFFFFFF, 32'hFFFFFFFF, 32'h0, 1'b1);
+        trans.set_values(`ADD, `RTYPE_BITS, 32'hFFFFFFFF, 32'hFFFFFFFF, 32'h0, 1'b1, 1);
         finish_item(trans);
         print_scenario("ADD: Maximum Values", trans);
 
         // Scenario 3: SUB with potential underflow
         trans = transaction::type_id::create("trans");
         start_item(trans);
-        trans.set_values(`SUB, `RTYPE_BITS, 32'h80000000, 32'h00000001, 32'h0, 1'b1);
+        trans.set_values(`SUB, `RTYPE_BITS, 32'h80000000, 32'h00000001, 32'h0, 1'b1, 1);
         finish_item(trans);
         print_scenario("SUB: Underflow Test", trans);
 
         // Scenario 4: SUB resulting in zero
         trans = transaction::type_id::create("trans");
         start_item(trans);
-        trans.set_values(`SUB, `RTYPE_BITS, 32'h5A5A5A5A, 32'h5A5A5A5A, 32'h0, 1'b1);
+        trans.set_values(`SUB, `RTYPE_BITS, 32'h5A5A5A5A, 32'h5A5A5A5A, 32'h0, 1'b1, 1);
         finish_item(trans);
         print_scenario("SUB: Zero Result", trans);
     endtask
@@ -111,21 +123,21 @@ class alu_sequence extends uvm_sequence #(transaction);
         // Scenario 1: AND with alternating bits
         trans = transaction::type_id::create("trans");
         start_item(trans);
-        trans.set_values(`AND, `RTYPE_BITS, 32'hAAAAAAAA, 32'h55555555, 32'h0, 1'b1);
+        trans.set_values(`AND, `RTYPE_BITS, 32'hAAAAAAAA, 32'h55555555, 32'h0, 1'b1, 1);
         finish_item(trans);
         print_scenario("AND: Alternating Bits", trans);
 
         // Scenario 2: OR with complementary patterns
         trans = transaction::type_id::create("trans");
         start_item(trans);
-        trans.set_values(`OR, `RTYPE_BITS, 32'hF0F0F0F0, 32'h0F0F0F0F, 32'h0, 1'b1);
+        trans.set_values(`OR, `RTYPE_BITS, 32'hF0F0F0F0, 32'h0F0F0F0F, 32'h0, 1'b1, 1);
         finish_item(trans);
         print_scenario("OR: Complementary Patterns", trans);
 
         // Scenario 3: XOR with identical values
         trans = transaction::type_id::create("trans");
         start_item(trans);
-        trans.set_values(`XOR, `RTYPE_BITS, 32'hAAAAAAAA, 32'hAAAAAAAA, 32'h0, 1'b1);
+        trans.set_values(`XOR, `RTYPE_BITS, 32'hAAAAAAAA, 32'hAAAAAAAA, 32'h0, 1'b1, 1);
         finish_item(trans);
         print_scenario("XOR: Same Values", trans);
     endtask
@@ -137,7 +149,7 @@ class alu_sequence extends uvm_sequence #(transaction);
         // Scenario: Deactivate CE with FENCE instruction
         trans = transaction::type_id::create("trans");
         start_item(trans);
-        trans.set_values(`ADD, `FENCE_BITS, 32'h0, 32'h0, 32'h0, 1'b0);
+        trans.set_values(`ADD, `FENCE_BITS, 32'h0, 32'h0, 32'h0, 1'b0, 1);
         finish_item(trans);
         print_scenario("Deactivate Clock Enable", trans);
     endtask
