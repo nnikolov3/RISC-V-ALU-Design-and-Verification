@@ -85,13 +85,13 @@ class alu_monitor extends uvm_monitor;
         `uvm_info("MONITOR", "Monitor started", UVM_MEDIUM)
 
         forever begin
-            @(posedge vif.i_clk);  // Wait for the next clock edge
+            //@(posedge vif.i_clk);  // Wait for the next clock edge
             tx = transaction::type_id::create("tx", this);
-            wait (vif.i_ce) begin
-
+            //wait (vif.i_ce && vif.o_ce) begin
+			wait (vif.i_ce) begin
                 // Capture input signals
                 //tx.i_clk         = vif.i_clk;
-                tx.i_rst_n       = vif.i_rst_n;
+                tx.rst_n         = vif.rst_n;
                 tx.i_alu         = vif.i_alu;
                 tx.i_rs1_addr    = vif.i_rs1_addr;
                 tx.i_rs1         = vif.i_rs1;
@@ -107,8 +107,9 @@ class alu_monitor extends uvm_monitor;
                 tx.i_force_stall = vif.i_force_stall;
                 tx.i_flush       = vif.i_flush;
             end
-
-            wait (vif.o_ce) begin
+			
+			@(posedge vif.i_clk);
+            //wait (vif.o_ce) begin
                 // Capture output signals
                 tx.o_rs1_addr       = vif.o_rs1_addr;
                 tx.o_rs1            = vif.o_rs1;
@@ -129,7 +130,51 @@ class alu_monitor extends uvm_monitor;
                 tx.o_ce             = vif.o_ce;
                 tx.o_stall          = vif.o_stall;
                 tx.o_flush          = vif.o_flush;
-            end
+            //end
+			
+			`uvm_info("SCB", $sformatf(
+                  "\n***** Transaction Inputs *****\nOperation Type: %h\nRS1_ADDR: %h\nRS1: %h\nRS2: %h\nIMM: %h\nFUNCT3: %h\nInstruction Type: %h\nException: %b\nPC: %h\nRD_ADDR: %h\nCE: %b\nSTALL: %h\nFORCE_STALL: %h\nFLUSH: %h\nRST_N: %h"
+                      ,
+                  tx.i_alu,
+                  tx.i_rs1_addr,
+                  tx.i_rs1,
+                  tx.i_rs2,
+                  tx.i_imm,
+                  tx.i_funct3,
+                  tx.i_opcode,
+                  tx.i_exception,
+                  tx.i_pc,
+                  tx.i_rd_addr,
+				  tx.i_ce,
+                  tx.i_stall,
+                  tx.i_force_stall,
+                  tx.i_flush,
+                  tx.rst_n
+                  ), UVM_MEDIUM);
+			`uvm_info("SCB", $sformatf(
+                  "\n***** Transaction Outputs *****\nRS1_ADDR: %h\nRS1: %h\nRS2: %h\nIMM: %h\nFUNCT3: %h\nInstruction Type: %h\nException: %b\nY: %h\nPC: %h\nNEXT_PC: %h\nCHANGE_PC: %h\nWR_RD: %h\nRD_ADDR: %h\nRD: %h\nRD_VALID: %h\nSTALL_FROM_ALU: %h\nCE: %b\nSTALL: %h\nFLUSH: %h"
+                      ,
+                  tx.o_rs1_addr,
+                  tx.o_rs1,
+                  tx.o_rs2,
+                  tx.o_imm,
+                  tx.o_funct3,
+                  tx.o_opcode,
+                  tx.o_exception,
+				  tx.o_y,
+                  tx.o_pc,
+				  tx.o_next_pc,
+				  tx.o_change_pc,
+				  tx.o_wr_rd,
+                  tx.o_rd_addr,
+				  tx.o_rd,
+				  tx.o_rd_valid,
+				  tx.o_stall_from_alu,
+				  tx.o_ce,
+                  tx.o_stall,
+                  tx.o_flush
+                  ), UVM_MEDIUM);
+				  
 			mon2scb.write(tx);
         end
     endtask

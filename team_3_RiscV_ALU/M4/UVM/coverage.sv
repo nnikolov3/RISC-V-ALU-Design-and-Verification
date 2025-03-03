@@ -57,7 +57,7 @@ class alu_coverage extends uvm_subscriber #(transaction);
         }
 
         // Reset coverage
-        coverpoint tr.i_rst_n {
+        coverpoint tr.rst_n {
             bins reset_asserted = {0}; bins reset_deasserted = {1};
         }
 
@@ -103,7 +103,7 @@ class alu_coverage extends uvm_subscriber #(transaction);
         cross tr.i_opcode, tr.o_change_pc;
         cross tr.i_ce, tr.i_stall, tr.i_force_stall, tr.i_flush;
         cross tr.o_wr_rd, tr.o_rd_valid, tr.i_opcode;
-        cross tr.i_rst_n, tr.i_ce;
+        cross tr.rst_n, tr.i_ce;
         cross tr.i_stall, tr.o_stall_from_alu;
     endgroup
 
@@ -116,7 +116,7 @@ class alu_coverage extends uvm_subscriber #(transaction);
     // Write function to receive transactions from analysis port
     function void write(transaction t);
         tr = t;
-        if (tr.i_ce || !tr.i_rst_n) begin  // Sample during active clock enable or reset
+        if (tr.i_ce || !tr.rst_n) begin  // Sample during active clock enable or reset
             alu_cg.sample();
         end
     endfunction

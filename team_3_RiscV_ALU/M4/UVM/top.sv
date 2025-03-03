@@ -13,7 +13,7 @@ module top;
     // DUT instantiation
     rv32i_alu DUT (
         .i_clk           (dut_if.i_clk),
-        .i_rst_n         (dut_if.i_rst_n),
+        .i_rst_n         (dut_if.rst_n),
         .i_alu           (dut_if.i_alu),
         .i_rs1_addr      (dut_if.i_rs1_addr),
         .i_rs1           (dut_if.i_rs1),
@@ -54,11 +54,12 @@ module top;
         forever #5 i_clk = ~i_clk;  // 10ns period
     end
     // Reset assertion
-    initial begin
+/*    initial begin
         i_rst_n = 0;
         #20;
         i_rst_n = 1;
     end
+*/
     // Set virtual interface in UVM configuration database with updated key
     initial begin
         uvm_config_db#(virtual alu_if)::set(null, "*", "alu_vif", dut_if);

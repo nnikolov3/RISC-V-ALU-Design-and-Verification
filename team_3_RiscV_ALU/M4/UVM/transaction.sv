@@ -14,6 +14,8 @@ import uvm_pkg::*;
 
 class transaction extends uvm_sequence_item;
     `uvm_object_utils(transaction)
+	
+	int tx_id = 0;
 
     //--------------------------------------------------------------------------
     // Randomized Input Signals (for stimulus generation)
@@ -31,7 +33,7 @@ class transaction extends uvm_sequence_item;
     bit                             i_stall;  // Stall signal
     bit                             i_force_stall;  // Force stall signal
     bit                             i_flush;  // Flush signal
-    rand bit                        i_rst_n;  // Active-low reset signal
+    rand bit                        rst_n;  // Active-low reset signal
 
     // Non-randomized fields (set externally or in specific cases)
     bit      [`EXCEPTION_WIDTH-1:0] i_exception;  // Exception signal
@@ -70,14 +72,14 @@ class transaction extends uvm_sequence_item;
         $onehot(i_alu);
         i_alu inside {14'b00000000000001,  // ADD
         14'b00000000000010,  // SUB
-        14'b00000000000100,  // AND
-        14'b00000000001000,  // OR
+        14'b00000000000100,  // SLT
+        14'b00000000001000,  // SLTU
         14'b00000000010000,  // XOR
-        14'b00000000100000,  // SLL
-        14'b00000001000000,  // SRL
-        14'b00000010000000,  // SRA
-        14'b00000100000000,  // SLT
-        14'b00001000000000,  // SLTU
+        14'b00000000100000,  // OR
+        14'b00000001000000,  // AND
+        14'b00000010000000,  // SLL
+        14'b00000100000000,  // SRL
+        14'b00001000000000,  // SRA
         14'b00010000000000,  // EQ
         14'b00100000000000,  // NEQ
         14'b01000000000000,  // GE
@@ -87,7 +89,7 @@ class transaction extends uvm_sequence_item;
     // Constraint for opcode: valid RISC-V instruction types (7-bit)
     constraint opcode_c {
         i_opcode inside {11'b00000000001,  // R-type
-        11'b00000000010,  // I-type
+        11'b00000000010/*,  // I-type
         11'b00000000100,  // Load
         11'b00000001000,  // Store
         11'b00000010000,  // Branch
@@ -96,7 +98,7 @@ class transaction extends uvm_sequence_item;
         11'b00010000000,  // LUI
         11'b00100000000,  // AUIPC
         11'b01000000000,  // System
-        11'b10000000000};  // Fence
+        11'b10000000000*/};  // Fence
     }
 
     // Constraint for clock enable: 90% enabled
@@ -109,7 +111,7 @@ class transaction extends uvm_sequence_item;
 
     // Constraint for reset: defaults to active (1) unless testing reset
     constraint reset_c {
-        i_rst_n dist {
+        rst_n dist {
             1 := 95,
             0 := 5
         };
@@ -145,15 +147,16 @@ class transaction extends uvm_sequence_item;
     // Manually set transaction fields for predefined scenarios
     //--------------------------------------------------------------------------
     function void set_values(int alu_idx, bit [`OPCODE_WIDTH-1:0] opcode, bit [31:0] rs1,
-                             bit [31:0] rs2, bit [31:0] imm, bit ce);
+                             bit [31:0] rs2, bit [31:0] imm, bit ce, bit rst);
         i_alu          = 0;  // Clear previous ALU control settings
-        i_alu[alu_idx] = 1;  // Set the specified ALU control bit
+        i_alu		   = alu_idx;  // Set the specified ALU control bit
         i_opcode       = opcode;  // Set the instruction opcode
         i_rs1          = rs1;  // Assign first operand
         i_rs2          = rs2;  // Assign second operand
         i_imm          = imm;  // Assign immediate value
         i_ce           = ce;  // Set clock enable
-        i_rst_n        = 1;  // Default to active unless explicitly testing reset
+        rst_n        = rst;  // Default to active unless explicitly testing reset
+		tx_id = tx_id + 1;
     endfunction
 
     //--------------------------------------------------------------------------
@@ -209,8 +212,9 @@ class transaction extends uvm_sequence_item;
         this.i_stall          = rhs_.i_stall;
         this.i_force_stall    = rhs_.i_force_stall;
         this.i_flush          = rhs_.i_flush;
-        this.i_rst_n          = rhs_.i_rst_n;
+        this.rst_n            = rhs_.rst_n;
         this.i_exception      = rhs_.i_exception;
+		this.tx_id			  = rhs_.tx_id;
         // Copy output fields
         this.o_rs1_addr       = rhs_.o_rs1_addr;
         this.o_rs1            = rhs_.o_rs1;
@@ -262,10 +266,14 @@ class transaction extends uvm_sequence_item;
             i_rs2,
             i_imm,
             i_ce,
-            i_rst_n,
+            rst_n,
             verify_y
         );
     endfunction
+	
+	function void post_randomize();
+		tx_id = tx_id + 1;
+	endfunction
 endclass
 
 `endif

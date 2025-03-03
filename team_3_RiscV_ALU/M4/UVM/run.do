@@ -10,5 +10,5 @@ vlog -mfcu -lint top.sv interface.sv sequencer.sv test.sv rv32i_alu.sv transacti
 
 
 vsim -coverage work.top -voptargs="+cover=bcesf"
-
+add wave -r sim:/top/*
 run -all

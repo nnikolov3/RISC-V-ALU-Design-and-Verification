@@ -50,6 +50,7 @@ interface alu_if (
     logic                       i_stall;       // Pipeline stall signal from controller
     logic                       i_force_stall; // Debug stall signal
     logic                       i_flush;       // Pipeline flush signal
+	logic						rst_n;
 
     ////////////////////////////////////////////////////
     // Output signals from ALU (To Writeback Stage)   //
@@ -79,7 +80,7 @@ interface alu_if (
         default output #1ns;  // More explicit timing
         output i_alu, i_rs1_addr, i_rs1, i_rs2, i_imm, i_funct3,
                i_opcode, i_exception, i_pc, i_rd_addr, i_ce,
-               i_stall, i_force_stall, i_flush;
+               i_stall, i_force_stall, i_flush, rst_n;
     endclocking
 
     // Clocking block for testbench sampling outputs from DUT
@@ -96,14 +97,14 @@ interface alu_if (
         default input #1ns;   // More explicit timing
         input i_alu, i_rs1_addr, i_rs1, i_rs2, i_imm, i_funct3,
               i_opcode, i_exception, i_pc, i_rd_addr, i_ce,
-              i_stall, i_force_stall, i_flush;
+              i_stall, i_force_stall, i_flush, rst_n;
     endclocking
 
     // Modport for DUT connection
     modport DUT (
         input  i_alu, i_rs1_addr, i_rs1, i_rs2, i_imm, i_funct3,
                i_opcode, i_exception, i_pc, i_rd_addr, i_ce,
-               i_stall, i_force_stall, i_flush,
+               i_stall, i_force_stall, i_flush, rst_n,
         output o_rs1_addr, o_rs1, o_rs2, o_imm, o_funct3,
                o_opcode, o_exception, o_y, o_pc, o_next_pc,
                o_change_pc, o_wr_rd, o_rd_addr, o_rd, o_rd_valid,
@@ -115,7 +116,7 @@ interface alu_if (
     modport TB (
         output i_alu, i_rs1_addr, i_rs1, i_rs2, i_imm, i_funct3,
                i_opcode, i_exception, i_pc, i_rd_addr, i_ce,
-               i_stall, i_force_stall, i_flush,
+               i_stall, i_force_stall, i_flush, rst_n,
         input  o_rs1_addr, o_rs1, o_rs2, o_imm, o_funct3,
                o_opcode, o_exception, o_y, o_pc, o_next_pc,
                o_change_pc, o_wr_rd, o_rd_addr, o_rd, o_rd_valid,
