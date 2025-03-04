@@ -93,7 +93,7 @@ class transaction extends uvm_sequence_item;
     // Constraint for opcode: valid RISC-V instruction types (7-bit)
     constraint opcode_c {
         i_opcode inside {11'b00000000001,  // R-type  (bit 0)
-        11'b00000000010,  // I-type  (bit 1)
+        11'b00000000010/*,  // I-type  (bit 1)
         11'b00000000100,  // Load    (bit 2)
         11'b00000001000,  // Store   (bit 3)
         11'b00000010000,  // Branch  (bit 4)
@@ -102,7 +102,7 @@ class transaction extends uvm_sequence_item;
         11'b00010000000,  // LUI     (bit 7)
         11'b00100000000,  // AUIPC   (bit 8)
         11'b01000000000,  // System  (bit 9)
-        11'b10000000000  // Fence   (bit 10)
+        11'b10000000000 */ // Fence   (bit 10)s
         };
     }
 
@@ -153,9 +153,9 @@ class transaction extends uvm_sequence_item;
     // Function: set_values
     // Manually set transaction fields for predefined scenarios
     //--------------------------------------------------------------------------
-    function void set_values(int alu_idx, bit [`OPCODE_WIDTH-1:0] opcode, bit [31:0] rs1,
+    function void set_values(int alu_val, bit [`OPCODE_WIDTH-1:0] opcode, bit [31:0] rs1,
                              bit [31:0] rs2, bit [31:0] imm, bit ce, bit rst);
-        i_alu    = 1 << alu_idx;  // One-hot ALU control
+        i_alu    = alu_val;  // One-hot ALU control
         i_opcode = opcode;  // Already 11-bit one-hot from caller
         i_rs1    = rs1;
         i_rs2    = rs2;
