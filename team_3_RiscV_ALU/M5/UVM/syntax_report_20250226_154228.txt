@@ -1,0 +1,140 @@
+Verilog/SystemVerilog Syntax Report
+Generated on: Wed Feb 26 03:42:28 PM PST 2025
+Directory: /home/niko/Dev/RISC-V-ALU-Design-and-Verification/team_3_RiscV_ALU/M4/UVM
+===================================
+
+Analyzing file: agent.sv
+----------------
+No syntax issues found
+
+Analyzing file: coverage.sv
+----------------
+No syntax issues found
+
+Analyzing file: driver.sv
+----------------
+No syntax issues found
+
+Analyzing file: environment.sv
+----------------
+No syntax issues found
+
+Analyzing file: interface.sv
+----------------
+interface.sv:122:28-36: syntax error at token "cb_output"
+
+Note: verifytree will fail because syntax errors caused sections of text to be dropped during error-recovery.
+
+Unmatched Tokens:
+(#516: "modport")
+(#293: "TB")
+(#40: "(")
+(#370: "output")
+(#293: "i_alu")
+(#44: ",")
+(#293: "i_rs1_addr")
+(#44: ",")
+(#293: "i_rs1")
+(#44: ",")
+(#293: "i_rs2")
+(#44: ",")
+(#293: "i_imm")
+(#44: ",")
+(#293: "i_funct3")
+(#44: ",")
+(#293: "i_opcode")
+(#44: ",")
+(#293: "i_exception")
+(#44: ",")
+(#293: "i_pc")
+(#44: ",")
+(#293: "i_rd_addr")
+(#44: ",")
+(#293: "i_ce")
+(#44: ",")
+(#293: "i_stall")
+(#44: ",")
+(#293: "i_force_stall")
+(#44: ",")
+(#293: "i_flush")
+(#44: ",")
+(#354: "input")
+(#293: "o_rs1_addr")
+(#44: ",")
+(#293: "o_rs1")
+(#44: ",")
+(#293: "o_rs2")
+(#44: ",")
+(#293: "o_imm")
+(#44: ",")
+(#293: "o_funct3")
+(#44: ",")
+(#293: "o_opcode")
+(#44: ",")
+(#293: "o_exception")
+(#44: ",")
+(#293: "o_y")
+(#44: ",")
+(#293: "o_pc")
+(#44: ",")
+(#293: "o_next_pc")
+(#44: ",")
+(#293: "o_change_pc")
+(#44: ",")
+(#293: "o_wr_rd")
+(#44: ",")
+(#293: "o_rd_addr")
+(#44: ",")
+(#293: "o_rd")
+(#44: ",")
+(#293: "o_rd_valid")
+(#44: ",")
+(#293: "o_stall_from_alu")
+(#44: ",")
+(#293: "o_ce")
+(#44: ",")
+(#293: "o_stall")
+(#44: ",")
+(#293: "o_flush")
+(#44: ",")
+(#473: "clocking")
+(#293: "cb_input")
+(#44: ",")
+(#293: "cb_output")
+(#41: ")")
+(#59: ";")
+
+Analyzing file: monitor.sv
+----------------
+No syntax issues found
+
+Analyzing file: rv32i_alu_header.sv
+----------------
+No syntax issues found
+
+Analyzing file: rv32i_alu.sv
+----------------
+No syntax issues found
+
+Analyzing file: scoreboard.sv
+----------------
+No syntax issues found
+
+Analyzing file: sequencer.sv
+----------------
+No syntax issues found
+
+Analyzing file: test.sv
+----------------
+No syntax issues found
+
+Analyzing file: top.sv
+----------------
+No syntax issues found
+
+Analyzing file: transaction.sv
+----------------
+No syntax issues found
+
+===================================
+Report generation complete

@@ -1,0 +1,2753 @@
+UVM_INFO test.sv(76) @ 0: uvm_test_top [TEST] Set report server severities and outputs
+UVM_INFO environment.sv(47) @ 0: uvm_test_top.env [ENV] ENV Building
+coreboard [SCB] SCB started
+UVM_INFO scoreboard.sv(177) @ 15000: uvm_test_top.env.scoreboard [SCB] 
+***** Transaction           1 Inputs *****
+Operation Type: ADD
+RS1_ADDR: 00
+RS1: 7fffffff
+RS2: 00000001
+IMM: 00000000
+FUNCT3: 0
+Instruction Type: R_TYPE
+Exception: 0000
+PC: 00000000
+RD_ADDR: 00
+CE: 1
+STALL: 0
+FORCE_STALL: 0
+FLUSH: 0
+RST_N: 1
+UVM_INFO scoreboard.sv(197) @ 15000: uvm_test_top.env.scoreboard [SCB] 
+***** Transaction           1 Outputs *****
+RS1_ADDR: 00
+RS1: 00000000
+RS2: 00000000
+IMM: 00000000
+FUNCT3: 0
+Instruction Type: UNKNOWN
+Exception: 0000
+Y: 00000000
+PC: 00000000
+NEXT_PC: 00000000
+CHANGE_PC: 0
+WR_RD: 0
+RD_ADDR: 00
+RD: 00000000
+RD_VALID: 0
+STALL_FROM_ALU: 0
+CE: 0
+STALL: 0
+FLUSH: 0
+UVM_INFO scoreboard.sv(230) @ 15000: uvm_test_top.env.scoreboard [SCB] Entered Checking, ALU op: ADD
+UVM_INFO scoreboard.sv(292) @ 15000: uvm_test_top.env.scoreboard [SCB] A: 7fffffff
+B: 00000001
+OP: 0001
+UVM_ERROR scoreboard.sv(312) @ 15000: uvm_test_top.env.scoreboard [SCB] ALU Operation Mismatch: Expected 80000000, Got 00000000
+UVM_INFO scoreboard.sv(285) @ 15000: uvm_test_top.env.scoreboard [SCB] Transaction           1 successfully verified!
+UVM_INFO scoreboard.sv(177) @ 25000: uvm_test_top.env.scoreboard [SCB] 
+***** Transaction           2 Inputs *****
+Operation Type: ADD
+RS1_ADDR: 00
+RS1: 7fffffff
+RS2: 00000001
+IMM: 00000000
+FUNCT3: 0
+Instruction Type: R_TYPE
+Exception: 0000
+PC: 00000000
+RD_ADDR: 00
+CE: 1
+STALL: 0
+FORCE_STALL: 0
+FLUSH: 0
+RST_N: 1
+UVM_INFO scoreboard.sv(197) @ 25000: uvm_test_top.env.scoreboard [SCB] 
+***** Transaction           2 Outputs *****
+RS1_ADDR: 00
+RS1: 7fffffff
+RS2: 00000001
+IMM: 00000000
+FUNCT3: 0
+Instruction Type: R_TYPE
+Exception: 0000
+Y: 80000000
+PC: 00000000
+NEXT_PC: 00000000
+CHANGE_PC: 0
+WR_RD: 1
+RD_ADDR: 00
+RD: 80000000
+RD_VALID: 1
+STALL_FROM_ALU: 0
+CE: 1
+STALL: 0
+FLUSH: 0
+UVM_INFO scoreboard.sv(230) @ 25000: uvm_test_top.env.scoreboard [SCB] Entered Checking, ALU op: ADD
+UVM_INFO scoreboard.sv(292) @ 25000: uvm_test_top.env.scoreboard [SCB] A: 7fffffff
+B: 00000001
+OP: 0001
+UVM_INFO scoreboard.sv(285) @ 25000: uvm_test_top.env.scoreboard [SCB] Transaction           2 successfully verified!
+UVM_INFO scoreboard.sv(177) @ 35000: uvm_test_top.env.scoreboard [SCB] 
+***** Transaction           3 Inputs *****
+Operation Type: ADD
+RS1_ADDR: 00
+RS1: ffffffff
+RS2: ffffffff
+IMM: 00000000
+FUNCT3: 0
+Instruction Type: R_TYPE
+Exception: 0000
+PC: 00000000
+RD_ADDR: 00
+CE: 1
+STALL: 0
+FORCE_STALL: 0
+FLUSH: 0
+RST_N: 1
+UVM_INFO scoreboard.sv(197) @ 35000: uvm_test_top.env.scoreboard [SCB] 
+***** Transaction           3 Outputs *****
+RS1_ADDR: 00
+RS1: ffffffff
+RS2: ffffffff
+IMM: 00000000
+FUNCT3: 0
+Instruction Type: R_TYPE
+Exception: 0000
+Y: fffffffe
+PC: 00000000
+NEXT_PC: 00000000
+CHANGE_PC: 0
+WR_RD: 1
+RD_ADDR: 00
+RD: fffffffe
+RD_VALID: 1
+STALL_FROM_ALU: 0
+CE: 1
+STALL: 0
+FLUSH: 0
+UVM_INFO scoreboard.sv(230) @ 35000: uvm_test_top.env.scoreboard [SCB] Entered Checking, ALU op: ADD
+UVM_INFO scoreboard.sv(292) @ 35000: uvm_test_top.env.scoreboard [SCB] A: ffffffff
+B: ffffffff
+OP: 0001
+UVM_INFO scoreboard.sv(285) @ 35000: uvm_test_top.env.scoreboard [SCB] Transaction           3 successfully verified!
+UVM_INFO scoreboard.sv(177) @ 45000: uvm_test_top.env.scoreboard [SCB] 
+***** Transaction           4 Inputs *****
+Operation Type: SUB
+RS1_ADDR: 00
+RS1: 80000000
+RS2: 00000001
+IMM: 00000000
+FUNCT3: 0
+Instruction Type: R_TYPE
+Exception: 0000
+PC: 00000000
+RD_ADDR: 00
+CE: 1
+STALL: 0
+FORCE_STALL: 0
+FLUSH: 0
+RST_N: 1
+UVM_INFO scoreboard.sv(197) @ 45000: uvm_test_top.env.scoreboard [SCB] 
+***** Transaction           4 Outputs *****
+RS1_ADDR: 00
+RS1: 80000000
+RS2: 00000001
+IMM: 00000000
+FUNCT3: 0
+Instruction Type: R_TYPE
+Exception: 0000
+Y: 80000001
+PC: 00000000
+NEXT_PC: 00000000
+CHANGE_PC: 0
+WR_RD: 1
+RD_ADDR: 00
+RD: 80000001
+RD_VALID: 1
+STALL_FROM_ALU: 0
+CE: 1
+STALL: 0
+FLUSH: 0
+UVM_INFO scoreboard.sv(230) @ 45000: uvm_test_top.env.scoreboard [SCB] Entered Checking, ALU UVM_INFO monitor.sv(62) @ 0: uvm_test_top.env.agent.monitor [MONITOR] Set report server severities and outputs
+UVM_INFO monitor.sv(85) @ 0: uvm_test_top.env.agent.monitor [MONITOR] Monitor started
+UVM_INFO monitor.sv(135) @ 15000: uvm_test_top.env.agent.monitor [SCB] 
+***** Transaction Inputs *****
+Operation Type: 0001
+RS1_ADDR: 00
+RS1: 7fffffff
+RS2: 00000001
+IMM: 00000000
+FUNCT3: 0
+Instruction Type: 001
+Exception: 0000
+PC: 00000000
+RD_ADDR: 00
+CE: 1
+STALL: 0
+FORCE_STALL: 0
+FLUSH: 0
+RST_N: 1
+UVM_INFO monitor.sv(154) @ 15000: uvm_test_top.env.agent.monitor [SCB] 
+***** Transaction Outputs *****
+RS1_ADDR: 00
+RS1: 00000000
+RS2: 00000000
+IMM: 00000000
+FUNCT3: 0
+Instruction Type: 000
+Exception: 0000
+Y: 00000000
+PC: 00000000
+NEXT_PC: 00000000
+CHANGE_PC: 0
+WR_RD: 0
+RD_ADDR: 00
+RD: 00000000
+RD_VALID: 0
+STALL_FROM_ALU: 0
+CE: 0
+STALL: 0
+FLUSH: 0
+UVM_INFO monitor.sv(135) @ 25000: uvm_test_top.env.agent.monitor [SCB] 
+***** Transaction Inputs *****
+Operation Type: 0001
+RS1_ADDR: 00
+RS1: 7fffffff
+RS2: 00000001
+IMM: 00000000
+FUNCT3: 0
+Instruction Type: 001
+Exception: 0000
+PC: 00000000
+RD_ADDR: 00
+CE: 1
+STALL: 0
+FORCE_STALL: 0
+FLUSH: 0
+RST_N: 1
+UVM_INFO monitor.sv(154) @ 25000: uvm_test_top.env.agent.monitor [SCB] 
+***** Transaction Outputs *****
+RS1_ADDR: 00
+RS1: 7fffffff
+RS2: 00000001
+IMM: 00000000
+FUNCT3: 0
+Instruction Type: 001
+Exception: 0000
+Y: 80000000
+PC: 00000000
+NEXT_PC: 00000000
+CHANGE_PC: 0
+WR_RD: 1
+RD_ADDR: 00
+RD: 80000000
+RD_VALID: 1
+STALL_FROM_ALU: 0
+CE: 1
+STALL: 0
+FLUSH: 0
+UVM_INFO monitor.sv(135) @ 35000: uvm_test_top.env.agent.monitor [SCB] 
+***** Transaction Inputs *****
+Operation Type: 0001
+RS1_ADDR: 00
+RS1: ffffffff
+RS2: ffffffff
+IMM: 00000000
+FUNCT3: 0
+Instruction Type: 001
+Exception: 0000
+PC: 00000000
+RD_ADDR: 00
+CE: 1
+STALL: 0
+FORCE_STALL: 0
+FLUSH: 0
+RST_N: 1
+UVM_INFO monitor.sv(154) @ 35000: uvm_test_top.env.agent.monitor [SCB] 
+***** Transaction Outputs *****
+RS1_ADDR: 00
+RS1: ffffffff
+RS2: ffffffff
+IMM: 00000000
+FUNCT3: 0
+Instruction Type: 001
+Exception: 0000
+Y: fffffffe
+PC: 00000000
+NEXT_PC: 00000000
+CHANGE_PC: 0
+WR_RD: 1
+RD_ADDR: 00
+RD: fffffffe
+RD_VALID: 1
+STALL_FROM_ALU: 0
+CE: 1
+STALL: 0
+FLUSH: 0
+UVM_INFO monitor.sv(135) @ 45000: uvm_test_top.env.agent.monitor [SCB] 
+***** Transaction Inputs *****
+Operation Type: 0002
+RS1_ADDR: 00
+RS1: 80000000
+RS2: 00000001
+IMM: 00000000
+FUNCT3: 0
+Instruction Type: 001
+Exception: 0000
+PC: 00000000
+RD_ADDR: 00
+CE: 1
+STALL: 0
+FORCE_STALL: 0
+FLUSH: 0
+RST_N: 1
+UVM_INFO monitor.sv(154) @ 45000: uvm_test_top.env.agent.monitor [SCB] 
+***** Transaction Outputs *****
+RS1_ADDR: 00
+RS1: 80000000
+RS2: 00000001
+IMM: 00000000
+FUNCT3: 0
+Instruction Type: 001
+Exception: 0000
+Y: 80000001
+PC: 00000000
+NEXT_PC: 00000000
+CHANGE_PC: 0
+WR_RD: 1
+RD_ADDR: 00
+RD: 80000001
+RD_VALID: 1
+STALL_FROM_ALU: 0
+CE: 1
+STALL: 0
+FLUSH: 0
+UVM_INFO monitor.sv(135) @ 55000: uvm_test_top.env.agent.monitor [SCB] 
+***** Transaction Inputs *****
+Operation Type: 0002
+RS1_ADDR: 00
+RS1: 5a5a5a5a
+RS2: 5a5a5a5a
+IMM: 00000000
+FUNCT3: 0
+Instruction Type: 001
+Exception: 0000
+PC: 00000000
+RD_ADDR: 00
+CE: 1
+STALL: 0
+FORCE_STALL: 0
+FLUSH: 0
+RST_N: 1
+UVM_INFO monitor.sv(154) @ 55000: uvm_test_top.env.agent.monitor [SCB] 
+***** Transaction Outputs *****
+RS1_ADDR: 00
+RS1: 5a5a5a5a
+RS2: 5a5a5a5a
+IMM: 00000000
+FUNCT3: 0
+Instruction Type: 001
+Exception: 0000
+Y: b4b4b4b4
+PC: 00000000
+NEXT_PC: 00000000
+CHANGE_PC: 0
+WR_RD: 1
+RD_ADDR: 00
+RD: b4b4b4b4
+RD_VALID: 1
+STALL_FROM_ALU: 0
+CE: 1
+STALL: 0
+FLUSH: 0
+UVM_INFO monitor.sv(135) @ 65000: uvm_test_top.env.agent.monitor [SCB] 
+***** Transaction Inputs *****
+Operation Type: 0040
+RS1_ADDR: 00
+RS1: aaaaaaaa
+RS2: 55555555
+IMM: 00000000
+FUNCT3: 0
+Instruction Type: 001
+Exception: 0000
+PC: 00000000
+RD_ADDR: 00
+CE: 1
+STALL: 0
+FORCE_STALL: 0
+FLUSH: 0
+RST_N: 1
+UVM_INFO monitor.sv(154) @ 65000: uvm_test_top.env.agent.monitor [SCB] 
+***** Transaction Outputs *****
+RS1_ADDR: 00
+RS1: aaaaaaaa
+RS2: 55555555
+IMM: 00000000
+FUNCT3: 0
+Instruction Type: 001
+Exception: 0000
+Y: 00000000
+PC: 00000000
+NEXT_PC: 00000000
+CHANGE_PC: 0
+WR_RD: 1
+RD_ADDR: 00
+RD: 00000000
+RD_VALID: 1
+STALL_FROM_ALU: 0
+CE: 1
+STALL: 0
+FLop: SUB
+UVM_INFO scoreboard.sv(292) @ 45000: uvm_test_top.env.scoreboard [SCB] A: 80000000
+B: 00000001
+OP: 0002
+UVM_ERROR scoreboard.sv(312) @ 45000: uvm_test_top.env.scoreboard [SCB] ALU Operation Mismatch: Expected 7fffffff, Got 80000001
+UVM_INFO scoreboard.sv(285) @ 45000: uvm_test_top.env.scoreboard [SCB] Transaction           4 successfully verified!
+UVM_INFO scoreboard.sv(177) @ 55000: uvm_test_top.env.scoreboard [SCB] 
+***** Transaction           5 Inputs *****
+Operation Type: SUB
+RS1_ADDR: 00
+RS1: 5a5a5a5a
+RS2: 5a5a5a5a
+IMM: 00000000
+FUNCT3: 0
+Instruction Type: R_TYPE
+Exception: 0000
+PC: 00000000
+RD_ADDR: 00
+CE: 1
+STALL: 0
+FORCE_STALL: 0
+FLUSH: 0
+RST_N: 1
+UVM_INFO scoreboard.sv(197) @ 55000: uvm_test_top.env.scoreboard [SCB] 
+***** Transaction           5 Outputs *****
+RS1_ADDR: 00
+RS1: 5a5a5a5a
+RS2: 5a5a5a5a
+IMM: 00000000
+FUNCT3: 0
+Instruction Type: R_TYPE
+Exception: 0000
+Y: b4b4b4b4
+PC: 00000000
+NEXT_PC: 00000000
+CHANGE_PC: 0
+WR_RD: 1
+RD_ADDR: 00
+RD: b4b4b4b4
+RD_VALID: 1
+STALL_FROM_ALU: 0
+CE: 1
+STALL: 0
+FLUSH: 0
+UVM_INFO scoreboard.sv(230) @ 55000: uvm_test_top.env.scoreboard [SCB] Entered Checking, ALU op: SUB
+UVM_INFO scoreboard.sv(292) @ 55000: uvm_test_top.env.scoreboard [SCB] A: 5a5a5a5a
+B: 5a5a5a5a
+OP: 0002
+UVM_ERROR scoreboard.sv(312) @ 55000: uvm_test_top.env.scoreboard [SCB] ALU Operation Mismatch: Expected 00000000, Got b4b4b4b4
+UVM_INFO scoreboard.sv(285) @ 55000: uvm_test_top.env.scoreboard [SCB] Transaction           5 successfully verified!
+UVM_INFO scoreboard.sv(177) @ 65000: uvm_test_top.env.scoreboard [SCB] 
+***** Transaction           6 Inputs *****
+Operation Type: AND
+RS1_ADDR: 00
+RS1: aaaaaaaa
+RS2: 55555555
+IMM: 00000000
+FUNCT3: 0
+Instruction Type: R_TYPE
+Exception: 0000
+PC: 00000000
+RD_ADDR: 00
+CE: 1
+STALL: 0
+FORCE_STALL: 0
+FLUSH: 0
+RST_N: 1
+UVM_INFO scoreboard.sv(197) @ 65000: uvm_test_top.env.scoreboard [SCB] 
+***** Transaction           6 Outputs *****
+RS1_ADDR: 00
+RS1: aaaaaaaa
+RS2: 55555555
+IMM: 00000000
+FUNCT3: 0
+Instruction Type: R_TYPE
+Exception: 0000
+Y: 00000000
+PC: 00000000
+NEXT_PC: 00000000
+CHANGE_PC: 0
+WR_RD: 1
+RD_ADDR: 00
+RD: 00000000
+RD_VALID: 1
+STALL_FROM_ALU: 0
+CE: 1
+STALL: 0
+FLUSH: 0
+UVM_INFO scoreboard.sv(230) @ 65000: uvm_test_top.env.scoreboard [SCB] Entered Checking, ALU op: AND
+UVM_INFO scoreboard.sv(292) @ 65000: uvm_test_top.env.scoreboard [SCB] A: aaaaaaaa
+B: 55555555
+OP: 0040
+UVM_INFO scoreboard.sv(285) @ 65000: uvm_test_top.env.scoreboard [SCB] Transaction           6 successfully verified!
+UVM_INFO scoreboard.sv(177) @ 75000: uvm_test_top.env.scoreboard [SCB] 
+***** Transaction           7 Inputs *****
+Operation Type: OR
+RS1_ADDR: 00
+RS1: f0f0f0f0
+RS2: 0f0f0f0f
+IMM: 00000000
+FUNCT3: 0
+Instruction Type: R_TYPE
+Exception: 0000
+PC: 00000000
+RD_ADDR: 00
+CE: 1
+STALL: 0
+FORCE_STALL: 0
+FLUSH: 0
+RST_N: 1
+UVM_INFO scoreboard.sv(197) @ 75000: uvm_test_top.env.scoreboard [SCB] 
+***** Transaction           7 Outputs *****
+RS1_ADDR: 00
+RS1: f0f0f0f0
+RS2: 0f0f0f0f
+IMM: 00000000
+FUNCT3: 0
+Instruction Type: R_TYPE
+Exception: 0000
+Y: ffffffff
+PC: 00000000
+NEXT_PC: 00000000
+CHANGE_PC: 0
+WR_RD: 1
+RD_ADDR: 00
+RD: ffffffff
+RD_VALID: 1
+STALL_FROM_ALU: 0
+CE: 1
+STALL: 0
+FLUSH: 0
+UVM_INFO scoreboard.sv(230) @ 75000: uvm_test_top.env.scoreboard [SCB] Entered Checking, ALU op: OR
+UVM_INFO scoreboard.sv(292) @ 75000: uvm_test_top.env.scoreboard [SCB] A: f0f0f0f0
+B: 0f0f0f0f
+OP: 0020
+UVM_INFO scoreboard.sv(285) @ 75000: uvm_test_top.env.scoreboard [SCB] Transaction           7 successfully verified!
+UVM_INFO scoreboard.sv(177) @ 85000: uvm_test_top.env.scoreboard [SCB] 
+***** Transaction           8 Inputs *****
+Operation Type: XOR
+RS1_ADDR: 00
+RS1: aaaaaaaa
+RS2: aaaaaaaa
+IMM: 00000000
+FUNCT3: 0
+Instruction Type: R_TYPE
+Exception: 0000
+PC: 00000000
+RD_ADDR: 00
+CE: 1
+STALL: 0
+FORCE_STALL: 0
+FLUSH: 0
+RST_N: 1
+UVM_INFO scoreboard.sv(197) @ 85000: uvm_test_top.env.scoreboard [SCB] 
+***** Transaction           8 Outputs *****
+RS1_ADDR: 00
+RS1: aaaaaaaa
+RS2: aaaaaaaa
+IMM: 00000000
+FUNCT3: 0
+Instruction Type: R_TYPE
+Exception: 0000
+Y: 00000000
+PC: 00000000
+NEXT_PC: 00000000
+CHANGE_PC: 0
+WR_RD: 1
+RD_ADDR: 00
+RD: 00000000
+RD_VALID: 1
+STALL_FROM_ALU: 0
+CE: 1
+STALL: 0
+FLUSH: 0
+UVM_INFO scoreboard.sv(230) @ 85000: uvm_test_top.env.scoreboard [SCB] Entered Checking, ALU op: XOR
+UVM_INFO scoreboard.sv(292) @ 85000: uvm_test_top.env.scoreboard [SCB] A: aaaaaaaa
+B: aaaaaaaa
+OP: 0010
+UVM_INFO scoreboard.sv(285) @ 85000: uvm_test_top.env.scoreboard [SCB] Transaction           8 successfully verified!
+UVM_INFO scoreboard.sv(177) @ 95000: uvm_test_top.env.scoreboard [SCB] 
+***** Transaction           9 Inputs *****
+Operation Type: SRL
+RS1_ADDR: 1a
+RS1: 77b9e05f
+RS2: 7fffffff
+IMM: 00000000
+FUNCT3: 6
+Instruction Type: I_TYPE
+Exception: 0000
+PC: 27c07d50
+RD_ADDR: 05
+CE: 1
+STALL: 0
+FORCE_STALL: 0
+FLUSH: 0
+RST_N: 1
+UVM_INFO scoreboard.sv(197) @ 95000: uvm_test_top.env.scoreboard [SCB] 
+***** Transaction           9 Outputs *****
+RS1_ADDR: 1a
+RS1: 77b9e05f
+RS2: 7fffffff
+IMM: 00000000
+FUNCT3: 6
+Instruction Type: I_TYPE
+Exception: 0000
+Y: 77b9e05f
+PC: 27c07d50
+NEXT_PC: 00000000
+CHANGE_PC: 0
+WR_RD: 1
+RD_ADDR: 05
+RD: 77b9e05f
+RD_VALID: 1
+STALL_FROM_ALU: 0
+CE: 1
+STALL: 0
+FLUSH: 0
+UVM_INFO scoreboard.sv(230) @ 95000: uvm_test_top.env.scoreboard [SCB] Entered Checking, ALU op: SRL
+UVM_INFO scoreboard.sv(292) @ 95000: uvm_test_top.env.scoreboard [SCB] A: 77b9e05f
+B: 00000000
+OP: 0100
+UVM_INFO scoreboard.sv(285) @ 95000: uvm_test_top.env.scoreboard [SCB] Transaction           9 successfully verified!
+UVM_INFO scoreboard.sv(177) @ 105000: uvm_test_top.env.scoreboard [SCB] 
+***** Transaction          10 Inputs *****
+Operation Type: AND
+RS1_ADDR: 17
+RS1: 80000000
+RS2: 7e645533
+IMM: ffffffff
+FUNCT3: 0
+Instruction Type: R_TYPE
+Exception: 0000
+PC: 4b2b84cc
+RD_ADDR: 10
+CE: 1
+STALL: 0
+FORCE_STALL: 0
+FLUSH: 0
+RST_N: 1
+UVM_INFO scoreboard.sv(197) @ 105000: uvm_test_top.env.scoreboard [SCB] 
+***** Transaction          10 Outputs *****
+RS1_ADDR: 17
+RS1: 80000000
+RS2: 7e645533
+IMM: 00000fff
+FUNCT3: 0
+Instruction Type: R_TYPE
+Exception: 0000
+Y: 00000000
+PC: 4b2b84cc
+NEXT_PC: 00000000
+CHANGE_PC: 0
+WR_RD: 1
+RD_ADDR: 10
+RD: 00000000
+RD_VALID: 1
+STALL_FROM_ALU: 0
+CE: 1
+STALL: 0
+FLUSH: 0
+UVM_INFO scoreboard.sv(230) @ 105000: uvm_test_top.env.scoreboard [SCB] Entered Checking, ALU op: AND
+UVM_INFO scoreboard.sv(292) @ 105000: uvm_test_top.env.scoreboard [SCB] A: 80000000
+B: 7e645533
+OP: 0040
+UVM_INFO scoreboard.sv(285) @ 105000: uvm_test_top.env.scoreboard [SCB] Transaction          10 successfully verified!
+UVM_INFO scoreboard.sv(177) @ 115000: uvm_test_top.env.scoreboard [SCB] 
+***** Transaction          11 Inputs *****
+Operation Type: SLT
+RS1_ADDR: 14
+RS1: 2b23fbf7
+RS2: 80000000
+IMM: 0d5f81a9
+FUNCT3: 3
+Instruction Type: R_TYPE
+Exception: 0000
+PC: e0b0133a
+RD_ADDR: 19
+CE: 1
+STALL: 0
+FORCE_STALL: 0
+FLUSH: 0
+RST_N: 1
+UVM_INFO scoreboard.sv(197) @ 115000: uvm_test_top.env.scoreboard [SCB] 
+***** Transaction          11 Outputs *****
+RS1_ADDR: 14
+RS1: 2b23fbf7
+RS2: 80000000
+IMM: 000001a9
+FUNCT3: 3
+Instruction Type: R_TYPE
+Exception: 0000
+Y: 00000000
+PC: e0b0133a
+NEXT_PC: 00000000
+CHANGE_PC: 0
+WR_RD: 1
+RD_ADDR: 19
+RD: 00000000
+RD_VALID: 1
+STALL_FROM_ALU: 0
+CE: 1
+STALL: 0
+FLUSH: 0
+UVM_INFO scoreboard.sv(230) @ 115000: uvm_test_top.env.scoreboard [SCB] Entered Checking, ALU op: SLT
+UVM_INFO scoreboard.sv(292) @ 115000: uvm_test_top.env.scoreboard [SCB] A: 2b23fbf7
+B: 80000000
+OP: 0004
+UVM_INFO scoreboard.sv(285) @ 115000: uvm_test_top.env.scoreboard [SCB] Transaction          11 successfully verified!
+UVM_INFO scoreboard.sv(177) @ 125000: uvm_test_top.env.scoreboard [SCB] 
+***** Transaction          12 Inputs *****
+Operation Type: SLTU
+RS1_ADDR: 08
+RS1: 80000000
+RS2: 00000000
+IMM: 7a732e79
+FUNCT3: 3
+Instruction Type: R_TYPE
+Exception: 0000
+PC: 7ac9bb53
+RD_ADDR: 08
+CE: 1
+STALL: 0
+FORCE_STALL: 0
+FLUSH: 0
+RST_N: 1
+UVM_INFO scoreboard.sv(197) @ 125000: uvm_test_top.env.scoreboard [SCB] 
+***** Transaction          12 Outputs *****
+RS1_ADDR: 08
+RS1: 80000000
+RS2: 00000000
+IMM: 00000e79
+FUNCT3: 3
+Instruction Type: R_TYPE
+Exception: 0000
+Y: 00000000
+PC: 7ac9bb53
+NEXT_PC: 00000000
+CHANGE_PC: 0
+WR_RD: 1
+RD_ADDR: 08
+RD: 00000000
+RD_VALID: 1
+STALL_FROM_ALU: 0
+CE: 1
+STALL: 0
+FLUUVM_INFO driver.sv(42) @ 0: uvm_test_top.env.agent.driver [DRV] Set report server severities and outputs
+UVM_INFO driver.sv(46) @ 0: uvm_test_top.env.agent.driver [DRV] DRIVER Building
+UVM_INFO driver.sv(118) @ 0: uvm_test_top.env.agent.driver [SCB] 
+***** Driver Inputs *****
+Operation Type: 0001
+RS1_ADDR: 00
+RS1: 7fffffff
+RS2: 00000001
+IMM: 00000000
+FUNCT3: 0
+Instruction Type: 001
+Exception: 0000
+PC: 00000000
+RD_ADDR: 00
+CE: 1
+STALL: 0
+FORCE_STALL: 0
+FLUSH: 0
+RST_N: 0
+UVM_INFO driver.sv(118) @ 5000: uvm_test_top.env.agent.driver [SCB] 
+***** Driver Inputs *****
+Operation Type: 0001
+RS1_ADDR: 00
+RS1: 7fffffff
+RS2: 00000001
+IMM: 00000000
+FUNCT3: 0
+Instruction Type: 001
+Exception: 0000
+PC: 00000000
+RD_ADDR: 00
+CE: 1
+STALL: 0
+FORCE_STALL: 0
+FLUSH: 0
+RST_N: 1
+UVM_INFO driver.sv(118) @ 15000: uvm_test_top.env.agent.driver [SCB] 
+***** Driver Inputs *****
+Operation Type: 0001
+RS1_ADDR: 00
+RS1: ffffffff
+RS2: ffffffff
+IMM: 00000000
+FUNCT3: 0
+Instruction Type: 001
+Exception: 0000
+PC: 00000000
+RD_ADDR: 00
+CE: 1
+STALL: 0
+FORCE_STALL: 0
+FLUSH: 0
+RST_N: 1
+UVM_INFO driver.sv(118) @ 25000: uvm_test_top.env.agent.driver [SCB] 
+***** Driver Inputs *****
+Operation Type: 0002
+RS1_ADDR: 00
+RS1: 80000000
+RS2: 00000001
+IMM: 00000000
+FUNCT3: 0
+Instruction Type: 001
+Exception: 0000
+PC: 00000000
+RD_ADDR: 00
+CE: 1
+STALL: 0
+FORCE_STALL: 0
+FLUSH: 0
+RST_N: 1
+UVM_INFO driver.sv(118) @ 35000: uvm_test_top.env.agent.driver [SCB] 
+***** Driver Inputs *****
+Operation Type: 0002
+RS1_ADDR: 00
+RS1: 5a5a5a5a
+RS2: 5a5a5a5a
+IMM: 00000000
+FUNCT3: 0
+Instruction Type: 001
+Exception: 0000
+PC: 00000000
+RD_ADDR: 00
+CE: 1
+STALL: 0
+FORCE_STALL: 0
+FLUSH: 0
+RST_N: 1
+UVM_INFO driver.sv(118) @ 45000: uvm_test_top.env.agent.driver [SCB] 
+***** Driver Inputs *****
+Operation Type: 0040
+RS1_ADDR: 00
+RS1: aaaaaaaa
+RS2: 55555555
+IMM: 00000000
+FUNCT3: 0
+Instruction Type: 001
+Exception: 0000
+PC: 00000000
+RD_ADDR: 00
+CE: 1
+STALL: 0
+FORCE_STALL: 0
+FLUSH: 0
+RST_N: 1
+UVM_INFO driver.sv(118) @ 55000: uvm_test_top.env.agent.driver [SCB] 
+***** Driver Inputs *****
+Operation Type: 0020
+RS1_ADDR: 00
+RS1: f0f0f0f0
+RS2: 0f0f0f0f
+IMM: 00000000
+FUNCT3: 0
+Instruction Type: 001
+Exception: 0000
+PC: 00000000
+RD_ADDR: 00
+CE: 1
+STALL: 0
+FORCE_STALL: 0
+FLUSH: 0
+RST_N: 1
+UVM_INFO driver.sv(118) @ 65000: uvm_test_top.env.agent.driver [SCB] 
+***** Driver Inputs *****
+Operation Type: 0010
+RS1_ADDR: 00
+RS1: aaaaaaaa
+RS2: aaaaaaaa
+IMM: 00000000
+FUNCT3: 0
+Instruction Type: 001
+Exception: 0000
+PC: 00000000
+RD_ADDR: 00
+CE: 1
+STALL: 0
+FORCE_STALL: 0
+FLUSH: 0
+RST_N: 1
+UVM_INFO driver.sv(118) @ 75000: uvm_test_top.env.agent.driver [SCB] 
+***** Driver Inputs *****
+Operation Type: 0100
+RS1_ADDR: 1a
+RS1: 77b9e05f
+RS2: 7fffffff
+IMM: 00000000
+FUNCT3: 6
+Instruction Type: 002
+Exception: 0000
+PC: 27c07d50
+RD_ADDR: 05
+CE: 1
+STALL: 0
+FORCE_STALL: 0
+FLUSH: 0
+RST_N: 1
+UVM_INFO driver.sv(118) @ 85000: uvm_test_top.env.agent.driver [SCB] 
+***** Driver Inputs *****
+Operation Type: 0040
+RS1_ADDR: 17
+RS1: 80000000
+RS2: 7e645533
+IMM: ffffffff
+FUNCT3: 0
+Instruction Type: 001
+Exception: 0000
+PC: 4b2b84cc
+RD_ADDR: 10
+CE: 1
+STALL: 0
+FORCE_STALL: 0
+FLUSH: 0
+RST_N: 1
+UVM_INFO driver.sv(118) @ 95000: uvm_test_top.env.agent.driver [SCB] 
+***** Driver Inputs *****
+Operation Type: 0004
+RS1_ADDR: 14
+RS1: 2b23fbf7
+RS2: 80000000
+IMM: 0d5f81a9
+FUNCT3: 3
+Instruction Type: 001
+Exception: 0000
+PC: e0b0133a
+RD_ADDR: 19
+CE: 1
+STALL: 0
+FORCE_STALL: 0
+FLUSH: 0
+RST_N: 1
+UVM_INFO driver.sv(118) @ 105000: uvm_test_top.env.agent.driver [SCB] 
+***** Driver Inputs *****
+Operation Type: 0008
+RS1_ADDR: 08
+RS1: 80000000
+RS2: 00000000
+IMM: 7a732e79
+FUNCT3: 3
+Instruction Type: 001
+Exception: 0000
+PC: 7ac9bb53
+RD_ADDR: 08
+CE: 1
+STALL: 0
+FORCE_STALL: 0
+FLUSH: 0
+RST_N: 1
+UVM_INFO driver.sv(118) @ 115000: uvm_test_top.env.agent.driver [SCB] 
+***** Driver Inputs *****
+Operation Type: 0040
+RS1_ADDR: 1a
+RS1: 80000000
+RS2: ffffffff
+IMM: 3f434dac
+FUNCT3: 3
+Instruction Type: 001
+Exception: 0000
+PC: a408b0fc
+RD_ADDR: 11
+CE: 1
+STALL: 0
+FORCE_STALL: 0
+FLUSH: 0
+RST_N: 1
+UVM_INFO driver.sv(118) @ 125000: uvm_test_top.env.agent.driver [SCB] 
+***** Driver Inputs *****
+OperatioUSH: 0
+UVM_INFO monitor.sv(135) @ 75000: uvm_test_top.env.agent.monitor [SCB] 
+***** Transaction Inputs *****
+Operation Type: 0020
+RS1_ADDR: 00
+RS1: f0f0f0f0
+RS2: 0f0f0f0f
+IMM: 00000000
+FUNCT3: 0
+Instruction Type: 001
+Exception: 0000
+PC: 00000000
+RD_ADDR: 00
+CE: 1
+STALL: 0
+FORCE_STALL: 0
+FLUSH: 0
+RST_N: 1
+UVM_INFO monitor.sv(154) @ 75000: uvm_test_top.env.agent.monitor [SCB] 
+***** Transaction Outputs *****
+RS1_ADDR: 00
+RS1: f0f0f0f0
+RS2: 0f0f0f0f
+IMM: 00000000
+FUNCT3: 0
+Instruction Type: 001
+Exception: 0000
+Y: ffffffff
+PC: 00000000
+NEXT_PC: 00000000
+CHANGE_PC: 0
+WR_RD: 1
+RD_ADDR: 00
+RD: ffffffff
+RD_VALID: 1
+STALL_FROM_ALU: 0
+CE: 1
+STALL: 0
+FLUSH: 0
+UVM_INFO monitor.sv(135) @ 85000: uvm_test_top.env.agent.monitor [SCB] 
+***** Transaction Inputs *****
+Operation Type: 0010
+RS1_ADDR: 00
+RS1: aaaaaaaa
+RS2: aaaaaaaa
+IMM: 00000000
+FUNCT3: 0
+Instruction Type: 001
+Exception: 0000
+PC: 00000000
+RD_ADDR: 00
+CE: 1
+STALL: 0
+FORCE_STALL: 0
+FLUSH: 0
+RST_N: 1
+UVM_INFO monitor.sv(154) @ 85000: uvm_test_top.env.agent.monitor [SCB] 
+***** Transaction Outputs *****
+RS1_ADDR: 00
+RS1: aaaaaaaa
+RS2: aaaaaaaa
+IMM: 00000000
+FUNCT3: 0
+Instruction Type: 001
+Exception: 0000
+Y: 00000000
+PC: 00000000
+NEXT_PC: 00000000
+CHANGE_PC: 0
+WR_RD: 1
+RD_ADDR: 00
+RD: 00000000
+RD_VALID: 1
+STALL_FROM_ALU: 0
+CE: 1
+STALL: 0
+FLUSH: 0
+UVM_INFO monitor.sv(135) @ 95000: uvm_test_top.env.agent.monitor [SCB] 
+***** Transaction Inputs *****
+Operation Type: 0100
+RS1_ADDR: 1a
+RS1: 77b9e05f
+RS2: 7fffffff
+IMM: 00000000
+FUNCT3: 6
+Instruction Type: 002
+Exception: 0000
+PC: 27c07d50
+RD_ADDR: 05
+CE: 1
+STALL: 0
+FORCE_STALL: 0
+FLUSH: 0
+RST_N: 1
+UVM_INFO monitor.sv(154) @ 95000: uvm_test_top.env.agent.monitor [SCB] 
+***** Transaction Outputs *****
+RS1_ADDR: 1a
+RS1: 77b9e05f
+RS2: 7fffffff
+IMM: 00000000
+FUNCT3: 6
+Instruction Type: 002
+Exception: 0000
+Y: 77b9e05f
+PC: 27c07d50
+NEXT_PC: 00000000
+CHANGE_PC: 0
+WR_RD: 1
+RD_ADDR: 05
+RD: 77b9e05f
+RD_VALID: 1
+STALL_FROM_ALU: 0
+CE: 1
+STALL: 0
+FLUSH: 0
+UVM_INFO monitor.sv(135) @ 105000: uvm_test_top.env.agent.monitor [SCB] 
+***** Transaction Inputs *****
+Operation Type: 0040
+RS1_ADDR: 17
+RS1: 80000000
+RS2: 7e645533
+IMM: ffffffff
+FUNCT3: 0
+Instruction Type: 001
+Exception: 0000
+PC: 4b2b84cc
+RD_ADDR: 10
+CE: 1
+STALL: 0
+FORCE_STALL: 0
+FLUSH: 0
+RST_N: 1
+UVM_INFO monitor.sv(154) @ 105000: uvm_test_top.env.agent.monitor [SCB] 
+***** Transaction Outputs *****
+RS1_ADDR: 17
+RS1: 80000000
+RS2: 7e645533
+IMM: 00000fff
+FUNCT3: 0
+Instruction Type: 001
+Exception: 0000
+Y: 00000000
+PC: 4b2b84cc
+NEXT_PC: 00000000
+CHANGE_PC: 0
+WR_RD: 1
+RD_ADDR: 10
+RD: 00000000
+RD_VALID: 1
+STALL_FROM_ALU: 0
+CE: 1
+STALL: 0
+FLUSH: 0
+UVM_INFO monitor.sv(135) @ 115000: uvm_test_top.env.agent.monitor [SCB] 
+***** Transaction Inputs *****
+Operation Type: 0004
+RS1_ADDR: 14
+RS1: 2b23fbf7
+RS2: 80000000
+IMM: 0d5f81a9
+FUNCT3: 3
+Instruction Type: 001
+Exception: 0000
+PC: e0b0133a
+RD_ADDR: 19
+CE: 1
+STALL: 0
+FORCE_STALL: 0
+FLUSH: 0
+RST_N: 1
+UVM_INFO monitor.sv(154) @ 115000: uvm_test_top.env.agent.monitor [SCB] 
+***** Transaction Outputs *****
+RS1_ADDR: 14
+RS1: 2b23fbf7
+RS2: 80000000
+IMM: 000001a9
+FUNCT3: 3
+Instruction Type: 001
+Exception: 0000
+Y: 00000000
+PC: e0b0133a
+NEXT_PC: 00000000
+CHANGE_PC: 0
+WR_RD: 1
+RD_ADDR: 19
+RD: 00000000
+RD_VALID: 1
+STALL_FROM_ALU: 0
+CE: 1
+STALL: 0
+FLUSH: 0
+UVM_INFO monitor.sv(135) @ 125000: uvm_test_top.env.agent.monitor [SCB] 
+***** Transaction Inputs *****
+Operation Type: 0008
+RS1_ADDR: 08
+RS1: 80000000
+RS2: 00000000
+IMM: 7a732e79
+FUNCT3: 3
+Instruction Type: 001
+Exception: 0000
+PC: 7ac9bb53
+RD_ADDR: 08
+CE: 1
+STALL: 0
+FORCE_STALL: 0
+FLUSH: 0
+RST_N: 1
+UVM_INFO monitor.sv(154) @ 125000: uvm_test_top.env.agent.monitor [SCB] 
+***** Transaction Outputs *****
+RS1_ADDR: 08
+RS1: 80000000
+RS2: 00000000
+IMM: 00000e79
+FUNCT3: 3
+Instruction Type: 001
+Exception: 0000
+Y: 00000000
+PC: 7ac9bb53
+NEXT_PC: 00000000
+CHANGE_PC: 0
+WR_RD: 1
+RD_ADDR: 08
+RD: 00000000
+RD_VALID: 1
+STALL_FROM_ALU: 0
+CE: 1
+STALL: 0
+FLUSH: 0
+UVM_INFO monitor.sv(135) @ 135000: uvm_test_top.env.agent.monitor [SCB] 
+***** Transaction Inputs *****
+Operation Type: 0040
+RS1_ADDR: 1a
+RS1: 80000000
+RS2: ffffffff
+IMM: 3f434dSH: 0
+UVM_INFO scoreboard.sv(230) @ 125000: uvm_test_top.env.scoreboard [SCB] Entered Checking, ALU op: SLTU
+UVM_INFO scoreboard.sv(292) @ 125000: uvm_test_top.env.scoreboard [SCB] A: 80000000
+B: 00000000
+OP: 0008
+UVM_INFO scoreboard.sv(285) @ 125000: uvm_test_top.env.scoreboard [SCB] Transaction          12 successfully verified!
+UVM_INFO scoreboard.sv(177) @ 135000: uvm_test_top.env.scoreboard [SCB] 
+***** Transaction          13 Inputs *****
+Operation Type: AND
+RS1_ADDR: 1a
+RS1: 80000000
+RS2: ffffffff
+IMM: 3f434dac
+FUNCT3: 3
+Instruction Type: R_TYPE
+Exception: 0000
+PC: a408b0fc
+RD_ADDR: 11
+CE: 1
+STALL: 0
+FORCE_STALL: 0
+FLUSH: 0
+RST_N: 1
+UVM_INFO scoreboard.sv(197) @ 135000: uvm_test_top.env.scoreboard [SCB] 
+***** Transaction          13 Outputs *****
+RS1_ADDR: 1a
+RS1: 80000000
+RS2: ffffffff
+IMM: 00000dac
+FUNCT3: 3
+Instruction Type: R_TYPE
+Exception: 0000
+Y: 80000000
+PC: a408b0fc
+NEXT_PC: 00000000
+CHANGE_PC: 0
+WR_RD: 1
+RD_ADDR: 11
+RD: 80000000
+RD_VALID: 1
+STALL_FROM_ALU: 0
+CE: 1
+STALL: 0
+FLUSH: 0
+UVM_INFO scoreboard.sv(230) @ 135000: uvm_test_top.env.scoreboard [SCB] Entered Checking, ALU op: AND
+UVM_INFO scoreboard.sv(292) @ 135000: uvm_test_top.env.scoreboard [SCB] A: 80000000
+B: ffffffff
+OP: 0040
+UVM_INFO scoreboard.sv(285) @ 135000: uvm_test_top.env.scoreboard [SCB] Transaction          13 successfully verified!
+UVM_INFO scoreboard.sv(177) @ 145000: uvm_test_top.env.scoreboard [SCB] 
+***** Transaction          14 Inputs *****
+Operation Type: SLT
+RS1_ADDR: 11
+RS1: 81a74ba2
+RS2: 80000000
+IMM: 4d47e5fe
+FUNCT3: 4
+Instruction Type: R_TYPE
+Exception: 0000
+PC: 6e98b0e3
+RD_ADDR: 02
+CE: 1
+STALL: 0
+FORCE_STALL: 0
+FLUSH: 0
+RST_N: 1
+UVM_INFO scoreboard.sv(197) @ 145000: uvm_test_top.env.scoreboard [SCB] 
+***** Transaction          14 Outputs *****
+RS1_ADDR: 11
+RS1: 81a74ba2
+RS2: 80000000
+IMM: 000005fe
+FUNCT3: 4
+Instruction Type: R_TYPE
+Exception: 0000
+Y: 00000000
+PC: 6e98b0e3
+NEXT_PC: 00000000
+CHANGE_PC: 0
+WR_RD: 1
+RD_ADDR: 02
+RD: 00000000
+RD_VALID: 1
+STALL_FROM_ALU: 0
+CE: 1
+STALL: 0
+FLUSH: 0
+UVM_INFO scoreboard.sv(230) @ 145000: uvm_test_top.env.scoreboard [SCB] Entered Checking, ALU op: SLT
+UVM_INFO scoreboard.sv(292) @ 145000: uvm_test_top.env.scoreboard [SCB] A: 81a74ba2
+B: 80000000
+OP: 0004
+UVM_INFO scoreboard.sv(285) @ 145000: uvm_test_top.env.scoreboard [SCB] Transaction          14 successfully verified!
+UVM_INFO scoreboard.sv(177) @ 155000: uvm_test_top.env.scoreboard [SCB] 
+***** Transaction          15 Inputs *****
+Operation Type: SLTU
+RS1_ADDR: 07
+RS1: 50685ab4
+RS2: 80000000
+IMM: 00000000
+FUNCT3: 7
+Instruction Type: R_TYPE
+Exception: 0000
+PC: 31e39f0f
+RD_ADDR: 1a
+CE: 1
+STALL: 0
+FORCE_STALL: 0
+FLUSH: 0
+RST_N: 1
+UVM_INFO scoreboard.sv(197) @ 155000: uvm_test_top.env.scoreboard [SCB] 
+***** Transaction          15 Outputs *****
+RS1_ADDR: 07
+RS1: 50685ab4
+RS2: 80000000
+IMM: 00000000
+FUNCT3: 7
+Instruction Type: R_TYPE
+Exception: 0000
+Y: 00000001
+PC: 31e39f0f
+NEXT_PC: 00000000
+CHANGE_PC: 0
+WR_RD: 1
+RD_ADDR: 1a
+RD: 00000001
+RD_VALID: 1
+STALL_FROM_ALU: 0
+CE: 1
+STALL: 0
+FLUSH: 0
+UVM_INFO scoreboard.sv(230) @ 155000: uvm_test_top.env.scoreboard [SCB] Entered Checking, ALU op: SLTU
+UVM_INFO scoreboard.sv(292) @ 155000: uvm_test_top.env.scoreboard [SCB] A: 50685ab4
+B: 80000000
+OP: 0008
+UVM_INFO scoreboard.sv(285) @ 155000: uvm_test_top.env.scoreboard [SCB] Transaction          15 successfully verified!
+UVM_INFO scoreboard.sv(177) @ 165000: uvm_test_top.env.scoreboard [SCB] 
+***** Transaction          16 Inputs *****
+Operation Type: SLTU
+RS1_ADDR: 16
+RS1: 1ef75c3c
+RS2: 80000000
+IMM: ffffffff
+FUNCT3: 3
+Instruction Type: I_TYPE
+Exception: 0000
+PC: 8554d277
+RD_ADDR: 10
+CE: 1
+STALL: 0
+FORCE_STALL: 0
+FLUSH: 0
+RST_N: 1
+UVM_INFO scoreboard.sv(197) @ 165000: uvm_test_top.env.scoreboard [SCB] 
+***** Transaction          16 Outputs *****
+RS1_ADDR: 16
+RS1: 1ef75c3c
+RS2: 80000000
+IMM: 00000fff
+FUNCT3: 3
+Instruction Type: I_TYPE
+Exception: 0000
+Y: 00000001
+PC: 8554d277
+NEXT_PC: 00000000
+CHANGE_PC: 0
+WR_RD: 1
+RD_ADDR: 10
+RD: 00000001
+RD_VALID: 1
+STALL_FROM_ALU: 0
+CE: 1
+STALL: 0
+FLUSH: 0
+UVM_INFO scoreboard.sv(230) @ 165000: uvm_test_top.envac
+FUNCT3: 3
+Instruction Type: 001
+Exception: 0000
+PC: a408b0fc
+RD_ADDR: 11
+CE: 1
+STALL: 0
+FORCE_STALL: 0
+FLUSH: 0
+RST_N: 1
+UVM_INFO monitor.sv(154) @ 135000: uvm_test_top.env.agent.monitor [SCB] 
+***** Transaction Outputs *****
+RS1_ADDR: 1a
+RS1: 80000000
+RS2: ffffffff
+IMM: 00000dac
+FUNCT3: 3
+Instruction Type: 001
+Exception: 0000
+Y: 80000000
+PC: a408b0fc
+NEXT_PC: 00000000
+CHANGE_PC: 0
+WR_RD: 1
+RD_ADDR: 11
+RD: 80000000
+RD_VALID: 1
+STALL_FROM_ALU: 0
+CE: 1
+STALL: 0
+FLUSH: 0
+UVM_INFO monitor.sv(135) @ 145000: uvm_test_top.env.agent.monitor [SCB] 
+***** Transaction Inputs *****
+Operation Type: 0004
+RS1_ADDR: 11
+RS1: 81a74ba2
+RS2: 80000000
+IMM: 4d47e5fe
+FUNCT3: 4
+Instruction Type: 001
+Exception: 0000
+PC: 6e98b0e3
+RD_ADDR: 02
+CE: 1
+STALL: 0
+FORCE_STALL: 0
+FLUSH: 0
+RST_N: 1
+UVM_INFO monitor.sv(154) @ 145000: uvm_test_top.env.agent.monitor [SCB] 
+***** Transaction Outputs *****
+RS1_ADDR: 11
+RS1: 81a74ba2
+RS2: 80000000
+IMM: 000005fe
+FUNCT3: 4
+Instruction Type: 001
+Exception: 0000
+Y: 00000000
+PC: 6e98b0e3
+NEXT_PC: 00000000
+CHANGE_PC: 0
+WR_RD: 1
+RD_ADDR: 02
+RD: 00000000
+RD_VALID: 1
+STALL_FROM_ALU: 0
+CE: 1
+STALL: 0
+FLUSH: 0
+UVM_INFO monitor.sv(135) @ 155000: uvm_test_top.env.agent.monitor [SCB] 
+***** Transaction Inputs *****
+Operation Type: 0008
+RS1_ADDR: 07
+RS1: 50685ab4
+RS2: 80000000
+IMM: 00000000
+FUNCT3: 7
+Instruction Type: 001
+Exception: 0000
+PC: 31e39f0f
+RD_ADDR: 1a
+CE: 1
+STALL: 0
+FORCE_STALL: 0
+FLUSH: 0
+RST_N: 1
+UVM_INFO monitor.sv(154) @ 155000: uvm_test_top.env.agent.monitor [SCB] 
+***** Transaction Outputs *****
+RS1_ADDR: 07
+RS1: 50685ab4
+RS2: 80000000
+IMM: 00000000
+FUNCT3: 7
+Instruction Type: 001
+Exception: 0000
+Y: 00000001
+PC: 31e39f0f
+NEXT_PC: 00000000
+CHANGE_PC: 0
+WR_RD: 1
+RD_ADDR: 1a
+RD: 00000001
+RD_VALID: 1
+STALL_FROM_ALU: 0
+CE: 1
+STALL: 0
+FLUSH: 0
+UVM_INFO monitor.sv(135) @ 165000: uvm_test_top.env.agent.monitor [SCB] 
+***** Transaction Inputs *****
+Operation Type: 0008
+RS1_ADDR: 16
+RS1: 1ef75c3c
+RS2: 80000000
+IMM: ffffffff
+FUNCT3: 3
+Instruction Type: 002
+Exception: 0000
+PC: 8554d277
+RD_ADDR: 10
+CE: 1
+STALL: 0
+FORCE_STALL: 0
+FLUSH: 0
+RST_N: 1
+UVM_INFO monitor.sv(154) @ 165000: uvm_test_top.env.agent.monitor [SCB] 
+***** Transaction Outputs *****
+RS1_ADDR: 16
+RS1: 1ef75c3c
+RS2: 80000000
+IMM: 00000fff
+FUNCT3: 3
+Instruction Type: 002
+Exception: 0000
+Y: 00000001
+PC: 8554d277
+NEXT_PC: 00000000
+CHANGE_PC: 0
+WR_RD: 1
+RD_ADDR: 10
+RD: 00000001
+RD_VALID: 1
+STALL_FROM_ALU: 0
+CE: 1
+STALL: 0
+FLUSH: 0
+UVM_INFO monitor.sv(135) @ 175000: uvm_test_top.env.agent.monitor [SCB] 
+***** Transaction Inputs *****
+Operation Type: 0010
+RS1_ADDR: 06
+RS1: 80000000
+RS2: b09f21b6
+IMM: 90f49c86
+FUNCT3: 6
+Instruction Type: 002
+Exception: 0000
+PC: f24a267f
+RD_ADDR: 04
+CE: 1
+STALL: 0
+FORCE_STALL: 0
+FLUSH: 0
+RST_N: 1
+UVM_INFO monitor.sv(154) @ 175000: uvm_test_top.env.agent.monitor [SCB] 
+***** Transaction Outputs *****
+RS1_ADDR: 06
+RS1: 80000000
+RS2: b09f21b6
+IMM: 00000c86
+FUNCT3: 6
+Instruction Type: 002
+Exception: 0000
+Y: 10f49c86
+PC: f24a267f
+NEXT_PC: 00000000
+CHANGE_PC: 0
+WR_RD: 1
+RD_ADDR: 04
+RD: 10f49c86
+RD_VALID: 1
+STALL_FROM_ALU: 0
+CE: 1
+STALL: 0
+FLUSH: 0
+UVM_INFO monitor.sv(135) @ 185000: uvm_test_top.env.agent.monitor [SCB] 
+***** Transaction Inputs *****
+Operation Type: 0008
+RS1_ADDR: 03
+RS1: 7fffffff
+RS2: 2e98e977
+IMM: 00000000
+FUNCT3: 1
+Instruction Type: 001
+Exception: 0000
+PC: 2a758d3a
+RD_ADDR: 05
+CE: 1
+STALL: 0
+FORCE_STALL: 0
+FLUSH: 0
+RST_N: 1
+UVM_INFO monitor.sv(154) @ 185000: uvm_test_top.env.agent.monitor [SCB] 
+***** Transaction Outputs *****
+RS1_ADDR: 03
+RS1: 7fffffff
+RS2: 2e98e977
+IMM: 00000000
+FUNCT3: 1
+Instruction Type: 001
+Exception: 0000
+Y: 00000000
+PC: 2a758d3a
+NEXT_PC: 00000000
+CHANGE_PC: 0
+WR_RD: 1
+RD_ADDR: 05
+RD: 00000000
+RD_VALID: 1
+STALL_FROM_ALU: 0
+CE: 1
+STALL: 0
+FLUSH: 0
+UVM_INFO monitor.sv(135) @ 195000: uvm_test_top.env.agent.monitor [SCB] 
+***** Transaction Inputs *****
+Operation Type: 0004
+RS1_ADDR: 08
+RS1: 828147b3
+RS2: 7fffffff
+IMM: ffffffff
+FUNCT3: 4
+Instruction Type: 001
+Exception: 0000
+PC: 7aa64200
+RD_ADDR: 06
+CE: 1
+STALL: 0
+FORCE_STALL: 0
+FLUSH: 0
+RST_N: 1
+UVM_INFO monitor.sv(154) @ 195000: uvm_test_top.env.ag.scoreboard [SCB] Entered Checking, ALU op: SLTU
+UVM_INFO scoreboard.sv(292) @ 165000: uvm_test_top.env.scoreboard [SCB] A: 1ef75c3c
+B: ffffffff
+OP: 0008
+UVM_INFO scoreboard.sv(285) @ 165000: uvm_test_top.env.scoreboard [SCB] Transaction          16 successfully verified!
+UVM_INFO scoreboard.sv(177) @ 175000: uvm_test_top.env.scoreboard [SCB] 
+***** Transaction          17 Inputs *****
+Operation Type: XOR
+RS1_ADDR: 06
+RS1: 80000000
+RS2: b09f21b6
+IMM: 90f49c86
+FUNCT3: 6
+Instruction Type: I_TYPE
+Exception: 0000
+PC: f24a267f
+RD_ADDR: 04
+CE: 1
+STALL: 0
+FORCE_STALL: 0
+FLUSH: 0
+RST_N: 1
+UVM_INFO scoreboard.sv(197) @ 175000: uvm_test_top.env.scoreboard [SCB] 
+***** Transaction          17 Outputs *****
+RS1_ADDR: 06
+RS1: 80000000
+RS2: b09f21b6
+IMM: 00000c86
+FUNCT3: 6
+Instruction Type: I_TYPE
+Exception: 0000
+Y: 10f49c86
+PC: f24a267f
+NEXT_PC: 00000000
+CHANGE_PC: 0
+WR_RD: 1
+RD_ADDR: 04
+RD: 10f49c86
+RD_VALID: 1
+STALL_FROM_ALU: 0
+CE: 1
+STALL: 0
+FLUSH: 0
+UVM_INFO scoreboard.sv(230) @ 175000: uvm_test_top.env.scoreboard [SCB] Entered Checking, ALU op: XOR
+UVM_INFO scoreboard.sv(292) @ 175000: uvm_test_top.env.scoreboard [SCB] A: 80000000
+B: 90f49c86
+OP: 0010
+UVM_INFO scoreboard.sv(285) @ 175000: uvm_test_top.env.scoreboard [SCB] Transaction          17 successfully verified!
+UVM_INFO scoreboard.sv(177) @ 185000: uvm_test_top.env.scoreboard [SCB] 
+***** Transaction          18 Inputs *****
+Operation Type: SLTU
+RS1_ADDR: 03
+RS1: 7fffffff
+RS2: 2e98e977
+IMM: 00000000
+FUNCT3: 1
+Instruction Type: R_TYPE
+Exception: 0000
+PC: 2a758d3a
+RD_ADDR: 05
+CE: 1
+STALL: 0
+FORCE_STALL: 0
+FLUSH: 0
+RST_N: 1
+UVM_INFO scoreboard.sv(197) @ 185000: uvm_test_top.env.scoreboard [SCB] 
+***** Transaction          18 Outputs *****
+RS1_ADDR: 03
+RS1: 7fffffff
+RS2: 2e98e977
+IMM: 00000000
+FUNCT3: 1
+Instruction Type: R_TYPE
+Exception: 0000
+Y: 00000000
+PC: 2a758d3a
+NEXT_PC: 00000000
+CHANGE_PC: 0
+WR_RD: 1
+RD_ADDR: 05
+RD: 00000000
+RD_VALID: 1
+STALL_FROM_ALU: 0
+CE: 1
+STALL: 0
+FLUSH: 0
+UVM_INFO scoreboard.sv(230) @ 185000: uvm_test_top.env.scoreboard [SCB] Entered Checking, ALU op: SLTU
+UVM_INFO scoreboard.sv(292) @ 185000: uvm_test_top.env.scoreboard [SCB] A: 7fffffff
+B: 2e98e977
+OP: 0008
+UVM_INFO scoreboard.sv(285) @ 185000: uvm_test_top.env.scoreboard [SCB] Transaction          18 successfully verified!
+UVM_INFO scoreboard.sv(177) @ 195000: uvm_test_top.env.scoreboard [SCB] 
+***** Transaction          19 Inputs *****
+Operation Type: SLT
+RS1_ADDR: 08
+RS1: 828147b3
+RS2: 7fffffff
+IMM: ffffffff
+FUNCT3: 4
+Instruction Type: R_TYPE
+Exception: 0000
+PC: 7aa64200
+RD_ADDR: 06
+CE: 1
+STALL: 0
+FORCE_STALL: 0
+FLUSH: 0
+RST_N: 1
+UVM_INFO scoreboard.sv(197) @ 195000: uvm_test_top.env.scoreboard [SCB] 
+***** Transaction          19 Outputs *****
+RS1_ADDR: 08
+RS1: 828147b3
+RS2: 7fffffff
+IMM: 00000fff
+FUNCT3: 4
+Instruction Type: R_TYPE
+Exception: 0000
+Y: 00000001
+PC: 7aa64200
+NEXT_PC: 00000000
+CHANGE_PC: 0
+WR_RD: 1
+RD_ADDR: 06
+RD: 00000001
+RD_VALID: 1
+STALL_FROM_ALU: 0
+CE: 1
+STALL: 0
+FLUSH: 0
+UVM_INFO scoreboard.sv(230) @ 195000: uvm_test_top.env.scoreboard [SCB] Entered Checking, ALU op: SLT
+UVM_INFO scoreboard.sv(292) @ 195000: uvm_test_top.env.scoreboard [SCB] A: 828147b3
+B: 7fffffff
+OP: 0004
+UVM_INFO scoreboard.sv(285) @ 195000: uvm_test_top.env.scoreboard [SCB] Transaction          19 successfully verified!
+UVM_INFO scoreboard.sv(177) @ 205000: uvm_test_top.env.scoreboard [SCB] 
+***** Transaction          20 Inputs *****
+Operation Type: EQ
+RS1_ADDR: 04
+RS1: d38a764c
+RS2: 80000000
+IMM: 6657c278
+FUNCT3: 1
+Instruction Type: I_TYPE
+Exception: 0000
+PC: 363671ff
+RD_ADDR: 05
+CE: 1
+STALL: 0
+FORCE_STALL: 0
+FLUSH: 0
+RST_N: 1
+UVM_INFO scoreboard.sv(197) @ 205000: uvm_test_top.env.scoreboard [SCB] 
+***** Transaction          20 Outputs *****
+RS1_ADDR: 04
+RS1: d38a764c
+RS2: 80000000
+IMM: 00000278
+FUNCT3: 1
+Instruction Type: I_TYPE
+Exception: 0000
+Y: 00000000
+PC: 363671ff
+NEXT_PC: 00000000
+CHANGE_PC: 0
+WR_RD: 1
+RD_ADDR: 05
+RD: 00000000
+RD_VALID: 1
+STALL_FROM_ALU: 0
+CE: 1
+STALL: 0
+FLUSH: 0
+UVM_INFO scoreboard.sv(230) @ 205000: uvm_test_top.env.scoreboard [SCB] Entered Checking, ALU op: EQ
+UVM_INFO scoreboard.sv(292) @ 205000: uvm_test_top.env.scoreboard [SCB] A: d38a764c
+B: 6657c278
+OP: 0400
+UVM_INFO scoreboard.sv(285) @ 205000: uvm_test_top.env.scoreboard [SCB] Transaction          20 successfully verified!
+UVM_INFO scoreboard.sv(177) @ 215000: uvm_test_top.env.scoreboard [SCB] 
+***** Transaction          21 Inputs *****
+Operation Type: SUB
+RS1_ADDR: 1b
+RS1: 80000000
+RS2: 00000000
+IMM: 3e3b8b67
+FUNCT3: 0
+Instruction Type: I_TYPE
+Exception: 0000
+PC: e3d65cad
+RD_ADDR: 16
+CE: 1
+STALL: 0
+FORCE_STALL: 0
+FLUSH: 0
+RST_N: 1
+UVM_INFO scoreboard.sv(197) @ 215000: uvm_test_top.env.scoreboard [SCB] 
+***** Transaction          21 Outputs *****
+RS1_ADDR: 1b
+RS1: 80000000
+RS2: 00000000
+IMM: 00000b67
+FUNCT3: 0
+Instruction Type: I_TYPE
+Exception: 0000
+Y: be3b8b67
+PC: e3d65cad
+NEXT_PC: 00000000
+CHANGE_PC: 0
+WR_RD: 1
+RD_ADDR: 16
+RD: be3b8b67
+RD_VALID: 1
+STALL_FROM_ALU: 0
+CE: 1
+STALL: 0
+FLUSH: 0
+UVM_INFO scoreboard.sv(230) @ 215000: uvm_test_top.env.scoreboard [SCB] Entered Checking, ALU op: SUB
+UVM_INFO scoreboard.sv(292) @ 215000: uvm_test_top.env.scoreboard [SCB] A: 80000000
+B: 3e3b8b67
+OP: 0002
+UVM_ERROR scoreboard.sv(312) @ 215000: uvm_test_top.env.scoreboard [SCB] ALU Operation Mismatch: Expected 41c47499, Got be3b8b67
+UVM_INFO scoreboard.sv(285) @ 215000: uvm_test_top.env.scoreboard [SCB] Transaction          21 successfully verified!
+UVM_INFO scoreboard.sv(177) @ 225000: uvm_test_top.env.scoreboard [SCB] 
+***** Transaction          22 Inputs *****
+Operation Type: AND
+RS1_ADDR: 05
+RS1: 95c39174
+RS2: 7fffffff
+IMM: ffffffff
+FUNCT3: 0
+Instruction Type: R_TYPE
+Exception: 0000
+PC: ce7be619
+RD_ADDR: 02
+CE: 1
+STALL: 0
+FORCE_STALL: 0
+FLUSH: 0
+RST_N: 1
+UVM_INFO scoreboard.sv(197) @ 225000: uvm_test_top.env.scoreboard [SCB] 
+***** Transaction          22 Outputs *****
+RS1_ADDR: 05
+RS1: 95c39174
+RS2: 7fffffff
+IMM: 00000fff
+FUNCT3: 0
+Instruction Type: R_TYPE
+Exception: 0000
+Y: 15c39174
+PC: ce7be619
+NEXT_PC: 00000000
+CHANGE_PC: 0
+WR_RD: 1
+RD_ADDR: 02
+RD: 15c39174
+RD_VALID: 1
+STALL_FROM_ALU: 0
+CE: 1
+STALL: 0
+FLUSH: 0
+UVM_INFO scoreboard.sv(230) @ 225000: uvm_test_top.env.scoreboard [SCB] Entered Checking, ALU op: AND
+UVM_INFO scoreboard.sv(292) @ 225000: uvm_test_top.env.scoreboard [SCB] A: 95c39174
+B: 7fffffff
+OP: 0040
+UVM_INFO scoreboard.sv(285) @ 225000: uvm_test_top.env.scoreboard [SCB] Transaction          22 successfully verified!
+UVM_INFO scoreboard.sv(177) @ 235000: uvm_test_top.env.scoreboard [SCB] 
+***** Transaction          23 Inputs *****
+Operation Type: ADD
+RS1_ADDR: 11
+RS1: 7fffffff
+RS2: 951af463
+IMM: 8f6e0173
+FUNCT3: 6
+Instruction Type: R_TYPE
+Exception: 0000
+PC: 43133fdd
+RD_ADDR: 0a
+CE: 1
+STALL: 0
+FORCE_STALL: 0
+FLUSH: 0
+RST_N: 1
+UVM_INFO scoreboard.sv(197) @ 235000: uvm_test_top.env.scoreboard [SCB] 
+***** Transaction          23 Outputs *****
+RS1_ADDR: 11
+RS1: 7fffffff
+RS2: 951af463
+IMM: 00000173
+FUNCT3: 6
+Instruction Type: R_TYPE
+Exception: 0000
+Y: 151af462
+PC: 43133fdd
+NEXT_PC: 00000000
+CHANGE_PC: 0
+WR_RD: 1
+RD_ADDR: 0a
+RD: 151af462
+RD_VALID: 1
+STALL_FROM_ALU: 0
+CE: 1
+STALL: 0
+FLUSH: 0
+UVM_INFO scoreboard.sv(230) @ 235000: uvm_test_top.env.scoreboard [SCB] Entered Checking, ALU op: ADD
+UVM_INFO scoreboard.sv(292) @ 235000: uvm_test_top.env.scoreboard [SCB] A: 7fffffff
+B: 951af463
+OP: 0001
+UVM_INFO scoreboard.sv(285) @ 235000: uvm_test_top.env.scoreboard [SCB] Transaction          23 successfully verified!
+UVM_INFO scoreboard.sv(177) @ 245000: uvm_test_top.env.scoreboard [SCB] 
+***** Transaction          24 Inputs *****
+Operation Type: GEU
+RS1_ADDR: 06
+RS1: 00000000
+RS2: 7fffffff
+IMM: 75c27b14
+FUNCT3: 0
+Instruction Type: I_TYPE
+Exception: 0000
+PC: dd4616ac
+RD_ADDR: 0b
+CE: 1
+STALL: 0
+FORCE_STALL: 0
+FLUSH: 0
+RST_N: 1
+UVM_INFO scoreboard.sv(197) @ 245000: uvm_test_top.env.scoreboard [SCB] 
+***** Transaction          24 Outputs *****
+RS1_ADDR: 06
+RS1: 00000000
+RS2: 7fffffff
+IMM: 00000b14
+FUNCT3: 0
+Instruction Type: I_TYPE
+Exception: 0000
+Y: 00000000
+PC: dd4616ac
+NEXT_PC: 00000000
+CHANGE_PC: 0
+WR_RD: 1
+RD_ADDR: 0b
+RD: 00000000
+RD_VALID: 1
+STALL_FROM_ALU: 0
+CE: 1
+STALL: 0
+FLUSH: 0
+UVM_INFO scoreboard.sv(230) @ 245000: uvm_test_top.eent.monitor [SCB] 
+***** Transaction Outputs *****
+RS1_ADDR: 08
+RS1: 828147b3
+RS2: 7fffffff
+IMM: 00000fff
+FUNCT3: 4
+Instruction Type: 001
+Exception: 0000
+Y: 00000001
+PC: 7aa64200
+NEXT_PC: 00000000
+CHANGE_PC: 0
+WR_RD: 1
+RD_ADDR: 06
+RD: 00000001
+RD_VALID: 1
+STALL_FROM_ALU: 0
+CE: 1
+STALL: 0
+FLUSH: 0
+UVM_INFO monitor.sv(135) @ 205000: uvm_test_top.env.agent.monitor [SCB] 
+***** Transaction Inputs *****
+Operation Type: 0400
+RS1_ADDR: 04
+RS1: d38a764c
+RS2: 80000000
+IMM: 6657c278
+FUNCT3: 1
+Instruction Type: 002
+Exception: 0000
+PC: 363671ff
+RD_ADDR: 05
+CE: 1
+STALL: 0
+FORCE_STALL: 0
+FLUSH: 0
+RST_N: 1
+UVM_INFO monitor.sv(154) @ 205000: uvm_test_top.env.agent.monitor [SCB] 
+***** Transaction Outputs *****
+RS1_ADDR: 04
+RS1: d38a764c
+RS2: 80000000
+IMM: 00000278
+FUNCT3: 1
+Instruction Type: 002
+Exception: 0000
+Y: 00000000
+PC: 363671ff
+NEXT_PC: 00000000
+CHANGE_PC: 0
+WR_RD: 1
+RD_ADDR: 05
+RD: 00000000
+RD_VALID: 1
+STALL_FROM_ALU: 0
+CE: 1
+STALL: 0
+FLUSH: 0
+UVM_INFO monitor.sv(135) @ 215000: uvm_test_top.env.agent.monitor [SCB] 
+***** Transaction Inputs *****
+Operation Type: 0002
+RS1_ADDR: 1b
+RS1: 80000000
+RS2: 00000000
+IMM: 3e3b8b67
+FUNCT3: 0
+Instruction Type: 002
+Exception: 0000
+PC: e3d65cad
+RD_ADDR: 16
+CE: 1
+STALL: 0
+FORCE_STALL: 0
+FLUSH: 0
+RST_N: 1
+UVM_INFO monitor.sv(154) @ 215000: uvm_test_top.env.agent.monitor [SCB] 
+***** Transaction Outputs *****
+RS1_ADDR: 1b
+RS1: 80000000
+RS2: 00000000
+IMM: 00000b67
+FUNCT3: 0
+Instruction Type: 002
+Exception: 0000
+Y: be3b8b67
+PC: e3d65cad
+NEXT_PC: 00000000
+CHANGE_PC: 0
+WR_RD: 1
+RD_ADDR: 16
+RD: be3b8b67
+RD_VALID: 1
+STALL_FROM_ALU: 0
+CE: 1
+STALL: 0
+FLUSH: 0
+UVM_INFO monitor.sv(135) @ 225000: uvm_test_top.env.agent.monitor [SCB] 
+***** Transaction Inputs *****
+Operation Type: 0040
+RS1_ADDR: 05
+RS1: 95c39174
+RS2: 7fffffff
+IMM: ffffffff
+FUNCT3: 0
+Instruction Type: 001
+Exception: 0000
+PC: ce7be619
+RD_ADDR: 02
+CE: 1
+STALL: 0
+FORCE_STALL: 0
+FLUSH: 0
+RST_N: 1
+UVM_INFO monitor.sv(154) @ 225000: uvm_test_top.env.agent.monitor [SCB] 
+***** Transaction Outputs *****
+RS1_ADDR: 05
+RS1: 95c39174
+RS2: 7fffffff
+IMM: 00000fff
+FUNCT3: 0
+Instruction Type: 001
+Exception: 0000
+Y: 15c39174
+PC: ce7be619
+NEXT_PC: 00000000
+CHANGE_PC: 0
+WR_RD: 1
+RD_ADDR: 02
+RD: 15c39174
+RD_VALID: 1
+STALL_FROM_ALU: 0
+CE: 1
+STALL: 0
+FLUSH: 0
+UVM_INFO monitor.sv(135) @ 235000: uvm_test_top.env.agent.monitor [SCB] 
+***** Transaction Inputs *****
+Operation Type: 0001
+RS1_ADDR: 11
+RS1: 7fffffff
+RS2: 951af463
+IMM: 8f6e0173
+FUNCT3: 6
+Instruction Type: 001
+Exception: 0000
+PC: 43133fdd
+RD_ADDR: 0a
+CE: 1
+STALL: 0
+FORCE_STALL: 0
+FLUSH: 0
+RST_N: 1
+UVM_INFO monitor.sv(154) @ 235000: uvm_test_top.env.agent.monitor [SCB] 
+***** Transaction Outputs *****
+RS1_ADDR: 11
+RS1: 7fffffff
+RS2: 951af463
+IMM: 00000173
+FUNCT3: 6
+Instruction Type: 001
+Exception: 0000
+Y: 151af462
+PC: 43133fdd
+NEXT_PC: 00000000
+CHANGE_PC: 0
+WR_RD: 1
+RD_ADDR: 0a
+RD: 151af462
+RD_VALID: 1
+STALL_FROM_ALU: 0
+CE: 1
+STALL: 0
+FLUSH: 0
+UVM_INFO monitor.sv(135) @ 245000: uvm_test_top.env.agent.monitor [SCB] 
+***** Transaction Inputs *****
+Operation Type: 2000
+RS1_ADDR: 06
+RS1: 00000000
+RS2: 7fffffff
+IMM: 75c27b14
+FUNCT3: 0
+Instruction Type: 002
+Exception: 0000
+PC: dd4616ac
+RD_ADDR: 0b
+CE: 1
+STALL: 0
+FORCE_STALL: 0
+FLUSH: 0
+RST_N: 1
+UVM_INFO monitor.sv(154) @ 245000: uvm_test_top.env.agent.monitor [SCB] 
+***** Transaction Outputs *****
+RS1_ADDR: 06
+RS1: 00000000
+RS2: 7fffffff
+IMM: 00000b14
+FUNCT3: 0
+Instruction Type: 002
+Exception: 0000
+Y: 00000000
+PC: dd4616ac
+NEXT_PC: 00000000
+CHANGE_PC: 0
+WR_RD: 1
+RD_ADDR: 0b
+RD: 00000000
+RD_VALID: 1
+STALL_FROM_ALU: 0
+CE: 1
+STALL: 0
+FLUSH: 0
+UVM_INFO monitor.sv(135) @ 255000: uvm_test_top.env.agent.monitor [SCB] 
+***** Transaction Inputs *****
+Operation Type: 0002
+RS1_ADDR: 02
+RS1: 44122dbf
+RS2: 7fffffff
+IMM: ffffffff
+FUNCT3: 5
+Instruction Type: 001
+Exception: 0000
+PC: c58d7ec4
+RD_ADDR: 0b
+CE: 1
+STALL: 0
+FORCE_STALL: 0
+FLUSH: 0
+RST_N: 1
+UVM_INFO monitor.sv(154) @ 255000: uvm_test_top.env.agent.monitor [SCB] 
+***** Transaction Outputs *****
+RS1_ADDR: 02
+RS1: 44122dbf
+RS2: 7fffffff
+IMM: 00000fff
+FUNCT3: 5
+Instruction Type: 001
+Exception: 0000
+Y: c4122dbe
+PC: c58d7ec4n Type: 0004
+RS1_ADDR: 11
+RS1: 81a74ba2
+RS2: 80000000
+IMM: 4d47e5fe
+FUNCT3: 4
+Instruction Type: 001
+Exception: 0000
+PC: 6e98b0e3
+RD_ADDR: 02
+CE: 1
+STALL: 0
+FORCE_STALL: 0
+FLUSH: 0
+RST_N: 1
+UVM_INFO driver.sv(118) @ 135000: uvm_test_top.env.agent.driver [SCB] 
+***** Driver Inputs *****
+Operation Type: 0008
+RS1_ADDR: 07
+RS1: 50685ab4
+RS2: 80000000
+IMM: 00000000
+FUNCT3: 7
+Instruction Type: 001
+Exception: 0000
+PC: 31e39f0f
+RD_ADDR: 1a
+CE: 1
+STALL: 0
+FORCE_STALL: 0
+FLUSH: 0
+RST_N: 1
+UVM_INFO driver.sv(118) @ 145000: uvm_test_top.env.agent.driver [SCB] 
+***** Driver Inputs *****
+Operation Type: 0008
+RS1_ADDR: 16
+RS1: 1ef75c3c
+RS2: 80000000
+IMM: ffffffff
+FUNCT3: 3
+Instruction Type: 002
+Exception: 0000
+PC: 8554d277
+RD_ADDR: 10
+CE: 1
+STALL: 0
+FORCE_STALL: 0
+FLUSH: 0
+RST_N: 1
+UVM_INFO driver.sv(118) @ 155000: uvm_test_top.env.agent.driver [SCB] 
+***** Driver Inputs *****
+Operation Type: 0010
+RS1_ADDR: 06
+RS1: 80000000
+RS2: b09f21b6
+IMM: 90f49c86
+FUNCT3: 6
+Instruction Type: 002
+Exception: 0000
+PC: f24a267f
+RD_ADDR: 04
+CE: 1
+STALL: 0
+FORCE_STALL: 0
+FLUSH: 0
+RST_N: 1
+UVM_INFO driver.sv(118) @ 165000: uvm_test_top.env.agent.driver [SCB] 
+***** Driver Inputs *****
+Operation Type: 0008
+RS1_ADDR: 03
+RS1: 7fffffff
+RS2: 2e98e977
+IMM: 00000000
+FUNCT3: 1
+Instruction Type: 001
+Exception: 0000
+PC: 2a758d3a
+RD_ADDR: 05
+CE: 1
+STALL: 0
+FORCE_STALL: 0
+FLUSH: 0
+RST_N: 1
+UVM_INFO driver.sv(118) @ 175000: uvm_test_top.env.agent.driver [SCB] 
+***** Driver Inputs *****
+Operation Type: 0004
+RS1_ADDR: 08
+RS1: 828147b3
+RS2: 7fffffff
+IMM: ffffffff
+FUNCT3: 4
+Instruction Type: 001
+Exception: 0000
+PC: 7aa64200
+RD_ADDR: 06
+CE: 1
+STALL: 0
+FORCE_STALL: 0
+FLUSH: 0
+RST_N: 1
+UVM_INFO driver.sv(118) @ 185000: uvm_test_top.env.agent.driver [SCB] 
+***** Driver Inputs *****
+Operation Type: 0400
+RS1_ADDR: 04
+RS1: d38a764c
+RS2: 80000000
+IMM: 6657c278
+FUNCT3: 1
+Instruction Type: 002
+Exception: 0000
+PC: 363671ff
+RD_ADDR: 05
+CE: 1
+STALL: 0
+FORCE_STALL: 0
+FLUSH: 0
+RST_N: 1
+UVM_INFO driver.sv(118) @ 195000: uvm_test_top.env.agent.driver [SCB] 
+***** Driver Inputs *****
+Operation Type: 0002
+RS1_ADDR: 1b
+RS1: 80000000
+RS2: 00000000
+IMM: 3e3b8b67
+FUNCT3: 0
+Instruction Type: 002
+Exception: 0000
+PC: e3d65cad
+RD_ADDR: 16
+CE: 1
+STALL: 0
+FORCE_STALL: 0
+FLUSH: 0
+RST_N: 1
+UVM_INFO driver.sv(118) @ 205000: uvm_test_top.env.agent.driver [SCB] 
+***** Driver Inputs *****
+Operation Type: 0040
+RS1_ADDR: 05
+RS1: 95c39174
+RS2: 7fffffff
+IMM: ffffffff
+FUNCT3: 0
+Instruction Type: 001
+Exception: 0000
+PC: ce7be619
+RD_ADDR: 02
+CE: 1
+STALL: 0
+FORCE_STALL: 0
+FLUSH: 0
+RST_N: 1
+UVM_INFO driver.sv(118) @ 215000: uvm_test_top.env.agent.driver [SCB] 
+***** Driver Inputs *****
+Operation Type: 0001
+RS1_ADDR: 11
+RS1: 7fffffff
+RS2: 951af463
+IMM: 8f6e0173
+FUNCT3: 6
+Instruction Type: 001
+Exception: 0000
+PC: 43133fdd
+RD_ADDR: 0a
+CE: 1
+STALL: 0
+FORCE_STALL: 0
+FLUSH: 0
+RST_N: 1
+UVM_INFO driver.sv(118) @ 225000: uvm_test_top.env.agent.driver [SCB] 
+***** Driver Inputs *****
+Operation Type: 2000
+RS1_ADDR: 06
+RS1: 00000000
+RS2: 7fffffff
+IMM: 75c27b14
+FUNCT3: 0
+Instruction Type: 002
+Exception: 0000
+PC: dd4616ac
+RD_ADDR: 0b
+CE: 1
+STALL: 0
+FORCE_STALL: 0
+FLUSH: 0
+RST_N: 1
+UVM_INFO driver.sv(118) @ 235000: uvm_test_top.env.agent.driver [SCB] 
+***** Driver Inputs *****
+Operation Type: 0002
+RS1_ADDR: 02
+RS1: 44122dbf
+RS2: 7fffffff
+IMM: ffffffff
+FUNCT3: 5
+Instruction Type: 001
+Exception: 0000
+PC: c58d7ec4
+RD_ADDR: 0b
+CE: 1
+STALL: 0
+FORCE_STALL: 0
+FLUSH: 0
+RST_N: 1
+UVM_INFO driver.sv(118) @ 245000: uvm_test_top.env.agent.driver [SCB] 
+***** Driver Inputs *****
+Operation Type: 0008
+RS1_ADDR: 14
+RS1: 7fffffff
+RS2: 206d7e1e
+IMM: 70998df1
+FUNCT3: 6
+Instruction Type: 001
+Exception: 0000
+PC: 6aac9a54
+RD_ADDR: 11
+CE: 1
+STALL: 0
+FORCE_STALL: 0
+FLUSH: 0
+RST_N: 1
+UVM_INFO driver.sv(118) @ 255000: uvm_test_top.env.agent.driver [SCB] 
+***** Driver Inputs *****
+Operation Type: 0040
+RS1_ADDR: 1e
+RS1: dab4b48e
+RS2: 7fffffff
+IMM: 00000000
+FUNCT3: 7
+Instruction Type: 001
+Exception: 0000
+PC: e21ed70a
+RD_ADDR: 15
+CE: 1
+STALL: 0
+FORCE_STALL: 0
+FLUSH: 0
+RST_N: 1
+UVM_INFO driver.sv(118) @ 265000: uvm_test_top.env.agent.driver [SCB] 
+***** Driver Inv.scoreboard [SCB] Entered Checking, ALU op: GEU
+UVM_INFO scoreboard.sv(292) @ 245000: uvm_test_top.env.scoreboard [SCB] A: 00000000
+B: 75c27b14
+OP: 2000
+UVM_INFO scoreboard.sv(285) @ 245000: uvm_test_top.env.scoreboard [SCB] Transaction          24 successfully verified!
+UVM_INFO scoreboard.sv(177) @ 255000: uvm_test_top.env.scoreboard [SCB] 
+***** Transaction          25 Inputs *****
+Operation Type: SUB
+RS1_ADDR: 02
+RS1: 44122dbf
+RS2: 7fffffff
+IMM: ffffffff
+FUNCT3: 5
+Instruction Type: R_TYPE
+Exception: 0000
+PC: c58d7ec4
+RD_ADDR: 0b
+CE: 1
+STALL: 0
+FORCE_STALL: 0
+FLUSH: 0
+RST_N: 1
+UVM_INFO scoreboard.sv(197) @ 255000: uvm_test_top.env.scoreboard [SCB] 
+***** Transaction          25 Outputs *****
+RS1_ADDR: 02
+RS1: 44122dbf
+RS2: 7fffffff
+IMM: 00000fff
+FUNCT3: 5
+Instruction Type: R_TYPE
+Exception: 0000
+Y: c4122dbe
+PC: c58d7ec4
+NEXT_PC: 00000000
+CHANGE_PC: 0
+WR_RD: 1
+RD_ADDR: 0b
+RD: c4122dbe
+RD_VALID: 1
+STALL_FROM_ALU: 0
+CE: 1
+STALL: 0
+FLUSH: 0
+UVM_INFO scoreboard.sv(230) @ 255000: uvm_test_top.env.scoreboard [SCB] Entered Checking, ALU op: SUB
+UVM_INFO scoreboard.sv(292) @ 255000: uvm_test_top.env.scoreboard [SCB] A: 44122dbf
+B: 7fffffff
+OP: 0002
+UVM_ERROR scoreboard.sv(312) @ 255000: uvm_test_top.env.scoreboard [SCB] ALU Operation Mismatch: Expected c4122dc0, Got c4122dbe
+UVM_INFO scoreboard.sv(285) @ 255000: uvm_test_top.env.scoreboard [SCB] Transaction          25 successfully verified!
+UVM_INFO scoreboard.sv(177) @ 265000: uvm_test_top.env.scoreboard [SCB] 
+***** Transaction          26 Inputs *****
+Operation Type: SLTU
+RS1_ADDR: 14
+RS1: 7fffffff
+RS2: 206d7e1e
+IMM: 70998df1
+FUNCT3: 6
+Instruction Type: R_TYPE
+Exception: 0000
+PC: 6aac9a54
+RD_ADDR: 11
+CE: 1
+STALL: 0
+FORCE_STALL: 0
+FLUSH: 0
+RST_N: 1
+UVM_INFO scoreboard.sv(197) @ 265000: uvm_test_top.env.scoreboard [SCB] 
+***** Transaction          26 Outputs *****
+RS1_ADDR: 14
+RS1: 7fffffff
+RS2: 206d7e1e
+IMM: 00000df1
+FUNCT3: 6
+Instruction Type: R_TYPE
+Exception: 0000
+Y: 00000000
+PC: 6aac9a54
+NEXT_PC: 00000000
+CHANGE_PC: 0
+WR_RD: 1
+RD_ADDR: 11
+RD: 00000000
+RD_VALID: 1
+STALL_FROM_ALU: 0
+CE: 1
+STALL: 0
+FLUSH: 0
+UVM_INFO scoreboard.sv(230) @ 265000: uvm_test_top.env.scoreboard [SCB] Entered Checking, ALU op: SLTU
+UVM_INFO scoreboard.sv(292) @ 265000: uvm_test_top.env.scoreboard [SCB] A: 7fffffff
+B: 206d7e1e
+OP: 0008
+UVM_INFO scoreboard.sv(285) @ 265000: uvm_test_top.env.scoreboard [SCB] Transaction          26 successfully verified!
+UVM_INFO scoreboard.sv(177) @ 275000: uvm_test_top.env.scoreboard [SCB] 
+***** Transaction          27 Inputs *****
+Operation Type: AND
+RS1_ADDR: 1e
+RS1: dab4b48e
+RS2: 7fffffff
+IMM: 00000000
+FUNCT3: 7
+Instruction Type: R_TYPE
+Exception: 0000
+PC: e21ed70a
+RD_ADDR: 15
+CE: 1
+STALL: 0
+FORCE_STALL: 0
+FLUSH: 0
+RST_N: 1
+UVM_INFO scoreboard.sv(197) @ 275000: uvm_test_top.env.scoreboard [SCB] 
+***** Transaction          27 Outputs *****
+RS1_ADDR: 1e
+RS1: dab4b48e
+RS2: 7fffffff
+IMM: 00000000
+FUNCT3: 7
+Instruction Type: R_TYPE
+Exception: 0000
+Y: 5ab4b48e
+PC: e21ed70a
+NEXT_PC: 00000000
+CHANGE_PC: 0
+WR_RD: 1
+RD_ADDR: 15
+RD: 5ab4b48e
+RD_VALID: 1
+STALL_FROM_ALU: 0
+CE: 0
+STALL: 0
+FLUSH: 0
+UVM_INFO scoreboard.sv(230) @ 275000: uvm_test_top.env.scoreboard [SCB] Entered Checking, ALU op: AND
+UVM_INFO scoreboard.sv(292) @ 275000: uvm_test_top.env.scoreboard [SCB] A: dab4b48e
+B: 7fffffff
+OP: 0040
+UVM_INFO scoreboard.sv(285) @ 275000: uvm_test_top.env.scoreboard [SCB] Transaction          27 successfully verified!
+UVM_INFO scoreboard.sv(177) @ 285000: uvm_test_top.env.scoreboard [SCB] 
+***** Transaction          28 Inputs *****
+Operation Type: OR
+RS1_ADDR: 11
+RS1: ffffffff
+RS2: 7fffffff
+IMM: ebaa41d5
+FUNCT3: 1
+Instruction Type: I_TYPE
+Exception: 0000
+PC: 69004616
+RD_ADDR: 05
+CE: 1
+STALL: 0
+FORCE_STALL: 0
+FLUSH: 0
+RST_N: 0
+UVM_INFO scoreboard.sv(197) @ 285000: uvm_test_top.env.scoreboard [SCB] 
+***** Transaction          28 Outputs *****
+RS1_ADDR: 1e
+RS1: dab4b48e
+RS2: 7fffffff
+IMM: 00000000
+FUNCT3: 7
+Instruction Type: R_TYPE
+Exception: 0000
+Y: 5ab4b48e
+PC: e21ed70a
+NEXT_PC: 00000000
+CHANGE_PC: 0
+WR_RD: 1
+RD_ADDR: 15
+RD: 5ab4b48e
+RD_VALID: 1
+STALL_FROM_ALU: 0
+CE: 0
+STALUVM_INFO agent.sv(41) @ 0: uvm_test_top.env.agent [AGENT] Set report server severities and outputs
+nputs *****
+Operation Type: 0020
+RS1_ADDR: 11
+RS1: ffffffff
+RS2: 7fffffff
+IMM: ebaa41d5
+FUNCT3: 1
+Instruction Type: 002
+Exception: 0000
+PC: 69004616
+RD_ADDR: 05
+CE: 1
+STALL: 0
+FORCE_STALL: 0
+FLUSH: 0
+RST_N: 0
+
+NEXT_PC: 00000000
+CHANGE_PC: 0
+WR_RD: 1
+RD_ADDR: 0b
+RD: c4122dbe
+RD_VALID: 1
+STALL_FROM_ALU: 0
+CE: 1
+STALL: 0
+FLUSH: 0
+UVM_INFO monitor.sv(135) @ 265000: uvm_test_top.env.agent.monitor [SCB] 
+***** Transaction Inputs *****
+Operation Type: 0008
+RS1_ADDR: 14
+RS1: 7fffffff
+RS2: 206d7e1e
+IMM: 70998df1
+FUNCT3: 6
+Instruction Type: 001
+Exception: 0000
+PC: 6aac9a54
+RD_ADDR: 11
+CE: 1
+STALL: 0
+FORCE_STALL: 0
+FLUSH: 0
+RST_N: 1
+UVM_INFO monitor.sv(154) @ 265000: uvm_test_top.env.agent.monitor [SCB] 
+***** Transaction Outputs *****
+RS1_ADDR: 14
+RS1: 7fffffff
+RS2: 206d7e1e
+IMM: 00000df1
+FUNCT3: 6
+Instruction Type: 001
+Exception: 0000
+Y: 00000000
+PC: 6aac9a54
+NEXT_PC: 00000000
+CHANGE_PC: 0
+WR_RD: 1
+RD_ADDR: 11
+RD: 00000000
+RD_VALID: 1
+STALL_FROM_ALU: 0
+CE: 1
+STALL: 0
+FLUSH: 0
+UVM_INFO monitor.sv(135) @ 275000: uvm_test_top.env.agent.monitor [SCB] 
+***** Transaction Inputs *****
+Operation Type: 0040
+RS1_ADDR: 1e
+RS1: dab4b48e
+RS2: 7fffffff
+IMM: 00000000
+FUNCT3: 7
+Instruction Type: 001
+Exception: 0000
+PC: e21ed70a
+RD_ADDR: 15
+CE: 1
+STALL: 0
+FORCE_STALL: 0
+FLUSH: 0
+RST_N: 1
+UVM_INFO monitor.sv(154) @ 275000: uvm_test_top.env.agent.monitor [SCB] 
+***** Transaction Outputs *****
+RS1_ADDR: 1e
+RS1: dab4b48e
+RS2: 7fffffff
+IMM: 00000000
+FUNCT3: 7
+Instruction Type: 001
+Exception: 0000
+Y: 5ab4b48e
+PC: e21ed70a
+NEXT_PC: 00000000
+CHANGE_PC: 0
+WR_RD: 1
+RD_ADDR: 15
+RD: 5ab4b48e
+RD_VALID: 1
+STALL_FROM_ALU: 0
+CE: 0
+STALL: 0
+FLUSH: 0
+UVM_INFO monitor.sv(135) @ 285000: uvm_test_top.env.agent.monitor [SCB] 
+***** Transaction Inputs *****
+Operation Type: 0020
+RS1_ADDR: 11
+RS1: ffffffff
+RS2: 7fffffff
+IMM: ebaa41d5
+FUNCT3: 1
+Instruction Type: 002
+Exception: 0000
+PC: 69004616
+RD_ADDR: 05
+CE: 1
+STALL: 0
+FORCE_STALL: 0
+FLUSH: 0
+RST_N: 0
+UVM_INFO monitor.sv(154) @ 285000: uvm_test_top.env.agent.monitor [SCB] 
+***** Transaction Outputs *****
+RS1_ADDR: 1e
+RS1: dab4b48e
+RS2: 7fffffff
+IMM: 00000000
+FUNCT3: 7
+Instruction Type: 001
+Exception: 0000
+Y: 5ab4b48e
+PC: e21ed70a
+NEXT_PC: 00000000
+CHANGE_PC: 0
+WR_RD: 1
+RD_ADDR: 15
+RD: 5ab4b48e
+RD_VALID: 1
+STALL_FROM_ALU: 0
+CE: 0
+STALL: 0
+FLUSH: 0
+L: 0
+FLUSH: 0
+UVM_INFO scoreboard.sv(285) @ 285000: uvm_test_top.env.scoreboard [SCB] Transaction          28 successfully verified!
