@@ -8,7 +8,7 @@
 // Updated: Feb 26, 2025
 // ----------------------------------------------------------------------------
 `ifndef ALU_COV_SV
-`define ALU_COV_SV
+`define ALU_COV_SV 
 
 `include "uvm_macros.svh"
 import uvm_pkg::*;

@@ -1,5 +1,5 @@
 `ifndef UVM_MONITOR_SV
-`define UVM_MONITOR_SV
+`define UVM_MONITOR_SV 
 
 `include "uvm_macros.svh"
 import uvm_pkg::*;
@@ -19,7 +19,7 @@ class alu_monitor extends uvm_monitor;
 
     // Virtual interface to access DUT signals
     virtual alu_if                   vif;
-	integer log_file;
+    integer                          log_file;
     // Single analysis port to send transactions to the scoreboard
     uvm_analysis_port #(transaction) mon2scb;
 
@@ -46,20 +46,23 @@ class alu_monitor extends uvm_monitor;
     virtual function void build_phase(uvm_phase phase);
         super.build_phase(phase);
 
-		log_file = $fopen("uvm_log.txt", "a");
+        log_file = $fopen("uvm_log.txt", "a");
 
         if (log_file) begin
             // Set the report server to write to the file
-			set_report_severity_action_hier(UVM_INFO, UVM_DISPLAY | UVM_LOG);   // Ensure info messages are displayed and logged
-			set_report_severity_action_hier(UVM_WARNING, UVM_LOG);               // Log warnings
-			set_report_severity_action_hier(UVM_ERROR, UVM_LOG | UVM_DISPLAY);   // Log and display errors
+            set_report_severity_action_hier(
+                UVM_INFO, UVM_DISPLAY | UVM_LOG);  // Ensure info messages are displayed and logged
+            set_report_severity_action_hier(UVM_WARNING, UVM_LOG);  // Log warnings
+            set_report_severity_action_hier(UVM_ERROR,
+                                            UVM_LOG | UVM_DISPLAY);  // Log and display errors
 
-			set_report_severity_file_hier(UVM_INFO, log_file);  // Ensure the info messages go to the log file
-			set_report_severity_file_hier(UVM_WARNING, log_file);
-			set_report_severity_file_hier(UVM_ERROR, log_file);
-			//set_report_id_file("ENV", log_file);
-			set_report_default_file_hier(log_file);
-			`uvm_info("MONITOR", "Set report server severities and outputs", UVM_NONE);
+            set_report_severity_file_hier(
+                UVM_INFO, log_file);  // Ensure the info messages go to the log file
+            set_report_severity_file_hier(UVM_WARNING, log_file);
+            set_report_severity_file_hier(UVM_ERROR, log_file);
+            //set_report_id_file("ENV", log_file);
+            set_report_default_file_hier(log_file);
+            `uvm_info("MONITOR", "Set report server severities and outputs", UVM_NONE);
         end else begin
             `uvm_error("MONITOR", "Failed to open log file")
         end
@@ -88,7 +91,7 @@ class alu_monitor extends uvm_monitor;
             //@(posedge vif.i_clk);  // Wait for the next clock edge
             tx = transaction::type_id::create("tx", this);
             //wait (vif.i_ce && vif.o_ce) begin
-			wait (vif.i_ce) begin
+            wait (vif.i_ce) begin
                 // Capture input signals
                 //tx.i_clk         = vif.i_clk;
                 tx.rst_n         = vif.rst_n;
@@ -107,32 +110,32 @@ class alu_monitor extends uvm_monitor;
                 tx.i_force_stall = vif.i_force_stall;
                 tx.i_flush       = vif.i_flush;
             end
-			
-			@(posedge vif.i_clk);
+
+            @(posedge vif.i_clk);
             //wait (vif.o_ce) begin
-                // Capture output signals
-                tx.o_rs1_addr       = vif.o_rs1_addr;
-                tx.o_rs1            = vif.o_rs1;
-                tx.o_rs2            = vif.o_rs2;
-                tx.o_imm            = vif.o_imm;
-                tx.o_funct3         = vif.o_funct3;
-                tx.o_opcode         = vif.o_opcode;
-                tx.o_exception      = vif.o_exception;
-                tx.o_y              = vif.o_y;
-                tx.o_pc             = vif.o_pc;
-                tx.o_next_pc        = vif.o_next_pc;
-                tx.o_change_pc      = vif.o_change_pc;
-                tx.o_wr_rd          = vif.o_wr_rd;
-                tx.o_rd_addr        = vif.o_rd_addr;
-                tx.o_rd             = vif.o_rd;
-                tx.o_rd_valid       = vif.o_rd_valid;
-                tx.o_stall_from_alu = vif.o_stall_from_alu;
-                tx.o_ce             = vif.o_ce;
-                tx.o_stall          = vif.o_stall;
-                tx.o_flush          = vif.o_flush;
+            // Capture output signals
+            tx.o_rs1_addr       = vif.o_rs1_addr;
+            tx.o_rs1            = vif.o_rs1;
+            tx.o_rs2            = vif.o_rs2;
+            tx.o_imm            = vif.o_imm;
+            tx.o_funct3         = vif.o_funct3;
+            tx.o_opcode         = vif.o_opcode;
+            tx.o_exception      = vif.o_exception;
+            tx.o_y              = vif.o_y;
+            tx.o_pc             = vif.o_pc;
+            tx.o_next_pc        = vif.o_next_pc;
+            tx.o_change_pc      = vif.o_change_pc;
+            tx.o_wr_rd          = vif.o_wr_rd;
+            tx.o_rd_addr        = vif.o_rd_addr;
+            tx.o_rd             = vif.o_rd;
+            tx.o_rd_valid       = vif.o_rd_valid;
+            tx.o_stall_from_alu = vif.o_stall_from_alu;
+            tx.o_ce             = vif.o_ce;
+            tx.o_stall          = vif.o_stall;
+            tx.o_flush          = vif.o_flush;
             //end
-			
-/*			`uvm_info("SCB", $sformatf(
+
+            /*			`uvm_info("SCB", $sformatf(
                   "\n***** Transaction Inputs *****\nOperation Type: %h\nRS1_ADDR: %h\nRS1: %h\nRS2: %h\nIMM: %h\nFUNCT3: %h\nInstruction Type: %h\nException: %b\nPC: %h\nRD_ADDR: %h\nCE: %b\nSTALL: %h\nFORCE_STALL: %h\nFLUSH: %h\nRST_N: %h"
                       ,
                   tx.i_alu,
@@ -174,9 +177,9 @@ class alu_monitor extends uvm_monitor;
                   tx.o_stall,
                   tx.o_flush
                   ), UVM_MEDIUM);
-*/				  
-			mon2scb.write(tx);
-			//@(negedge vif.i_clk);
+*/
+            mon2scb.write(tx);
+            //@(negedge vif.i_clk);
         end
     endtask
 endclass

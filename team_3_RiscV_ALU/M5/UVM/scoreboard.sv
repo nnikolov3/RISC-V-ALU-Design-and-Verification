@@ -1,5 +1,5 @@
 `ifndef UVM_SCOREBOARD_SV
-`define UVM_SCOREBOARD_SV
+`define UVM_SCOREBOARD_SV 
 `include "uvm_macros.svh"
 `include "transaction.sv"
 `include "rv32i_alu_header.sv"  // Defines ALU operations, opcodes, and widths
@@ -21,7 +21,7 @@ class alu_scoreboard extends uvm_scoreboard;
     int                                             count         = 0;
 
     uvm_analysis_imp #(transaction, alu_scoreboard) scb_port;
-	integer log_file;
+    integer                                         log_file;
     transaction                                     tx       [$];
 
     //-------------------------------------------------------------------------
@@ -55,20 +55,23 @@ class alu_scoreboard extends uvm_scoreboard;
         // Initialize FIFOs
         scb_port = new("scb_port", this);
 
-		log_file = $fopen("uvm_log.txt", "a");
+        log_file = $fopen("uvm_log.txt", "a");
 
         if (log_file) begin
             // Set the report server to write to the file
-			set_report_severity_action_hier(UVM_INFO, UVM_DISPLAY | UVM_LOG);   // Ensure info messages are displayed and logged
-			set_report_severity_action_hier(UVM_WARNING, UVM_LOG);               // Log warnings
-			set_report_severity_action_hier(UVM_ERROR, UVM_LOG | UVM_DISPLAY);   // Log and display errors
+            set_report_severity_action_hier(
+                UVM_INFO, UVM_DISPLAY | UVM_LOG);  // Ensure info messages are displayed and logged
+            set_report_severity_action_hier(UVM_WARNING, UVM_LOG);  // Log warnings
+            set_report_severity_action_hier(UVM_ERROR,
+                                            UVM_LOG | UVM_DISPLAY);  // Log and display errors
 
-			set_report_severity_file_hier(UVM_INFO, log_file);  // Ensure the info messages go to the log file
-			set_report_severity_file_hier(UVM_WARNING, log_file);
-			set_report_severity_file_hier(UVM_ERROR, log_file);
-			//set_report_id_file("ENV", log_file);
-			set_report_default_file_hier(log_file);
-			`uvm_info("SCB", "Set report server severities and outputs", UVM_NONE);
+            set_report_severity_file_hier(
+                UVM_INFO, log_file);  // Ensure the info messages go to the log file
+            set_report_severity_file_hier(UVM_WARNING, log_file);
+            set_report_severity_file_hier(UVM_ERROR, log_file);
+            //set_report_id_file("ENV", log_file);
+            set_report_default_file_hier(log_file);
+            `uvm_info("SCB", "Set report server severities and outputs", UVM_NONE);
         end else begin
             `uvm_error("SCB", "Failed to open log file")
         end
@@ -122,9 +125,9 @@ class alu_scoreboard extends uvm_scoreboard;
     //   out_t - The output transaction to compare.
     //-------------------------------------------------------------------------
     function void compare_transactions(transaction curr_tx);
-		string alu_op_str;
+        string alu_op_str;
         string opcode_str;
-		string o_opcode_str;
+        string o_opcode_str;
 
         // Map ALU operation index to string based on rv32i_alu_header.sv
         case (1)
@@ -142,7 +145,7 @@ class alu_scoreboard extends uvm_scoreboard;
             curr_tx.i_alu[`NEQ]:  alu_op_str = "NEQ";
             curr_tx.i_alu[`GE]:   alu_op_str = "GE";
             curr_tx.i_alu[`GEU]:  alu_op_str = "GEU";
-            default:            alu_op_str = "UNKNOWN";
+            default:              alu_op_str = "UNKNOWN";
         endcase
 
         // Map opcode to string based on rv32i_alu_header.sv
@@ -160,7 +163,7 @@ class alu_scoreboard extends uvm_scoreboard;
             `FENCE_BITS:  opcode_str = "FENCE";
             default:      opcode_str = "UNKNOWN";
         endcase
-		case (curr_tx.o_opcode)
+        case (curr_tx.o_opcode)
             `RTYPE_BITS:  o_opcode_str = "R_TYPE";
             `ITYPE_BITS:  o_opcode_str = "I_TYPE";
             `LOAD_BITS:   o_opcode_str = "LOAD";
@@ -174,7 +177,7 @@ class alu_scoreboard extends uvm_scoreboard;
             `FENCE_BITS:  o_opcode_str = "FENCE";
             default:      o_opcode_str = "UNKNOWN";
         endcase
-		`uvm_info("SCB", $sformatf(
+        `uvm_info("SCB", $sformatf(
                   "\n***** Transaction %d Inputs *****\nOperation Type: %s\nRS1_ADDR: %h\nRS1: %h\nRS2: %h\nIMM: %h\nFUNCT3: %h\nInstruction Type: %s\nException: %b\nPC: %h\nRD_ADDR: %h\nCE: %b\nSTALL: %h\nFORCE_STALL: %h\nFLUSH: %h\nRST_N: %h"
                       ,
                   this.count,
@@ -188,13 +191,13 @@ class alu_scoreboard extends uvm_scoreboard;
                   curr_tx.i_exception,
                   curr_tx.i_pc,
                   curr_tx.i_rd_addr,
-				  curr_tx.i_ce,
+                  curr_tx.i_ce,
                   curr_tx.i_stall,
                   curr_tx.i_force_stall,
                   curr_tx.i_flush,
                   curr_tx.rst_n
                   ), UVM_MEDIUM);
-		`uvm_info("SCB", $sformatf(
+        `uvm_info("SCB", $sformatf(
                   "\n***** Transaction %d Outputs *****\nRS1_ADDR: %h\nRS1: %h\nRS2: %h\nIMM: %h\nFUNCT3: %h\nInstruction Type: %s\nException: %b\nY: %h\nPC: %h\nNEXT_PC: %h\nCHANGE_PC: %h\nWR_RD: %h\nRD_ADDR: %h\nRD: %h\nRD_VALID: %h\nSTALL_FROM_ALU: %h\nCE: %b\nSTALL: %h\nFLUSH: %h"
                       ,
                   this.count,
@@ -205,91 +208,97 @@ class alu_scoreboard extends uvm_scoreboard;
                   curr_tx.o_funct3,
                   o_opcode_str,
                   curr_tx.o_exception,
-				  curr_tx.o_y,
+                  curr_tx.o_y,
                   curr_tx.o_pc,
-				  curr_tx.o_next_pc,
-				  curr_tx.o_change_pc,
-				  curr_tx.o_wr_rd,
+                  curr_tx.o_next_pc,
+                  curr_tx.o_change_pc,
+                  curr_tx.o_wr_rd,
                   curr_tx.o_rd_addr,
-				  curr_tx.o_rd,
-				  curr_tx.o_rd_valid,
-				  curr_tx.o_stall_from_alu,
-				  curr_tx.o_ce,
+                  curr_tx.o_rd,
+                  curr_tx.o_rd_valid,
+                  curr_tx.o_stall_from_alu,
+                  curr_tx.o_ce,
                   curr_tx.o_stall,
                   curr_tx.o_flush
                   ), UVM_MEDIUM);
-				  
-		if (curr_tx.rst_n === 0) begin
-			if(curr_tx.o_exception      !== 0 &&
-				curr_tx.o_ce            !== 0 &&
-				curr_tx.o_stall_from_alu !== 0) begin
-				`uvm_error("SCB", $sformatf("RESET ERROR: \no_exception: %h\no_ce: %h\no_stall_from_alu: %h",curr_tx.o_exception, curr_tx.o_ce, curr_tx.o_stall_from_alu)); 
-			end
-		end
-		else begin
-			`uvm_info("SCB", $sformatf("Entered Checking, ALU op: %s", alu_op_str), UVM_NONE); 
-			check_alu_operations(curr_tx);
-			// Compare program counters (PC).
-			if (curr_tx.i_pc !== curr_tx.o_pc) begin
-				`uvm_error("SCB", $sformatf(
-						   "PC mismatch: Expected %h, Got %h", curr_tx.i_pc, curr_tx.o_pc));
-			end
 
-			// Check for flush, stall, or force stall conditions.
-			if (curr_tx.i_flush || curr_tx.i_stall || curr_tx.i_force_stall) begin
-				if (curr_tx.o_change_pc !== 0) begin
-					`uvm_error("SCB", "Unexpected PC change during flush/stall!")
-				end
+        if (curr_tx.rst_n === 0) begin
+            if (curr_tx.o_exception !== 0 && curr_tx.o_ce !== 0 &&
+                curr_tx.o_stall_from_alu !== 0) begin
+                `uvm_error("SCB", $sformatf(
+                           "RESET ERROR: \no_exception: %h\no_ce: %h\no_stall_from_alu: %h",
+                           curr_tx.o_exception,
+                           curr_tx.o_ce,
+                           curr_tx.o_stall_from_alu
+                           ));
+            end
+        end else begin
+            `uvm_info("SCB", $sformatf("Entered Checking, ALU op: %s", alu_op_str), UVM_NONE);
+            check_alu_operations(curr_tx);
+            // Compare program counters (PC).
+            if (curr_tx.i_pc !== curr_tx.o_pc) begin
+                `uvm_error("SCB", $sformatf(
+                           "PC mismatch: Expected %h, Got %h", curr_tx.i_pc, curr_tx.o_pc));
+            end
 
-			end else if (curr_tx.i_pc + 4 !== curr_tx.o_next_pc && curr_tx.o_change_pc) begin
-				`uvm_error(
-					"SCB", $sformatf(
-					"Unexpected PC change: Expected %h, Got %h", curr_tx.i_pc + 4, curr_tx.o_next_pc));
-			end
+            // Check for flush, stall, or force stall conditions.
+            if (curr_tx.i_flush || curr_tx.i_stall || curr_tx.i_force_stall) begin
+                if (curr_tx.o_change_pc !== 0) begin
+                    `uvm_error("SCB", "Unexpected PC change during flush/stall!")
+                end
 
-			// Compare flush signals.
-			if (curr_tx.i_flush !== curr_tx.o_flush) begin
-				`uvm_error("SCB", "Flush signal mismatch!");
-			end
+            end else if (curr_tx.i_pc + 4 !== curr_tx.o_next_pc && curr_tx.o_change_pc) begin
+                `uvm_error(
+                    "SCB", $sformatf(
+                    "Unexpected PC change: Expected %h, Got %h", curr_tx.i_pc + 4, curr_tx.o_next_pc
+                    ));
+            end
 
-			// Check register write conditions.
-			if (curr_tx.i_rd_addr != 0) begin
-				if (curr_tx.i_ce && !curr_tx.i_stall) begin
-					// Ensure write enable signal is set.
-					if (!curr_tx.o_wr_rd) begin
-						`uvm_error("SCB", "Missing register write enable!");
-					end
+            // Compare flush signals.
+            if (curr_tx.i_flush !== curr_tx.o_flush) begin
+                `uvm_error("SCB", "Flush signal mismatch!");
+            end
 
-					// Check if register address matches.
-					if (curr_tx.o_rd_addr !== curr_tx.i_rd_addr) begin
-						`uvm_error("SCB", $sformatf(
-								   "RD Address mismatch: Expected %0h, Got %0h",
-								   curr_tx.i_rd_addr,
-								   curr_tx.o_rd_addr
-								   ));
-					end
+            // Check register write conditions.
+            if (curr_tx.i_rd_addr != 0) begin
+                if (curr_tx.i_ce && !curr_tx.i_stall) begin
+                    // Ensure write enable signal is set.
+                    if (!curr_tx.o_wr_rd) begin
+                        `uvm_error("SCB", "Missing register write enable!");
+                    end
 
-					// Ensure RD Valid signal is set.
-					if (curr_tx.o_rd_valid !== 1) begin
-						`uvm_error("SCB", "RD Valid signal mismatch!");
-					end
-				end
-			end
+                    // Check if register address matches.
+                    if (curr_tx.o_rd_addr !== curr_tx.i_rd_addr) begin
+                        `uvm_error("SCB", $sformatf(
+                                   "RD Address mismatch: Expected %0h, Got %0h",
+                                   curr_tx.i_rd_addr,
+                                   curr_tx.o_rd_addr
+                                   ));
+                    end
 
-			// Compare stall signals.
-			if (curr_tx.i_stall !== curr_tx.o_stall) begin
-				`uvm_error("SCB", "Stall signal mismatch!");
-			end
-		end
+                    // Ensure RD Valid signal is set.
+                    if (curr_tx.o_rd_valid !== 1) begin
+                        `uvm_error("SCB", "RD Valid signal mismatch!");
+                    end
+                end
+            end
+
+            // Compare stall signals.
+            if (curr_tx.i_stall !== curr_tx.o_stall) begin
+                `uvm_error("SCB", "Stall signal mismatch!");
+            end
+        end
         // Log successful verification.
         `uvm_info("SCB", $sformatf("Transaction %d successfully verified!", this.count), UVM_LOW)
     endfunction
-	
-	function void check_alu_operations(transaction curr_tx);
+
+    function void check_alu_operations(transaction curr_tx);
         logic [31:0] expected_y;
-		bit [31:0] a   = (curr_tx.i_opcode === `JAL_BITS || curr_tx.i_opcode === `AUIPC_BITS) ? curr_tx.i_pc : curr_tx.i_rs1;  // a can either be pc or rs1
-        bit [31:0] b  = (curr_tx.i_opcode === `RTYPE_BITS || curr_tx.i_opcode === `BRANCH_BITS) ? curr_tx.i_rs2 : curr_tx.i_imm;  // b can either be rs2 or imm
-		`uvm_info("SCB", $sformatf("A: %h\nB: %h\nOP: %h", a, b, curr_tx.i_alu), UVM_LOW)
+        bit [31:0] a = (curr_tx.i_opcode === `JAL_BITS || curr_tx.i_opcode === `AUIPC_BITS) ?
+            curr_tx.i_pc : curr_tx.i_rs1;  // a can either be pc or rs1
+        bit [31:0] b = (curr_tx.i_opcode === `RTYPE_BITS || curr_tx.i_opcode === `BRANCH_BITS) ?
+            curr_tx.i_rs2 : curr_tx.i_imm;  // b can either be rs2 or imm
+        `uvm_info("SCB", $sformatf("A: %h\nB: %h\nOP: %h", a, b, curr_tx.i_alu), UVM_LOW)
         case (1)
             curr_tx.i_alu[`ADD]:  expected_y = a + b;
             curr_tx.i_alu[`SUB]:  expected_y = a - b;
@@ -305,11 +314,12 @@ class alu_scoreboard extends uvm_scoreboard;
             curr_tx.i_alu[`NEQ]:  expected_y = (a != b) ? 1 : 0;
             curr_tx.i_alu[`GE]:   expected_y = ($signed(a) >= $signed(b)) ? 1 : 0;
             curr_tx.i_alu[`GEU]:  expected_y = (a >= b) ? 1 : 0;
-            default: expected_y = 32'hDEADBEEF;
+            default:              expected_y = 32'hDEADBEEF;
         endcase
 
         if (curr_tx.o_y !== expected_y) begin
-            `uvm_error("SCB", $sformatf("ALU Operation Mismatch: Expected %h, Got %h", expected_y, curr_tx.o_y));
+            `uvm_error("SCB", $sformatf(
+                       "ALU Operation Mismatch: Expected %h, Got %h", expected_y, curr_tx.o_y));
         end
     endfunction
 

@@ -1,6 +1,6 @@
 // Guard against multiple inclusion of this file to avoid redefinition errors
 `ifndef ALU_ENV_SV
-`define ALU_ENV_SV
+`define ALU_ENV_SV 
 
 // Include the UVM macros file, which provides useful macros like `uvm_component_utils`
 `include "uvm_macros.svh"
@@ -19,8 +19,8 @@ class alu_env extends uvm_env;
     // Register the alu_env class with the UVM factory
     // This allows the class to be instantiated dynamically during simulation
     `uvm_component_utils(alu_env)
-	
-	virtual alu_if dut_if;
+
+    virtual alu_if dut_if;
 
     // Declare class members for the key components of the environment
     // alu_agent handles driving and monitoring transactions to/from the DUT
@@ -44,7 +44,7 @@ class alu_env extends uvm_env;
     function void build_phase(uvm_phase phase);
         // Call the parent class’s build_phase to ensure proper initialization
         super.build_phase(phase);
-		`uvm_info("ENV", "ENV Building", UVM_NONE);
+        `uvm_info("ENV", "ENV Building", UVM_NONE);
         // Instantiate the agent using the UVM factory method
         // "agent" is the instance name, and "this" is the parent (the current environment)
         agent      = alu_agent::type_id::create("agent", this);
@@ -53,10 +53,12 @@ class alu_env extends uvm_env;
         // Instantiate the coverage collector using the UVM factory
         coverage   = alu_coverage::type_id::create("coverage", this);
         // Configure the agent to be active using the UVM configuration database
-		set_report_severity_action_hier(UVM_INFO, UVM_DISPLAY | UVM_LOG);   // Ensure info messages are displayed and logged
-		set_report_severity_action_hier(UVM_WARNING, UVM_LOG);               // Log warnings
-		set_report_severity_action_hier(UVM_ERROR, UVM_LOG | UVM_DISPLAY);   // Log and display errors
-//        uvm_config_db#(virtual alu_if)::set(null, "*", "alu_vif", dut_if);
+        set_report_severity_action_hier(
+            UVM_INFO, UVM_DISPLAY | UVM_LOG);  // Ensure info messages are displayed and logged
+        set_report_severity_action_hier(UVM_WARNING, UVM_LOG);  // Log warnings
+        set_report_severity_action_hier(UVM_ERROR,
+                                        UVM_LOG | UVM_DISPLAY);  // Log and display errors
+        //        uvm_config_db#(virtual alu_if)::set(null, "*", "alu_vif", dut_if);
 
         // UVM_ACTIVE means the agent will drive transactions to the DUT
         uvm_config_db#(uvm_active_passive_enum)::set(this, "agent", "is_active", UVM_ACTIVE);

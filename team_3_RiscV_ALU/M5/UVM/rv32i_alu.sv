@@ -77,11 +77,11 @@ module rv32i_alu (
     input logic [31:0] i_pc;  //Program Counter
     input logic [4:0] i_rd_addr;  //address for destination logicister (from previous stage)
     input logic i_ce;  // input clk enable for pipeline stalling of this stage
-	// coverage off
+    // coverage off
     input logic i_stall;  //informs this stage to stall
     input logic i_force_stall;  //force this stage to stall
     input logic i_flush;  //flush this stage
-	// coverage on
+    // coverage on
     output logic [4:0] o_rs1_addr;  //address for logicister source 1
     output logic [31:0] o_rs1;  //Source logicister 1 value
     output logic [31:0] o_rs2;  //Source logicister 2 value
@@ -98,13 +98,14 @@ module rv32i_alu (
     output logic [31:0] o_rd;  //value to be written back to destination logicister
     output logic o_rd_valid;  //high if o_rd is valid (not load nor csr instruction)
     // coverage off
-	output logic o_stall_from_alu;  //prepare to stall next stage(memory-access stage) for load/store instruction
+    output logic o_stall_from_alu
+        ;  //prepare to stall next stage(memory-access stage) for load/store instruction
     // coverage on
-	output logic o_ce;  // output clk enable for pipeline stalling of next stage
-	// coverage off
+    output logic o_ce;  // output clk enable for pipeline stalling of next stage
+    // coverage off
     output logic o_stall;  //informs pipeline to stall
     output logic o_flush;  //flush previous stages
-	// coverage on
+    // coverage on
     // Internal signals
     logic        alu_add;
     logic        alu_sub;
@@ -122,7 +123,7 @@ module rv32i_alu (
     logic        alu_geu;
     logic        opcode_rtype;
     logic        opcode_itype;
-	// coverage off
+    // coverage off
     logic        opcode_load;
     logic        opcode_store;
     logic        opcode_branch;
@@ -132,7 +133,7 @@ module rv32i_alu (
     logic        opcode_auipc;
     logic        opcode_system;
     logic        opcode_fence;
-	// coverage on
+    // coverage on
     logic [31:0] a;  //operand A
     logic [31:0] b;  //operand B
     logic [31:0] y_d;  //ALU output
@@ -141,9 +142,9 @@ module rv32i_alu (
     logic        rd_valid_d;  //high if rd is valid (not load nor csr instruction)
     logic [31:0] a_pc;
     logic [31:0] sum;
-	// coverage off
+    // coverage off
     logic        stall_bit;
-	// coverage on
+    // coverage on
     //logicister the output of i_alu
     always_ff @(posedge i_clk, negedge i_rst_n) begin
         if (!i_rst_n) begin
@@ -151,7 +152,7 @@ module rv32i_alu (
             o_ce             <= 0;
             o_stall_from_alu <= 0;
         end else begin
-			// coverage off -item c 1
+            // coverage off -item c 1
             if (i_ce && !stall_bit) begin  //update logicister only if this stage is enabled
                 o_opcode <= i_opcode;
                 o_exception <= i_exception;
@@ -165,21 +166,22 @@ module rv32i_alu (
                 o_rd <= rd_d;
                 o_rd_valid <= rd_valid_d;
                 o_wr_rd <= wr_rd_d;
-				// coverage off
-                o_stall_from_alu <= i_opcode[`STORE] || i_opcode[`LOAD];  //stall next stage(memory-access stage) when need to store/load
-				// coverage on
+                // coverage off
+                o_stall_from_alu <= i_opcode[`STORE] || i_opcode[`LOAD]
+                    ;  //stall next stage(memory-access stage) when need to store/load
+                // coverage on
                 o_pc <= i_pc;  //since accessing data memory always takes more than 1 cycle
             end
-			// coverage off
+            // coverage off
             if (i_flush && !stall_bit) begin  //flush this stage so clock-enable of next stage is disabled at next clock cycle
                 o_ce <= 0;
-			// coverage on
+                // coverage on
             end else if (!stall_bit) begin  //clock-enable will change only when not stalled
                 o_ce <= i_ce;
-			// coverage off
+                // coverage off
             end else if (stall_bit && !i_stall)
                 o_ce <= 0;  //if this stage is stalled but next stage is not, disable
-			// coverage on
+            // coverage on
             //clock enable of next stage at next clock cycle (pipeline bubble)
         end
     end
@@ -187,10 +189,10 @@ module rv32i_alu (
 
     always_comb begin
         y_d = 0;
-		// coverage off
+        // coverage off
         a   = (opcode_jal || opcode_auipc) ? i_pc : i_rs1;  // a can either be pc or rs1
-		// coverage on
-		// coverage off -item c 1
+        // coverage on
+        // coverage off -item c 1
         b   = (opcode_rtype || opcode_branch) ? i_rs2 : i_imm;  // b can either be rs2 or imm
         if (alu_add) y_d = a + b;
         if (alu_sub) y_d = a - b;
@@ -224,7 +226,7 @@ module rv32i_alu (
         a_pc        = i_pc;
         if (!i_flush) begin
             if (opcode_rtype || opcode_itype) rd_d = y_d;
-			// coverage off
+            // coverage off
             if (opcode_branch && y_d[0]) begin
                 o_next_pc = sum;  //branch iff value of ALU is 1(true)
                 o_change_pc =
@@ -239,9 +241,9 @@ module rv32i_alu (
                 o_flush = i_ce;
                 rd_d = i_pc + 4;  //logicister the next pc value to destination logicister
             end
-			// coverage on
+            // coverage on
         end
-		// coverage off
+        // coverage off
         if (opcode_lui) rd_d = i_imm;
         if (opcode_auipc) rd_d = sum;
         if (opcode_branch || opcode_store || (opcode_system && i_funct3 == 0) || opcode_fence)
@@ -252,7 +254,7 @@ module rv32i_alu (
             rd_valid_d =
                 0;  //value of o_rd for load and CSR write is not yet available at this stage
         else rd_valid_d = 1;
-		// coverage on
+        // coverage on
         //stall logic (stall when upper stages are stalled, when forced to stall, or when needs to flush previous stages but are still stalled)
         o_stall = (i_stall || i_force_stall) && !i_flush;  //stall when alu needs wait time
     end
@@ -546,7 +548,7 @@ module rv32i_alu2 (
     assign opcode_auipc = i_opcode[`AUIPC];
     assign opcode_system = i_opcode[`SYSTEM];
     assign opcode_fence = i_opcode[`FENCE];
-	
+
 
 `ifdef FORMAL
     // assumption on inputs(not more than one opcode and alu operation is high)

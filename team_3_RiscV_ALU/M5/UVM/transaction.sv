@@ -7,66 +7,66 @@
 // Updated: Feb 26, 2025
 // ----------------------------------------------------------------------------
 `ifndef TRANSACTION_SV
-`define TRANSACTION_SV
+`define TRANSACTION_SV 
 `include "uvm_macros.svh"
 import uvm_pkg::*;
 `include "rv32i_alu_header.sv"
 
 class transaction extends uvm_sequence_item;
     `uvm_object_utils(transaction)
-	
-	int tx_id = 0;
+
+    int tx_id = 0;
 
     //--------------------------------------------------------------------------
     // Randomized Input Signals (for stimulus generation)
     //--------------------------------------------------------------------------
-	// coverage off
-    rand bit [                13:0] i_alu;  // ALU control signal (14-bit one-hot encoded)
-    rand bit [                31:0] i_rs1;  // First operand (32-bit)
-    rand bit [                31:0] i_rs2;  // Second operand (32-bit)
-    rand bit [                31:0] i_imm;  // Immediate value (32-bit)
-    rand bit [   `OPCODE_WIDTH-1:0] i_opcode;  // Opcode (7-bit, aligned with rv32i_alu_header.sv)
-    rand bit                        i_ce;  // Clock enable signal
-    rand bit [                 4:0] i_rs1_addr;  // Address for source register 1 (5-bit)
-    rand bit [                 2:0] i_funct3;  // Function field (3-bit)
-    rand bit [                31:0] i_pc;  // Program counter (32-bit)
-    rand bit [                 4:0] i_rd_addr;  // Destination register address (5-bit)
+    // coverage off
+    rand bit [13:0] i_alu;  // ALU control signal (14-bit one-hot encoded)
+    rand bit [31:0] i_rs1;  // First operand (32-bit)
+    rand bit [31:0] i_rs2;  // Second operand (32-bit)
+    rand bit [31:0] i_imm;  // Immediate value (32-bit)
+    rand bit [`OPCODE_WIDTH-1:0] i_opcode;  // Opcode (7-bit, aligned with rv32i_alu_header.sv)
+    rand bit i_ce;  // Clock enable signal
+    rand bit [4:0] i_rs1_addr;  // Address for source register 1 (5-bit)
+    rand bit [2:0] i_funct3;  // Function field (3-bit)
+    rand bit [31:0] i_pc;  // Program counter (32-bit)
+    rand bit [4:0] i_rd_addr;  // Destination register address (5-bit)
 
-    bit                             i_stall;  // Stall signal
-    bit                             i_force_stall;  // Force stall signal
-    bit                             i_flush;  // Flush signal
-	// coverage on
-    rand bit                        rst_n;  // Active-low reset signal
+    bit i_stall;  // Stall signal
+    bit i_force_stall;  // Force stall signal
+    bit i_flush;  // Flush signal
+    // coverage on
+    rand bit rst_n;  // Active-low reset signal
 
     // Non-randomized fields (set externally or in specific cases)
-    bit      [`EXCEPTION_WIDTH-1:0] i_exception;  // Exception signal
+    bit [`EXCEPTION_WIDTH-1:0] i_exception;  // Exception signal
 
     //--------------------------------------------------------------------------
     // Output Signals (for monitoring and verification, not driven to DUT)
     //--------------------------------------------------------------------------
-    bit      [                 4:0] o_rs1_addr;  // Output source register address
-    bit      [                31:0] o_rs1;  // Output value of the first operand
-    bit      [                31:0] o_rs2;  // Output value of the second operand
-    bit      [                31:0] o_imm;  // Output immediate value (32-bit)
-    bit      [                 2:0] o_funct3;  // Output function field
-    bit      [   `OPCODE_WIDTH-1:0] o_opcode;  // Output opcode
-    bit      [`EXCEPTION_WIDTH-1:0] o_exception;  // Output exception signal
-    bit      [                31:0] o_y;  // Output ALU result
-    bit      [                31:0] o_pc;  // Output program counter
-    bit      [                31:0] o_next_pc;  // Output next program counter
-    bit                             o_change_pc;  // Flag indicating a change in PC
-    bit                             o_wr_rd;  // Write/read flag for destination register
-    bit      [                 4:0] o_rd_addr;  // Output destination register address
-    bit      [                31:0] o_rd;  // Output data for destination register
-    bit                             o_rd_valid;  // Validity flag for destination register data
-    bit                             o_stall_from_alu;  // Stall signal from the ALU
-    bit                             o_ce;  // Clock enable output
-	
-    bit                             o_stall;  // Stall signal output
-    bit                             o_flush;  // Flush signal output
+    bit [4:0] o_rs1_addr;  // Output source register address
+    bit [31:0] o_rs1;  // Output value of the first operand
+    bit [31:0] o_rs2;  // Output value of the second operand
+    bit [31:0] o_imm;  // Output immediate value (32-bit)
+    bit [2:0] o_funct3;  // Output function field
+    bit [`OPCODE_WIDTH-1:0] o_opcode;  // Output opcode
+    bit [`EXCEPTION_WIDTH-1:0] o_exception;  // Output exception signal
+    bit [31:0] o_y;  // Output ALU result
+    bit [31:0] o_pc;  // Output program counter
+    bit [31:0] o_next_pc;  // Output next program counter
+    bit o_change_pc;  // Flag indicating a change in PC
+    bit o_wr_rd;  // Write/read flag for destination register
+    bit [4:0] o_rd_addr;  // Output destination register address
+    bit [31:0] o_rd;  // Output data for destination register
+    bit o_rd_valid;  // Validity flag for destination register data
+    bit o_stall_from_alu;  // Stall signal from the ALU
+    bit o_ce;  // Clock enable output
+
+    bit o_stall;  // Stall signal output
+    bit o_flush;  // Flush signal output
 
     // Expected output for verification
-    bit      [                31:0] verify_y;  // Expected ALU result (32-bit)
+    bit [31:0] verify_y;  // Expected ALU result (32-bit)
 
     //--------------------------------------------------------------------------
     // Constraints
@@ -93,7 +93,7 @@ class transaction extends uvm_sequence_item;
     // Constraint for opcode: valid RISC-V instruction types (7-bit)
     constraint opcode_c {
         i_opcode inside {11'b00000000001,  // R-type
-        11'b00000000010/*,  // I-type
+        11'b00000000010  /*,  // I-type
         11'b00000000100,  // Load
         11'b00000001000,  // Store
         11'b00000010000,  // Branch
@@ -152,15 +152,15 @@ class transaction extends uvm_sequence_item;
     //--------------------------------------------------------------------------
     function void set_values(int alu_idx, bit [`OPCODE_WIDTH-1:0] opcode, bit [31:0] rs1,
                              bit [31:0] rs2, bit [31:0] imm, bit ce, bit rst);
-        i_alu          = 0;  // Clear previous ALU control settings
-        i_alu		   = alu_idx;  // Set the specified ALU control bit
-        i_opcode       = opcode;  // Set the instruction opcode
-        i_rs1          = rs1;  // Assign first operand
-        i_rs2          = rs2;  // Assign second operand
-        i_imm          = imm;  // Assign immediate value
-        i_ce           = ce;  // Set clock enable
-        rst_n        = rst;  // Default to active unless explicitly testing reset
-		tx_id = tx_id + 1;
+        i_alu    = 0;  // Clear previous ALU control settings
+        i_alu    = alu_idx;  // Set the specified ALU control bit
+        i_opcode = opcode;  // Set the instruction opcode
+        i_rs1    = rs1;  // Assign first operand
+        i_rs2    = rs2;  // Assign second operand
+        i_imm    = imm;  // Assign immediate value
+        i_ce     = ce;  // Set clock enable
+        rst_n    = rst;  // Default to active unless explicitly testing reset
+        tx_id    = tx_id + 1;
     endfunction
 
     //--------------------------------------------------------------------------
@@ -218,7 +218,7 @@ class transaction extends uvm_sequence_item;
         this.i_flush          = rhs_.i_flush;
         this.rst_n            = rhs_.rst_n;
         this.i_exception      = rhs_.i_exception;
-		this.tx_id			  = rhs_.tx_id;
+        this.tx_id            = rhs_.tx_id;
         // Copy output fields
         this.o_rs1_addr       = rhs_.o_rs1_addr;
         this.o_rs1            = rhs_.o_rs1;
@@ -274,10 +274,10 @@ class transaction extends uvm_sequence_item;
             verify_y
         );
     endfunction
-	
-	function void post_randomize();
-		tx_id = tx_id + 1;
-	endfunction
+
+    function void post_randomize();
+        tx_id = tx_id + 1;
+    endfunction
 endclass
 
 `endif

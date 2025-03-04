@@ -8,7 +8,7 @@
 
 // Prevent multiple inclusions of this file to avoid redefinition errors
 `ifndef ALU_TEST_SV
-`define ALU_TEST_SV
+`define ALU_TEST_SV 
 
 // Include UVM macros to enable utility functions and shortcuts
 `include "uvm_macros.svh"
@@ -32,7 +32,7 @@ class alu_base_test extends uvm_test;
     // Declare an instance of the ALU environment, which includes agents and other components
     alu_env        env;
     alu_scoreboard scb;
-	integer log_file;
+    integer        log_file;
     virtual alu_if vif;
     // Constructor to initialize the test class
     // - name: Unique instance name for this test
@@ -49,37 +49,40 @@ class alu_base_test extends uvm_test;
 
         // Execute the parent’s build_phase for foundational setup
         super.build_phase(phase);
-		
-		// Open the log file
+
+        // Open the log file
 
 
-		
 
-//		uvm_config_db#(virtual alu_if)::set(null, "*", "alu_vif", vif);
+
+        //		uvm_config_db#(virtual alu_if)::set(null, "*", "alu_vif", vif);
         //      uvm_config_db #(virtual alu_if)::set(this, "*", "alu_vif", vif);
         // Create the environment instance using the UVM factory
-        env = alu_env::type_id::create("env", this);
-		
-		log_file = $fopen("uvm_log.txt", "w");
+        env      = alu_env::type_id::create("env", this);
+
+        log_file = $fopen("uvm_log.txt", "w");
 
         if (log_file) begin
             // Set the report server to write to the file
-			set_report_severity_action_hier(UVM_INFO, UVM_DISPLAY | UVM_LOG);   // Ensure info messages are displayed and logged
-			set_report_severity_action_hier(UVM_WARNING, UVM_LOG);               // Log warnings
-			set_report_severity_action_hier(UVM_ERROR, UVM_LOG | UVM_DISPLAY);   // Log and display errors
+            set_report_severity_action_hier(
+                UVM_INFO, UVM_DISPLAY | UVM_LOG);  // Ensure info messages are displayed and logged
+            set_report_severity_action_hier(UVM_WARNING, UVM_LOG);  // Log warnings
+            set_report_severity_action_hier(UVM_ERROR,
+                                            UVM_LOG | UVM_DISPLAY);  // Log and display errors
 
-			set_report_severity_file_hier(UVM_INFO, log_file);  // Ensure the info messages go to the log file
-			set_report_severity_file_hier(UVM_WARNING, log_file);
-			set_report_severity_file_hier(UVM_ERROR, log_file);
-			//set_report_id_file("ENV", log_file);
-			set_report_default_file_hier(log_file);
-			`uvm_info("TEST", "Set report server severities and outputs", UVM_NONE);
+            set_report_severity_file_hier(
+                UVM_INFO, log_file);  // Ensure the info messages go to the log file
+            set_report_severity_file_hier(UVM_WARNING, log_file);
+            set_report_severity_file_hier(UVM_ERROR, log_file);
+            //set_report_id_file("ENV", log_file);
+            set_report_default_file_hier(log_file);
+            `uvm_info("TEST", "Set report server severities and outputs", UVM_NONE);
         end else begin
             `uvm_error("TEST", "Failed to open log file")
         end
-		
-		    // Set up report configurations for the environment
-/*     if (env != null) begin
+
+        // Set up report configurations for the environment
+        /*     if (env != null) begin
         env.set_report_severity_action_hier(UVM_INFO, UVM_DISPLAY | UVM_LOG);
         env.set_report_severity_action_hier(UVM_WARNING, UVM_LOG);
         env.set_report_severity_action_hier(UVM_ERROR, UVM_LOG | UVM_DISPLAY);
@@ -87,7 +90,7 @@ class alu_base_test extends uvm_test;
     end
 		 */
 
-		
+
     endfunction
 
     // Run phase: Execute the test by running the sequence during simulation
