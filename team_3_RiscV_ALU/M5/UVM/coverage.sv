@@ -8,7 +8,7 @@
 // Updated: Feb 26, 2025
 // ----------------------------------------------------------------------------
 `ifndef ALU_COV_SV
-`define ALU_COV_SV 
+`define ALU_COV_SV
 
 `include "uvm_macros.svh"
 import uvm_pkg::*;
@@ -25,17 +25,17 @@ class alu_coverage extends uvm_subscriber #(transaction);
     covergroup alu_cg;
         // Opcode coverage (7-bit standard RISC-V opcodes from transaction.sv)
         coverpoint tr.i_opcode {
-            bins r_type = {7'b0110011};  // R-type
-            bins i_type = {7'b0010011};  // I-type
-            bins load = {7'b0000011};  // Load
-            bins store = {7'b0100011};  // Store
-            bins branch = {7'b1100011};  // Branch
-            bins jal = {7'b1101111};  // JAL
-            bins jalr = {7'b1100111};  // JALR
-            bins lui = {7'b0110111};  // LUI
-            bins auipc = {7'b0010111};  // AUIPC
-            bins system = {7'b1110011};  // System
-            bins fence = {7'b0001111};  // Fence
+            bins r_type = {11'b00000000001};  // R-type (bit 0)
+            bins i_type = {11'b00000000010};  // I-type (bit 1)
+            bins load = {11'b00000000100};  // Load   (bit 2)
+            bins store = {11'b00000001000};  // Store  (bit 3)
+            bins branch = {11'b00000010000};  // Branch (bit 4)
+            bins jal = {11'b00000100000};  // JAL    (bit 5)
+            bins jalr = {11'b00001000000};  // JALR   (bit 6)
+            bins lui = {11'b00010000000};  // LUI    (bit 7)
+            bins auipc = {11'b00100000000};  // AUIPC  (bit 8)
+            bins system = {11'b01000000000};  // System (bit 9)
+            bins fence = {11'b10000000000};  // Fence  (bit 10)
         }
 
         // ALU operation coverage (14-bit one-hot from transaction.sv)

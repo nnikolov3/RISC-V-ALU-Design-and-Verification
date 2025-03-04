@@ -1,5 +1,5 @@
 `ifndef UVM_MONITOR_SV
-`define UVM_MONITOR_SV 
+`define UVM_MONITOR_SV
 
 `include "uvm_macros.svh"
 import uvm_pkg::*;
@@ -56,8 +56,8 @@ class alu_monitor extends uvm_monitor;
             set_report_severity_action_hier(UVM_ERROR,
                                             UVM_LOG | UVM_DISPLAY);  // Log and display errors
 
-            set_report_severity_file_hier(
-                UVM_INFO, log_file);  // Ensure the info messages go to the log file
+            set_report_severity_file_hier(UVM_INFO,
+                                          log_file);  // Ensure the info messages go to the log file
             set_report_severity_file_hier(UVM_WARNING, log_file);
             set_report_severity_file_hier(UVM_ERROR, log_file);
             //set_report_id_file("ENV", log_file);

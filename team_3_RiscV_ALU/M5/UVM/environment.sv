@@ -1,6 +1,6 @@
 // Guard against multiple inclusion of this file to avoid redefinition errors
 `ifndef ALU_ENV_SV
-`define ALU_ENV_SV 
+`define ALU_ENV_SV
 
 // Include the UVM macros file, which provides useful macros like `uvm_component_utils`
 `include "uvm_macros.svh"

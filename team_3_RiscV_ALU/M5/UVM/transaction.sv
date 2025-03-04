@@ -92,19 +92,21 @@ class transaction extends uvm_sequence_item;
 
     // Constraint for opcode: valid RISC-V instruction types (7-bit)
     constraint opcode_c {
-        i_opcode inside {7'b0110011,  // R-type
-        7'b0010011,  // I-type
-        7'b0000011,  // Load
-        7'b0100011,  // Store
-        7'b1100011,  // Branch
-        7'b1101111,  // JAL
-        7'b1100111,  // JALR
-        7'b0110111,  // LUI
-        7'b0010111,  // AUIPC
-        7'b1110011,  // System
-        7'b0001111  // Fence
+        i_opcode inside {11'b00000000001,  // R-type  (bit 0)
+        11'b00000000010,  // I-type  (bit 1)
+        11'b00000000100,  // Load    (bit 2)
+        11'b00000001000,  // Store   (bit 3)
+        11'b00000010000,  // Branch  (bit 4)
+        11'b00000100000,  // JAL     (bit 5)
+        11'b00001000000,  // JALR    (bit 6)
+        11'b00010000000,  // LUI     (bit 7)
+        11'b00100000000,  // AUIPC   (bit 8)
+        11'b01000000000,  // System  (bit 9)
+        11'b10000000000  // Fence   (bit 10)
         };
     }
+
+
 
     // Constraint for clock enable: 90% enabled
     constraint ce_c {
@@ -153,17 +155,15 @@ class transaction extends uvm_sequence_item;
     //--------------------------------------------------------------------------
     function void set_values(int alu_idx, bit [`OPCODE_WIDTH-1:0] opcode, bit [31:0] rs1,
                              bit [31:0] rs2, bit [31:0] imm, bit ce, bit rst);
-        i_alu    = 0;  // Clear previous ALU control settings
-        i_alu    = alu_idx;  // Set the specified ALU control bit
-        i_opcode = opcode;  // Set the instruction opcode
-        i_rs1    = rs1;  // Assign first operand
-        i_rs2    = rs2;  // Assign second operand
-        i_imm    = imm;  // Assign immediate value
-        i_ce     = ce;  // Set clock enable
-        rst_n    = rst;  // Default to active unless explicitly testing reset
+        i_alu    = 1 << alu_idx;  // One-hot ALU control
+        i_opcode = opcode;  // Already 11-bit one-hot from caller
+        i_rs1    = rs1;
+        i_rs2    = rs2;
+        i_imm    = imm;
+        i_ce     = ce;
+        rst_n    = rst;
         tx_id    = tx_id + 1;
     endfunction
-
     //--------------------------------------------------------------------------
     // Function: alu_operation
     // Computes the expected ALU result based on class fields

@@ -13,7 +13,7 @@ import uvm_pkg::*;
 `include "rv32i_alu_header.sv"
 `include "transaction.sv"
 `ifndef ALU_DRV_SV
-`define ALU_DRV_SV 
+`define ALU_DRV_SV
 class alu_driver extends uvm_driver #(transaction);
     // Register with UVM factory
     `uvm_component_utils(alu_driver)
@@ -36,8 +36,8 @@ class alu_driver extends uvm_driver #(transaction);
             set_report_severity_action_hier(UVM_ERROR,
                                             UVM_LOG | UVM_DISPLAY);  // Log and display errors
 
-            set_report_severity_file_hier(
-                UVM_INFO, log_file);  // Ensure the info messages go to the log file
+            set_report_severity_file_hier(UVM_INFO,
+                                          log_file);  // Ensure the info messages go to the log file
             set_report_severity_file_hier(UVM_WARNING, log_file);
             set_report_severity_file_hier(UVM_ERROR, log_file);
             //set_report_id_file("ENV", log_file);
