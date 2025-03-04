@@ -1,0 +1,1509 @@
+# Coverage Report by instance with details
+# 
+# =================================================================================
+# === Instance: /top_sv_unit
+# === Design Unit: work.top_sv_unit
+# =================================================================================
+# 
+# Covergroup Coverage:
+#     Covergroups                      1        na        na    47.12%
+#         Coverpoints/Crosses         32        na        na        na
+#             Covergroup Bins       5781        95      5686     1.64%
+# ----------------------------------------------------------------------------------------------------------
+# Covergroup                                             Metric       Goal       Bins    Status               
+#                                                                                                          
+# ----------------------------------------------------------------------------------------------------------
+#  TYPE /top_sv_unit/alu_coverage/alu_cg                 47.12%        100          -    Uncovered            
+#     covered/total bins:                                    95       5781          -                      
+#     missing/total bins:                                  5686       5781          -                      
+#     % Hit:                                              1.64%        100          -                      
+#     Coverpoint #coverpoint__0#                          0.00%        100          -    ZERO                 
+#         covered/total bins:                                 0         11          -                      
+#         missing/total bins:                                11         11          -                      
+#         % Hit:                                          0.00%        100          -                      
+#         bin r_type                                          0          1          -    ZERO                 
+#         bin i_type                                          0          1          -    ZERO                 
+#         bin load                                            0          1          -    ZERO                 
+#         bin store                                           0          1          -    ZERO                 
+#         bin branch                                          0          1          -    ZERO                 
+#         bin jal                                             0          1          -    ZERO                 
+#         bin jalr                                            0          1          -    ZERO                 
+#         bin lui                                             0          1          -    ZERO                 
+#         bin auipc                                           0          1          -    ZERO                 
+#         bin system                                          0          1          -    ZERO                 
+#         bin fence                                           0          1          -    ZERO                 
+#     Coverpoint #coverpoint__1#                        100.00%        100          -    Covered              
+#         covered/total bins:                                14         14          -                      
+#         missing/total bins:                                 0         14          -                      
+#         % Hit:                                        100.00%        100          -                      
+#         bin add                                           380          1          -    Covered              
+#         bin sub                                           340          1          -    Covered              
+#         bin and_op                                        353          1          -    Covered              
+#         bin or_op                                         365          1          -    Covered              
+#         bin xor_op                                        385          1          -    Covered              
+#         bin sll                                           379          1          -    Covered              
+#         bin srl                                           334          1          -    Covered              
+#         bin sra                                           355          1          -    Covered              
+#         bin slt                                           340          1          -    Covered              
+#         bin sltu                                          350          1          -    Covered              
+#         bin eq                                            325          1          -    Covered              
+#         bin neq                                           365          1          -    Covered              
+#         bin ge                                            364          1          -    Covered              
+#         bin geu                                           373          1          -    Covered              
+#     Coverpoint #coverpoint__2#                        100.00%        100          -    Covered              
+#         covered/total bins:                                 2          2          -                      
+#         missing/total bins:                                 0          2          -                      
+#         % Hit:                                        100.00%        100          -                      
+#         bin reset_asserted                                282          1          -    Covered              
+#         bin reset_deasserted                             4726          1          -    Covered              
+#     Coverpoint #coverpoint__3#                         50.00%        100          -    Uncovered            
+#         covered/total bins:                                 1          2          -                      
+#         missing/total bins:                                 1          2          -                      
+#         % Hit:                                         50.00%        100          -                      
+#         bin no_change                                    5008          1          -    Covered              
+#         bin change                                          0          1          -    ZERO                 
+#     Coverpoint #coverpoint__4#                        100.00%        100          -    Covered              
+#         covered/total bins:                                 2          2          -                      
+#         missing/total bins:                                 0          2          -                      
+#         % Hit:                                        100.00%        100          -                      
+#         bin no_write                                        1          1          -    Covered              
+#         bin write                                        5007          1          -    Covered              
+#     Coverpoint #coverpoint__5#                        100.00%        100          -    Covered              
+#         covered/total bins:                                 2          2          -                      
+#         missing/total bins:                                 0          2          -                      
+#         % Hit:                                        100.00%        100          -                      
+#         bin invalid                                         1          1          -    Covered              
+#         bin valid                                        5007          1          -    Covered              
+#     Coverpoint #coverpoint__6#                        100.00%        100          -    Covered              
+#         covered/total bins:                                32         32          -                      
+#         missing/total bins:                                 0         32          -                      
+#         % Hit:                                        100.00%        100          -                      
+#         bin reg_addr[0]                                   185          1          -    Covered              
+#         bin reg_addr[1]                                   182          1          -    Covered              
+#         bin reg_addr[2]                                   145          1          -    Covered              
+#         bin reg_addr[3]                                   166          1          -    Covered              
+#         bin reg_addr[4]                                   180          1          -    Covered              
+#         bin reg_addr[5]                                   150          1          -    Covered              
+#         bin reg_addr[6]                                   146          1          -    Covered              
+#         bin reg_addr[7]                                   161          1          -    Covered              
+#         bin reg_addr[8]                                   161          1          -    Covered              
+#         bin reg_addr[9]                                   139          1          -    Covered              
+#         bin reg_addr[10]                                  147          1          -    Covered              
+#         bin reg_addr[11]                                  152          1          -    Covered              
+#         bin reg_addr[12]                                  147          1          -    Covered              
+#         bin reg_addr[13]                                  163          1          -    Covered              
+#         bin reg_addr[14]                                  153          1          -    Covered              
+#         bin reg_addr[15]                                  141          1          -    Covered              
+#         bin reg_addr[16]                                  149          1          -    Covered              
+#         bin reg_addr[17]                                  156          1          -    Covered              
+#         bin reg_addr[18]                                  125          1          -    Covered              
+#         bin reg_addr[19]                                  168          1          -    Covered              
+#         bin reg_addr[20]                                  138          1          -    Covered              
+#         bin reg_addr[21]                                  165          1          -    Covered              
+#         bin reg_addr[22]                                  151          1          -    Covered              
+#         bin reg_addr[23]                                  161          1          -    Covered              
+#         bin reg_addr[24]                                  149          1          -    Covered              
+#         bin reg_addr[25]                                  158          1          -    Covered              
+#         bin reg_addr[26]                                  158          1          -    Covered              
+#         bin reg_addr[27]                                  165          1          -    Covered              
+#         bin reg_addr[28]                                  149          1          -    Covered              
+#         bin reg_addr[29]                                  174          1          -    Covered              
+#         bin reg_addr[30]                                  144          1          -    Covered              
+#         bin reg_addr[31]                                  180          1          -    Covered              
+#     Coverpoint #coverpoint__7#                         50.00%        100          -    Uncovered            
+#         covered/total bins:                                 1          2          -                      
+#         missing/total bins:                                 1          2          -                      
+#         % Hit:                                         50.00%        100          -                      
+#         bin disabled                                        0          1          -    ZERO                 
+#         bin enabled                                      5008          1          -    Covered              
+#     Coverpoint #coverpoint__8#                         50.00%        100          -    Uncovered            
+#         covered/total bins:                                 1          2          -                      
+#         missing/total bins:                                 1          2          -                      
+#         % Hit:                                         50.00%        100          -                      
+#         bin no_stall                                     5008          1          -    Covered              
+#         bin stall                                           0          1          -    ZERO                 
+#     Coverpoint #coverpoint__9#                         50.00%        100          -    Uncovered            
+#         covered/total bins:                                 1          2          -                      
+#         missing/total bins:                                 1          2          -                      
+#         % Hit:                                         50.00%        100          -                      
+#         bin no_force_stall                               5008          1          -    Covered              
+#         bin force_stall                                     0          1          -    ZERO                 
+#     Coverpoint #coverpoint__10#                        50.00%        100          -    Uncovered            
+#         covered/total bins:                                 1          2          -                      
+#         missing/total bins:                                 1          2          -                      
+#         % Hit:                                         50.00%        100          -                      
+#         bin no_flush                                     5008          1          -    Covered              
+#         bin flush                                           0          1          -    ZERO                 
+#     Coverpoint #coverpoint__11#                        50.00%        100          -    Uncovered            
+#         covered/total bins:                                 1          2          -                      
+#         missing/total bins:                                 1          2          -                      
+#         % Hit:                                         50.00%        100          -                      
+#         bin no_alu_stall                                 5008          1          -    Covered              
+#         bin alu_stall                                       0          1          -    ZERO                 
+#     Coverpoint #coverpoint__12#                         6.25%        100          -    Uncovered            
+#         covered/total bins:                                 1         16          -                      
+#         missing/total bins:                                15         16          -                      
+#         % Hit:                                          6.25%        100          -                      
+#         bin no_exception                                 5008          1          -    Covered              
+#         bin exceptions[1]                                   0          1          -    ZERO                 
+#         bin exceptions[2]                                   0          1          -    ZERO                 
+#         bin exceptions[3]                                   0          1          -    ZERO                 
+#         bin exceptions[4]                                   0          1          -    ZERO                 
+#         bin exceptions[5]                                   0          1          -    ZERO                 
+#         bin exceptions[6]                                   0          1          -    ZERO                 
+#         bin exceptions[7]                                   0          1          -    ZERO                 
+#         bin exceptions[8]                                   0          1          -    ZERO                 
+#         bin exceptions[9]                                   0          1          -    ZERO                 
+#         bin exceptions[10]                                  0          1          -    ZERO                 
+#         bin exceptions[11]                                  0          1          -    ZERO                 
+#         bin exceptions[12]                                  0          1          -    ZERO                 
+#         bin exceptions[13]                                  0          1          -    ZERO                 
+#         bin exceptions[14]                                  0          1          -    ZERO                 
+#         bin exceptions[15]                                  0          1          -    ZERO                 
+#     Coverpoint #tr.i_stall__13#                        50.00%        100          -    Uncovered            
+#         covered/total bins:                                 1          2          -                      
+#         missing/total bins:                                 1          2          -                      
+#         % Hit:                                         50.00%        100          -                      
+#         bin auto[0]                                      5008          1          -    Covered              
+#         bin auto[1]                                         0          1          -    ZERO                 
+#     Coverpoint #tr.o_stall_from_alu__14#               50.00%        100          -    Uncovered            
+#         covered/total bins:                                 1          2          -                      
+#         missing/total bins:                                 1          2          -                      
+#         % Hit:                                         50.00%        100          -                      
+#         bin auto[0]                                      5008          1          -    Covered              
+#         bin auto[1]                                         0          1          -    ZERO                 
+#     Coverpoint #tr.rst_n__15#                         100.00%        100          -    Covered              
+#         covered/total bins:                                 2          2          -                      
+#         missing/total bins:                                 0          2          -                      
+#         % Hit:                                        100.00%        100          -                      
+#         bin auto[0]                                       282          1          -    Covered              
+#         bin auto[1]                                      4726          1          -    Covered              
+#     Coverpoint #tr.i_ce__16#                           50.00%        100          -    Uncovered            
+#         covered/total bins:                                 1          2          -                      
+#         missing/total bins:                                 1          2          -                      
+#         % Hit:                                         50.00%        100          -                      
+#         bin auto[0]                                         0          1          -    ZERO                 
+#         bin auto[1]                                      5008          1          -    Covered              
+#     Coverpoint #tr.o_wr_rd__17#                       100.00%        100          -    Covered              
+#         covered/total bins:                                 2          2          -                      
+#         missing/total bins:                                 0          2          -                      
+#         % Hit:                                        100.00%        100          -                      
+#         bin auto[0]                                         1          1          -    Covered              
+#         bin auto[1]                                      5007          1          -    Covered              
+#     Coverpoint #tr.o_rd_valid__18#                    100.00%        100          -    Covered              
+#         covered/total bins:                                 2          2          -                      
+#         missing/total bins:                                 0          2          -                      
+#         % Hit:                                        100.00%        100          -                      
+#         bin auto[0]                                         1          1          -    Covered              
+#         bin auto[1]                                      5007          1          -    Covered              
+#     Coverpoint #tr.i_opcode__19#                        1.56%        100          -    Uncovered            
+#         covered/total bins:                                 1         64          -                      
+#         missing/total bins:                                63         64          -                      
+#         % Hit:                                          1.56%        100          -                      
+#         bin auto[0:31]                                   5008          1          -    Covered              
+#         bin auto[32:63]                                     0          1          -    ZERO                 
+#         bin auto[64:95]                                     0          1          -    ZERO                 
+#         bin auto[96:127]                                    0          1          -    ZERO                 
+#         bin auto[128:159]                                   0          1          -    ZERO                 
+#         bin auto[160:191]                                   0          1          -    ZERO                 
+#         bin auto[192:223]                                   0          1          -    ZERO                 
+#         bin auto[224:255]                                   0          1          -    ZERO                 
+#         bin auto[256:287]                                   0          1          -    ZERO                 
+#         bin auto[288:319]                                   0          1          -    ZERO                 
+#         bin auto[320:351]                                   0          1          -    ZERO                 
+#         bin auto[352:383]                                   0          1          -    ZERO                 
+#         bin auto[384:415]                                   0          1          -    ZERO                 
+#         bin auto[416:447]                                   0          1          -    ZERO                 
+#         bin auto[448:479]                                   0          1          -    ZERO                 
+#         bin auto[480:511]                                   0          1          -    ZERO                 
+#         bin auto[512:543]                                   0          1          -    ZERO                 
+#         bin auto[544:575]                                   0          1          -    ZERO                 
+#         bin auto[576:607]                                   0          1          -    ZERO                 
+#         bin auto[608:639]                                   0          1          -    ZERO                 
+#         bin auto[640:671]                                   0          1          -    ZERO                 
+#         bin auto[672:703]                                   0          1          -    ZERO                 
+#         bin auto[704:735]                                   0          1          -    ZERO                 
+#         bin auto[736:767]                                   0          1          -    ZERO                 
+#         bin auto[768:799]                                   0          1          -    ZERO                 
+#         bin auto[800:831]                                   0          1          -    ZERO                 
+#         bin auto[832:863]                                   0          1          -    ZERO                 
+#         bin auto[864:895]                                   0          1          -    ZERO                 
+#         bin auto[896:927]                                   0          1          -    ZERO                 
+#         bin auto[928:959]                                   0          1          -    ZERO                 
+#         bin auto[960:991]                                   0          1          -    ZERO                 
+#         bin auto[992:1023]                                  0          1          -    ZERO                 
+#         bin auto[1024:1055]                                 0          1          -    ZERO                 
+#         bin auto[1056:1087]                                 0          1          -    ZERO                 
+#         bin auto[1088:1119]                                 0          1          -    ZERO                 
+#         bin auto[1120:1151]                                 0          1          -    ZERO                 
+#         bin auto[1152:1183]                                 0          1          -    ZERO                 
+#         bin auto[1184:1215]                                 0          1          -    ZERO                 
+#         bin auto[1216:1247]                                 0          1          -    ZERO                 
+#         bin auto[1248:1279]                                 0          1          -    ZERO                 
+#         bin auto[1280:1311]                                 0          1          -    ZERO                 
+#         bin auto[1312:1343]                                 0          1          -    ZERO                 
+#         bin auto[1344:1375]                                 0          1          -    ZERO                 
+#         bin auto[1376:1407]                                 0          1          -    ZERO                 
+#         bin auto[1408:1439]                                 0          1          -    ZERO                 
+#         bin auto[1440:1471]                                 0          1          -    ZERO                 
+#         bin auto[1472:1503]                                 0          1          -    ZERO                 
+#         bin auto[1504:1535]                                 0          1          -    ZERO                 
+#         bin auto[1536:1567]                                 0          1          -    ZERO                 
+#         bin auto[1568:1599]                                 0          1          -    ZERO                 
+#         bin auto[1600:1631]                                 0          1          -    ZERO                 
+#         bin auto[1632:1663]                                 0          1          -    ZERO                 
+#         bin auto[1664:1695]                                 0          1          -    ZERO                 
+#         bin auto[1696:1727]                                 0          1          -    ZERO                 
+#         bin auto[1728:1759]                                 0          1          -    ZERO                 
+#         bin auto[1760:1791]                                 0          1          -    ZERO                 
+#         bin auto[1792:1823]                                 0          1          -    ZERO                 
+#         bin auto[1824:1855]                                 0          1          -    ZERO                 
+#         bin auto[1856:1887]                                 0          1          -    ZERO                 
+#         bin auto[1888:1919]                                 0          1          -    ZERO                 
+#         bin auto[1920:1951]                                 0          1          -    ZERO                 
+#         bin auto[1952:1983]                                 0          1          -    ZERO                 
+#         bin auto[1984:2015]                                 0          1          -    ZERO                 
+#         bin auto[2016:2047]                                 0          1          -    ZERO                 
+#     Coverpoint #tr.i_force_stall__20#                  50.00%        100          -    Uncovered            
+#         covered/total bins:                                 1          2          -                      
+#         missing/total bins:                                 1          2          -                      
+#         % Hit:                                         50.00%        100          -                      
+#         bin auto[0]                                      5008          1          -    Covered              
+#         bin auto[1]                                         0          1          -    ZERO                 
+#     Coverpoint #tr.i_flush__21#                        50.00%        100          -    Uncovered            
+#         covered/total bins:                                 1          2          -                      
+#         missing/total bins:                                 1          2          -                      
+#         % Hit:                                         50.00%        100          -                      
+#         bin auto[0]                                      5008          1          -    Covered              
+#         bin auto[1]                                         0          1          -    ZERO                 
+#     Coverpoint #tr.o_change_pc__22#                    50.00%        100          -    Uncovered            
+#         covered/total bins:                                 1          2          -                      
+#         missing/total bins:                                 1          2          -                      
+#         % Hit:                                         50.00%        100          -                      
+#         bin auto[0]                                      5008          1          -    Covered              
+#         bin auto[1]                                         0          1          -    ZERO                 
+#     Coverpoint #tr.i_exception__23#                     6.25%        100          -    Uncovered            
+#         covered/total bins:                                 1         16          -                      
+#         missing/total bins:                                15         16          -                      
+#         % Hit:                                          6.25%        100          -                      
+#         bin auto[0]                                      5008          1          -    Covered              
+#         bin auto[1]                                         0          1          -    ZERO                 
+#         bin auto[2]                                         0          1          -    ZERO                 
+#         bin auto[3]                                         0          1          -    ZERO                 
+#         bin auto[4]                                         0          1          -    ZERO                 
+#         bin auto[5]                                         0          1          -    ZERO                 
+#         bin auto[6]                                         0          1          -    ZERO                 
+#         bin auto[7]                                         0          1          -    ZERO                 
+#         bin auto[8]                                         0          1          -    ZERO                 
+#         bin auto[9]                                         0          1          -    ZERO                 
+#         bin auto[10]                                        0          1          -    ZERO                 
+#         bin auto[11]                                        0          1          -    ZERO                 
+#         bin auto[12]                                        0          1          -    ZERO                 
+#         bin auto[13]                                        0          1          -    ZERO                 
+#         bin auto[14]                                        0          1          -    ZERO                 
+#         bin auto[15]                                        0          1          -    ZERO                 
+#     Coverpoint #tr.i_alu__24#                          10.93%        100          -    Uncovered            
+#         covered/total bins:                                 7         64          -                      
+#         missing/total bins:                                57         64          -                      
+#         % Hit:                                         10.93%        100          -                      
+#         bin auto[0:255]                                  2891          1          -    Covered              
+#         bin auto[256:511]                                 340          1          -    Covered              
+#         bin auto[512:767]                                 350          1          -    Covered              
+#         bin auto[768:1023]                                  0          1          -    ZERO                 
+#         bin auto[1024:1279]                               325          1          -    Covered              
+#         bin auto[1280:1535]                                 0          1          -    ZERO                 
+#         bin auto[1536:1791]                                 0          1          -    ZERO                 
+#         bin auto[1792:2047]                                 0          1          -    ZERO                 
+#         bin auto[2048:2303]                               365          1          -    Covered              
+#         bin auto[2304:2559]                                 0          1          -    ZERO                 
+#         bin auto[2560:2815]                                 0          1          -    ZERO                 
+#         bin auto[2816:3071]                                 0          1          -    ZERO                 
+#         bin auto[3072:3327]                                 0          1          -    ZERO                 
+#         bin auto[3328:3583]                                 0          1          -    ZERO                 
+#         bin auto[3584:3839]                                 0          1          -    ZERO                 
+#         bin auto[3840:4095]                                 0          1          -    ZERO                 
+#         bin auto[4096:4351]                               364          1          -    Covered              
+#         bin auto[4352:4607]                                 0          1          -    ZERO                 
+#         bin auto[4608:4863]                                 0          1          -    ZERO                 
+#         bin auto[4864:5119]                                 0          1          -    ZERO                 
+#         bin auto[5120:5375]                                 0          1          -    ZERO                 
+#         bin auto[5376:5631]                                 0          1          -    ZERO                 
+#         bin auto[5632:5887]                                 0          1          -    ZERO                 
+#         bin auto[5888:6143]                                 0          1          -    ZERO                 
+#         bin auto[6144:6399]                                 0          1          -    ZERO                 
+#         bin auto[6400:6655]                                 0          1          -    ZERO                 
+#         bin auto[6656:6911]                                 0          1          -    ZERO                 
+#         bin auto[6912:7167]                                 0          1          -    ZERO                 
+#         bin auto[7168:7423]                                 0          1          -    ZERO                 
+#         bin auto[7424:7679]                                 0          1          -    ZERO                 
+#         bin auto[7680:7935]                                 0          1          -    ZERO                 
+#         bin auto[7936:8191]                                 0          1          -    ZERO                 
+#         bin auto[8192:8447]                               373          1          -    Covered              
+#         bin auto[8448:8703]                                 0          1          -    ZERO                 
+#         bin auto[8704:8959]                                 0          1          -    ZERO                 
+#         bin auto[8960:9215]                                 0          1          -    ZERO                 
+#         bin auto[9216:9471]                                 0          1          -    ZERO                 
+#         bin auto[9472:9727]                                 0          1          -    ZERO                 
+#         bin auto[9728:9983]                                 0          1          -    ZERO                 
+#         bin auto[9984:10239]                                0          1          -    ZERO                 
+#         bin auto[10240:10495]                               0          1          -    ZERO                 
+#         bin auto[10496:10751]                               0          1          -    ZERO                 
+#         bin auto[10752:11007]                               0          1          -    ZERO                 
+#         bin auto[11008:11263]                               0          1          -    ZERO                 
+#         bin auto[11264:11519]                               0          1          -    ZERO                 
+#         bin auto[11520:11775]                               0          1          -    ZERO                 
+#         bin auto[11776:12031]                               0          1          -    ZERO                 
+#         bin auto[12032:12287]                               0          1          -    ZERO                 
+#         bin auto[12288:12543]                               0          1          -    ZERO                 
+#         bin auto[12544:12799]                               0          1          -    ZERO                 
+#         bin auto[12800:13055]                               0          1          -    ZERO                 
+#         bin auto[13056:13311]                               0          1          -    ZERO                 
+#         bin auto[13312:13567]                               0          1          -    ZERO                 
+#         bin auto[13568:13823]                               0          1          -    ZERO                 
+#         bin auto[13824:14079]                               0          1          -    ZERO                 
+#         bin auto[14080:14335]                               0          1          -    ZERO                 
+#         bin auto[14336:14591]                               0          1          -    ZERO                 
+#         bin auto[14592:14847]                               0          1          -    ZERO                 
+#         bin auto[14848:15103]                               0          1          -    ZERO                 
+#         bin auto[15104:15359]                               0          1          -    ZERO                 
+#         bin auto[15360:15615]                               0          1          -    ZERO                 
+#         bin auto[15616:15871]                               0          1          -    ZERO                 
+#         bin auto[15872:16127]                               0          1          -    ZERO                 
+#         bin auto[16128:16383]                               0          1          -    ZERO                 
+#     Cross #cross__0#                                    0.17%        100          -    Uncovered            
+#         covered/total bins:                                 7       4096          -                      
+#         missing/total bins:                              4089       4096          -                      
+#         % Hit:                                          0.17%        100          -                      
+#         Auto, Default and User Defined Bins:
+#             bin <auto[0:31],auto[8192:8447]>              373          1          -    Covered              
+#             bin <auto[0:31],auto[4096:4351]>              364          1          -    Covered              
+#             bin <auto[0:31],auto[2048:2303]>              365          1          -    Covered              
+#             bin <auto[0:31],auto[1024:1279]>              325          1          -    Covered              
+#             bin <auto[0:31],auto[512:767]>                350          1          -    Covered              
+#             bin <auto[0:31],auto[256:511]>                340          1          -    Covered              
+#             bin <auto[0:31],auto[0:255]>                 2891          1          -    Covered              
+#             bin <auto[2016:2047],*>                         0          1         64    ZERO                 
+#             bin <auto[1984:2015],*>                         0          1         64    ZERO                 
+#             bin <auto[1952:1983],*>                         0          1         64    ZERO                 
+#             bin <auto[1920:1951],*>                         0          1         64    ZERO                 
+#             bin <auto[1888:1919],*>                         0          1         64    ZERO                 
+#             bin <auto[1856:1887],*>                         0          1         64    ZERO                 
+#             bin <auto[1824:1855],*>                         0          1         64    ZERO                 
+#             bin <auto[1792:1823],*>                         0          1         64    ZERO                 
+#             bin <auto[1760:1791],*>                         0          1         64    ZERO                 
+#             bin <auto[1728:1759],*>                         0          1         64    ZERO                 
+#             bin <auto[1696:1727],*>                         0          1         64    ZERO                 
+#             bin <auto[1664:1695],*>                         0          1         64    ZERO                 
+#             bin <auto[1632:1663],*>                         0          1         64    ZERO                 
+#             bin <auto[1600:1631],*>                         0          1         64    ZERO                 
+#             bin <auto[1568:1599],*>                         0          1         64    ZERO                 
+#             bin <auto[1536:1567],*>                         0          1         64    ZERO                 
+#             bin <auto[1504:1535],*>                         0          1         64    ZERO                 
+#             bin <auto[1472:1503],*>                         0          1         64    ZERO                 
+#             bin <auto[1440:1471],*>                         0          1         64    ZERO                 
+#             bin <auto[1408:1439],*>                         0          1         64    ZERO                 
+#             bin <auto[1376:1407],*>                         0          1         64    ZERO                 
+#             bin <auto[1344:1375],*>                         0          1         64    ZERO                 
+#             bin <auto[1312:1343],*>                         0          1         64    ZERO                 
+#             bin <auto[1280:1311],*>                         0          1         64    ZERO                 
+#             bin <auto[1248:1279],*>                         0          1         64    ZERO                 
+#             bin <auto[1216:1247],*>                         0          1         64    ZERO                 
+#             bin <auto[1184:1215],*>                         0          1         64    ZERO                 
+#             bin <auto[1152:1183],*>                         0          1         64    ZERO                 
+#             bin <auto[1120:1151],*>                         0          1         64    ZERO                 
+#             bin <auto[1088:1119],*>                         0          1         64    ZERO                 
+#             bin <auto[1056:1087],*>                         0          1         64    ZERO                 
+#             bin <auto[1024:1055],*>                         0          1         64    ZERO                 
+#             bin <auto[992:1023],*>                          0          1         64    ZERO                 
+#             bin <auto[960:991],*>                           0          1         64    ZERO                 
+#             bin <auto[928:959],*>                           0          1         64    ZERO                 
+#             bin <auto[896:927],*>                           0          1         64    ZERO                 
+#             bin <auto[864:895],*>                           0          1         64    ZERO                 
+#             bin <auto[832:863],*>                           0          1         64    ZERO                 
+#             bin <auto[800:831],*>                           0          1         64    ZERO                 
+#             bin <auto[768:799],*>                           0          1         64    ZERO                 
+#             bin <auto[736:767],*>                           0          1         64    ZERO                 
+#             bin <auto[704:735],*>                           0          1         64    ZERO                 
+#             bin <auto[672:703],*>                           0          1         64    ZERO                 
+#             bin <auto[640:671],*>                           0          1         64    ZERO                 
+#             bin <auto[608:639],*>                           0          1         64    ZERO                 
+#             bin <auto[576:607],*>                           0          1         64    ZERO                 
+#             bin <auto[544:575],*>                           0          1         64    ZERO                 
+#             bin <auto[512:543],*>                           0          1         64    ZERO                 
+#             bin <auto[480:511],*>                           0          1         64    ZERO                 
+#             bin <auto[448:479],*>                           0          1         64    ZERO                 
+#             bin <auto[416:447],*>                           0          1         64    ZERO                 
+#             bin <auto[384:415],*>                           0          1         64    ZERO                 
+#             bin <auto[352:383],*>                           0          1         64    ZERO                 
+#             bin <auto[320:351],*>                           0          1         64    ZERO                 
+#             bin <auto[288:319],*>                           0          1         64    ZERO                 
+#             bin <auto[256:287],*>                           0          1         64    ZERO                 
+#             bin <auto[224:255],*>                           0          1         64    ZERO                 
+#             bin <auto[192:223],*>                           0          1         64    ZERO                 
+#             bin <auto[160:191],*>                           0          1         64    ZERO                 
+#             bin <auto[128:159],*>                           0          1         64    ZERO                 
+#             bin <auto[96:127],*>                            0          1         64    ZERO                 
+#             bin <auto[64:95],*>                             0          1         64    ZERO                 
+#             bin <auto[32:63],*>                             0          1         64    ZERO                 
+#             bin <*,auto[16128:16383]>                       0          1         64    ZERO                 
+#             bin <*,auto[15872:16127]>                       0          1         64    ZERO                 
+#             bin <*,auto[15616:15871]>                       0          1         64    ZERO                 
+#             bin <*,auto[15360:15615]>                       0          1         64    ZERO                 
+#             bin <*,auto[15104:15359]>                       0          1         64    ZERO                 
+#             bin <*,auto[14848:15103]>                       0          1         64    ZERO                 
+#             bin <*,auto[14592:14847]>                       0          1         64    ZERO                 
+#             bin <*,auto[14336:14591]>                       0          1         64    ZERO                 
+#             bin <*,auto[14080:14335]>                       0          1         64    ZERO                 
+#             bin <*,auto[13824:14079]>                       0          1         64    ZERO                 
+#             bin <*,auto[13568:13823]>                       0          1         64    ZERO                 
+#             bin <*,auto[13312:13567]>                       0          1         64    ZERO                 
+#             bin <*,auto[13056:13311]>                       0          1         64    ZERO                 
+#             bin <*,auto[12800:13055]>                       0          1         64    ZERO                 
+#             bin <*,auto[12544:12799]>                       0          1         64    ZERO                 
+#             bin <*,auto[12288:12543]>                       0          1         64    ZERO                 
+#             bin <*,auto[12032:12287]>                       0          1         64    ZERO                 
+#             bin <*,auto[11776:12031]>                       0          1         64    ZERO                 
+#             bin <*,auto[11520:11775]>                       0          1         64    ZERO                 
+#             bin <*,auto[11264:11519]>                       0          1         64    ZERO                 
+#             bin <*,auto[11008:11263]>                       0          1         64    ZERO                 
+#             bin <*,auto[10752:11007]>                       0          1         64    ZERO                 
+#             bin <*,auto[10496:10751]>                       0          1         64    ZERO                 
+#             bin <*,auto[10240:10495]>                       0          1         64    ZERO                 
+#             bin <*,auto[9984:10239]>                        0          1         64    ZERO                 
+#             bin <*,auto[9728:9983]>                         0          1         64    ZERO                 
+#             bin <*,auto[9472:9727]>                         0          1         64    ZERO                 
+#             bin <*,auto[9216:9471]>                         0          1         64    ZERO                 
+#             bin <*,auto[8960:9215]>                         0          1         64    ZERO                 
+#             bin <*,auto[8704:8959]>                         0          1         64    ZERO                 
+#             bin <*,auto[8448:8703]>                         0          1         64    ZERO                 
+#             bin <*,auto[7936:8191]>                         0          1         64    ZERO                 
+#             bin <*,auto[7680:7935]>                         0          1         64    ZERO                 
+#             bin <*,auto[7424:7679]>                         0          1         64    ZERO                 
+#             bin <*,auto[7168:7423]>                         0          1         64    ZERO                 
+#             bin <*,auto[6912:7167]>                         0          1         64    ZERO                 
+#             bin <*,auto[6656:6911]>                         0          1         64    ZERO                 
+#             bin <*,auto[6400:6655]>                         0          1         64    ZERO                 
+#             bin <*,auto[6144:6399]>                         0          1         64    ZERO                 
+#             bin <*,auto[5888:6143]>                         0          1         64    ZERO                 
+#             bin <*,auto[5632:5887]>                         0          1         64    ZERO                 
+#             bin <*,auto[5376:5631]>                         0          1         64    ZERO                 
+#             bin <*,auto[5120:5375]>                         0          1         64    ZERO                 
+#             bin <*,auto[4864:5119]>                         0          1         64    ZERO                 
+#             bin <*,auto[4608:4863]>                         0          1         64    ZERO                 
+#             bin <*,auto[4352:4607]>                         0          1         64    ZERO                 
+#             bin <*,auto[3840:4095]>                         0          1         64    ZERO                 
+#             bin <*,auto[3584:3839]>                         0          1         64    ZERO                 
+#             bin <*,auto[3328:3583]>                         0          1         64    ZERO                 
+#             bin <*,auto[3072:3327]>                         0          1         64    ZERO                 
+#             bin <*,auto[2816:3071]>                         0          1         64    ZERO                 
+#             bin <*,auto[2560:2815]>                         0          1         64    ZERO                 
+#             bin <*,auto[2304:2559]>                         0          1         64    ZERO                 
+#             bin <*,auto[1792:2047]>                         0          1         64    ZERO                 
+#             bin <*,auto[1536:1791]>                         0          1         64    ZERO                 
+#             bin <*,auto[1280:1535]>                         0          1         64    ZERO                 
+#             bin <*,auto[768:1023]>                          0          1         64    ZERO                 
+#     Cross #cross__1#                                    0.09%        100          -    Uncovered            
+#         covered/total bins:                                 1       1024          -                      
+#         missing/total bins:                              1023       1024          -                      
+#         % Hit:                                          0.09%        100          -                      
+#         Auto, Default and User Defined Bins:
+#             bin <auto[0:31],auto[0]>                     5008          1          -    Covered              
+#             bin <auto[2016:2047],*>                         0          1         16    ZERO                 
+#             bin <auto[1984:2015],*>                         0          1         16    ZERO                 
+#             bin <auto[1952:1983],*>                         0          1         16    ZERO                 
+#             bin <auto[1920:1951],*>                         0          1         16    ZERO                 
+#             bin <auto[1888:1919],*>                         0          1         16    ZERO                 
+#             bin <auto[1856:1887],*>                         0          1         16    ZERO                 
+#             bin <auto[1824:1855],*>                         0          1         16    ZERO                 
+#             bin <auto[1792:1823],*>                         0          1         16    ZERO                 
+#             bin <auto[1760:1791],*>                         0          1         16    ZERO                 
+#             bin <auto[1728:1759],*>                         0          1         16    ZERO                 
+#             bin <auto[1696:1727],*>                         0          1         16    ZERO                 
+#             bin <auto[1664:1695],*>                         0          1         16    ZERO                 
+#             bin <auto[1632:1663],*>                         0          1         16    ZERO                 
+#             bin <auto[1600:1631],*>                         0          1         16    ZERO                 
+#             bin <auto[1568:1599],*>                         0          1         16    ZERO                 
+#             bin <auto[1536:1567],*>                         0          1         16    ZERO                 
+#             bin <auto[1504:1535],*>                         0          1         16    ZERO                 
+#             bin <auto[1472:1503],*>                         0          1         16    ZERO                 
+#             bin <auto[1440:1471],*>                         0          1         16    ZERO                 
+#             bin <auto[1408:1439],*>                         0          1         16    ZERO                 
+#             bin <auto[1376:1407],*>                         0          1         16    ZERO                 
+#             bin <auto[1344:1375],*>                         0          1         16    ZERO                 
+#             bin <auto[1312:1343],*>                         0          1         16    ZERO                 
+#             bin <auto[1280:1311],*>                         0          1         16    ZERO                 
+#             bin <auto[1248:1279],*>                         0          1         16    ZERO                 
+#             bin <auto[1216:1247],*>                         0          1         16    ZERO                 
+#             bin <auto[1184:1215],*>                         0          1         16    ZERO                 
+#             bin <auto[1152:1183],*>                         0          1         16    ZERO                 
+#             bin <auto[1120:1151],*>                         0          1         16    ZERO                 
+#             bin <auto[1088:1119],*>                         0          1         16    ZERO                 
+#             bin <auto[1056:1087],*>                         0          1         16    ZERO                 
+#             bin <auto[1024:1055],*>                         0          1         16    ZERO                 
+#             bin <auto[992:1023],*>                          0          1         16    ZERO                 
+#             bin <auto[960:991],*>                           0          1         16    ZERO                 
+#             bin <auto[928:959],*>                           0          1         16    ZERO                 
+#             bin <auto[896:927],*>                           0          1         16    ZERO                 
+#             bin <auto[864:895],*>                           0          1         16    ZERO                 
+#             bin <auto[832:863],*>                           0          1         16    ZERO                 
+#             bin <auto[800:831],*>                           0          1         16    ZERO                 
+#             bin <auto[768:799],*>                           0          1         16    ZERO                 
+#             bin <auto[736:767],*>                           0          1         16    ZERO                 
+#             bin <auto[704:735],*>                           0          1         16    ZERO                 
+#             bin <auto[672:703],*>                           0          1         16    ZERO                 
+#             bin <auto[640:671],*>                           0          1         16    ZERO                 
+#             bin <auto[608:639],*>                           0          1         16    ZERO                 
+#             bin <auto[576:607],*>                           0          1         16    ZERO                 
+#             bin <auto[544:575],*>                           0          1         16    ZERO                 
+#             bin <auto[512:543],*>                           0          1         16    ZERO                 
+#             bin <auto[480:511],*>                           0          1         16    ZERO                 
+#             bin <auto[448:479],*>                           0          1         16    ZERO                 
+#             bin <auto[416:447],*>                           0          1         16    ZERO                 
+#             bin <auto[384:415],*>                           0          1         16    ZERO                 
+#             bin <auto[352:383],*>                           0          1         16    ZERO                 
+#             bin <auto[320:351],*>                           0          1         16    ZERO                 
+#             bin <auto[288:319],*>                           0          1         16    ZERO                 
+#             bin <auto[256:287],*>                           0          1         16    ZERO                 
+#             bin <auto[224:255],*>                           0          1         16    ZERO                 
+#             bin <auto[192:223],*>                           0          1         16    ZERO                 
+#             bin <auto[160:191],*>                           0          1         16    ZERO                 
+#             bin <auto[128:159],*>                           0          1         16    ZERO                 
+#             bin <auto[96:127],*>                            0          1         16    ZERO                 
+#             bin <auto[64:95],*>                             0          1         16    ZERO                 
+#             bin <auto[32:63],*>                             0          1         16    ZERO                 
+#             bin <*,auto[15]>                                0          1         64    ZERO                 
+#             bin <*,auto[14]>                                0          1         64    ZERO                 
+#             bin <*,auto[13]>                                0          1         64    ZERO                 
+#             bin <*,auto[12]>                                0          1         64    ZERO                 
+#             bin <*,auto[11]>                                0          1         64    ZERO                 
+#             bin <*,auto[10]>                                0          1         64    ZERO                 
+#             bin <*,auto[9]>                                 0          1         64    ZERO                 
+#             bin <*,auto[8]>                                 0          1         64    ZERO                 
+#             bin <*,auto[7]>                                 0          1         64    ZERO                 
+#             bin <*,auto[6]>                                 0          1         64    ZERO                 
+#             bin <*,auto[5]>                                 0          1         64    ZERO                 
+#             bin <*,auto[4]>                                 0          1         64    ZERO                 
+#             bin <*,auto[3]>                                 0          1         64    ZERO                 
+#             bin <*,auto[2]>                                 0          1         64    ZERO                 
+#             bin <*,auto[1]>                                 0          1         64    ZERO                 
+#     Cross #cross__2#                                    0.78%        100          -    Uncovered            
+#         covered/total bins:                                 1        128          -                      
+#         missing/total bins:                               127        128          -                      
+#         % Hit:                                          0.78%        100          -                      
+#         Auto, Default and User Defined Bins:
+#             bin <auto[0:31],auto[0]>                     5008          1          -    Covered              
+#             bin <auto[2016:2047],*>                         0          1          2    ZERO                 
+#             bin <auto[1984:2015],*>                         0          1          2    ZERO                 
+#             bin <auto[1952:1983],*>                         0          1          2    ZERO                 
+#             bin <auto[1920:1951],*>                         0          1          2    ZERO                 
+#             bin <auto[1888:1919],*>                         0          1          2    ZERO                 
+#             bin <auto[1856:1887],*>                         0          1          2    ZERO                 
+#             bin <auto[1824:1855],*>                         0          1          2    ZERO                 
+#             bin <auto[1792:1823],*>                         0          1          2    ZERO                 
+#             bin <auto[1760:1791],*>                         0          1          2    ZERO                 
+#             bin <auto[1728:1759],*>                         0          1          2    ZERO                 
+#             bin <auto[1696:1727],*>                         0          1          2    ZERO                 
+#             bin <auto[1664:1695],*>                         0          1          2    ZERO                 
+#             bin <auto[1632:1663],*>                         0          1          2    ZERO                 
+#             bin <auto[1600:1631],*>                         0          1          2    ZERO                 
+#             bin <auto[1568:1599],*>                         0          1          2    ZERO                 
+#             bin <auto[1536:1567],*>                         0          1          2    ZERO                 
+#             bin <auto[1504:1535],*>                         0          1          2    ZERO                 
+#             bin <auto[1472:1503],*>                         0          1          2    ZERO                 
+#             bin <auto[1440:1471],*>                         0          1          2    ZERO                 
+#             bin <auto[1408:1439],*>                         0          1          2    ZERO                 
+#             bin <auto[1376:1407],*>                         0          1          2    ZERO                 
+#             bin <auto[1344:1375],*>                         0          1          2    ZERO                 
+#             bin <auto[1312:1343],*>                         0          1          2    ZERO                 
+#             bin <auto[1280:1311],*>                         0          1          2    ZERO                 
+#             bin <auto[1248:1279],*>                         0          1          2    ZERO                 
+#             bin <auto[1216:1247],*>                         0          1          2    ZERO                 
+#             bin <auto[1184:1215],*>                         0          1          2    ZERO                 
+#             bin <auto[1152:1183],*>                         0          1          2    ZERO                 
+#             bin <auto[1120:1151],*>                         0          1          2    ZERO                 
+#             bin <auto[1088:1119],*>                         0          1          2    ZERO                 
+#             bin <auto[1056:1087],*>                         0          1          2    ZERO                 
+#             bin <auto[1024:1055],*>                         0          1          2    ZERO                 
+#             bin <auto[992:1023],*>                          0          1          2    ZERO                 
+#             bin <auto[960:991],*>                           0          1          2    ZERO                 
+#             bin <auto[928:959],*>                           0          1          2    ZERO                 
+#             bin <auto[896:927],*>                           0          1          2    ZERO                 
+#             bin <auto[864:895],*>                           0          1          2    ZERO                 
+#             bin <auto[832:863],*>                           0          1          2    ZERO                 
+#             bin <auto[800:831],*>                           0          1          2    ZERO                 
+#             bin <auto[768:799],*>                           0          1          2    ZERO                 
+#             bin <auto[736:767],*>                           0          1          2    ZERO                 
+#             bin <auto[704:735],*>                           0          1          2    ZERO                 
+#             bin <auto[672:703],*>                           0          1          2    ZERO                 
+#             bin <auto[640:671],*>                           0          1          2    ZERO                 
+#             bin <auto[608:639],*>                           0          1          2    ZERO                 
+#             bin <auto[576:607],*>                           0          1          2    ZERO                 
+#             bin <auto[544:575],*>                           0          1          2    ZERO                 
+#             bin <auto[512:543],*>                           0          1          2    ZERO                 
+#             bin <auto[480:511],*>                           0          1          2    ZERO                 
+#             bin <auto[448:479],*>                           0          1          2    ZERO                 
+#             bin <auto[416:447],*>                           0          1          2    ZERO                 
+#             bin <auto[384:415],*>                           0          1          2    ZERO                 
+#             bin <auto[352:383],*>                           0          1          2    ZERO                 
+#             bin <auto[320:351],*>                           0          1          2    ZERO                 
+#             bin <auto[288:319],*>                           0          1          2    ZERO                 
+#             bin <auto[256:287],*>                           0          1          2    ZERO                 
+#             bin <auto[224:255],*>                           0          1          2    ZERO                 
+#             bin <auto[192:223],*>                           0          1          2    ZERO                 
+#             bin <auto[160:191],*>                           0          1          2    ZERO                 
+#             bin <auto[128:159],*>                           0          1          2    ZERO                 
+#             bin <auto[96:127],*>                            0          1          2    ZERO                 
+#             bin <auto[64:95],*>                             0          1          2    ZERO                 
+#             bin <auto[32:63],*>                             0          1          2    ZERO                 
+#             bin <*,auto[1]>                                 0          1         64    ZERO                 
+#     Cross #cross__3#                                    6.25%        100          -    Uncovered            
+#         covered/total bins:                                 1         16          -                      
+#         missing/total bins:                                15         16          -                      
+#         % Hit:                                          6.25%        100          -                      
+#         Auto, Default and User Defined Bins:
+#             bin <auto[1],auto[0],auto[0],auto[0]>        5008          1          -    Covered              
+#             bin <auto[0],*,*,*>                             0          1          8    ZERO                 
+#             bin <*,auto[1],*,*>                             0          1          8    ZERO                 
+#             bin <*,*,auto[1],*>                             0          1          8    ZERO                 
+#             bin <*,*,*,auto[1]>                             0          1          8    ZERO                 
+#     Cross #cross__4#                                    0.78%        100          -    Uncovered            
+#         covered/total bins:                                 2        256          -                      
+#         missing/total bins:                               254        256          -                      
+#         % Hit:                                          0.78%        100          -                      
+#         Auto, Default and User Defined Bins:
+#             bin <auto[1],auto[1],auto[0:31]>             5007          1          -    Covered              
+#             bin <auto[0],auto[0],auto[0:31]>                1          1          -    Covered              
+#             bin <*,*,auto[2016:2047]>                       0          1          4    ZERO                 
+#             bin <*,*,auto[1984:2015]>                       0          1          4    ZERO                 
+#             bin <*,*,auto[1952:1983]>                       0          1          4    ZERO                 
+#             bin <*,*,auto[1920:1951]>                       0          1          4    ZERO                 
+#             bin <*,*,auto[1888:1919]>                       0          1          4    ZERO                 
+#             bin <*,*,auto[1856:1887]>                       0          1          4    ZERO                 
+#             bin <*,*,auto[1824:1855]>                       0          1          4    ZERO                 
+#             bin <*,*,auto[1792:1823]>                       0          1          4    ZERO                 
+#             bin <*,*,auto[1760:1791]>                       0          1          4    ZERO                 
+#             bin <*,*,auto[1728:1759]>                       0          1          4    ZERO                 
+#             bin <*,*,auto[1696:1727]>                       0          1          4    ZERO                 
+#             bin <*,*,auto[1664:1695]>                       0          1          4    ZERO                 
+#             bin <*,*,auto[1632:1663]>                       0          1          4    ZERO                 
+#             bin <*,*,auto[1600:1631]>                       0          1          4    ZERO                 
+#             bin <*,*,auto[1568:1599]>                       0          1          4    ZERO                 
+#             bin <*,*,auto[1536:1567]>                       0          1          4    ZERO                 
+#             bin <*,*,auto[1504:1535]>                       0          1          4    ZERO                 
+#             bin <*,*,auto[1472:1503]>                       0          1          4    ZERO                 
+#             bin <*,*,auto[1440:1471]>                       0          1          4    ZERO                 
+#             bin <*,*,auto[1408:1439]>                       0          1          4    ZERO                 
+#             bin <*,*,auto[1376:1407]>                       0          1          4    ZERO                 
+#             bin <*,*,auto[1344:1375]>                       0          1          4    ZERO                 
+#             bin <*,*,auto[1312:1343]>                       0          1          4    ZERO                 
+#             bin <*,*,auto[1280:1311]>                       0          1          4    ZERO                 
+#             bin <*,*,auto[1248:1279]>                       0          1          4    ZERO                 
+#             bin <*,*,auto[1216:1247]>                       0          1          4    ZERO                 
+#             bin <*,*,auto[1184:1215]>                       0          1          4    ZERO                 
+#             bin <*,*,auto[1152:1183]>                       0          1          4    ZERO                 
+#             bin <*,*,auto[1120:1151]>                       0          1          4    ZERO                 
+#             bin <*,*,auto[1088:1119]>                       0          1          4    ZERO                 
+#             bin <*,*,auto[1056:1087]>                       0          1          4    ZERO                 
+#             bin <*,*,auto[1024:1055]>                       0          1          4    ZERO                 
+#             bin <*,*,auto[992:1023]>                        0          1          4    ZERO                 
+#             bin <*,*,auto[960:991]>                         0          1          4    ZERO                 
+#             bin <*,*,auto[928:959]>                         0          1          4    ZERO                 
+#             bin <*,*,auto[896:927]>                         0          1          4    ZERO                 
+#             bin <*,*,auto[864:895]>                         0          1          4    ZERO                 
+#             bin <*,*,auto[832:863]>                         0          1          4    ZERO                 
+#             bin <*,*,auto[800:831]>                         0          1          4    ZERO                 
+#             bin <*,*,auto[768:799]>                         0          1          4    ZERO                 
+#             bin <*,*,auto[736:767]>                         0          1          4    ZERO                 
+#             bin <*,*,auto[704:735]>                         0          1          4    ZERO                 
+#             bin <*,*,auto[672:703]>                         0          1          4    ZERO                 
+#             bin <*,*,auto[640:671]>                         0          1          4    ZERO                 
+#             bin <*,*,auto[608:639]>                         0          1          4    ZERO                 
+#             bin <*,*,auto[576:607]>                         0          1          4    ZERO                 
+#             bin <*,*,auto[544:575]>                         0          1          4    ZERO                 
+#             bin <*,*,auto[512:543]>                         0          1          4    ZERO                 
+#             bin <*,*,auto[480:511]>                         0          1          4    ZERO                 
+#             bin <*,*,auto[448:479]>                         0          1          4    ZERO                 
+#             bin <*,*,auto[416:447]>                         0          1          4    ZERO                 
+#             bin <*,*,auto[384:415]>                         0          1          4    ZERO                 
+#             bin <*,*,auto[352:383]>                         0          1          4    ZERO                 
+#             bin <*,*,auto[320:351]>                         0          1          4    ZERO                 
+#             bin <*,*,auto[288:319]>                         0          1          4    ZERO                 
+#             bin <*,*,auto[256:287]>                         0          1          4    ZERO                 
+#             bin <*,*,auto[224:255]>                         0          1          4    ZERO                 
+#             bin <*,*,auto[192:223]>                         0          1          4    ZERO                 
+#             bin <*,*,auto[160:191]>                         0          1          4    ZERO                 
+#             bin <*,*,auto[128:159]>                         0          1          4    ZERO                 
+#             bin <*,*,auto[96:127]>                          0          1          4    ZERO                 
+#             bin <*,*,auto[64:95]>                           0          1          4    ZERO                 
+#             bin <*,*,auto[32:63]>                           0          1          4    ZERO                 
+#             bin <auto[0],auto[1],*>                         0          1         64    ZERO                 
+#             bin <auto[1],auto[0],*>                         0          1         64    ZERO                 
+#     Cross #cross__5#                                   50.00%        100          -    Uncovered            
+#         covered/total bins:                                 2          4          -                      
+#         missing/total bins:                                 2          4          -                      
+#         % Hit:                                         50.00%        100          -                      
+#         Auto, Default and User Defined Bins:
+#             bin <auto[1],auto[1]>                        4726          1          -    Covered              
+#             bin <auto[0],auto[1]>                         282          1          -    Covered              
+#             bin <*,auto[0]>                                 0          1          2    ZERO                 
+#     Cross #cross__6#                                   25.00%        100          -    Uncovered            
+#         covered/total bins:                                 1          4          -                      
+#         missing/total bins:                                 3          4          -                      
+#         % Hit:                                         25.00%        100          -                      
+#         Auto, Default and User Defined Bins:
+#             bin <auto[0],auto[0]>                        5008          1          -    Covered              
+#             bin <auto[1],*>                                 0          1          2    ZERO                 
+#             bin <*,auto[1]>                                 0          1          2    ZERO                 
+# 
+# COVERGROUP COVERAGE:
+# ----------------------------------------------------------------------------------------------------------
+# Covergroup                                             Metric       Goal       Bins    Status               
+#                                                                                                          
+# ----------------------------------------------------------------------------------------------------------
+#  TYPE /top_sv_unit/alu_coverage/alu_cg                 47.12%        100          -    Uncovered            
+#     covered/total bins:                                    95       5781          -                      
+#     missing/total bins:                                  5686       5781          -                      
+#     % Hit:                                              1.64%        100          -                      
+#     Coverpoint #coverpoint__0#                          0.00%        100          -    ZERO                 
+#         covered/total bins:                                 0         11          -                      
+#         missing/total bins:                                11         11          -                      
+#         % Hit:                                          0.00%        100          -                      
+#         bin r_type                                          0          1          -    ZERO                 
+#         bin i_type                                          0          1          -    ZERO                 
+#         bin load                                            0          1          -    ZERO                 
+#         bin store                                           0          1          -    ZERO                 
+#         bin branch                                          0          1          -    ZERO                 
+#         bin jal                                             0          1          -    ZERO                 
+#         bin jalr                                            0          1          -    ZERO                 
+#         bin lui                                             0          1          -    ZERO                 
+#         bin auipc                                           0          1          -    ZERO                 
+#         bin system                                          0          1          -    ZERO                 
+#         bin fence                                           0          1          -    ZERO                 
+#     Coverpoint #coverpoint__1#                        100.00%        100          -    Covered              
+#         covered/total bins:                                14         14          -                      
+#         missing/total bins:                                 0         14          -                      
+#         % Hit:                                        100.00%        100          -                      
+#         bin add                                           380          1          -    Covered              
+#         bin sub                                           340          1          -    Covered              
+#         bin and_op                                        353          1          -    Covered              
+#         bin or_op                                         365          1          -    Covered              
+#         bin xor_op                                        385          1          -    Covered              
+#         bin sll                                           379          1          -    Covered              
+#         bin srl                                           334          1          -    Covered              
+#         bin sra                                           355          1          -    Covered              
+#         bin slt                                           340          1          -    Covered              
+#         bin sltu                                          350          1          -    Covered              
+#         bin eq                                            325          1          -    Covered              
+#         bin neq                                           365          1          -    Covered              
+#         bin ge                                            364          1          -    Covered              
+#         bin geu                                           373          1          -    Covered              
+#     Coverpoint #coverpoint__2#                        100.00%        100          -    Covered              
+#         covered/total bins:                                 2          2          -                      
+#         missing/total bins:                                 0          2          -                      
+#         % Hit:                                        100.00%        100          -                      
+#         bin reset_asserted                                282          1          -    Covered              
+#         bin reset_deasserted                             4726          1          -    Covered              
+#     Coverpoint #coverpoint__3#                         50.00%        100          -    Uncovered            
+#         covered/total bins:                                 1          2          -                      
+#         missing/total bins:                                 1          2          -                      
+#         % Hit:                                         50.00%        100          -                      
+#         bin no_change                                    5008          1          -    Covered              
+#         bin change                                          0          1          -    ZERO                 
+#     Coverpoint #coverpoint__4#                        100.00%        100          -    Covered              
+#         covered/total bins:                                 2          2          -                      
+#         missing/total bins:                                 0          2          -                      
+#         % Hit:                                        100.00%        100          -                      
+#         bin no_write                                        1          1          -    Covered              
+#         bin write                                        5007          1          -    Covered              
+#     Coverpoint #coverpoint__5#                        100.00%        100          -    Covered              
+#         covered/total bins:                                 2          2          -                      
+#         missing/total bins:                                 0          2          -                      
+#         % Hit:                                        100.00%        100          -                      
+#         bin invalid                                         1          1          -    Covered              
+#         bin valid                                        5007          1          -    Covered              
+#     Coverpoint #coverpoint__6#                        100.00%        100          -    Covered              
+#         covered/total bins:                                32         32          -                      
+#         missing/total bins:                                 0         32          -                      
+#         % Hit:                                        100.00%        100          -                      
+#         bin reg_addr[0]                                   185          1          -    Covered              
+#         bin reg_addr[1]                                   182          1          -    Covered              
+#         bin reg_addr[2]                                   145          1          -    Covered              
+#         bin reg_addr[3]                                   166          1          -    Covered              
+#         bin reg_addr[4]                                   180          1          -    Covered              
+#         bin reg_addr[5]                                   150          1          -    Covered              
+#         bin reg_addr[6]                                   146          1          -    Covered              
+#         bin reg_addr[7]                                   161          1          -    Covered              
+#         bin reg_addr[8]                                   161          1          -    Covered              
+#         bin reg_addr[9]                                   139          1          -    Covered              
+#         bin reg_addr[10]                                  147          1          -    Covered              
+#         bin reg_addr[11]                                  152          1          -    Covered              
+#         bin reg_addr[12]                                  147          1          -    Covered              
+#         bin reg_addr[13]                                  163          1          -    Covered              
+#         bin reg_addr[14]                                  153          1          -    Covered              
+#         bin reg_addr[15]                                  141          1          -    Covered              
+#         bin reg_addr[16]                                  149          1          -    Covered              
+#         bin reg_addr[17]                                  156          1          -    Covered              
+#         bin reg_addr[18]                                  125          1          -    Covered              
+#         bin reg_addr[19]                                  168          1          -    Covered              
+#         bin reg_addr[20]                                  138          1          -    Covered              
+#         bin reg_addr[21]                                  165          1          -    Covered              
+#         bin reg_addr[22]                                  151          1          -    Covered              
+#         bin reg_addr[23]                                  161          1          -    Covered              
+#         bin reg_addr[24]                                  149          1          -    Covered              
+#         bin reg_addr[25]                                  158          1          -    Covered              
+#         bin reg_addr[26]                                  158          1          -    Covered              
+#         bin reg_addr[27]                                  165          1          -    Covered              
+#         bin reg_addr[28]                                  149          1          -    Covered              
+#         bin reg_addr[29]                                  174          1          -    Covered              
+#         bin reg_addr[30]                                  144          1          -    Covered              
+#         bin reg_addr[31]                                  180          1          -    Covered              
+#     Coverpoint #coverpoint__7#                         50.00%        100          -    Uncovered            
+#         covered/total bins:                                 1          2          -                      
+#         missing/total bins:                                 1          2          -                      
+#         % Hit:                                         50.00%        100          -                      
+#         bin disabled                                        0          1          -    ZERO                 
+#         bin enabled                                      5008          1          -    Covered              
+#     Coverpoint #coverpoint__8#                         50.00%        100          -    Uncovered            
+#         covered/total bins:                                 1          2          -                      
+#         missing/total bins:                                 1          2          -                      
+#         % Hit:                                         50.00%        100          -                      
+#         bin no_stall                                     5008          1          -    Covered              
+#         bin stall                                           0          1          -    ZERO                 
+#     Coverpoint #coverpoint__9#                         50.00%        100          -    Uncovered            
+#         covered/total bins:                                 1          2          -                      
+#         missing/total bins:                                 1          2          -                      
+#         % Hit:                                         50.00%        100          -                      
+#         bin no_force_stall                               5008          1          -    Covered              
+#         bin force_stall                                     0          1          -    ZERO                 
+#     Coverpoint #coverpoint__10#                        50.00%        100          -    Uncovered            
+#         covered/total bins:                                 1          2          -                      
+#         missing/total bins:                                 1          2          -                      
+#         % Hit:                                         50.00%        100          -                      
+#         bin no_flush                                     5008          1          -    Covered              
+#         bin flush                                           0          1          -    ZERO                 
+#     Coverpoint #coverpoint__11#                        50.00%        100          -    Uncovered            
+#         covered/total bins:                                 1          2          -                      
+#         missing/total bins:                                 1          2          -                      
+#         % Hit:                                         50.00%        100          -                      
+#         bin no_alu_stall                                 5008          1          -    Covered              
+#         bin alu_stall                                       0          1          -    ZERO                 
+#     Coverpoint #coverpoint__12#                         6.25%        100          -    Uncovered            
+#         covered/total bins:                                 1         16          -                      
+#         missing/total bins:                                15         16          -                      
+#         % Hit:                                          6.25%        100          -                      
+#         bin no_exception                                 5008          1          -    Covered              
+#         bin exceptions[1]                                   0          1          -    ZERO                 
+#         bin exceptions[2]                                   0          1          -    ZERO                 
+#         bin exceptions[3]                                   0          1          -    ZERO                 
+#         bin exceptions[4]                                   0          1          -    ZERO                 
+#         bin exceptions[5]                                   0          1          -    ZERO                 
+#         bin exceptions[6]                                   0          1          -    ZERO                 
+#         bin exceptions[7]                                   0          1          -    ZERO                 
+#         bin exceptions[8]                                   0          1          -    ZERO                 
+#         bin exceptions[9]                                   0          1          -    ZERO                 
+#         bin exceptions[10]                                  0          1          -    ZERO                 
+#         bin exceptions[11]                                  0          1          -    ZERO                 
+#         bin exceptions[12]                                  0          1          -    ZERO                 
+#         bin exceptions[13]                                  0          1          -    ZERO                 
+#         bin exceptions[14]                                  0          1          -    ZERO                 
+#         bin exceptions[15]                                  0          1          -    ZERO                 
+#     Coverpoint #tr.i_stall__13#                        50.00%        100          -    Uncovered            
+#         covered/total bins:                                 1          2          -                      
+#         missing/total bins:                                 1          2          -                      
+#         % Hit:                                         50.00%        100          -                      
+#         bin auto[0]                                      5008          1          -    Covered              
+#         bin auto[1]                                         0          1          -    ZERO                 
+#     Coverpoint #tr.o_stall_from_alu__14#               50.00%        100          -    Uncovered            
+#         covered/total bins:                                 1          2          -                      
+#         missing/total bins:                                 1          2          -                      
+#         % Hit:                                         50.00%        100          -                      
+#         bin auto[0]                                      5008          1          -    Covered              
+#         bin auto[1]                                         0          1          -    ZERO                 
+#     Coverpoint #tr.rst_n__15#                         100.00%        100          -    Covered              
+#         covered/total bins:                                 2          2          -                      
+#         missing/total bins:                                 0          2          -                      
+#         % Hit:                                        100.00%        100          -                      
+#         bin auto[0]                                       282          1          -    Covered              
+#         bin auto[1]                                      4726          1          -    Covered              
+#     Coverpoint #tr.i_ce__16#                           50.00%        100          -    Uncovered            
+#         covered/total bins:                                 1          2          -                      
+#         missing/total bins:                                 1          2          -                      
+#         % Hit:                                         50.00%        100          -                      
+#         bin auto[0]                                         0          1          -    ZERO                 
+#         bin auto[1]                                      5008          1          -    Covered              
+#     Coverpoint #tr.o_wr_rd__17#                       100.00%        100          -    Covered              
+#         covered/total bins:                                 2          2          -                      
+#         missing/total bins:                                 0          2          -                      
+#         % Hit:                                        100.00%        100          -                      
+#         bin auto[0]                                         1          1          -    Covered              
+#         bin auto[1]                                      5007          1          -    Covered              
+#     Coverpoint #tr.o_rd_valid__18#                    100.00%        100          -    Covered              
+#         covered/total bins:                                 2          2          -                      
+#         missing/total bins:                                 0          2          -                      
+#         % Hit:                                        100.00%        100          -                      
+#         bin auto[0]                                         1          1          -    Covered              
+#         bin auto[1]                                      5007          1          -    Covered              
+#     Coverpoint #tr.i_opcode__19#                        1.56%        100          -    Uncovered            
+#         covered/total bins:                                 1         64          -                      
+#         missing/total bins:                                63         64          -                      
+#         % Hit:                                          1.56%        100          -                      
+#         bin auto[0:31]                                   5008          1          -    Covered              
+#         bin auto[32:63]                                     0          1          -    ZERO                 
+#         bin auto[64:95]                                     0          1          -    ZERO                 
+#         bin auto[96:127]                                    0          1          -    ZERO                 
+#         bin auto[128:159]                                   0          1          -    ZERO                 
+#         bin auto[160:191]                                   0          1          -    ZERO                 
+#         bin auto[192:223]                                   0          1          -    ZERO                 
+#         bin auto[224:255]                                   0          1          -    ZERO                 
+#         bin auto[256:287]                                   0          1          -    ZERO                 
+#         bin auto[288:319]                                   0          1          -    ZERO                 
+#         bin auto[320:351]                                   0          1          -    ZERO                 
+#         bin auto[352:383]                                   0          1          -    ZERO                 
+#         bin auto[384:415]                                   0          1          -    ZERO                 
+#         bin auto[416:447]                                   0          1          -    ZERO                 
+#         bin auto[448:479]                                   0          1          -    ZERO                 
+#         bin auto[480:511]                                   0          1          -    ZERO                 
+#         bin auto[512:543]                                   0          1          -    ZERO                 
+#         bin auto[544:575]                                   0          1          -    ZERO                 
+#         bin auto[576:607]                                   0          1          -    ZERO                 
+#         bin auto[608:639]                                   0          1          -    ZERO                 
+#         bin auto[640:671]                                   0          1          -    ZERO                 
+#         bin auto[672:703]                                   0          1          -    ZERO                 
+#         bin auto[704:735]                                   0          1          -    ZERO                 
+#         bin auto[736:767]                                   0          1          -    ZERO                 
+#         bin auto[768:799]                                   0          1          -    ZERO                 
+#         bin auto[800:831]                                   0          1          -    ZERO                 
+#         bin auto[832:863]                                   0          1          -    ZERO                 
+#         bin auto[864:895]                                   0          1          -    ZERO                 
+#         bin auto[896:927]                                   0          1          -    ZERO                 
+#         bin auto[928:959]                                   0          1          -    ZERO                 
+#         bin auto[960:991]                                   0          1          -    ZERO                 
+#         bin auto[992:1023]                                  0          1          -    ZERO                 
+#         bin auto[1024:1055]                                 0          1          -    ZERO                 
+#         bin auto[1056:1087]                                 0          1          -    ZERO                 
+#         bin auto[1088:1119]                                 0          1          -    ZERO                 
+#         bin auto[1120:1151]                                 0          1          -    ZERO                 
+#         bin auto[1152:1183]                                 0          1          -    ZERO                 
+#         bin auto[1184:1215]                                 0          1          -    ZERO                 
+#         bin auto[1216:1247]                                 0          1          -    ZERO                 
+#         bin auto[1248:1279]                                 0          1          -    ZERO                 
+#         bin auto[1280:1311]                                 0          1          -    ZERO                 
+#         bin auto[1312:1343]                                 0          1          -    ZERO                 
+#         bin auto[1344:1375]                                 0          1          -    ZERO                 
+#         bin auto[1376:1407]                                 0          1          -    ZERO                 
+#         bin auto[1408:1439]                                 0          1          -    ZERO                 
+#         bin auto[1440:1471]                                 0          1          -    ZERO                 
+#         bin auto[1472:1503]                                 0          1          -    ZERO                 
+#         bin auto[1504:1535]                                 0          1          -    ZERO                 
+#         bin auto[1536:1567]                                 0          1          -    ZERO                 
+#         bin auto[1568:1599]                                 0          1          -    ZERO                 
+#         bin auto[1600:1631]                                 0          1          -    ZERO                 
+#         bin auto[1632:1663]                                 0          1          -    ZERO                 
+#         bin auto[1664:1695]                                 0          1          -    ZERO                 
+#         bin auto[1696:1727]                                 0          1          -    ZERO                 
+#         bin auto[1728:1759]                                 0          1          -    ZERO                 
+#         bin auto[1760:1791]                                 0          1          -    ZERO                 
+#         bin auto[1792:1823]                                 0          1          -    ZERO                 
+#         bin auto[1824:1855]                                 0          1          -    ZERO                 
+#         bin auto[1856:1887]                                 0          1          -    ZERO                 
+#         bin auto[1888:1919]                                 0          1          -    ZERO                 
+#         bin auto[1920:1951]                                 0          1          -    ZERO                 
+#         bin auto[1952:1983]                                 0          1          -    ZERO                 
+#         bin auto[1984:2015]                                 0          1          -    ZERO                 
+#         bin auto[2016:2047]                                 0          1          -    ZERO                 
+#     Coverpoint #tr.i_force_stall__20#                  50.00%        100          -    Uncovered            
+#         covered/total bins:                                 1          2          -                      
+#         missing/total bins:                                 1          2          -                      
+#         % Hit:                                         50.00%        100          -                      
+#         bin auto[0]                                      5008          1          -    Covered              
+#         bin auto[1]                                         0          1          -    ZERO                 
+#     Coverpoint #tr.i_flush__21#                        50.00%        100          -    Uncovered            
+#         covered/total bins:                                 1          2          -                      
+#         missing/total bins:                                 1          2          -                      
+#         % Hit:                                         50.00%        100          -                      
+#         bin auto[0]                                      5008          1          -    Covered              
+#         bin auto[1]                                         0          1          -    ZERO                 
+#     Coverpoint #tr.o_change_pc__22#                    50.00%        100          -    Uncovered            
+#         covered/total bins:                                 1          2          -                      
+#         missing/total bins:                                 1          2          -                      
+#         % Hit:                                         50.00%        100          -                      
+#         bin auto[0]                                      5008          1          -    Covered              
+#         bin auto[1]                                         0          1          -    ZERO                 
+#     Coverpoint #tr.i_exception__23#                     6.25%        100          -    Uncovered            
+#         covered/total bins:                                 1         16          -                      
+#         missing/total bins:                                15         16          -                      
+#         % Hit:                                          6.25%        100          -                      
+#         bin auto[0]                                      5008          1          -    Covered              
+#         bin auto[1]                                         0          1          -    ZERO                 
+#         bin auto[2]                                         0          1          -    ZERO                 
+#         bin auto[3]                                         0          1          -    ZERO                 
+#         bin auto[4]                                         0          1          -    ZERO                 
+#         bin auto[5]                                         0          1          -    ZERO                 
+#         bin auto[6]                                         0          1          -    ZERO                 
+#         bin auto[7]                                         0          1          -    ZERO                 
+#         bin auto[8]                                         0          1          -    ZERO                 
+#         bin auto[9]                                         0          1          -    ZERO                 
+#         bin auto[10]                                        0          1          -    ZERO                 
+#         bin auto[11]                                        0          1          -    ZERO                 
+#         bin auto[12]                                        0          1          -    ZERO                 
+#         bin auto[13]                                        0          1          -    ZERO                 
+#         bin auto[14]                                        0          1          -    ZERO                 
+#         bin auto[15]                                        0          1          -    ZERO                 
+#     Coverpoint #tr.i_alu__24#                          10.93%        100          -    Uncovered            
+#         covered/total bins:                                 7         64          -                      
+#         missing/total bins:                                57         64          -                      
+#         % Hit:                                         10.93%        100          -                      
+#         bin auto[0:255]                                  2891          1          -    Covered              
+#         bin auto[256:511]                                 340          1          -    Covered              
+#         bin auto[512:767]                                 350          1          -    Covered              
+#         bin auto[768:1023]                                  0          1          -    ZERO                 
+#         bin auto[1024:1279]                               325          1          -    Covered              
+#         bin auto[1280:1535]                                 0          1          -    ZERO                 
+#         bin auto[1536:1791]                                 0          1          -    ZERO                 
+#         bin auto[1792:2047]                                 0          1          -    ZERO                 
+#         bin auto[2048:2303]                               365          1          -    Covered              
+#         bin auto[2304:2559]                                 0          1          -    ZERO                 
+#         bin auto[2560:2815]                                 0          1          -    ZERO                 
+#         bin auto[2816:3071]                                 0          1          -    ZERO                 
+#         bin auto[3072:3327]                                 0          1          -    ZERO                 
+#         bin auto[3328:3583]                                 0          1          -    ZERO                 
+#         bin auto[3584:3839]                                 0          1          -    ZERO                 
+#         bin auto[3840:4095]                                 0          1          -    ZERO                 
+#         bin auto[4096:4351]                               364          1          -    Covered              
+#         bin auto[4352:4607]                                 0          1          -    ZERO                 
+#         bin auto[4608:4863]                                 0          1          -    ZERO                 
+#         bin auto[4864:5119]                                 0          1          -    ZERO                 
+#         bin auto[5120:5375]                                 0          1          -    ZERO                 
+#         bin auto[5376:5631]                                 0          1          -    ZERO                 
+#         bin auto[5632:5887]                                 0          1          -    ZERO                 
+#         bin auto[5888:6143]                                 0          1          -    ZERO                 
+#         bin auto[6144:6399]                                 0          1          -    ZERO                 
+#         bin auto[6400:6655]                                 0          1          -    ZERO                 
+#         bin auto[6656:6911]                                 0          1          -    ZERO                 
+#         bin auto[6912:7167]                                 0          1          -    ZERO                 
+#         bin auto[7168:7423]                                 0          1          -    ZERO                 
+#         bin auto[7424:7679]                                 0          1          -    ZERO                 
+#         bin auto[7680:7935]                                 0          1          -    ZERO                 
+#         bin auto[7936:8191]                                 0          1          -    ZERO                 
+#         bin auto[8192:8447]                               373          1          -    Covered              
+#         bin auto[8448:8703]                                 0          1          -    ZERO                 
+#         bin auto[8704:8959]                                 0          1          -    ZERO                 
+#         bin auto[8960:9215]                                 0          1          -    ZERO                 
+#         bin auto[9216:9471]                                 0          1          -    ZERO                 
+#         bin auto[9472:9727]                                 0          1          -    ZERO                 
+#         bin auto[9728:9983]                                 0          1          -    ZERO                 
+#         bin auto[9984:10239]                                0          1          -    ZERO                 
+#         bin auto[10240:10495]                               0          1          -    ZERO                 
+#         bin auto[10496:10751]                               0          1          -    ZERO                 
+#         bin auto[10752:11007]                               0          1          -    ZERO                 
+#         bin auto[11008:11263]                               0          1          -    ZERO                 
+#         bin auto[11264:11519]                               0          1          -    ZERO                 
+#         bin auto[11520:11775]                               0          1          -    ZERO                 
+#         bin auto[11776:12031]                               0          1          -    ZERO                 
+#         bin auto[12032:12287]                               0          1          -    ZERO                 
+#         bin auto[12288:12543]                               0          1          -    ZERO                 
+#         bin auto[12544:12799]                               0          1          -    ZERO                 
+#         bin auto[12800:13055]                               0          1          -    ZERO                 
+#         bin auto[13056:13311]                               0          1          -    ZERO                 
+#         bin auto[13312:13567]                               0          1          -    ZERO                 
+#         bin auto[13568:13823]                               0          1          -    ZERO                 
+#         bin auto[13824:14079]                               0          1          -    ZERO                 
+#         bin auto[14080:14335]                               0          1          -    ZERO                 
+#         bin auto[14336:14591]                               0          1          -    ZERO                 
+#         bin auto[14592:14847]                               0          1          -    ZERO                 
+#         bin auto[14848:15103]                               0          1          -    ZERO                 
+#         bin auto[15104:15359]                               0          1          -    ZERO                 
+#         bin auto[15360:15615]                               0          1          -    ZERO                 
+#         bin auto[15616:15871]                               0          1          -    ZERO                 
+#         bin auto[15872:16127]                               0          1          -    ZERO                 
+#         bin auto[16128:16383]                               0          1          -    ZERO                 
+#     Cross #cross__0#                                    0.17%        100          -    Uncovered            
+#         covered/total bins:                                 7       4096          -                      
+#         missing/total bins:                              4089       4096          -                      
+#         % Hit:                                          0.17%        100          -                      
+#         Auto, Default and User Defined Bins:
+#             bin <auto[0:31],auto[8192:8447]>              373          1          -    Covered              
+#             bin <auto[0:31],auto[4096:4351]>              364          1          -    Covered              
+#             bin <auto[0:31],auto[2048:2303]>              365          1          -    Covered              
+#             bin <auto[0:31],auto[1024:1279]>              325          1          -    Covered              
+#             bin <auto[0:31],auto[512:767]>                350          1          -    Covered              
+#             bin <auto[0:31],auto[256:511]>                340          1          -    Covered              
+#             bin <auto[0:31],auto[0:255]>                 2891          1          -    Covered              
+#             bin <auto[2016:2047],*>                         0          1         64    ZERO                 
+#             bin <auto[1984:2015],*>                         0          1         64    ZERO                 
+#             bin <auto[1952:1983],*>                         0          1         64    ZERO                 
+#             bin <auto[1920:1951],*>                         0          1         64    ZERO                 
+#             bin <auto[1888:1919],*>                         0          1         64    ZERO                 
+#             bin <auto[1856:1887],*>                         0          1         64    ZERO                 
+#             bin <auto[1824:1855],*>                         0          1         64    ZERO                 
+#             bin <auto[1792:1823],*>                         0          1         64    ZERO                 
+#             bin <auto[1760:1791],*>                         0          1         64    ZERO                 
+#             bin <auto[1728:1759],*>                         0          1         64    ZERO                 
+#             bin <auto[1696:1727],*>                         0          1         64    ZERO                 
+#             bin <auto[1664:1695],*>                         0          1         64    ZERO                 
+#             bin <auto[1632:1663],*>                         0          1         64    ZERO                 
+#             bin <auto[1600:1631],*>                         0          1         64    ZERO                 
+#             bin <auto[1568:1599],*>                         0          1         64    ZERO                 
+#             bin <auto[1536:1567],*>                         0          1         64    ZERO                 
+#             bin <auto[1504:1535],*>                         0          1         64    ZERO                 
+#             bin <auto[1472:1503],*>                         0          1         64    ZERO                 
+#             bin <auto[1440:1471],*>                         0          1         64    ZERO                 
+#             bin <auto[1408:1439],*>                         0          1         64    ZERO                 
+#             bin <auto[1376:1407],*>                         0          1         64    ZERO                 
+#             bin <auto[1344:1375],*>                         0          1         64    ZERO                 
+#             bin <auto[1312:1343],*>                         0          1         64    ZERO                 
+#             bin <auto[1280:1311],*>                         0          1         64    ZERO                 
+#             bin <auto[1248:1279],*>                         0          1         64    ZERO                 
+#             bin <auto[1216:1247],*>                         0          1         64    ZERO                 
+#             bin <auto[1184:1215],*>                         0          1         64    ZERO                 
+#             bin <auto[1152:1183],*>                         0          1         64    ZERO                 
+#             bin <auto[1120:1151],*>                         0          1         64    ZERO                 
+#             bin <auto[1088:1119],*>                         0          1         64    ZERO                 
+#             bin <auto[1056:1087],*>                         0          1         64    ZERO                 
+#             bin <auto[1024:1055],*>                         0          1         64    ZERO                 
+#             bin <auto[992:1023],*>                          0          1         64    ZERO                 
+#             bin <auto[960:991],*>                           0          1         64    ZERO                 
+#             bin <auto[928:959],*>                           0          1         64    ZERO                 
+#             bin <auto[896:927],*>                           0          1         64    ZERO                 
+#             bin <auto[864:895],*>                           0          1         64    ZERO                 
+#             bin <auto[832:863],*>                           0          1         64    ZERO                 
+#             bin <auto[800:831],*>                           0          1         64    ZERO                 
+#             bin <auto[768:799],*>                           0          1         64    ZERO                 
+#             bin <auto[736:767],*>                           0          1         64    ZERO                 
+#             bin <auto[704:735],*>                           0          1         64    ZERO                 
+#             bin <auto[672:703],*>                           0          1         64    ZERO                 
+#             bin <auto[640:671],*>                           0          1         64    ZERO                 
+#             bin <auto[608:639],*>                           0          1         64    ZERO                 
+#             bin <auto[576:607],*>                           0          1         64    ZERO                 
+#             bin <auto[544:575],*>                           0          1         64    ZERO                 
+#             bin <auto[512:543],*>                           0          1         64    ZERO                 
+#             bin <auto[480:511],*>                           0          1         64    ZERO                 
+#             bin <auto[448:479],*>                           0          1         64    ZERO                 
+#             bin <auto[416:447],*>                           0          1         64    ZERO                 
+#             bin <auto[384:415],*>                           0          1         64    ZERO                 
+#             bin <auto[352:383],*>                           0          1         64    ZERO                 
+#             bin <auto[320:351],*>                           0          1         64    ZERO                 
+#             bin <auto[288:319],*>                           0          1         64    ZERO                 
+#             bin <auto[256:287],*>                           0          1         64    ZERO                 
+#             bin <auto[224:255],*>                           0          1         64    ZERO                 
+#             bin <auto[192:223],*>                           0          1         64    ZERO                 
+#             bin <auto[160:191],*>                           0          1         64    ZERO                 
+#             bin <auto[128:159],*>                           0          1         64    ZERO                 
+#             bin <auto[96:127],*>                            0          1         64    ZERO                 
+#             bin <auto[64:95],*>                             0          1         64    ZERO                 
+#             bin <auto[32:63],*>                             0          1         64    ZERO                 
+#             bin <*,auto[16128:16383]>                       0          1         64    ZERO                 
+#             bin <*,auto[15872:16127]>                       0          1         64    ZERO                 
+#             bin <*,auto[15616:15871]>                       0          1         64    ZERO                 
+#             bin <*,auto[15360:15615]>                       0          1         64    ZERO                 
+#             bin <*,auto[15104:15359]>                       0          1         64    ZERO                 
+#             bin <*,auto[14848:15103]>                       0          1         64    ZERO                 
+#             bin <*,auto[14592:14847]>                       0          1         64    ZERO                 
+#             bin <*,auto[14336:14591]>                       0          1         64    ZERO                 
+#             bin <*,auto[14080:14335]>                       0          1         64    ZERO                 
+#             bin <*,auto[13824:14079]>                       0          1         64    ZERO                 
+#             bin <*,auto[13568:13823]>                       0          1         64    ZERO                 
+#             bin <*,auto[13312:13567]>                       0          1         64    ZERO                 
+#             bin <*,auto[13056:13311]>                       0          1         64    ZERO                 
+#             bin <*,auto[12800:13055]>                       0          1         64    ZERO                 
+#             bin <*,auto[12544:12799]>                       0          1         64    ZERO                 
+#             bin <*,auto[12288:12543]>                       0          1         64    ZERO                 
+#             bin <*,auto[12032:12287]>                       0          1         64    ZERO                 
+#             bin <*,auto[11776:12031]>                       0          1         64    ZERO                 
+#             bin <*,auto[11520:11775]>                       0          1         64    ZERO                 
+#             bin <*,auto[11264:11519]>                       0          1         64    ZERO                 
+#             bin <*,auto[11008:11263]>                       0          1         64    ZERO                 
+#             bin <*,auto[10752:11007]>                       0          1         64    ZERO                 
+#             bin <*,auto[10496:10751]>                       0          1         64    ZERO                 
+#             bin <*,auto[10240:10495]>                       0          1         64    ZERO                 
+#             bin <*,auto[9984:10239]>                        0          1         64    ZERO                 
+#             bin <*,auto[9728:9983]>                         0          1         64    ZERO                 
+#             bin <*,auto[9472:9727]>                         0          1         64    ZERO                 
+#             bin <*,auto[9216:9471]>                         0          1         64    ZERO                 
+#             bin <*,auto[8960:9215]>                         0          1         64    ZERO                 
+#             bin <*,auto[8704:8959]>                         0          1         64    ZERO                 
+#             bin <*,auto[8448:8703]>                         0          1         64    ZERO                 
+#             bin <*,auto[7936:8191]>                         0          1         64    ZERO                 
+#             bin <*,auto[7680:7935]>                         0          1         64    ZERO                 
+#             bin <*,auto[7424:7679]>                         0          1         64    ZERO                 
+#             bin <*,auto[7168:7423]>                         0          1         64    ZERO                 
+#             bin <*,auto[6912:7167]>                         0          1         64    ZERO                 
+#             bin <*,auto[6656:6911]>                         0          1         64    ZERO                 
+#             bin <*,auto[6400:6655]>                         0          1         64    ZERO                 
+#             bin <*,auto[6144:6399]>                         0          1         64    ZERO                 
+#             bin <*,auto[5888:6143]>                         0          1         64    ZERO                 
+#             bin <*,auto[5632:5887]>                         0          1         64    ZERO                 
+#             bin <*,auto[5376:5631]>                         0          1         64    ZERO                 
+#             bin <*,auto[5120:5375]>                         0          1         64    ZERO                 
+#             bin <*,auto[4864:5119]>                         0          1         64    ZERO                 
+#             bin <*,auto[4608:4863]>                         0          1         64    ZERO                 
+#             bin <*,auto[4352:4607]>                         0          1         64    ZERO                 
+#             bin <*,auto[3840:4095]>                         0          1         64    ZERO                 
+#             bin <*,auto[3584:3839]>                         0          1         64    ZERO                 
+#             bin <*,auto[3328:3583]>                         0          1         64    ZERO                 
+#             bin <*,auto[3072:3327]>                         0          1         64    ZERO                 
+#             bin <*,auto[2816:3071]>                         0          1         64    ZERO                 
+#             bin <*,auto[2560:2815]>                         0          1         64    ZERO                 
+#             bin <*,auto[2304:2559]>                         0          1         64    ZERO                 
+#             bin <*,auto[1792:2047]>                         0          1         64    ZERO                 
+#             bin <*,auto[1536:1791]>                         0          1         64    ZERO                 
+#             bin <*,auto[1280:1535]>                         0          1         64    ZERO                 
+#             bin <*,auto[768:1023]>                          0          1         64    ZERO                 
+#     Cross #cross__1#                                    0.09%        100          -    Uncovered            
+#         covered/total bins:                                 1       1024          -                      
+#         missing/total bins:                              1023       1024          -                      
+#         % Hit:                                          0.09%        100          -                      
+#         Auto, Default and User Defined Bins:
+#             bin <auto[0:31],auto[0]>                     5008          1          -    Covered              
+#             bin <auto[2016:2047],*>                         0          1         16    ZERO                 
+#             bin <auto[1984:2015],*>                         0          1         16    ZERO                 
+#             bin <auto[1952:1983],*>                         0          1         16    ZERO                 
+#             bin <auto[1920:1951],*>                         0          1         16    ZERO                 
+#             bin <auto[1888:1919],*>                         0          1         16    ZERO                 
+#             bin <auto[1856:1887],*>                         0          1         16    ZERO                 
+#             bin <auto[1824:1855],*>                         0          1         16    ZERO                 
+#             bin <auto[1792:1823],*>                         0          1         16    ZERO                 
+#             bin <auto[1760:1791],*>                         0          1         16    ZERO                 
+#             bin <auto[1728:1759],*>                         0          1         16    ZERO                 
+#             bin <auto[1696:1727],*>                         0          1         16    ZERO                 
+#             bin <auto[1664:1695],*>                         0          1         16    ZERO                 
+#             bin <auto[1632:1663],*>                         0          1         16    ZERO                 
+#             bin <auto[1600:1631],*>                         0          1         16    ZERO                 
+#             bin <auto[1568:1599],*>                         0          1         16    ZERO                 
+#             bin <auto[1536:1567],*>                         0          1         16    ZERO                 
+#             bin <auto[1504:1535],*>                         0          1         16    ZERO                 
+#             bin <auto[1472:1503],*>                         0          1         16    ZERO                 
+#             bin <auto[1440:1471],*>                         0          1         16    ZERO                 
+#             bin <auto[1408:1439],*>                         0          1         16    ZERO                 
+#             bin <auto[1376:1407],*>                         0          1         16    ZERO                 
+#             bin <auto[1344:1375],*>                         0          1         16    ZERO                 
+#             bin <auto[1312:1343],*>                         0          1         16    ZERO                 
+#             bin <auto[1280:1311],*>                         0          1         16    ZERO                 
+#             bin <auto[1248:1279],*>                         0          1         16    ZERO                 
+#             bin <auto[1216:1247],*>                         0          1         16    ZERO                 
+#             bin <auto[1184:1215],*>                         0          1         16    ZERO                 
+#             bin <auto[1152:1183],*>                         0          1         16    ZERO                 
+#             bin <auto[1120:1151],*>                         0          1         16    ZERO                 
+#             bin <auto[1088:1119],*>                         0          1         16    ZERO                 
+#             bin <auto[1056:1087],*>                         0          1         16    ZERO                 
+#             bin <auto[1024:1055],*>                         0          1         16    ZERO                 
+#             bin <auto[992:1023],*>                          0          1         16    ZERO                 
+#             bin <auto[960:991],*>                           0          1         16    ZERO                 
+#             bin <auto[928:959],*>                           0          1         16    ZERO                 
+#             bin <auto[896:927],*>                           0          1         16    ZERO                 
+#             bin <auto[864:895],*>                           0          1         16    ZERO                 
+#             bin <auto[832:863],*>                           0          1         16    ZERO                 
+#             bin <auto[800:831],*>                           0          1         16    ZERO                 
+#             bin <auto[768:799],*>                           0          1         16    ZERO                 
+#             bin <auto[736:767],*>                           0          1         16    ZERO                 
+#             bin <auto[704:735],*>                           0          1         16    ZERO                 
+#             bin <auto[672:703],*>                           0          1         16    ZERO                 
+#             bin <auto[640:671],*>                           0          1         16    ZERO                 
+#             bin <auto[608:639],*>                           0          1         16    ZERO                 
+#             bin <auto[576:607],*>                           0          1         16    ZERO                 
+#             bin <auto[544:575],*>                           0          1         16    ZERO                 
+#             bin <auto[512:543],*>                           0          1         16    ZERO                 
+#             bin <auto[480:511],*>                           0          1         16    ZERO                 
+#             bin <auto[448:479],*>                           0          1         16    ZERO                 
+#             bin <auto[416:447],*>                           0          1         16    ZERO                 
+#             bin <auto[384:415],*>                           0          1         16    ZERO                 
+#             bin <auto[352:383],*>                           0          1         16    ZERO                 
+#             bin <auto[320:351],*>                           0          1         16    ZERO                 
+#             bin <auto[288:319],*>                           0          1         16    ZERO                 
+#             bin <auto[256:287],*>                           0          1         16    ZERO                 
+#             bin <auto[224:255],*>                           0          1         16    ZERO                 
+#             bin <auto[192:223],*>                           0          1         16    ZERO                 
+#             bin <auto[160:191],*>                           0          1         16    ZERO                 
+#             bin <auto[128:159],*>                           0          1         16    ZERO                 
+#             bin <auto[96:127],*>                            0          1         16    ZERO                 
+#             bin <auto[64:95],*>                             0          1         16    ZERO                 
+#             bin <auto[32:63],*>                             0          1         16    ZERO                 
+#             bin <*,auto[15]>                                0          1         64    ZERO                 
+#             bin <*,auto[14]>                                0          1         64    ZERO                 
+#             bin <*,auto[13]>                                0          1         64    ZERO                 
+#             bin <*,auto[12]>                                0          1         64    ZERO                 
+#             bin <*,auto[11]>                                0          1         64    ZERO                 
+#             bin <*,auto[10]>                                0          1         64    ZERO                 
+#             bin <*,auto[9]>                                 0          1         64    ZERO                 
+#             bin <*,auto[8]>                                 0          1         64    ZERO                 
+#             bin <*,auto[7]>                                 0          1         64    ZERO                 
+#             bin <*,auto[6]>                                 0          1         64    ZERO                 
+#             bin <*,auto[5]>                                 0          1         64    ZERO                 
+#             bin <*,auto[4]>                                 0          1         64    ZERO                 
+#             bin <*,auto[3]>                                 0          1         64    ZERO                 
+#             bin <*,auto[2]>                                 0          1         64    ZERO                 
+#             bin <*,auto[1]>                                 0          1         64    ZERO                 
+#     Cross #cross__2#                                    0.78%        100          -    Uncovered            
+#         covered/total bins:                                 1        128          -                      
+#         missing/total bins:                               127        128          -                      
+#         % Hit:                                          0.78%        100          -                      
+#         Auto, Default and User Defined Bins:
+#             bin <auto[0:31],auto[0]>                     5008          1          -    Covered              
+#             bin <auto[2016:2047],*>                         0          1          2    ZERO                 
+#             bin <auto[1984:2015],*>                         0          1          2    ZERO                 
+#             bin <auto[1952:1983],*>                         0          1          2    ZERO                 
+#             bin <auto[1920:1951],*>                         0          1          2    ZERO                 
+#             bin <auto[1888:1919],*>                         0          1          2    ZERO                 
+#             bin <auto[1856:1887],*>                         0          1          2    ZERO                 
+#             bin <auto[1824:1855],*>                         0          1          2    ZERO                 
+#             bin <auto[1792:1823],*>                         0          1          2    ZERO                 
+#             bin <auto[1760:1791],*>                         0          1          2    ZERO                 
+#             bin <auto[1728:1759],*>                         0          1          2    ZERO                 
+#             bin <auto[1696:1727],*>                         0          1          2    ZERO                 
+#             bin <auto[1664:1695],*>                         0          1          2    ZERO                 
+#             bin <auto[1632:1663],*>                         0          1          2    ZERO                 
+#             bin <auto[1600:1631],*>                         0          1          2    ZERO                 
+#             bin <auto[1568:1599],*>                         0          1          2    ZERO                 
+#             bin <auto[1536:1567],*>                         0          1          2    ZERO                 
+#             bin <auto[1504:1535],*>                         0          1          2    ZERO                 
+#             bin <auto[1472:1503],*>                         0          1          2    ZERO                 
+#             bin <auto[1440:1471],*>                         0          1          2    ZERO                 
+#             bin <auto[1408:1439],*>                         0          1          2    ZERO                 
+#             bin <auto[1376:1407],*>                         0          1          2    ZERO                 
+#             bin <auto[1344:1375],*>                         0          1          2    ZERO                 
+#             bin <auto[1312:1343],*>                         0          1          2    ZERO                 
+#             bin <auto[1280:1311],*>                         0          1          2    ZERO                 
+#             bin <auto[1248:1279],*>                         0          1          2    ZERO                 
+#             bin <auto[1216:1247],*>                         0          1          2    ZERO                 
+#             bin <auto[1184:1215],*>                         0          1          2    ZERO                 
+#             bin <auto[1152:1183],*>                         0          1          2    ZERO                 
+#             bin <auto[1120:1151],*>                         0          1          2    ZERO                 
+#             bin <auto[1088:1119],*>                         0          1          2    ZERO                 
+#             bin <auto[1056:1087],*>                         0          1          2    ZERO                 
+#             bin <auto[1024:1055],*>                         0          1          2    ZERO                 
+#             bin <auto[992:1023],*>                          0          1          2    ZERO                 
+#             bin <auto[960:991],*>                           0          1          2    ZERO                 
+#             bin <auto[928:959],*>                           0          1          2    ZERO                 
+#             bin <auto[896:927],*>                           0          1          2    ZERO                 
+#             bin <auto[864:895],*>                           0          1          2    ZERO                 
+#             bin <auto[832:863],*>                           0          1          2    ZERO                 
+#             bin <auto[800:831],*>                           0          1          2    ZERO                 
+#             bin <auto[768:799],*>                           0          1          2    ZERO                 
+#             bin <auto[736:767],*>                           0          1          2    ZERO                 
+#             bin <auto[704:735],*>                           0          1          2    ZERO                 
+#             bin <auto[672:703],*>                           0          1          2    ZERO                 
+#             bin <auto[640:671],*>                           0          1          2    ZERO                 
+#             bin <auto[608:639],*>                           0          1          2    ZERO                 
+#             bin <auto[576:607],*>                           0          1          2    ZERO                 
+#             bin <auto[544:575],*>                           0          1          2    ZERO                 
+#             bin <auto[512:543],*>                           0          1          2    ZERO                 
+#             bin <auto[480:511],*>                           0          1          2    ZERO                 
+#             bin <auto[448:479],*>                           0          1          2    ZERO                 
+#             bin <auto[416:447],*>                           0          1          2    ZERO                 
+#             bin <auto[384:415],*>                           0          1          2    ZERO                 
+#             bin <auto[352:383],*>                           0          1          2    ZERO                 
+#             bin <auto[320:351],*>                           0          1          2    ZERO                 
+#             bin <auto[288:319],*>                           0          1          2    ZERO                 
+#             bin <auto[256:287],*>                           0          1          2    ZERO                 
+#             bin <auto[224:255],*>                           0          1          2    ZERO                 
+#             bin <auto[192:223],*>                           0          1          2    ZERO                 
+#             bin <auto[160:191],*>                           0          1          2    ZERO                 
+#             bin <auto[128:159],*>                           0          1          2    ZERO                 
+#             bin <auto[96:127],*>                            0          1          2    ZERO                 
+#             bin <auto[64:95],*>                             0          1          2    ZERO                 
+#             bin <auto[32:63],*>                             0          1          2    ZERO                 
+#             bin <*,auto[1]>                                 0          1         64    ZERO                 
+#     Cross #cross__3#                                    6.25%        100          -    Uncovered            
+#         covered/total bins:                                 1         16          -                      
+#         missing/total bins:                                15         16          -                      
+#         % Hit:                                          6.25%        100          -                      
+#         Auto, Default and User Defined Bins:
+#             bin <auto[1],auto[0],auto[0],auto[0]>        5008          1          -    Covered              
+#             bin <auto[0],*,*,*>                             0          1          8    ZERO                 
+#             bin <*,auto[1],*,*>                             0          1          8    ZERO                 
+#             bin <*,*,auto[1],*>                             0          1          8    ZERO                 
+#             bin <*,*,*,auto[1]>                             0          1          8    ZERO                 
+#     Cross #cross__4#                                    0.78%        100          -    Uncovered            
+#         covered/total bins:                                 2        256          -                      
+#         missing/total bins:                               254        256          -                      
+#         % Hit:                                          0.78%        100          -                      
+#         Auto, Default and User Defined Bins:
+#             bin <auto[1],auto[1],auto[0:31]>             5007          1          -    Covered              
+#             bin <auto[0],auto[0],auto[0:31]>                1          1          -    Covered              
+#             bin <*,*,auto[2016:2047]>                       0          1          4    ZERO                 
+#             bin <*,*,auto[1984:2015]>                       0          1          4    ZERO                 
+#             bin <*,*,auto[1952:1983]>                       0          1          4    ZERO                 
+#             bin <*,*,auto[1920:1951]>                       0          1          4    ZERO                 
+#             bin <*,*,auto[1888:1919]>                       0          1          4    ZERO                 
+#             bin <*,*,auto[1856:1887]>                       0          1          4    ZERO                 
+#             bin <*,*,auto[1824:1855]>                       0          1          4    ZERO                 
+#             bin <*,*,auto[1792:1823]>                       0          1          4    ZERO                 
+#             bin <*,*,auto[1760:1791]>                       0          1          4    ZERO                 
+#             bin <*,*,auto[1728:1759]>                       0          1          4    ZERO                 
+#             bin <*,*,auto[1696:1727]>                       0          1          4    ZERO                 
+#             bin <*,*,auto[1664:1695]>                       0          1          4    ZERO                 
+#             bin <*,*,auto[1632:1663]>                       0          1          4    ZERO                 
+#             bin <*,*,auto[1600:1631]>                       0          1          4    ZERO                 
+#             bin <*,*,auto[1568:1599]>                       0          1          4    ZERO                 
+#             bin <*,*,auto[1536:1567]>                       0          1          4    ZERO                 
+#             bin <*,*,auto[1504:1535]>                       0          1          4    ZERO                 
+#             bin <*,*,auto[1472:1503]>                       0          1          4    ZERO                 
+#             bin <*,*,auto[1440:1471]>                       0          1          4    ZERO                 
+#             bin <*,*,auto[1408:1439]>                       0          1          4    ZERO                 
+#             bin <*,*,auto[1376:1407]>                       0          1          4    ZERO                 
+#             bin <*,*,auto[1344:1375]>                       0          1          4    ZERO                 
+#             bin <*,*,auto[1312:1343]>                       0          1          4    ZERO                 
+#             bin <*,*,auto[1280:1311]>                       0          1          4    ZERO                 
+#             bin <*,*,auto[1248:1279]>                       0          1          4    ZERO                 
+#             bin <*,*,auto[1216:1247]>                       0          1          4    ZERO                 
+#             bin <*,*,auto[1184:1215]>                       0          1          4    ZERO                 
+#             bin <*,*,auto[1152:1183]>                       0          1          4    ZERO                 
+#             bin <*,*,auto[1120:1151]>                       0          1          4    ZERO                 
+#             bin <*,*,auto[1088:1119]>                       0          1          4    ZERO                 
+#             bin <*,*,auto[1056:1087]>                       0          1          4    ZERO                 
+#             bin <*,*,auto[1024:1055]>                       0          1          4    ZERO                 
+#             bin <*,*,auto[992:1023]>                        0          1          4    ZERO                 
+#             bin <*,*,auto[960:991]>                         0          1          4    ZERO                 
+#             bin <*,*,auto[928:959]>                         0          1          4    ZERO                 
+#             bin <*,*,auto[896:927]>                         0          1          4    ZERO                 
+#             bin <*,*,auto[864:895]>                         0          1          4    ZERO                 
+#             bin <*,*,auto[832:863]>                         0          1          4    ZERO                 
+#             bin <*,*,auto[800:831]>                         0          1          4    ZERO                 
+#             bin <*,*,auto[768:799]>                         0          1          4    ZERO                 
+#             bin <*,*,auto[736:767]>                         0          1          4    ZERO                 
+#             bin <*,*,auto[704:735]>                         0          1          4    ZERO                 
+#             bin <*,*,auto[672:703]>                         0          1          4    ZERO                 
+#             bin <*,*,auto[640:671]>                         0          1          4    ZERO                 
+#             bin <*,*,auto[608:639]>                         0          1          4    ZERO                 
+#             bin <*,*,auto[576:607]>                         0          1          4    ZERO                 
+#             bin <*,*,auto[544:575]>                         0          1          4    ZERO                 
+#             bin <*,*,auto[512:543]>                         0          1          4    ZERO                 
+#             bin <*,*,auto[480:511]>                         0          1          4    ZERO                 
+#             bin <*,*,auto[448:479]>                         0          1          4    ZERO                 
+#             bin <*,*,auto[416:447]>                         0          1          4    ZERO                 
+#             bin <*,*,auto[384:415]>                         0          1          4    ZERO                 
+#             bin <*,*,auto[352:383]>                         0          1          4    ZERO                 
+#             bin <*,*,auto[320:351]>                         0          1          4    ZERO                 
+#             bin <*,*,auto[288:319]>                         0          1          4    ZERO                 
+#             bin <*,*,auto[256:287]>                         0          1          4    ZERO                 
+#             bin <*,*,auto[224:255]>                         0          1          4    ZERO                 
+#             bin <*,*,auto[192:223]>                         0          1          4    ZERO                 
+#             bin <*,*,auto[160:191]>                         0          1          4    ZERO                 
+#             bin <*,*,auto[128:159]>                         0          1          4    ZERO                 
+#             bin <*,*,auto[96:127]>                          0          1          4    ZERO                 
+#             bin <*,*,auto[64:95]>                           0          1          4    ZERO                 
+#             bin <*,*,auto[32:63]>                           0          1          4    ZERO                 
+#             bin <auto[0],auto[1],*>                         0          1         64    ZERO                 
+#             bin <auto[1],auto[0],*>                         0          1         64    ZERO                 
+#     Cross #cross__5#                                   50.00%        100          -    Uncovered            
+#         covered/total bins:                                 2          4          -                      
+#         missing/total bins:                                 2          4          -                      
+#         % Hit:                                         50.00%        100          -                      
+#         Auto, Default and User Defined Bins:
+#             bin <auto[1],auto[1]>                        4726          1          -    Covered              
+#             bin <auto[0],auto[1]>                         282          1          -    Covered              
+#             bin <*,auto[0]>                                 0          1          2    ZERO                 
+#     Cross #cross__6#                                   25.00%        100          -    Uncovered            
+#         covered/total bins:                                 1          4          -                      
+#         missing/total bins:                                 3          4          -                      
+#         % Hit:                                         25.00%        100          -                      
+#         Auto, Default and User Defined Bins:
+#             bin <auto[0],auto[0]>                        5008          1          -    Covered              
+#             bin <auto[1],*>                                 0          1          2    ZERO                 
+#             bin <*,auto[1]>                                 0          1          2    ZERO                 
+# 
+# TOTAL COVERGROUP COVERAGE: 47.12%  COVERGROUP TYPES: 1
+# 
+# Total Coverage By Instance (filtered view): 47.12%
+# 
+# 
