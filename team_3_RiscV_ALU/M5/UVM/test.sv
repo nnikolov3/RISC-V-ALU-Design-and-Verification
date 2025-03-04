@@ -101,7 +101,7 @@ class alu_base_test extends uvm_test;
         // Start the sequence on the agent’s sequencer to drive transactions to the DUT
         seq.start(env.agent.sequencer);
 
-        #10000;
+        #1000000;
         // Drop the objection to signal that the test is complete, allowing simulation to end
         phase.drop_objection(this);
     endtask

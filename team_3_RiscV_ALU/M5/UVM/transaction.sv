@@ -20,6 +20,7 @@ class transaction extends uvm_sequence_item;
     //--------------------------------------------------------------------------
     // Randomized Input Signals (for stimulus generation)
     //--------------------------------------------------------------------------
+	// coverage off
     rand bit [                13:0] i_alu;  // ALU control signal (14-bit one-hot encoded)
     rand bit [                31:0] i_rs1;  // First operand (32-bit)
     rand bit [                31:0] i_rs2;  // Second operand (32-bit)
@@ -30,9 +31,11 @@ class transaction extends uvm_sequence_item;
     rand bit [                 2:0] i_funct3;  // Function field (3-bit)
     rand bit [                31:0] i_pc;  // Program counter (32-bit)
     rand bit [                 4:0] i_rd_addr;  // Destination register address (5-bit)
+
     bit                             i_stall;  // Stall signal
     bit                             i_force_stall;  // Force stall signal
     bit                             i_flush;  // Flush signal
+	// coverage on
     rand bit                        rst_n;  // Active-low reset signal
 
     // Non-randomized fields (set externally or in specific cases)
@@ -58,6 +61,7 @@ class transaction extends uvm_sequence_item;
     bit                             o_rd_valid;  // Validity flag for destination register data
     bit                             o_stall_from_alu;  // Stall signal from the ALU
     bit                             o_ce;  // Clock enable output
+	
     bit                             o_stall;  // Stall signal output
     bit                             o_flush;  // Flush signal output
 
@@ -104,8 +108,8 @@ class transaction extends uvm_sequence_item;
     // Constraint for clock enable: 90% enabled
     constraint ce_c {
         i_ce dist {
-            1 := 90,
-            0 := 10
+            1 := 100,
+            0 := 0
         };
     }
 

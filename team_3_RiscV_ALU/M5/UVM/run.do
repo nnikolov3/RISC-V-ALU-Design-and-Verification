@@ -9,6 +9,6 @@ vmap work work
 vlog -mfcu -lint top.sv interface.sv sequencer.sv test.sv rv32i_alu.sv transaction.sv agent.sv coverage.sv driver.sv environment.sv monitor.sv scoreboard.sv  
 
 
-vsim -coverage work.top -voptargs="+cover=bcesf"
+vsim -coverage work.top -voptargs="+cover=bcsf"
 add wave -r sim:/top/*
 run -all

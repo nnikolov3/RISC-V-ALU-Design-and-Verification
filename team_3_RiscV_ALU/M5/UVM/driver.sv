@@ -67,7 +67,7 @@ class alu_driver extends uvm_driver #(transaction);
         // Optional: Log transaction details for debugging
         `uvm_info("DRV", $sformatf("Driving transaction: %s", tx.convert2string()), UVM_HIGH)
         // Handle reset condition
-        if (!drv_if.rst_n) begin
+        if (!drv_if.i_rst_n) begin
             // Drive default values during reset
             drv_if.i_alu         <= 0;
             drv_if.i_rs1_addr    <= 0;
@@ -115,7 +115,7 @@ class alu_driver extends uvm_driver #(transaction);
                 drv_if.i_force_stall <= tx.i_force_stall;
                 drv_if.i_flush       <= tx.i_flush;
             end */
-			`uvm_info("SCB", $sformatf(
+/*			`uvm_info("SCB", $sformatf(
                   "\n***** Driver Inputs *****\nOperation Type: %h\nRS1_ADDR: %h\nRS1: %h\nRS2: %h\nIMM: %h\nFUNCT3: %h\nInstruction Type: %h\nException: %b\nPC: %h\nRD_ADDR: %h\nCE: %b\nSTALL: %h\nFORCE_STALL: %h\nFLUSH: %h\nRST_N: %h"
                       ,
                   tx.i_alu,
@@ -133,8 +133,9 @@ class alu_driver extends uvm_driver #(transaction);
                   tx.i_force_stall,
                   tx.i_flush,
                   tx.rst_n
-                  ), UVM_MEDIUM);
+                  ), UVM_MEDIUM); 		*/
         end
+
         // Synchronize with the positive clock edge
         @(posedge drv_if.i_clk);
     endtask

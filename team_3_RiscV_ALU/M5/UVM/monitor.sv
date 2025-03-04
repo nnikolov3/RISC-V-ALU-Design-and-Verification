@@ -132,7 +132,7 @@ class alu_monitor extends uvm_monitor;
                 tx.o_flush          = vif.o_flush;
             //end
 			
-			`uvm_info("SCB", $sformatf(
+/*			`uvm_info("SCB", $sformatf(
                   "\n***** Transaction Inputs *****\nOperation Type: %h\nRS1_ADDR: %h\nRS1: %h\nRS2: %h\nIMM: %h\nFUNCT3: %h\nInstruction Type: %h\nException: %b\nPC: %h\nRD_ADDR: %h\nCE: %b\nSTALL: %h\nFORCE_STALL: %h\nFLUSH: %h\nRST_N: %h"
                       ,
                   tx.i_alu,
@@ -174,8 +174,9 @@ class alu_monitor extends uvm_monitor;
                   tx.o_stall,
                   tx.o_flush
                   ), UVM_MEDIUM);
-				  
+*/				  
 			mon2scb.write(tx);
+			//@(negedge vif.i_clk);
         end
     endtask
 endclass
