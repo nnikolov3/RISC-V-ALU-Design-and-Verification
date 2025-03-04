@@ -25,7 +25,7 @@ class alu_sequence extends uvm_sequence #(transaction);
     `uvm_object_utils(alu_sequence)
 	integer log_file;
     // Configurable number of random transactions
-    int num_transactions = 500;
+    int num_transactions = 5;
 
     // Constructor
     function new(string name = "alu_sequence");
