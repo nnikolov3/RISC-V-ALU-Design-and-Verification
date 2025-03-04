@@ -50,6 +50,7 @@ class alu_sequence extends uvm_sequence #(transaction);
         test_arithmetic_scenarios();  // Test arithmetic operations (ADD, SUB)
         test_logical_scenarios();  // Test logical operations (AND, OR, XOR)
     endtask
+
     virtual task test_additional_opcodes();
         transaction trans;
 
@@ -124,23 +125,49 @@ class alu_sequence extends uvm_sequence #(transaction);
         finish_item(trans);
         print_scenario("Fence", trans);
     endtask
-    // Generate random transactions with varying constraints
+
     virtual task generate_random_scenarios();
         transaction trans;
-        // Loop to generate the specified number of random transactions
         for (int i = 0; i < num_transactions; i++) begin
             trans = transaction::type_id::create("trans");
             start_item(trans);
-            // Disable default constraints for flexibility
+
+            // Disable specific constraints for variety
             trans.zero_operand_c.constraint_mode(0);
             trans.max_value_c.constraint_mode(0);
+            trans.sign_boundary_c.constraint_mode(0);
+
             // Apply constraints cyclically for variety
-            case (i % 3)
+            case (i % 4)
                 0: trans.zero_operand_c.constraint_mode(1);  // Force zero operands
                 1: trans.max_value_c.constraint_mode(1);  // Force maximum values
-                2: ;  // No additional constraint (fully random)
+                2: trans.sign_boundary_c.constraint_mode(1);  // Force sign boundary values
+                3: ;  // Fully random with alu_ctrl_c and opcode_c
             endcase
-            if (!trans.randomize()) `uvm_error("RAND_FAIL", "Randomization failed")
+
+            // Ensure i_alu and i_opcode are randomized within their constraints
+            if (!trans.randomize() with {
+                    // Optional: Add inline weights if coverage gaps persist
+                    i_alu dist {
+                        14'b00000000000001 := 1,  // ADD
+                        14'b00000000000010 := 1,  // SUB
+                        14'b00000000000100 := 1,  // AND (was SLT in original)
+                        14'b00000000001000 := 1,  // OR  (was SLTU)
+                        14'b00000000010000 := 1,  // XOR
+                        14'b00000000100000 := 1,  // SLL (was OR)
+                        14'b00000001000000 := 1,  // SRL (was AND)
+                        14'b00000010000000 := 1,  // SRA
+                        14'b00000100000000 := 1,  // SLT (was SRL)
+                        14'b00001000000000 := 1,  // SLTU (was SRA)
+                        14'b00010000000000 := 1,  // EQ
+                        14'b00100000000000 := 1,  // NEQ
+                        14'b01000000000000 := 1,  // GE
+                        14'b10000000000000 := 1  // GEU
+                    };
+                }) begin
+                `uvm_error("RAND_FAIL", $sformatf("Randomization failed for transaction %0d", i))
+            end
+
             finish_item(trans);
             print_scenario($sformatf("Random Scenario %0d", i), trans);
         end
