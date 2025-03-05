@@ -54,11 +54,12 @@ module top;
         forever #5 i_clk = ~i_clk;  // 10ns period
     end
     // Reset assertion
-    initial begin
+/*    initial begin
         i_rst_n = 0;
         #20;
         i_rst_n = 1;
     end
+*/
     // Set virtual interface in UVM configuration database with updated key
     initial begin
         uvm_config_db#(virtual alu_if)::set(null, "*", "alu_vif", dut_if);

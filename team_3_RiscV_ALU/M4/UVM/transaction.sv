@@ -145,7 +145,7 @@ class transaction extends uvm_sequence_item;
     // Manually set transaction fields for predefined scenarios
     //--------------------------------------------------------------------------
     function void set_values(int alu_idx, bit [`OPCODE_WIDTH-1:0] opcode, bit [31:0] rs1,
-                             bit [31:0] rs2, bit [31:0] imm, bit ce);
+                             bit [31:0] rs2, bit [31:0] imm, bit ce, bit rst);
         i_alu          = 0;  // Clear previous ALU control settings
         i_alu[alu_idx] = 1;  // Set the specified ALU control bit
         i_opcode       = opcode;  // Set the instruction opcode
@@ -153,7 +153,7 @@ class transaction extends uvm_sequence_item;
         i_rs2          = rs2;  // Assign second operand
         i_imm          = imm;  // Assign immediate value
         i_ce           = ce;  // Set clock enable
-        i_rst_n        = 1;  // Default to active unless explicitly testing reset
+        i_rst_n        = rst;  // Default to active unless explicitly testing reset
     endfunction
 
     //--------------------------------------------------------------------------
