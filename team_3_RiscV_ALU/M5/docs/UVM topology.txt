@@ -1,0 +1,24 @@
+# --------------------------------------------------------------
+# Name                       Type                    Size  Value
+# --------------------------------------------------------------
+# uvm_test_top               alu_base_test           -     @472 
+#   env                      alu_env                 -     @479 
+#     agent                  alu_agent               -     @486 
+#       driver               alu_driver              -     @644 
+#         rsp_port           uvm_analysis_port       -     @659 
+#         seq_item_port      uvm_seq_item_pull_port  -     @651 
+#       monitor              alu_monitor             -     @520 
+#         mon2scb            uvm_analysis_port       -     @527 
+#       sequencer            uvm_sequencer           -     @535 
+#         rsp_export         uvm_analysis_export     -     @542 
+#         seq_item_export    uvm_seq_item_pull_imp   -     @636 
+#         arbitration_queue  array                   0     -    
+#         lock_queue         array                   0     -    
+#         num_last_reqs      integral                32    'd1  
+#         num_last_rsps      integral                32    'd1  
+#     coverage               alu_coverage            -     @500 
+#       analysis_imp         uvm_analysis_imp        -     @507 
+#     scoreboard             alu_scoreboard          -     @493 
+#       scb_port             uvm_analysis_imp        -     @674 
+# --------------------------------------------------------------
+# 
