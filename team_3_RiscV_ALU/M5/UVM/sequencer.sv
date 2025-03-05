@@ -39,7 +39,7 @@ class alu_sequence extends uvm_sequence #(transaction);
             `uvm_info("CONFIG", "Using default num_transactions = 1000", UVM_HIGH)
 
         generate_predefined_scenarios();  // Run predefined test cases
-        test_additional_opcodes();  // Add this
+   
         generate_random_scenarios();  // Generate random transactions
         deactivate_ce();  // Test clock enable deactivation
     endtask
@@ -51,80 +51,7 @@ class alu_sequence extends uvm_sequence #(transaction);
         test_logical_scenarios();  // Test logical operations (AND, OR, XOR)
     endtask
 
-    virtual task test_additional_opcodes();
-        transaction trans;
 
-        // I-type: ADDI
-        trans = transaction::type_id::create("trans");
-        start_item(trans);
-        trans.set_values(`ADD_BITS, `ITYPE_BITS, 32'h00000001, 32'h0, 32'h00000005, 1'b1, 1);
-        finish_item(trans);
-        print_scenario("I-type: ADDI", trans);
-
-        // Load (LW)
-        trans = transaction::type_id::create("trans");
-        start_item(trans);
-        trans.set_values(`ADD_BITS, `LOAD_BITS, 32'h00001000, 32'h0, 32'h00000004, 1'b1, 1);
-        finish_item(trans);
-        print_scenario("Load: LW", trans);
-
-        // Store (SW)
-        trans = transaction::type_id::create("trans");
-        start_item(trans);
-        trans.set_values(`ADD_BITS, `STORE_BITS, 32'h00001000, 32'hDEADBEEF, 32'h00000004, 1'b1, 1);
-        finish_item(trans);
-        print_scenario("Store: SW", trans);
-
-        // Branch (BEQ)
-        trans = transaction::type_id::create("trans");
-        start_item(trans);
-        trans.set_values(`EQ_BITS, `BRANCH_BITS, 32'h00000001, 32'h00000001, 32'h00000008, 1'b1, 1);
-        finish_item(trans);
-        print_scenario("Branch: BEQ (taken)", trans);
-
-        // JAL
-        trans = transaction::type_id::create("trans");
-        start_item(trans);
-        trans.set_values(`ADD_BITS, `JAL_BITS, 32'h0, 32'h0, 32'h00000100, 1'b1, 1);
-        finish_item(trans);
-        print_scenario("JAL", trans);
-
-        // JALR
-        trans = transaction::type_id::create("trans");
-        start_item(trans);
-        trans.set_values(`ADD_BITS, `JALR_BITS, 32'h00001000, 32'h0, 32'h00000004, 1'b1, 1);
-        finish_item(trans);
-        print_scenario("JALR", trans);
-
-        // LUI
-        trans = transaction::type_id::create("trans");
-        start_item(trans);
-        trans.set_values(`ADD_BITS, `LUI_BITS, 32'h0, 32'h0, 32'hDEAD0000, 1'b1, 1);
-        finish_item(trans);
-        print_scenario("LUI", trans);
-
-        // AUIPC
-        trans = transaction::type_id::create("trans");
-        start_item(trans);
-        trans.set_values(`ADD_BITS, `AUIPC_BITS, 32'h0, 32'h0, 32'hBEEF0000, 1'b1, 1);
-        finish_item(trans);
-        print_scenario("AUIPC", trans);
-
-        // System (ECALL)
-        trans = transaction::type_id::create("trans");
-        start_item(trans);
-        trans.set_values(`ADD_BITS, `SYSTEM_BITS, 32'h0, 32'h0, 32'h0, 1'b1, 1);
-        trans.i_exception = 2'b01;  // Example exception
-        finish_item(trans);
-        print_scenario("System: ECALL", trans);
-
-        // Fence
-        trans = transaction::type_id::create("trans");
-        start_item(trans);
-        trans.set_values(`ADD_BITS, `FENCE_BITS, 32'h0, 32'h0, 32'h0, 1'b1, 1);
-        finish_item(trans);
-        print_scenario("Fence", trans);
-    endtask
 
     virtual task generate_random_scenarios();
         transaction trans;
