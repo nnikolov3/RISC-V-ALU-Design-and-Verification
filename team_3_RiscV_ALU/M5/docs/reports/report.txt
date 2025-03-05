@@ -1,0 +1,44 @@
+Recursive Coverage Report Summary Data by DU
+
+=================================================================================
+=== Design Unit: work.top_sv_unit
+=================================================================================
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Branches                       298       126       172    42.28%
+    Conditions                      42        10        32    23.80%
+    Covergroups                      1        na        na    81.25%
+        Coverpoints/Crosses          8        na        na        na
+            Covergroup Bins         56        52         4    92.85%
+    Statements                    1150       986       164    85.73%
+
+=================================================================================
+=== Design Unit: work.alu_if
+=================================================================================
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Assertions                       2         0         2     0.00%
+    Statements                      37        37         0   100.00%
+
+=================================================================================
+=== Design Unit: work.rv32i_alu
+=================================================================================
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Branches                        43        42         1    97.67%
+    Conditions                      12        10         2    83.33%
+    Statements                      47        47         0   100.00%
+
+=================================================================================
+=== Design Unit: work.top
+=================================================================================
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Assertions                       2         0         2     0.00%
+    Branches                        43        42         1    97.67%
+    Conditions                      12        10         2    83.33%
+    Statements                      91        90         1    98.90%
+
+
+Total Coverage By Design Unit (filtered view): 50.85%
+

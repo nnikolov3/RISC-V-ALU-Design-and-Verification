@@ -1,0 +1,213 @@
+# Coverage Report by instance with details
+# 
+# =================================================================================
+# === Instance: /top_sv_unit
+# === Design Unit: work.top_sv_unit
+# =================================================================================
+# 
+# Covergroup Coverage:
+#     Covergroups                      1        na        na    81.25%
+#         Coverpoints/Crosses          8        na        na        na
+#             Covergroup Bins         56        52         4    92.85%
+# ----------------------------------------------------------------------------------------------------------
+# Covergroup                                             Metric       Goal       Bins    Status               
+#                                                                                                          
+# ----------------------------------------------------------------------------------------------------------
+#  TYPE /top_sv_unit/alu_coverage/alu_cg                 81.25%        100          -    Uncovered            
+#     covered/total bins:                                    52         56          -                      
+#     missing/total bins:                                     4         56          -                      
+#     % Hit:                                             92.85%        100          -                      
+#     Coverpoint opcode_check                           100.00%        100          -    Covered              
+#         covered/total bins:                                 2          2          -                      
+#         missing/total bins:                                 0          2          -                      
+#         % Hit:                                        100.00%        100          -                      
+#         bin r_type                                       2464          1          -    Covered              
+#         bin i_type                                       2544          1          -    Covered              
+#     Coverpoint alu_check                              100.00%        100          -    Covered              
+#         covered/total bins:                                14         14          -                      
+#         missing/total bins:                                 0         14          -                      
+#         % Hit:                                        100.00%        100          -                      
+#         bin add                                           380          1          -    Covered              
+#         bin sub                                           340          1          -    Covered              
+#         bin and_op                                        353          1          -    Covered              
+#         bin or_op                                         365          1          -    Covered              
+#         bin xor_op                                        385          1          -    Covered              
+#         bin sll                                           379          1          -    Covered              
+#         bin srl                                           334          1          -    Covered              
+#         bin sra                                           355          1          -    Covered              
+#         bin slt                                           340          1          -    Covered              
+#         bin sltu                                          350          1          -    Covered              
+#         bin eq                                            325          1          -    Covered              
+#         bin neq                                           365          1          -    Covered              
+#         bin ge                                            364          1          -    Covered              
+#         bin geu                                           373          1          -    Covered              
+#     Coverpoint #coverpoint__0#                        100.00%        100          -    Covered              
+#         covered/total bins:                                 2          2          -                      
+#         missing/total bins:                                 0          2          -                      
+#         % Hit:                                        100.00%        100          -                      
+#         bin reset_asserted                                282          1          -    Covered              
+#         bin reset_deasserted                             4726          1          -    Covered              
+#     Coverpoint #coverpoint__1#                         50.00%        100          -    Uncovered            
+#         covered/total bins:                                 1          2          -                      
+#         missing/total bins:                                 1          2          -                      
+#         % Hit:                                         50.00%        100          -                      
+#         bin disabled                                        0          1          -    ZERO                 
+#         bin enabled                                      5008          1          -    Covered              
+#     Coverpoint #tr.rst_n__2#                          100.00%        100          -    Covered              
+#         covered/total bins:                                 2          2          -                      
+#         missing/total bins:                                 0          2          -                      
+#         % Hit:                                        100.00%        100          -                      
+#         bin auto[0]                                       282          1          -    Covered              
+#         bin auto[1]                                      4726          1          -    Covered              
+#     Coverpoint #tr.i_ce__3#                            50.00%        100          -    Uncovered            
+#         covered/total bins:                                 1          2          -                      
+#         missing/total bins:                                 1          2          -                      
+#         % Hit:                                         50.00%        100          -                      
+#         bin auto[0]                                         0          1          -    ZERO                 
+#         bin auto[1]                                      5008          1          -    Covered              
+#     Cross #cross__0#                                  100.00%        100          -    Covered              
+#         covered/total bins:                                28         28          -                      
+#         missing/total bins:                                 0         28          -                      
+#         % Hit:                                        100.00%        100          -                      
+#         Auto, Default and User Defined Bins:
+#             bin r_type_add                                194          1          -    Covered              
+#             bin r_type_sub                                163          1          -    Covered              
+#             bin r_type_and                                180          1          -    Covered              
+#             bin r_type_or                                 188          1          -    Covered              
+#             bin r_type_xor                                181          1          -    Covered              
+#             bin r_type_sll                                179          1          -    Covered              
+#             bin r_type_srl                                169          1          -    Covered              
+#             bin r_type_sra                                173          1          -    Covered              
+#             bin r_type_slt                                167          1          -    Covered              
+#             bin r_type_sltu                               170          1          -    Covered              
+#             bin r_type_eq                                 165          1          -    Covered              
+#             bin r_type_neq                                177          1          -    Covered              
+#             bin r_type_ge                                 170          1          -    Covered              
+#             bin r_type_geu                                188          1          -    Covered              
+#             bin i_type_add                                186          1          -    Covered              
+#             bin i_type_sub                                177          1          -    Covered              
+#             bin i_type_and                                173          1          -    Covered              
+#             bin i_type_or                                 177          1          -    Covered              
+#             bin i_type_xor                                204          1          -    Covered              
+#             bin i_type_sll                                200          1          -    Covered              
+#             bin i_type_srl                                165          1          -    Covered              
+#             bin i_type_sra                                182          1          -    Covered              
+#             bin i_type_slt                                173          1          -    Covered              
+#             bin i_type_sltu                               180          1          -    Covered              
+#             bin i_type_eq                                 160          1          -    Covered              
+#             bin i_type_neq                                188          1          -    Covered              
+#             bin i_type_ge                                 194          1          -    Covered              
+#             bin i_type_geu                                185          1          -    Covered              
+#     Cross #cross__1#                                   50.00%        100          -    Uncovered            
+#         covered/total bins:                                 2          4          -                      
+#         missing/total bins:                                 2          4          -                      
+#         % Hit:                                         50.00%        100          -                      
+#         Auto, Default and User Defined Bins:
+#             bin <auto[1],auto[1]>                        4726          1          -    Covered              
+#             bin <auto[0],auto[1]>                         282          1          -    Covered              
+#             bin <*,auto[0]>                                 0          1          2    ZERO                 
+# 
+# COVERGROUP COVERAGE:
+# ----------------------------------------------------------------------------------------------------------
+# Covergroup                                             Metric       Goal       Bins    Status               
+#                                                                                                          
+# ----------------------------------------------------------------------------------------------------------
+#  TYPE /top_sv_unit/alu_coverage/alu_cg                 81.25%        100          -    Uncovered            
+#     covered/total bins:                                    52         56          -                      
+#     missing/total bins:                                     4         56          -                      
+#     % Hit:                                             92.85%        100          -                      
+#     Coverpoint opcode_check                           100.00%        100          -    Covered              
+#         covered/total bins:                                 2          2          -                      
+#         missing/total bins:                                 0          2          -                      
+#         % Hit:                                        100.00%        100          -                      
+#         bin r_type                                       2464          1          -    Covered              
+#         bin i_type                                       2544          1          -    Covered              
+#     Coverpoint alu_check                              100.00%        100          -    Covered              
+#         covered/total bins:                                14         14          -                      
+#         missing/total bins:                                 0         14          -                      
+#         % Hit:                                        100.00%        100          -                      
+#         bin add                                           380          1          -    Covered              
+#         bin sub                                           340          1          -    Covered              
+#         bin and_op                                        353          1          -    Covered              
+#         bin or_op                                         365          1          -    Covered              
+#         bin xor_op                                        385          1          -    Covered              
+#         bin sll                                           379          1          -    Covered              
+#         bin srl                                           334          1          -    Covered              
+#         bin sra                                           355          1          -    Covered              
+#         bin slt                                           340          1          -    Covered              
+#         bin sltu                                          350          1          -    Covered              
+#         bin eq                                            325          1          -    Covered              
+#         bin neq                                           365          1          -    Covered              
+#         bin ge                                            364          1          -    Covered              
+#         bin geu                                           373          1          -    Covered              
+#     Coverpoint #coverpoint__0#                        100.00%        100          -    Covered              
+#         covered/total bins:                                 2          2          -                      
+#         missing/total bins:                                 0          2          -                      
+#         % Hit:                                        100.00%        100          -                      
+#         bin reset_asserted                                282          1          -    Covered              
+#         bin reset_deasserted                             4726          1          -    Covered              
+#     Coverpoint #coverpoint__1#                         50.00%        100          -    Uncovered            
+#         covered/total bins:                                 1          2          -                      
+#         missing/total bins:                                 1          2          -                      
+#         % Hit:                                         50.00%        100          -                      
+#         bin disabled                                        0          1          -    ZERO                 
+#         bin enabled                                      5008          1          -    Covered              
+#     Coverpoint #tr.rst_n__2#                          100.00%        100          -    Covered              
+#         covered/total bins:                                 2          2          -                      
+#         missing/total bins:                                 0          2          -                      
+#         % Hit:                                        100.00%        100          -                      
+#         bin auto[0]                                       282          1          -    Covered              
+#         bin auto[1]                                      4726          1          -    Covered              
+#     Coverpoint #tr.i_ce__3#                            50.00%        100          -    Uncovered            
+#         covered/total bins:                                 1          2          -                      
+#         missing/total bins:                                 1          2          -                      
+#         % Hit:                                         50.00%        100          -                      
+#         bin auto[0]                                         0          1          -    ZERO                 
+#         bin auto[1]                                      5008          1          -    Covered              
+#     Cross #cross__0#                                  100.00%        100          -    Covered              
+#         covered/total bins:                                28         28          -                      
+#         missing/total bins:                                 0         28          -                      
+#         % Hit:                                        100.00%        100          -                      
+#         Auto, Default and User Defined Bins:
+#             bin r_type_add                                194          1          -    Covered              
+#             bin r_type_sub                                163          1          -    Covered              
+#             bin r_type_and                                180          1          -    Covered              
+#             bin r_type_or                                 188          1          -    Covered              
+#             bin r_type_xor                                181          1          -    Covered              
+#             bin r_type_sll                                179          1          -    Covered              
+#             bin r_type_srl                                169          1          -    Covered              
+#             bin r_type_sra                                173          1          -    Covered              
+#             bin r_type_slt                                167          1          -    Covered              
+#             bin r_type_sltu                               170          1          -    Covered              
+#             bin r_type_eq                                 165          1          -    Covered              
+#             bin r_type_neq                                177          1          -    Covered              
+#             bin r_type_ge                                 170          1          -    Covered              
+#             bin r_type_geu                                188          1          -    Covered              
+#             bin i_type_add                                186          1          -    Covered              
+#             bin i_type_sub                                177          1          -    Covered              
+#             bin i_type_and                                173          1          -    Covered              
+#             bin i_type_or                                 177          1          -    Covered              
+#             bin i_type_xor                                204          1          -    Covered              
+#             bin i_type_sll                                200          1          -    Covered              
+#             bin i_type_srl                                165          1          -    Covered              
+#             bin i_type_sra                                182          1          -    Covered              
+#             bin i_type_slt                                173          1          -    Covered              
+#             bin i_type_sltu                               180          1          -    Covered              
+#             bin i_type_eq                                 160          1          -    Covered              
+#             bin i_type_neq                                188          1          -    Covered              
+#             bin i_type_ge                                 194          1          -    Covered              
+#             bin i_type_geu                                185          1          -    Covered              
+#     Cross #cross__1#                                   50.00%        100          -    Uncovered            
+#         covered/total bins:                                 2          4          -                      
+#         missing/total bins:                                 2          4          -                      
+#         % Hit:                                         50.00%        100          -                      
+#         Auto, Default and User Defined Bins:
+#             bin <auto[1],auto[1]>                        4726          1          -    Covered              
+#             bin <auto[0],auto[1]>                         282          1          -    Covered              
+#             bin <*,auto[0]>                                 0          1          2    ZERO                 
+# 
+# TOTAL COVERGROUP COVERAGE: 81.25%  COVERGROUP TYPES: 1
+# 
+# Total Coverage By Instance (filtered view): 81.25%
+# 
+# 
