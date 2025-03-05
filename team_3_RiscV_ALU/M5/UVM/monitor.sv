@@ -175,6 +175,12 @@ class alu_monitor extends uvm_monitor;
                   tx.o_flush
                   ), UVM_MEDIUM);
 */				  
+
+            if (tx.i_exception != 0 || tx.o_exception != 0) begin
+                `uvm_info("MONITOR", $sformatf(
+                    "Captured Exception: Input=%0d, Output=%0d", 
+                    tx.i_exception, tx.o_exception), UVM_MEDIUM)
+            end
 			mon2scb.write(tx);
 			//@(negedge vif.i_clk);
         end

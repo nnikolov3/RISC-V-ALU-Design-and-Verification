@@ -134,6 +134,13 @@ class alu_driver extends uvm_driver #(transaction);
                   tx.i_flush,
                   tx.rst_n
                   ), UVM_MEDIUM); 		*/
+                  // Handle exceptions explicitly
+            if (tx.i_exception != 0) begin
+                drv_if.cb_input.i_exception <= tx.i_exception;
+                `uvm_info("DRV", $sformatf("Exception driven: %0d", tx.i_exception), UVM_MEDIUM);
+            end else begin
+                drv_if.cb_input.i_exception <= 0;
+            end
         end
 
         // Synchronize with the positive clock edge

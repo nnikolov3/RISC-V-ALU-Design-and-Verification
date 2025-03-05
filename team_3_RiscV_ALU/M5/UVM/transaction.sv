@@ -31,15 +31,13 @@ class transaction extends uvm_sequence_item;
     rand bit [                 2:0] i_funct3;  // Function field (3-bit)
     rand bit [                31:0] i_pc;  // Program counter (32-bit)
     rand bit [                 4:0] i_rd_addr;  // Destination register address (5-bit)
+    rand bit      [`EXCEPTION_WIDTH-1:0] i_exception;  // Exception signal
 
     bit                             i_stall;  // Stall signal
     bit                             i_force_stall;  // Force stall signal
     bit                             i_flush;  // Flush signal
 	// coverage on
     rand bit                        rst_n;  // Active-low reset signal
-
-    // Non-randomized fields (set externally or in specific cases)
-    bit      [`EXCEPTION_WIDTH-1:0] i_exception;  // Exception signal
 
     //--------------------------------------------------------------------------
     // Output Signals (for monitoring and verification, not driven to DUT)
@@ -137,6 +135,11 @@ class transaction extends uvm_sequence_item;
         (i_rs1 inside {32'h7FFFFFFF, 32'h80000000}) || (i_rs2 inside {32'h7FFFFFFF, 32'h80000000});
     }
 
+    constraint exception_c {
+        i_exception dist {0 := 80, 1 := 5, 2 := 5, 3 := 5, 4 := 5}; // Random exception distribution
+    }
+
+  
     //--------------------------------------------------------------------------
     // Constructor
     //--------------------------------------------------------------------------

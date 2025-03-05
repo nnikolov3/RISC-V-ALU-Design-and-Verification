@@ -40,6 +40,7 @@ class alu_sequence extends uvm_sequence #(transaction);
 
         generate_predefined_scenarios();  // Run predefined test cases
         generate_random_scenarios();  // Generate random transactions
+        generate_exception_scenarios();  // 🔹 NEW: Run exception-related test cases
         deactivate_ce();  // Test clock enable deactivation
     endtask
 
@@ -71,7 +72,44 @@ class alu_sequence extends uvm_sequence #(transaction);
             print_scenario($sformatf("Random Scenario %0d", i), trans);
         end
     endtask
-	
+
+virtual task generate_exception_scenarios();
+    transaction trans;
+
+    // Scenario 2: Illegal instruction
+    trans = transaction::type_id::create("trans");
+    start_item(trans);
+    trans.set_values(7'b1111111, `RTYPE_BITS, 32'hABCDEF12, 32'h12345678, 32'h0, 1'b1, 1);  // Invalid opcode
+    trans.i_exception = 2;  // Indicate illegal instruction exception
+    finish_item(trans);
+    print_scenario("Illegal Instruction Exception", trans);
+
+    // Scenario 3: Overflow in ADD operation
+    trans = transaction::type_id::create("trans");
+    start_item(trans);
+    trans.set_values(`ADD_BITS, `RTYPE_BITS, 32'h7FFFFFFF, 32'h7FFFFFFF, 32'h0, 1'b1, 1);  // Max positive values
+    trans.i_exception = 3;  // Indicate overflow exception
+    finish_item(trans);
+    print_scenario("ADD: Overflow Exception", trans);
+
+    // Scenario 4: Underflow in SUB operation
+    trans = transaction::type_id::create("trans");
+    start_item(trans);
+    trans.set_values(`SUB_BITS, `RTYPE_BITS, 32'h80000000, 32'h00000001, 32'h0, 1'b1, 1);  // Min negative values
+    trans.i_exception = 4;  // Indicate underflow exception
+    finish_item(trans);
+    print_scenario("SUB: Underflow Exception", trans);
+
+    // Scenario 5: Misaligned memory access (Assume load/store with misaligned address)
+    trans = transaction::type_id::create("trans");
+    start_item(trans);
+    trans.set_values(`LOAD_BITS, `ITYPE_BITS, 32'h12345678, 32'h00000000, 32'h00000003, 1'b1, 1);  // Misaligned address
+    trans.i_exception = 5;  // Indicate misaligned access exception
+    finish_item(trans);
+    print_scenario("Misaligned Memory Access Exception", trans);
+
+endtask
+
 	virtual task reset_signals();
         transaction trans;
 
@@ -158,6 +196,7 @@ class alu_sequence extends uvm_sequence #(transaction);
     virtual function void print_scenario(string scenario_name, transaction trans);
         string alu_op_str;
         string opcode_str;
+        string exception_str;
 
         // Map ALU operation index to string based on rv32i_alu_header.sv
         case (1)
@@ -194,9 +233,19 @@ class alu_sequence extends uvm_sequence #(transaction);
             default:      opcode_str = "UNKNOWN";
         endcase
 
+        case (trans.i_exception)
+            0: exception_str = "None";
+            1: exception_str = "Division by Zero";
+            2: exception_str = "Illegal Instruction";
+            3: exception_str = "Overflow";
+            4: exception_str = "Underflow";
+            5: exception_str = "Misaligned Memory Access";
+            default: exception_str = "Unknown";
+        endcase
+
         // Log the transaction details using UVM info
         `uvm_info("SCENARIO", $sformatf(
-                  "\n=== %s ===\nOperation Type: %s\nInstruction Type: %s\nRS1: %h\nRS2: %h\nIMM: %h\nCE: %b\nRS1_ADDR: %h\nFUNCT3: %h\nPC: %h\nRD_ADDR: %h\nSTALL: %h\nFORCE_STALL: %h\nFLUSH: %h\nRST_N: %h"
+                  "\n=== %s ===\nOperation Type: %s\nInstruction Type: %s\nRS1: %h\nRS2: %h\nIMM: %h\nCE: %b\nRS1_ADDR: %h\nFUNCT3: %h\nPC: %h\nRD_ADDR: %h\nSTALL: %h\nFORCE_STALL: %h\nFLUSH: %h\nRST_N: %h\nEXCEPTION: %s"
                       ,
                   scenario_name,
                   alu_op_str,
@@ -212,7 +261,9 @@ class alu_sequence extends uvm_sequence #(transaction);
                   trans.i_stall,
                   trans.i_force_stall,
                   trans.i_flush,
-                  trans.rst_n
+                  trans.rst_n,
+                  exception_str
                   ), UVM_MEDIUM)
     endfunction
 endclass
+
