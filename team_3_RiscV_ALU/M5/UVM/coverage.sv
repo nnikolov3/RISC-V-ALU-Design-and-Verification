@@ -91,11 +91,14 @@ class alu_coverage extends uvm_subscriber #(transaction);
         coverpoint tr.o_stall_from_alu {bins no_alu_stall = {0}; bins alu_stall = {1};}
 
         // Exception coverage
-        coverpoint tr.i_exception {
-            bins no_exception = {0};
-            bins exceptions[] =
-                {[1 : (1 << `EXCEPTION_WIDTH) - 1]};  // e.g., 1 to 3 if EXCEPTION_WIDTH=2
-        }
+        coverpoint tr.i_exception {   
+        bins no_exception = {0};
+        bins div_by_zero = {1};
+        bins illegal_opcode = {2};
+        bins overflow = {3};
+        bins underflow = {4};
+        bins misaligned_access = {5};
+    }
 
         // Cross coverage for key interactions
         cross tr.i_opcode, tr.i_alu;
