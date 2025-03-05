@@ -16,64 +16,63 @@ import uvm_pkg::*;
 // Define the alu_env class, which serves as the top-level environment for ALU verification
 // It extends uvm_env, the base UVM class for environments
 class alu_env extends uvm_env;
-    // Register the alu_env class with the UVM factory
-    // This allows the class to be instantiated dynamically during simulation
-    `uvm_component_utils(alu_env)
+  // Register the alu_env class with the UVM factory
+  // This allows the class to be instantiated dynamically during simulation
+  `uvm_component_utils(alu_env)
 
-    virtual alu_if dut_if;
+  virtual alu_if dut_if;
 
-    // Declare class members for the key components of the environment
-    // alu_agent handles driving and monitoring transactions to/from the DUT
-    alu_agent      agent;
-    // alu_scoreboard compares expected vs. actual results to verify DUT behavior
-    alu_scoreboard scoreboard;
-    // alu_coverage collects functional coverage data to ensure test completeness
-    alu_coverage   coverage;
+  // Declare class members for the key components of the environment
+  // alu_agent handles driving and monitoring transactions to/from the DUT
+  alu_agent      agent;
+  // alu_scoreboard compares expected vs. actual results to verify DUT behavior
+  alu_scoreboard scoreboard;
+  // alu_coverage collects functional coverage data to ensure test completeness
+  alu_coverage   coverage;
 
-    // Constructor for the environment class
-    // Parameters:
-    // - name: A string specifying the instance name of this environment
-    // - parent: The parent UVM component (e.g., a test) that instantiates this environment
-    function new(string name, uvm_component parent);
-        // Call the parent class (uvm_env) constructor to initialize the base class
-        super.new(name, parent);
-    endfunction
+  // Constructor for the environment class
+  // Parameters:
+  // - name: A string specifying the instance name of this environment
+  // - parent: The parent UVM component (e.g., a test) that instantiates this environment
+  function new(string name, uvm_component parent);
+    // Call the parent class (uvm_env) constructor to initialize the base class
+    super.new(name, parent);
+  endfunction
 
-    // Build phase: This phase is executed before the simulation starts
-    // It’s responsible for creating and configuring all components in the environment
-    function void build_phase(uvm_phase phase);
-        // Call the parent class’s build_phase to ensure proper initialization
-        super.build_phase(phase);
-        `uvm_info("ENV", "ENV Building", UVM_NONE);
-        // Instantiate the agent using the UVM factory method
-        // "agent" is the instance name, and "this" is the parent (the current environment)
-        agent      = alu_agent::type_id::create("agent", this);
-        // Instantiate the scoreboard using the UVM factory
-        scoreboard = alu_scoreboard::type_id::create("scoreboard", this);
-        // Instantiate the coverage collector using the UVM factory
-        coverage   = alu_coverage::type_id::create("coverage", this);
-        // Configure the agent to be active using the UVM configuration database
-        set_report_severity_action_hier(
-            UVM_INFO, UVM_DISPLAY | UVM_LOG);  // Ensure info messages are displayed and logged
-        set_report_severity_action_hier(UVM_WARNING, UVM_LOG);  // Log warnings
-        set_report_severity_action_hier(UVM_ERROR,
-                                        UVM_LOG | UVM_DISPLAY);  // Log and display errors
-        //        uvm_config_db#(virtual alu_if)::set(null, "*", "alu_vif", dut_if);
+  // Build phase: This phase is executed before the simulation starts
+  // It’s responsible for creating and configuring all components in the environment
+  function void build_phase(uvm_phase phase);
+    // Call the parent class’s build_phase to ensure proper initialization
+    super.build_phase(phase);
+    `uvm_info("ENV", "ENV Building", UVM_NONE);
+    // Instantiate the agent using the UVM factory method
+    // "agent" is the instance name, and "this" is the parent (the current environment)
+    agent      = alu_agent::type_id::create("agent", this);
+    // Instantiate the scoreboard using the UVM factory
+    scoreboard = alu_scoreboard::type_id::create("scoreboard", this);
+    // Instantiate the coverage collector using the UVM factory
+    coverage   = alu_coverage::type_id::create("coverage", this);
+    // Configure the agent to be active using the UVM configuration database
+    set_report_severity_action_hier(
+        UVM_INFO, UVM_DISPLAY | UVM_LOG);  // Ensure info messages are displayed and logged
+    set_report_severity_action_hier(UVM_WARNING, UVM_LOG);  // Log warnings
+    set_report_severity_action_hier(UVM_ERROR, UVM_LOG | UVM_DISPLAY);  // Log and display errors
+    //        uvm_config_db#(virtual alu_if)::set(null, "*", "alu_vif", dut_if);
 
-        // UVM_ACTIVE means the agent will drive transactions to the DUT
-        uvm_config_db#(uvm_active_passive_enum)::set(this, "agent", "is_active", UVM_ACTIVE);
-    endfunction
+    // UVM_ACTIVE means the agent will drive transactions to the DUT
+    uvm_config_db#(uvm_active_passive_enum)::set(this, "agent", "is_active", UVM_ACTIVE);
+  endfunction
 
-    // Connect phase: This phase runs after the build phase
-    // It’s used to connect analysis ports and exports between components
-    function void connect_phase(uvm_phase phase);
-        // Connect the monitor’s analysis port (ap) to the scoreboard’s analysis import
-        // This allows the scoreboard to receive transactions captured by the monitor
-        agent.monitor.mon2scb.connect(scoreboard.scb_port);
-        // Connect the monitor’s analysis port to the coverage collector’s analysis export
-        // This enables the coverage component to sample transactions for coverage analysis
-        agent.monitor.mon2scb.connect(coverage.analysis_export);
-    endfunction
+  // Connect phase: This phase runs after the build phase
+  // It’s used to connect analysis ports and exports between components
+  function void connect_phase(uvm_phase phase);
+    // Connect the monitor’s analysis port (ap) to the scoreboard’s analysis import
+    // This allows the scoreboard to receive transactions captured by the monitor
+    agent.monitor.mon2scb.connect(scoreboard.scb_port);
+    // Connect the monitor’s analysis port to the coverage collector’s analysis export
+    // This enables the coverage component to sample transactions for coverage analysis
+    agent.monitor.mon2scb.connect(coverage.analysis_export);
+  endfunction
 endclass
 
 // End of the include guard
