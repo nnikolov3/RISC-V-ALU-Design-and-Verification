@@ -1108,7 +1108,7 @@ class alu_sequence extends uvm_sequence #(transaction);
   // Generate random transactions with exhaustive constraints for maximum coverage
   virtual task generate_random_scenarios();
     transaction trans;
-    int num_ops = 14; // Total ALU operations: ADD, SUB, SLT, SLTU, XOR, OR, AND, SLL, SRL, SRA, EQ, NEQ, GE, GEU
+    int num_ops = 14;  // Total ALU operations: ADD, SUB, SLT, SLTU, XOR, OR, AND, SLL, SRL, SRA, EQ, NEQ, GE, GEU
     int cycle_count = 0;
 
     // Define additional constraint modes in transaction.sv if not already present
@@ -1300,7 +1300,7 @@ class alu_sequence extends uvm_sequence #(transaction);
     // Log the transaction details using UVM info
     `uvm_info("SCENARIO", $sformatf(
               "\n=== %s ===\nOperation Type: %s\nInstruction Type: %s\nRS1: %h\nRS2: %h\nIMM: %h\nCE: %b\nRS1_ADDR: %h\nFUNCT3: %h\nPC: %h\nRD_ADDR: %h\nSTALL: %h\nFORCE_STALL: %h\nFLUSH: %h\nRST_N: %h"
-                      ,
+                  ,
               scenario_name,
               alu_op_str,
               opcode_str,

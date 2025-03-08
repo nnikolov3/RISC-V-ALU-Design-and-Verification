@@ -5,164 +5,182 @@
 //   from the monitor's analysis port. It ensures comprehensive coverage of ALU
 //   operations, branch/jump handling, pipeline control signals, exceptions,
 //   and reset conditions.
-// Updated: Feb 26, 2025
+// Updated: Mar 08, 2025
 // ----------------------------------------------------------------------------
+// Guard against multiple inclusions of this file in the compilation process.
+// If ALU_COV_SV is already defined elsewhere, this file won’t be reprocessed.
 `ifndef ALU_COV_SV
 `define ALU_COV_SV 
 
+// Include UVM macro definitions for utility functions and reporting mechanisms.
 `include "uvm_macros.svh"
-import uvm_pkg::*;
-`include "rv32i_alu_header.sv"  // Include the provided header file
-`include "transaction.sv"  // Include the updated transaction.sv
 
+// Import the UVM package to access its classes, methods, and infrastructure.
+import uvm_pkg::*;
+
+// Include header and transaction definitions required for ALU-specific fields
+// and the transaction class used by this coverage component.
+`include "rv32i_alu_header.sv"  // Provides ALU-specific constants and types.
+`include "transaction.sv"  // Defines the transaction class for data sampling.
+
+// Define the alu_coverage class, inheriting from uvm_subscriber, a UVM component
+// designed to receive transactions via an analysis port and process them.
 class alu_coverage extends uvm_subscriber #(transaction);
+  // Register the class with UVM’s factory, enabling type registration for dynamic
+  // instantiation and overrides. This allows the factory to create or replace this
+  // component during simulation setup, enhancing testbench flexibility.
   `uvm_component_utils(alu_coverage)
 
-  // Transaction handle
+  // Transaction handle to store the incoming transaction object received from
+  // the monitor’s analysis port for coverage sampling.
   transaction tr;
 
-  // Covergroup to sample coverage based on transaction data
+  // Covergroup to define and collect functional coverage based on transaction data.
+  // It groups related coverage points and crosses to track ALU behavior comprehensively.
   covergroup alu_cg;
-    // Opcode coverage (7-bit standard RISC-V opcodes from transaction.sv)
+    // Opcode coverage: Monitors the instruction opcode field from the transaction.
+    // Uses 11-bit values as defined in transaction.sv, focusing on R-type and I-type.
     opcode_check: coverpoint tr.i_opcode {
-      bins r_type = {11'b00000000001};  // R-type
-      bins i_type = {11'b00000000010};  // I-type
-    /*            bins load = {7'b0000011};  // Load
-            bins store = {7'b0100011};  // Store
-            bins branch = {7'b1100011};  // Branch
-            bins jal = {7'b1101111};  // JAL
-            bins jalr = {7'b1100111};  // JALR
-            bins lui = {7'b0110111};  // LUI
-            bins auipc = {7'b0010111};  // AUIPC
-            bins system = {7'b1110011};  // System
-            bins fence = {7'b0001111};  // Fence
-			*/
+      bins r_type = {11'b00000000001};  // Covers R-type instructions (custom encoding).
+      bins i_type = {11'b00000000010};  // Covers I-type instructions (custom encoding).
+    /* Note: The commented-out bins use standard 7-bit RISC-V opcodes (e.g., load = 7'b0000011),
+         but the current code uses 11-bit custom values. Uncommented bins can be enabled
+         with adjustments to match the transaction’s i_opcode width and encoding:
+         bins load = {7'b0000011}; bins store = {7'b0100011}; bins branch = {7'b1100011};
+         bins jal = {7'b1101111}; bins jalr = {7'b1100111}; bins lui = {7'b0110111};
+         bins auipc = {7'b0010111}; bins system = {7'b1110011}; bins fence = {7'b0001111};
+      */
     }
 
-    // ALU operation coverage (14-bit one-hot from transaction.sv)
+    // ALU operation coverage: Tracks the ALU function field (14-bit one-hot encoding)
+    // from transaction.sv, ensuring all supported operations are exercised.
     alu_check: coverpoint tr.i_alu {
-      bins add = {14'b00000000000001};  // ADD
-      bins sub = {14'b00000000000010};  // SUB
-      bins and_op = {14'b00000000000100};  // AND
-      bins or_op = {14'b00000000001000};  // OR
-      bins xor_op = {14'b00000000010000};  // XOR
-      bins sll = {14'b00000000100000};  // SLL
-      bins srl = {14'b00000001000000};  // SRL
-      bins sra = {14'b00000010000000};  // SRA
-      bins slt = {14'b00000100000000};  // SLT
-      bins sltu = {14'b00001000000000};  // SLTU
-      bins eq = {14'b00010000000000};  // EQ
-      bins neq = {14'b00100000000000};  // NEQ
-      bins ge = {14'b01000000000000};  // GE
-      bins geu = {14'b10000000000000};  // GEU
+      bins add = {14'b00000000000001};  // Covers ADD operation.
+      bins sub = {14'b00000000000010};  // Covers SUB operation.
+      bins and_op = {14'b00000000000100};  // Covers AND operation.
+      bins or_op = {14'b00000000001000};  // Covers OR operation.
+      bins xor_op = {14'b00000000010000};  // Covers XOR operation.
+      bins sll = {14'b00000000100000};  // Covers Shift Left Logical (SLL).
+      bins srl = {14'b00000001000000};  // Covers Shift Right Logical (SRL).
+      bins sra = {14'b00000010000000};  // Covers Shift Right Arithmetic (SRA).
+      bins slt = {14'b00000100000000};  // Covers Set Less Than (SLT).
+      bins sltu = {14'b00001000000000};  // Covers Set Less Than Unsigned (SLTU).
+      bins eq = {14'b00010000000000};  // Covers Equal (EQ) comparison.
+      bins neq = {14'b00100000000000};  // Covers Not Equal (NEQ) comparison.
+      bins ge = {14'b01000000000000};  // Covers Greater or Equal (GE) comparison.
+      bins geu = {14'b10000000000000};  // Covers Greater or Equal Unsigned (GEU).
     }
 
-    // Reset coverage
+    // Reset coverage: Monitors the reset signal to ensure behavior is tested
+    // under both reset asserted and deasserted conditions.
     coverpoint tr.rst_n {
-      bins reset_asserted = {0}; bins reset_deasserted = {1};
+      bins reset_asserted = {0};  // Covers reset active (low).
+      bins reset_deasserted = {1};  // Covers reset inactive (high).
     }
 
-    // Branch and jump coverage
-    /*coverpoint tr.o_change_pc {
-            bins no_change = {0}; bins change = {1};
-        }*/
-
-    // Register writeback coverage
-    /*coverpoint tr.o_wr_rd {
-            bins no_write = {0}; bins write = {1};
-        }*/
-
-    //coverpoint tr.o_rd_valid {bins invalid = {0}; bins valid = {1};}
-
-    /*coverpoint tr.o_rd_addr {
-            bins reg_addr[] = {[0 : 31]};  // Covers all 32 registers
-        }*/
-
-    // Pipeline management coverage
+    // Pipeline management coverage: Tracks the clock enable signal to verify
+    // ALU operation with the pipeline enabled or disabled.
     coverpoint tr.i_ce {
-      bins disabled = {0}; bins enabled = {1};
+      bins disabled = {0};  // Covers clock enable off.
+      bins enabled = {1};  // Covers clock enable on.
     }
 
-    //coverpoint tr.i_stall {bins no_stall = {0}; bins stall = {1};}
-
-    //coverpoint tr.i_force_stall {bins no_force_stall = {0}; bins force_stall = {1};}
-
-    //coverpoint tr.i_flush {bins no_flush = {0}; bins flush = {1};}
-
-    //coverpoint tr.o_stall_from_alu {bins no_alu_stall = {0}; bins alu_stall = {1};}
-
-    // Exception coverage
-    /*coverpoint tr.i_exception {
-            bins no_exception = {0};
-            bins exceptions[] =
-                {[1 : (1 << `EXCEPTION_WIDTH) - 1]};  // e.g., 1 to 3 if EXCEPTION_WIDTH=2
-        }*/
-
-    // Cross coverage for key interactions
+    // Cross coverage: Combines opcode and ALU operation fields to verify specific
+    // instruction-operation pairs, ensuring the ALU executes each operation for
+    // applicable instruction types (R-type and I-type).
     cross opcode_check, alu_check{
-      bins r_type_add = binsof (opcode_check.r_type) && binsof (alu_check.add);  // ADD for R-type
-      bins r_type_sub = binsof (opcode_check.r_type) && binsof (alu_check.sub);  // SUB for R-type
+      bins r_type_add = binsof (opcode_check.r_type) &&
+          binsof (alu_check.add);  // ADD with R-type.
+      bins r_type_sub = binsof (opcode_check.r_type) &&
+          binsof (alu_check.sub);  // SUB with R-type.
       bins r_type_and = binsof (opcode_check.r_type) &&
-                binsof (alu_check.and_op);  // AND for R-type
-      bins r_type_or = binsof (opcode_check.r_type) && binsof (alu_check.or_op);  // OR for R-type
+          binsof (alu_check.and_op);  // AND with R-type.
+      bins r_type_or = binsof (opcode_check.r_type) &&
+          binsof (alu_check.or_op);  // OR with R-type.
       bins r_type_xor = binsof (opcode_check.r_type) &&
-                binsof (alu_check.xor_op);  // XOR for R-type
-      bins r_type_sll = binsof (opcode_check.r_type) && binsof (alu_check.sll);  // SLL for R-type
-      bins r_type_srl = binsof (opcode_check.r_type) && binsof (alu_check.srl);  // SRL for R-type
-      bins r_type_sra = binsof (opcode_check.r_type) && binsof (alu_check.sra);  // SRA for R-type
-      bins r_type_slt = binsof (opcode_check.r_type) && binsof (alu_check.slt);  // SLT for R-type
+          binsof (alu_check.xor_op);  // XOR with R-type.
+      bins r_type_sll = binsof (opcode_check.r_type) &&
+          binsof (alu_check.sll);  // SLL with R-type.
+      bins r_type_srl = binsof (opcode_check.r_type) &&
+          binsof (alu_check.srl);  // SRL with R-type.
+      bins r_type_sra = binsof (opcode_check.r_type) &&
+          binsof (alu_check.sra);  // SRA with R-type.
+      bins r_type_slt = binsof (opcode_check.r_type) &&
+          binsof (alu_check.slt);  // SLT with R-type.
       bins r_type_sltu = binsof (opcode_check.r_type) &&
-                binsof (alu_check.sltu);  // SLTU for R-type
-      bins r_type_eq = binsof (opcode_check.r_type) && binsof (alu_check.eq);  // EQ for R-type
-      bins r_type_neq = binsof (opcode_check.r_type) && binsof (alu_check.neq);  // NEQ for R-type
-      bins r_type_ge = binsof (opcode_check.r_type) && binsof (alu_check.ge);  // GE for R-type
-      bins r_type_geu = binsof (opcode_check.r_type) && binsof (alu_check.geu);  // GEU for R-type
+          binsof (alu_check.sltu);  // SLTU with R-type.
+      bins r_type_eq = binsof (opcode_check.r_type) && binsof (alu_check.eq);  // EQ with R-type.
+      bins r_type_neq = binsof (opcode_check.r_type) &&
+          binsof (alu_check.neq);  // NEQ with R-type.
+      bins r_type_ge = binsof (opcode_check.r_type) && binsof (alu_check.ge);  // GE with R-type.
+      bins r_type_geu = binsof (opcode_check.r_type) &&
+          binsof (alu_check.geu);  // GEU with R-type.
 
-      bins i_type_add = binsof (opcode_check.i_type) && binsof (alu_check.add);  // ADD for I-type
-      bins i_type_sub = binsof (opcode_check.i_type) && binsof (alu_check.sub);  // SUB for I-type
+      bins i_type_add = binsof (opcode_check.i_type) &&
+          binsof (alu_check.add);  // ADD with I-type.
+      bins i_type_sub = binsof (opcode_check.i_type) &&
+          binsof (alu_check.sub);  // SUB with I-type (corrected from r_type).
       bins i_type_and = binsof (opcode_check.i_type) &&
-                binsof (alu_check.and_op);  // AND for I-type
-      bins i_type_or = binsof (opcode_check.i_type) && binsof (alu_check.or_op);  // OR for I-type
+          binsof (alu_check.and_op);  // AND with I-type.
+      bins i_type_or = binsof (opcode_check.i_type) &&
+          binsof (alu_check.or_op);  // OR with I-type.
       bins i_type_xor = binsof (opcode_check.i_type) &&
-                binsof (alu_check.xor_op);  // XOR for I-type
-      bins i_type_sll = binsof (opcode_check.i_type) && binsof (alu_check.sll);  // SLL for I-type
-      bins i_type_srl = binsof (opcode_check.i_type) && binsof (alu_check.srl);  // SRL for I-type
-      bins i_type_sra = binsof (opcode_check.i_type) && binsof (alu_check.sra);  // SRA for I-type
-      bins i_type_slt = binsof (opcode_check.i_type) && binsof (alu_check.slt);  // SLT for I-type
+          binsof (alu_check.xor_op);  // XOR with I-type.
+      bins i_type_sll = binsof (opcode_check.i_type) &&
+          binsof (alu_check.sll);  // SLL with I-type.
+      bins i_type_srl = binsof (opcode_check.i_type) &&
+          binsof (alu_check.srl);  // SRL with I-type.
+      bins i_type_sra = binsof (opcode_check.i_type) &&
+          binsof (alu_check.sra);  // SRA with I-type.
+      bins i_type_slt = binsof (opcode_check.i_type) &&
+          binsof (alu_check.slt);  // SLT with I-type.
       bins i_type_sltu = binsof (opcode_check.i_type) &&
-                binsof (alu_check.sltu);  // SLTU for I-type
-      bins i_type_eq = binsof (opcode_check.i_type) && binsof (alu_check.eq);  // EQ for I-type
-      bins i_type_neq = binsof (opcode_check.i_type) && binsof (alu_check.neq);  // NEQ for I-type
-      bins i_type_ge = binsof (opcode_check.i_type) && binsof (alu_check.ge);  // GE for I-type
-      bins i_type_geu = binsof (opcode_check.i_type) && binsof (alu_check.geu);  // GEU for I-type
+          binsof (alu_check.sltu);  // SLTU with I-type.
+      bins i_type_eq = binsof (opcode_check.i_type) && binsof (alu_check.eq);  // EQ with I-type.
+      bins i_type_neq = binsof (opcode_check.i_type) &&
+          binsof (alu_check.neq);  // NEQ with I-type.
+      bins i_type_ge = binsof (opcode_check.i_type) && binsof (alu_check.ge);  // GE with I-type.
+      bins i_type_geu = binsof (opcode_check.i_type) &&
+          binsof (alu_check.geu);  // GEU with I-type.
     }
-    //cross tr.i_opcode, tr.i_exception;
-    //cross tr.i_opcode, tr.o_change_pc;
-    //cross tr.i_ce, tr.i_stall, tr.i_force_stall, tr.i_flush;
-    //cross tr.o_wr_rd, tr.o_rd_valid, tr.i_opcode;
+
+    // Cross coverage: Combines reset and clock enable signals to ensure coverage
+    // of their interactions, verifying ALU behavior under reset and pipeline states.
     cross tr.rst_n, tr.i_ce;
-  //cross tr.i_stall, tr.o_stall_from_alu;
+
+  // Additional commented-out coverpoints and crosses (e.g., exceptions, stalls)
+  // can be enabled to expand coverage scope as the testbench evolves:
+  /* coverpoint tr.i_exception { bins no_exception = {0}; bins exceptions[] = {[1 : (1 << `EXCEPTION_WIDTH) - 1]}; } */
+  /* cross tr.i_opcode, tr.i_exception; */
+  /* cross tr.i_ce, tr.i_stall, tr.i_force_stall, tr.i_flush; */
   endgroup
 
-  // Constructor
+  // Constructor: Initializes the component and instantiates the covergroup.
+  // The parent argument ties this subscriber into the UVM hierarchy.
   function new(string name, uvm_component parent);
-    super.new(name, parent);
-    alu_cg = new();
+    super.new(name, parent);  // Call the parent class (uvm_subscriber) constructor.
+    alu_cg = new();  // Create the covergroup instance for sampling.
   endfunction
 
-  // Write function to receive transactions from analysis port
+  // Write function: Receives transactions from the monitor’s analysis port.
+  // This is the callback method required by uvm_subscriber to process incoming data.
   function void write(transaction t);
-    tr = t;
-    if (tr.i_ce || !tr.rst_n) begin  // Sample during active clock enable or reset
-      alu_cg.sample();
+    tr = t;  // Assign the received transaction to the handle for sampling.
+    // Sample coverage only when the clock enable is active or reset is asserted,
+    // ensuring data is collected during relevant simulation states.
+    if (tr.i_ce || !tr.rst_n) begin
+      alu_cg.sample();  // Trigger the covergroup to evaluate its bins.
     end
   endfunction
 
-  // Extract phase to display coverage results
+  // Extract phase: Runs after simulation to report coverage results.
+  // This phase is part of UVM’s phase mechanism for finalizing component tasks.
   function void extract_phase(uvm_phase phase);
-    super.extract_phase(phase);
+    super.extract_phase(phase);  // Call the parent class’s extract_phase.
+    // Log the achieved functional coverage percentage with low verbosity.
     `uvm_info("COVERAGE", $sformatf("Functional Coverage: %0.2f%%", alu_cg.get_coverage()), UVM_LOW)
   endfunction
 endclass
 
+// End the inclusion guard, ensuring this file is processed only once.
 `endif

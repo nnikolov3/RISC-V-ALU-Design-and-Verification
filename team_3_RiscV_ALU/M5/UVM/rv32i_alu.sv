@@ -29,41 +29,41 @@ Summary:
 `include "uvm_macros.svh"
 import uvm_pkg::*;
 module rv32i_alu (
-    i_clk,
-    i_rst_n,
-    i_alu,
-    i_rs1_addr,
-    i_rs1,
-    i_rs2,
-    i_imm,
-    i_funct3,
-    i_opcode,
-    i_exception,
-    i_pc,
-    i_rd_addr,
-    i_ce,
-    i_stall,
-    i_force_stall,
-    i_flush,
-    o_rs1_addr,
-    o_rs1,
-    o_rs2,
-    o_imm,
-    o_funct3,
-    o_opcode,
-    o_exception,
-    o_y,
-    o_pc,
-    o_next_pc,
-    o_change_pc,
-    o_wr_rd,
-    o_rd_addr,
-    o_rd,
-    o_rd_valid,
-    o_stall_from_alu,
-    o_ce,
-    o_stall,
-    o_flush
+  i_clk,
+  i_rst_n,
+  i_alu,
+  i_rs1_addr,
+  i_rs1,
+  i_rs2,
+  i_imm,
+  i_funct3,
+  i_opcode,
+  i_exception,
+  i_pc,
+  i_rd_addr,
+  i_ce,
+  i_stall,
+  i_force_stall,
+  i_flush,
+  o_rs1_addr,
+  o_rs1,
+  o_rs2,
+  o_imm,
+  o_funct3,
+  o_opcode,
+  o_exception,
+  o_y,
+  o_pc,
+  o_next_pc,
+  o_change_pc,
+  o_wr_rd,
+  o_rd_addr,
+  o_rd,
+  o_rd_valid,
+  o_stall_from_alu,
+  o_ce,
+  o_stall,
+  o_flush
 );
   input logic i_clk, i_rst_n;
   input logic [`ALU_WIDTH-1:0] i_alu;  //alu operation type from previous stage
@@ -99,7 +99,7 @@ module rv32i_alu (
   output logic o_rd_valid;  //high if o_rd is valid (not load nor csr instruction)
   // coverage off
   output logic o_stall_from_alu
-        ;  //prepare to stall next stage(memory-access stage) for load/store instruction
+      ;  //prepare to stall next stage(memory-access stage) for load/store instruction
   // coverage on
   output logic o_ce;  // output clk enable for pipeline stalling of next stage
   // coverage off
@@ -167,13 +167,14 @@ module rv32i_alu (
         o_rd_valid <= rd_valid_d;
         o_wr_rd <= wr_rd_d;
         // coverage off
-        o_stall_from_alu <= i_opcode[`STORE] || i_opcode[`LOAD]
-                    ;  //stall next stage(memory-access stage) when need to store/load
+        o_stall_from_alu <= i_opcode[`STORE] ||
+            i_opcode[`LOAD];  //stall next stage(memory-access stage) when need to store/load
         // coverage on
         o_pc <= i_pc;  //since accessing data memory always takes more than 1 cycle
       end
       // coverage off
-      if (i_flush && !stall_bit) begin  //flush this stage so clock-enable of next stage is disabled at next clock cycle
+      if (i_flush && !stall_bit
+          ) begin  //flush this stage so clock-enable of next stage is disabled at next clock cycle
         o_ce <= 0;
         // coverage on
       end else if (!stall_bit) begin  //clock-enable will change only when not stalled
@@ -228,16 +229,16 @@ module rv32i_alu (
       if (opcode_rtype || opcode_itype) rd_d = y_d;
       // coverage off
       if (opcode_branch && y_d[0]) begin
-        o_next_pc = sum;  //branch iff value of ALU is 1(true)
+        o_next_pc   = sum;  //branch iff value of ALU is 1(true)
         o_change_pc = i_ce;  //change PC when ce of this stage is high (o_change_pc is valid)
-        o_flush = i_ce;
+        o_flush     = i_ce;
       end
       if (opcode_jal || opcode_jalr) begin
         if (opcode_jalr) a_pc = i_rs1;
-        o_next_pc = sum;  //jump to new PC
+        o_next_pc   = sum;  //jump to new PC
         o_change_pc = i_ce;  //change PC when ce of this stage is high (o_change_pc is valid)
-        o_flush = i_ce;
-        rd_d = i_pc + 4;  //logicister the next pc value to destination logicister
+        o_flush     = i_ce;
+        rd_d        = i_pc + 4;  //logicister the next pc value to destination logicister
       end
       // coverage on
     end
@@ -256,7 +257,8 @@ module rv32i_alu (
     o_stall = (i_stall || i_force_stall) && !i_flush;  //stall when alu needs wait time
   end
 
-  assign sum = a_pc + i_imm;  //share adder for all addition operation for less resource utilization
+  assign
+      sum = a_pc + i_imm;  //share adder for all addition operation for less resource utilization
   assign stall_bit = o_stall || i_stall;
   assign alu_add = i_alu[`ADD];
   assign alu_sub = i_alu[`SUB];
@@ -286,11 +288,11 @@ module rv32i_alu (
 `ifdef FORMAL
   // assumption on inputs(not more than one opcode and alu operation is high)
   logic [4:0] f_alu = i_alu[`ADD] + i_alu[`SUB] + i_alu[`SLT] + i_alu[`SLTU] + i_alu[`XOR] +
-        i_alu[`OR] + i_alu[`AND] + i_alu[`SLL] + i_alu[`SRL] + i_alu[`SRA] + i_alu[`EQ] +
-        i_alu[`NEQ] + i_alu[`GE] + i_alu[`GEU] + 0;
-  logic [4:0] f_opcode = i_opcode[`RTYPE] + i_opcode[`ITYPE] + i_opcode[`LOAD] +
-        i_opcode[`STORE] + i_opcode[`BRANCH] + i_opcode[`JAL] + i_opcode[`JALR] + i_opcode[`LUI] +
-        i_opcode[`AUIPC] + i_opcode[`SYSTEM] + i_opcode[`FENCE];
+      i_alu[`OR] + i_alu[`AND] + i_alu[`SLL] + i_alu[`SRL] + i_alu[`SRA] + i_alu[`EQ] +
+      i_alu[`NEQ] + i_alu[`GE] + i_alu[`GEU] + 0;
+  logic [4:0] f_opcode = i_opcode[`RTYPE] + i_opcode[`ITYPE] + i_opcode[`LOAD] + i_opcode[`STORE] +
+      i_opcode[`BRANCH] + i_opcode[`JAL] + i_opcode[`JALR] + i_opcode[`LUI] + i_opcode[`AUIPC] +
+      i_opcode[`SYSTEM] + i_opcode[`FENCE];
   always_comb begin
     assume (f_alu <= 1);
     assume (f_opcode <= 1);
@@ -310,41 +312,41 @@ endmodule
 
 
 module rv32i_alu2 (
-    i_clk,
-    i_rst_n,
-    i_alu,
-    i_rs1_addr,
-    i_rs1,
-    i_rs2,
-    i_imm,
-    i_funct3,
-    i_opcode,
-    i_exception,
-    i_pc,
-    i_rd_addr,
-    i_ce,
-    i_stall,
-    i_force_stall,
-    i_flush,
-    o_rs1_addr,
-    o_rs1,
-    o_rs2,
-    o_imm,
-    o_funct3,
-    o_opcode,
-    o_exception,
-    o_y,
-    o_pc,
-    o_next_pc,
-    o_change_pc,
-    o_wr_rd,
-    o_rd_addr,
-    o_rd,
-    o_rd_valid,
-    o_stall_from_alu,
-    o_ce,
-    o_stall,
-    o_flush
+  i_clk,
+  i_rst_n,
+  i_alu,
+  i_rs1_addr,
+  i_rs1,
+  i_rs2,
+  i_imm,
+  i_funct3,
+  i_opcode,
+  i_exception,
+  i_pc,
+  i_rd_addr,
+  i_ce,
+  i_stall,
+  i_force_stall,
+  i_flush,
+  o_rs1_addr,
+  o_rs1,
+  o_rs2,
+  o_imm,
+  o_funct3,
+  o_opcode,
+  o_exception,
+  o_y,
+  o_pc,
+  o_next_pc,
+  o_change_pc,
+  o_wr_rd,
+  o_rd_addr,
+  o_rd,
+  o_rd_valid,
+  o_stall_from_alu,
+  o_ce,
+  o_stall,
+  o_flush
 );
   input logic i_clk, i_rst_n;
   input logic [`ALU_WIDTH-1:0] i_alu;  //alu operation type from previous stage
@@ -377,7 +379,7 @@ module rv32i_alu2 (
   output logic [31:0] o_rd;  //value to be written back to destination logicister
   output logic o_rd_valid;  //high if o_rd is valid (not load nor csr instruction)
   output logic o_stall_from_alu
-        ;  //prepare to stall next stage(memory-access stage) for load/store instruction
+      ;  //prepare to stall next stage(memory-access stage) for load/store instruction
   output logic o_ce;  // output clk enable for pipeline stalling of next stage
   output logic o_stall;  //informs pipeline to stall
   output logic o_flush;  //flush previous stages
@@ -436,11 +438,12 @@ module rv32i_alu2 (
         o_rd <= rd_d;
         o_rd_valid <= rd_valid_d;
         o_wr_rd <= wr_rd_d;
-        o_stall_from_alu <= i_opcode[`STORE] || i_opcode[`LOAD]
-                    ;  //stall next stage(memory-access stage) when need to store/load
+        o_stall_from_alu <= i_opcode[`STORE] ||
+            i_opcode[`LOAD];  //stall next stage(memory-access stage) when need to store/load
         o_pc <= i_pc;  //since accessing data memory always takes more than 1 cycle
       end
-      if (i_flush && !stall_bit) begin  //flush this stage so clock-enable of next stage is disabled at next clock cycle
+      if (i_flush && !stall_bit
+          ) begin  //flush this stage so clock-enable of next stage is disabled at next clock cycle
         o_ce <= 0;
       end else if (!stall_bit) begin  //clock-enable will change only when not stalled
         o_ce <= i_ce;
@@ -489,16 +492,16 @@ module rv32i_alu2 (
     if (!i_flush) begin
       if (opcode_rtype || opcode_itype) rd_d = y_d;
       if (opcode_branch && y_d[0]) begin
-        o_next_pc = sum;  //branch iff value of ALU is 1(true)
+        o_next_pc   = sum;  //branch iff value of ALU is 1(true)
         o_change_pc = i_ce;  //change PC when ce of this stage is high (o_change_pc is valid)
-        o_flush = i_ce;
+        o_flush     = i_ce;
       end
       if (opcode_jal || opcode_jalr) begin
         if (opcode_jalr) a_pc = i_rs1;
-        o_next_pc = sum;  //jump to new PC
+        o_next_pc   = sum;  //jump to new PC
         o_change_pc = i_ce;  //change PC when ce of this stage is high (o_change_pc is valid)
-        o_flush = i_ce;
-        rd_d = i_pc + 4;  //logicister the next pc value to destination logicister
+        o_flush     = i_ce;
+        rd_d        = i_pc + 4;  //logicister the next pc value to destination logicister
       end
     end
     if (opcode_lui) rd_d = i_imm;
@@ -513,7 +516,8 @@ module rv32i_alu2 (
     //stall logic (stall when upper stages are stalled, when forced to stall, or when needs to flush previous stages but are still stalled)
     o_stall = (i_stall || i_force_stall) && !i_flush;  //stall when alu needs wait time
   end
-  assign sum = a_pc + i_imm;  //share adder for all addition operation for less resource utilization
+  assign
+      sum = a_pc + i_imm;  //share adder for all addition operation for less resource utilization
   assign stall_bit = o_stall || i_stall;
   assign alu_add = i_alu[`ADD];
   assign alu_sub = i_alu[`SUB];
@@ -545,11 +549,11 @@ module rv32i_alu2 (
 `ifdef FORMAL
   // assumption on inputs(not more than one opcode and alu operation is high)
   logic [4:0] f_alu = i_alu[`ADD] + i_alu[`SUB] + i_alu[`SLT] + i_alu[`SLTU] + i_alu[`XOR] +
-        i_alu[`OR] + i_alu[`AND] + i_alu[`SLL] + i_alu[`SRL] + i_alu[`SRA] + i_alu[`EQ] +
-        i_alu[`NEQ] + i_alu[`GE] + i_alu[`GEU] + 0;
-  logic [4:0] f_opcode = i_opcode[`RTYPE] + i_opcode[`ITYPE] + i_opcode[`LOAD] +
-        i_opcode[`STORE] + i_opcode[`BRANCH] + i_opcode[`JAL] + i_opcode[`JALR] + i_opcode[`LUI] +
-        i_opcode[`AUIPC] + i_opcode[`SYSTEM] + i_opcode[`FENCE];
+      i_alu[`OR] + i_alu[`AND] + i_alu[`SLL] + i_alu[`SRL] + i_alu[`SRA] + i_alu[`EQ] +
+      i_alu[`NEQ] + i_alu[`GE] + i_alu[`GEU] + 0;
+  logic [4:0] f_opcode = i_opcode[`RTYPE] + i_opcode[`ITYPE] + i_opcode[`LOAD] + i_opcode[`STORE] +
+      i_opcode[`BRANCH] + i_opcode[`JAL] + i_opcode[`JALR] + i_opcode[`LUI] + i_opcode[`AUIPC] +
+      i_opcode[`SYSTEM] + i_opcode[`FENCE];
   always_comb begin
     assume (f_alu <= 1);
     assume (f_opcode <= 1);
@@ -568,41 +572,41 @@ module rv32i_alu2 (
 endmodule
 
 module rv32i_alu3 (
-    i_clk,
-    i_rst_n,
-    i_alu,
-    i_rs1_addr,
-    i_rs1,
-    i_rs2,
-    i_imm,
-    i_funct3,
-    i_opcode,
-    i_exception,
-    i_pc,
-    i_rd_addr,
-    i_ce,
-    i_stall,
-    i_force_stall,
-    i_flush,
-    o_rs1_addr,
-    o_rs1,
-    o_rs2,
-    o_imm,
-    o_funct3,
-    o_opcode,
-    o_exception,
-    o_y,
-    o_pc,
-    o_next_pc,
-    o_change_pc,
-    o_wr_rd,
-    o_rd_addr,
-    o_rd,
-    o_rd_valid,
-    o_stall_from_alu,
-    o_ce,
-    o_stall,
-    o_flush
+  i_clk,
+  i_rst_n,
+  i_alu,
+  i_rs1_addr,
+  i_rs1,
+  i_rs2,
+  i_imm,
+  i_funct3,
+  i_opcode,
+  i_exception,
+  i_pc,
+  i_rd_addr,
+  i_ce,
+  i_stall,
+  i_force_stall,
+  i_flush,
+  o_rs1_addr,
+  o_rs1,
+  o_rs2,
+  o_imm,
+  o_funct3,
+  o_opcode,
+  o_exception,
+  o_y,
+  o_pc,
+  o_next_pc,
+  o_change_pc,
+  o_wr_rd,
+  o_rd_addr,
+  o_rd,
+  o_rd_valid,
+  o_stall_from_alu,
+  o_ce,
+  o_stall,
+  o_flush
 );
   input logic i_clk, i_rst_n;
   input logic [`ALU_WIDTH-1:0] i_alu;  //alu operation type from previous stage
@@ -635,7 +639,7 @@ module rv32i_alu3 (
   output logic [31:0] o_rd;  //value to be written back to destination logicister
   output logic o_rd_valid;  //high if o_rd is valid (not load nor csr instruction)
   output logic o_stall_from_alu
-        ;  //prepare to stall next stage(memory-access stage) for load/store instruction
+      ;  //prepare to stall next stage(memory-access stage) for load/store instruction
   output logic o_ce;  // output clk enable for pipeline stalling of next stage
   output logic o_stall;  //informs pipeline to stall
   output logic o_flush;  //flush previous stages
@@ -694,11 +698,12 @@ module rv32i_alu3 (
         o_rd <= rd_d;
         o_rd_valid <= rd_valid_d;
         o_wr_rd <= wr_rd_d;
-        o_stall_from_alu <= i_opcode[`STORE] || i_opcode[`LOAD]
-                    ;  //stall next stage(memory-access stage) when need to store/load
+        o_stall_from_alu <= i_opcode[`STORE] ||
+            i_opcode[`LOAD];  //stall next stage(memory-access stage) when need to store/load
         o_pc <= i_pc;  //since accessing data memory always takes more than 1 cycle
       end
-      if (i_flush && !stall_bit) begin  //flush this stage so clock-enable of next stage is disabled at next clock cycle
+      if (i_flush && !stall_bit
+          ) begin  //flush this stage so clock-enable of next stage is disabled at next clock cycle
         o_ce <= 0;
       end else if (!stall_bit) begin  //clock-enable will change only when not stalled
         o_ce <= i_ce;
@@ -745,16 +750,16 @@ module rv32i_alu3 (
     if (!i_flush) begin
       if (opcode_rtype || opcode_itype) rd_d = y_d;
       if (opcode_branch && y_d[0]) begin
-        o_next_pc = sum;  //branch iff value of ALU is 1(true)
+        o_next_pc   = sum;  //branch iff value of ALU is 1(true)
         o_change_pc = i_ce;  //change PC when ce of this stage is high (o_change_pc is valid)
-        o_flush = i_ce;
+        o_flush     = i_ce;
       end
       if (opcode_jal || opcode_jalr) begin
         if (opcode_jalr) a_pc = i_rs1;
-        o_next_pc = sum;  //jump to new PC
+        o_next_pc   = sum;  //jump to new PC
         o_change_pc = i_ce;  //change PC when ce of this stage is high (o_change_pc is valid)
-        o_flush = i_ce;
-        rd_d = i_pc + 4;  //logicister the next pc value to destination logicister
+        o_flush     = i_ce;
+        rd_d        = i_pc + 4;  //logicister the next pc value to destination logicister
       end
     end
     if (opcode_lui) rd_d = i_imm;
@@ -769,7 +774,8 @@ module rv32i_alu3 (
     //stall logic (stall when upper stages are stalled, when forced to stall, or when needs to flush previous stages but are still stalled)
     o_stall = (i_stall || i_force_stall) && !i_flush;  //stall when alu needs wait time
   end
-  assign sum = a_pc + i_imm;  //share adder for all addition operation for less resource utilization
+  assign
+      sum = a_pc + i_imm;  //share adder for all addition operation for less resource utilization
   assign stall_bit = o_stall || i_stall;
   assign alu_add = i_alu[`ADD];
   assign alu_sub = i_alu[`SUB];
@@ -799,11 +805,11 @@ module rv32i_alu3 (
 `ifdef FORMAL
   // assumption on inputs(not more than one opcode and alu operation is high)
   logic [4:0] f_alu = i_alu[`ADD] + i_alu[`SUB] + i_alu[`SLT] + i_alu[`SLTU] + i_alu[`XOR] +
-        i_alu[`OR] + i_alu[`AND] + i_alu[`SLL] + i_alu[`SRL] + i_alu[`SRA] + i_alu[`EQ] +
-        i_alu[`NEQ] + i_alu[`GE] + i_alu[`GEU] + 0;
-  logic [4:0] f_opcode = i_opcode[`RTYPE] + i_opcode[`ITYPE] + i_opcode[`LOAD] +
-        i_opcode[`STORE] + i_opcode[`BRANCH] + i_opcode[`JAL] + i_opcode[`JALR] + i_opcode[`LUI] +
-        i_opcode[`AUIPC] + i_opcode[`SYSTEM] + i_opcode[`FENCE];
+      i_alu[`OR] + i_alu[`AND] + i_alu[`SLL] + i_alu[`SRL] + i_alu[`SRA] + i_alu[`EQ] +
+      i_alu[`NEQ] + i_alu[`GE] + i_alu[`GEU] + 0;
+  logic [4:0] f_opcode = i_opcode[`RTYPE] + i_opcode[`ITYPE] + i_opcode[`LOAD] + i_opcode[`STORE] +
+      i_opcode[`BRANCH] + i_opcode[`JAL] + i_opcode[`JALR] + i_opcode[`LUI] + i_opcode[`AUIPC] +
+      i_opcode[`SYSTEM] + i_opcode[`FENCE];
   always_comb begin
     assume (f_alu <= 1);
     assume (f_opcode <= 1);
