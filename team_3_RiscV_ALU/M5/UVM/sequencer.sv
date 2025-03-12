@@ -9,7 +9,8 @@
 //   functionality across various operation types and pipeline conditions.
 // Updated: Feb 26, 2025
 // ----------------------------------------------------------------------------
-
+`ifndef ALU_SEQ_SV
+`define ALU_SEQ_SV 
 `include "uvm_macros.svh"
 import uvm_pkg::*;
 
@@ -1319,3 +1320,5 @@ class alu_sequence extends uvm_sequence #(transaction);
               ), UVM_MEDIUM)
   endfunction
 endclass
+
+`endif

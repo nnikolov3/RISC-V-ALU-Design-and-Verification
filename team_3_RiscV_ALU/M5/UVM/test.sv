@@ -29,7 +29,7 @@ import uvm_pkg::*;
 // Include the sequence definition to provide stimulus for the DUT.
 // Note: The original file had an incorrect comment "#include 'sequencer.sv'",
 // which is replaced with the correct sequence include (assumed to be alu_sequence.sv).
-`include "alu_sequence.sv"
+`include "sequencer.sv"
 
 // Define the alu_base_test class, inheriting from uvm_test, a UVM base class
 // that serves as the top-level test controller for simulation execution.

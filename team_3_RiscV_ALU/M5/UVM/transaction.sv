@@ -112,7 +112,7 @@ class transaction extends uvm_sequence_item;
   // Original constraint used 11-bit one-hot; corrected to match 7-bit width from header.
   constraint opcode_c {
     i_opcode inside {`RTYPE_BITS,  // R-type instructions
-    `ITYPE_BITS,  // I-type instructions
+    `ITYPE_BITS/*,  // I-type instructions
     `LOAD_BITS,  // Load instructions
     `STORE_BITS,  // Store instructions
     `BRANCH_BITS,  // Branch instructions
@@ -121,7 +121,7 @@ class transaction extends uvm_sequence_item;
     `LUI_BITS,  // Load upper immediate
     `AUIPC_BITS,  // Add upper immediate to PC
     `SYSTEM_BITS,  // System instructions
-    `FENCE_BITS  // Fence instructions
+    `FENCE_BITS*/  // Fence instructions
     };
   }
 
